@@ -1,0 +1,1134 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkiMap</title>
+<meta name="description" content="SkiMap è il navigatore per chi scia, su qualsiasi comprensorio del mondo: tocchi un punto sulla mappa, scegli il tuo livello e vieni guidato pista dopo pista, impianto dopo impianto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* ---------- tokens: alta quota, mezzogiorno ---------- */
+:root{
+  --bg:#f4f6f9;           /* neve in luce */
+  --bg-2:#e9eef4;         /* neve in ombra */
+  --bg-3:#dce3ec;
+  --sky:#dfe9f4;          /* cielo d'alta quota, per l'hero */
+  --card:#ffffff;
+  --ink:#101418;
+  --ink-2:#4c5866;
+  --ink-3:#7f8b98;
+  --line:#d3dbe4;
+  --dark:#151a21;         /* fascia scura di contrasto (carbone freddo, non blu) */
+  --dark-2:#1d232c;
+  --accent:#ffb300;       /* ambra: paletto di pista, percorso attivo */
+  --accent-2:#ff7a00;
+  --blue:#2f7de1;
+  --red:#e5484d;
+  --adv:#101418;
+  --lift:#9aa6b2;
+  --phone-frame:#1b222c;
+  --shadow-lg:0 40px 80px -30px rgba(16,20,24,.38);
+  --shadow:0 22px 44px -22px rgba(16,20,24,.28), 0 2px 6px rgba(16,20,24,.06);
+  --shadow-sm:0 8px 20px -12px rgba(16,20,24,.22), 0 1px 2px rgba(16,20,24,.05);
+  color-scheme:light;
+}
+
+/* ---------- base ---------- */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px; line-height:1.55; min-height:100vh; display:flex; flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+}
+main{flex:1}
+h1,h2,h3{font-family:"Big Shoulders Display","Barlow Condensed","Arial Narrow",Impact,sans-serif; line-height:.92; margin:0; text-wrap:balance; letter-spacing:.005em}
+h1{font-size:clamp(64px,10.5vw,150px); font-weight:900; text-transform:uppercase}
+h2{font-size:clamp(44px,6vw,84px); font-weight:900; text-transform:uppercase}
+h3{font-size:28px; font-weight:800; text-transform:uppercase; letter-spacing:.01em}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1180px; margin:0 auto; padding:0 28px; width:100%}
+.measure{max-width:58ch}
+.lede{font-size:clamp(18px,1.6vw,22px); color:var(--ink-2); line-height:1.45}
+
+.eyebrow{display:inline-flex; align-items:center; gap:10px; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-2); margin-bottom:18px}
+.disc{width:12px;height:12px;border-radius:50%;background:var(--blue);flex:none}
+.disc.red{background:var(--red)} .disc.adv{background:var(--adv)} .disc.amber{background:var(--accent)}
+.disc.lift{background:transparent;border:2px solid var(--lift)}
+.disc.globe{background:conic-gradient(var(--blue) 0 33%, var(--red) 0 66%, var(--accent) 0)}
+.mark{background:linear-gradient(transparent 58%, var(--accent) 58%, var(--accent) 94%, transparent 94%); padding:0 .04em}
+
+.btn{display:inline-flex; align-items:center; gap:10px; min-height:56px; padding:0 26px; border-radius:999px; border:2px solid var(--ink); background:var(--ink); color:var(--bg); font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:22px; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; cursor:pointer; box-shadow:var(--shadow-sm); transition:transform .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translateY(-2px); box-shadow:var(--shadow)}
+.btn:focus-visible, a:focus-visible, input:focus-visible, button:focus-visible{outline:3px solid var(--accent-2); outline-offset:3px}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:var(--ink)}
+.btn.primary:hover{background:var(--accent-2); border-color:var(--accent-2)}
+.btn.ghost{background:var(--card); color:var(--ink)}
+.btn.ghost:hover{background:var(--ink); color:var(--bg)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky; top:0; z-index:20; background:linear-gradient(var(--sky) 20%, transparent); border-bottom:1px solid transparent; transition:background .25s ease, border-color .25s ease, box-shadow .25s ease}
+.nav.solid{background:color-mix(in srgb, var(--card) 86%, transparent); backdrop-filter:blur(12px); border-bottom-color:var(--line); box-shadow:0 6px 24px -18px rgba(16,20,24,.25)}
+.nav .wrap{display:flex; align-items:center; justify-content:space-between; height:72px; gap:20px}
+.logo{display:flex; align-items:center; gap:10px; text-decoration:none; font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:30px; letter-spacing:.03em; text-transform:uppercase}
+.logo svg{width:32px;height:32px; filter:drop-shadow(0 3px 6px rgba(16,20,24,.25))}
+.nav-links{display:flex; gap:2px; font-weight:500; font-size:15px}
+.nav-links a{text-decoration:none; color:var(--ink-2); padding:8px 13px; border-radius:999px}
+.nav-links a:hover{color:var(--ink); background:var(--bg-3)}
+.nav-links a.active{background:var(--ink); color:var(--bg)}
+.nav .btn{min-height:44px; font-size:19px; padding:0 18px}
+.menu-btn{display:none; min-height:44px; padding:0 16px; border-radius:999px; border:2px solid var(--ink); background:var(--card); color:var(--ink); font:inherit; font-weight:600; cursor:pointer}
+.mobile-menu{display:none; border-top:1px solid var(--line); background:var(--card); box-shadow:var(--shadow)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block; padding:16px 28px; text-decoration:none; font-family:"Big Shoulders Display",sans-serif; font-size:30px; font-weight:800; text-transform:uppercase; border-bottom:1px solid var(--line)}
+.mobile-menu a.active{box-shadow:inset 6px 0 0 var(--accent)}
+@media (max-width:860px){ .nav-links{display:none} .menu-btn{display:inline-flex; align-items:center} .nav .btn.primary{display:none} }
+
+/* ---------- views ---------- */
+.view{display:none}
+.view.active{display:block; animation:fade .35s ease}
+@keyframes fade{from{opacity:.001; transform:translateY(8px)} to{opacity:1; transform:none}}
+.view-head{padding:72px 0 48px; background:linear-gradient(180deg, var(--sky), var(--bg) 85%); border-bottom:1px solid var(--line)}
+.view-head .lede{margin-top:22px}
+.view-body{padding:64px 0 72px}
+.view-body.tint{background:var(--bg-2); box-shadow:inset 0 1px 0 var(--line), inset 0 -1px 0 var(--line)}
+.view-nav{border-top:2px solid var(--ink); padding:32px 0 72px}
+.view-nav .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+.view-nav a{text-decoration:none; display:flex; flex-direction:column; gap:4px; max-width:46%}
+.view-nav a small{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.view-nav a b{font-family:"Big Shoulders Display",sans-serif; font-size:34px; font-weight:900; text-transform:uppercase; line-height:1}
+.view-nav a.next{text-align:right; margin-left:auto}
+.view-nav a:hover b{color:var(--accent-2)}
+@media (max-width:720px){ .view-head{padding:52px 0 32px} .view-body{padding:44px 0 52px} }
+
+/* ---------- HERO: mappa viva ---------- */
+.hero{position:relative; min-height:min(88vh, 900px); display:flex; align-items:stretch; margin-top:-72px; overflow:hidden; background:linear-gradient(180deg, var(--sky) 0%, var(--bg) 70%)}
+.hero canvas{position:absolute; inset:0; width:100%; height:100%; display:block; cursor:crosshair}
+.hero .veil{position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 90%, transparent) 30%, color-mix(in srgb, var(--bg) 35%, transparent) 50%, transparent 66%)}
+.hero .wrap{position:relative; z-index:2; display:grid; grid-template-columns:1.1fr .9fr; gap:32px; align-items:end; padding-top:128px; padding-bottom:64px; pointer-events:none}
+.hero .wrap a, .hero .wrap .routecard{pointer-events:auto}
+.hero-copy{align-self:center}
+.hero h1 .line{display:block}
+.hero h1{text-shadow:0 1px 0 #fff}
+.hero .lede{margin-top:26px}
+.hero .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px}
+.hint{display:inline-flex; align-items:center; gap:10px; margin-top:22px; font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2)}
+.hint i{width:10px;height:10px;border-radius:50%;background:var(--accent-2); box-shadow:0 0 0 0 rgba(255,122,0,.5); animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{to{box-shadow:0 0 0 14px rgba(255,122,0,0)}}
+
+.routecard{justify-self:end; width:min(360px,100%); background:#0d1117; color:#e6edf3; border-radius:20px; padding:16px 16px 14px; box-shadow:var(--shadow-lg), 0 0 0 1px rgba(255,255,255,.06) inset; font-family:"Barlow",sans-serif}
+.routecard .dest{font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#8b949e}
+.routecard .name{font-family:"Big Shoulders Display",sans-serif; font-size:34px; font-weight:800; line-height:1; margin-top:4px; text-transform:uppercase; letter-spacing:.02em}
+.routecard .from{font-size:12px; color:#8b949e; margin-top:4px}
+.routecard .levels{display:grid; gap:6px; margin-top:14px}
+.lvl{display:flex; align-items:center; gap:10px; border:1px solid #30363d; border-radius:12px; padding:8px 10px; background:#161b22}
+.lvl .sk{width:7px; height:30px; border-radius:3px; flex:none}
+.lvl .t{flex:1; min-width:0}
+.lvl .t b{display:block; font-size:14px}
+.lvl .t small{display:block; font-size:11px; color:#8b949e}
+.lvl .n{text-align:right; font-family:"IBM Plex Mono",monospace; font-size:12px; line-height:1.3; white-space:nowrap}
+.lvl .n b{display:block; font-size:15px; font-weight:600}
+.lvl.sel{border-color:var(--accent)}
+.lvl.off{opacity:.5}
+.routecard .go{margin-top:10px; background:var(--accent); color:#101418; text-align:center; font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:20px; letter-spacing:.08em; border-radius:10px; padding:10px; text-decoration:none; display:block}
+@media (max-width:900px){
+  .hero{min-height:auto}
+  .hero .veil{background:linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 88%, transparent) 42%, transparent 70%)}
+  .hero .wrap{grid-template-columns:1fr; padding-top:110px; gap:28px}
+  .routecard{justify-self:stretch; width:100%}
+}
+
+/* ticker */
+.ticker{border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); background:var(--accent); color:var(--ink); overflow:hidden; white-space:nowrap; position:relative; z-index:3; box-shadow:0 14px 30px -20px rgba(16,20,24,.5)}
+.ticker .track{display:inline-flex; animation:slide 60s linear infinite; padding:12px 0}
+.ticker span{font-family:"Big Shoulders Display",sans-serif; font-size:26px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; padding:0 22px; display:inline-flex; align-items:center; gap:22px}
+.ticker span:after{content:""; width:8px; height:8px; border-radius:50%; background:var(--ink)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* fascia scura: la tesi globale */
+.world{background:radial-gradient(1200px 600px at 80% 0%, var(--dark-2), var(--dark) 60%); color:#eef2f6; padding:96px 0 104px; position:relative; overflow:hidden}
+.world:before{content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.09) 1px, transparent 1.4px); background-size:26px 26px; pointer-events:none; mask-image:linear-gradient(90deg, transparent 30%, #000 100%)}
+.world .wrap{position:relative; display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:start}
+.world .eyebrow{color:#aab5c2}
+.world h2{color:#fff}
+.world h2 em{font-style:normal; color:var(--accent)}
+.world .lede{color:#c5ced8; margin-top:24px}
+.world .cta{margin-top:34px}
+.world .btn.ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.5)}
+.world .btn.ghost:hover{background:#fff; color:var(--dark)}
+.pillars{display:grid; gap:14px}
+.pillar{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:22px 22px 24px; box-shadow:0 20px 40px -30px rgba(0,0,0,.8)}
+.pillar h3{font-size:24px; color:#fff; margin-bottom:8px}
+.pillar p{color:#b7c1cc; font-size:15.5px}
+.pillar .k{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; display:block}
+@media (max-width:900px){ .world .wrap{grid-template-columns:1fr} }
+
+/* le quattro porte: carte su fondo tinto */
+.doors{background:var(--bg-2); padding:72px 0 88px; box-shadow:inset 0 1px 0 var(--line)}
+.doors .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+.door{display:flex; flex-direction:column; gap:14px; padding:30px 28px 32px; background:var(--card); border-radius:22px; box-shadow:var(--shadow); text-decoration:none; color:inherit; position:relative; min-height:320px; transition:background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease; overflow:hidden}
+.door .eyebrow{margin:0}
+.door h3{font-size:clamp(34px,3vw,44px); font-weight:900; line-height:.92; margin-top:auto}
+.door p{color:var(--ink-2); font-size:15px; max-width:30ch; transition:color .2s}
+.door .go{font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:20px; letter-spacing:.08em; text-transform:uppercase; display:inline-flex; gap:8px; align-items:center; margin-top:8px}
+.door .go:after{content:"→"; transition:transform .15s ease}
+.door > *{position:relative; z-index:1}
+.door .slash{position:absolute; right:-22px; top:-22px; width:96px; height:96px; opacity:.95; z-index:0; transition:transform .3s ease}
+.door:hover{background:var(--ink); color:var(--bg); transform:translateY(-4px); box-shadow:var(--shadow-lg)}
+.door:hover p, .door:hover .eyebrow{color:var(--bg-3)}
+.door:hover .go:after{transform:translateX(6px)}
+.door:hover .slash{transform:rotate(-8deg) scale(1.08)}
+@media (max-width:900px){ .doors .wrap{grid-template-columns:1fr 1fr} .door{min-height:260px} }
+@media (max-width:560px){ .doors .wrap{grid-template-columns:1fr} .door{min-height:0} }
+
+/* ---------- phone mockup ---------- */
+.phone{width:300px; aspect-ratio:9/19; border-radius:38px; background:#0d1117; border:8px solid var(--phone-frame); box-shadow:var(--shadow-lg); position:relative; overflow:hidden; flex:none; font-family:"Barlow",sans-serif; color:#e6edf3}
+.phone.small{width:240px; border-radius:30px; border-width:6px}
+.phone .screen{position:absolute; inset:0}
+.phone svg.map{position:absolute; inset:0; width:100%; height:100%}
+.notch{position:absolute; top:10px; left:50%; transform:translateX(-50%); width:84px; height:22px; border-radius:12px; background:#000; z-index:5}
+.hud-top{position:absolute; top:0; left:0; right:0; padding:42px 16px 12px; background:rgba(13,17,23,.93); border-bottom:1px solid #30363d; display:flex; align-items:center; gap:12px}
+.hud-top .dot{width:12px;height:12px;border-radius:50%}
+.hud-top b{display:block; font-size:18px; font-weight:700; line-height:1.1}
+.hud-top small{display:block; font-size:12px; color:#8b949e; margin-top:2px}
+.hud-progress{position:absolute; left:0; right:0; height:3px; background:#21262d}
+.hud-progress i{display:block; height:3px; width:62%}
+.hud-bottom{position:absolute; bottom:0; left:0; right:0; padding:14px 16px 26px; background:rgba(13,17,23,.93); border-top:1px solid #30363d; display:flex; align-items:center; justify-content:space-between; gap:10px}
+.hud-bottom .lbl{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#8b949e}
+.hud-bottom .nxt{font-size:16px; font-weight:600; color:#e6edf3; margin-top:2px}
+.hud-bottom .stop{border:1px solid #f85149; color:#f85149; border-radius:8px; padding:8px 12px; font-size:13px; font-weight:700; white-space:nowrap}
+.chip{position:absolute; border-radius:999px; padding:6px 10px; font-size:12px; font-weight:600; background:rgba(13,17,23,.92); border:1px solid #30363d; color:#e6edf3}
+.searchbar{position:absolute; top:44px; left:14px; right:14px; background:rgba(22,27,34,.96); border:1px solid #30363d; border-radius:12px; padding:11px 14px; font-size:13px; color:#8b949e; display:flex; gap:8px; align-items:center}
+.sheet{position:absolute; left:0; right:0; bottom:0; background:#161b22; border-top:1px solid #30363d; border-radius:18px 18px 0 0; padding:12px 14px 20px}
+.sheet .grab{width:38px;height:4px;border-radius:2px;background:#30363d;margin:0 auto 10px}
+.sheet .dest{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#8b949e}
+.sheet .destname{font-size:18px; font-weight:700; margin:2px 0 10px}
+.card{display:flex; align-items:center; gap:10px; border:1px solid #30363d; border-radius:12px; padding:9px 10px; margin-bottom:7px; background:#0d1117}
+.card .sk{width:8px; height:34px; border-radius:3px; flex:none}
+.card .t{flex:1; min-width:0}
+.card .t b{display:block; font-size:14px}
+.card .t small{display:block; font-size:11px; color:#8b949e}
+.card .n{text-align:right; font-family:"IBM Plex Mono",monospace; font-size:12px; line-height:1.35}
+.card .n b{display:block; font-size:14px; font-weight:600}
+.card.sel{border-color:#58a6ff}
+.card.off{opacity:.55}
+.badge{display:inline-block; font-size:9px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#f0883e; border:1px solid #f0883e; border-radius:999px; padding:1px 6px; margin-top:3px}
+.sheet .go{margin-top:8px; background:#58a6ff; color:#0d1117; text-align:center; font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:20px; letter-spacing:.08em; border-radius:10px; padding:10px}
+
+/* ---------- sezioni ---------- */
+.pains{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.pain{padding:26px 26px 28px; background:var(--card); border-radius:18px; box-shadow:var(--shadow-sm)}
+.pain h3{margin-bottom:10px}
+.pain p{color:var(--ink-2)}
+@media (max-width:820px){ .pains{grid-template-columns:1fr} }
+
+.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:32px}
+.step{display:flex; flex-direction:column; gap:22px}
+.step .phone{align-self:center}
+.step .num{font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:84px; line-height:.85; color:var(--accent-2); display:flex; align-items:baseline; gap:12px}
+.step .num small{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
+.step h3{margin-top:-6px}
+.step p{color:var(--ink-2)}
+@media (max-width:900px){ .steps{grid-template-columns:1fr; gap:56px} }
+
+.features{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.feat{padding:28px 26px 30px; background:var(--card); border-radius:18px; box-shadow:var(--shadow-sm)}
+.feat .ico{width:46px; height:46px; border-radius:12px; display:grid; place-items:center; background:var(--accent); color:var(--ink); margin-bottom:18px; box-shadow:0 8px 16px -8px rgba(255,122,0,.6)}
+.feat .ico svg{width:24px;height:24px}
+.feat h3{font-size:26px; margin-bottom:8px}
+.feat p{color:var(--ink-2); font-size:16px}
+@media (max-width:900px){ .features{grid-template-columns:1fr 1fr} }
+@media (max-width:600px){ .features{grid-template-columns:1fr} }
+
+.cols3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.col{padding:28px 26px 30px; background:var(--card); border-radius:18px; box-shadow:var(--shadow-sm)}
+.col .k{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-2); display:block; margin-bottom:12px}
+.col h3{font-size:26px; margin-bottom:10px}
+.col p{color:var(--ink-2); font-size:16px}
+@media (max-width:820px){ .cols3{grid-template-columns:1fr} }
+
+.engine{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start}
+.graph{background:var(--card); border-radius:22px; padding:24px; box-shadow:var(--shadow)}
+.graph svg{width:100%; height:auto; display:block}
+.legend{display:flex; flex-wrap:wrap; gap:16px; margin-top:14px; font-size:13px; color:var(--ink-2)}
+.legend span{display:inline-flex; align-items:center; gap:7px}
+.legend i{width:22px; height:3px; display:inline-block; border-radius:2px}
+.links{list-style:none; padding:0; margin:24px 0 0; display:grid; gap:0; border-top:1px solid var(--line)}
+.links li{display:grid; grid-template-columns:24px 1fr auto; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); font-size:16px}
+.links li .k{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-3); letter-spacing:.06em; text-transform:uppercase}
+.links li .who{color:var(--ink-2)}
+@media (max-width:900px){ .engine{grid-template-columns:1fr} }
+
+.regions{list-style:none; padding:0; margin:28px 0 0; display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+.regions li{background:var(--card); border-radius:16px; padding:18px 18px 16px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:6px}
+.regions li b{font-family:"Big Shoulders Display",sans-serif; font-size:28px; font-weight:800; text-transform:uppercase; line-height:1}
+.regions li span{font-size:14px; color:var(--ink-2)}
+.regions li.now{background:var(--ink); color:var(--bg)}
+.regions li.now span{color:var(--bg-3)}
+.regions li.now b{color:var(--accent)}
+@media (max-width:900px){ .regions{grid-template-columns:1fr 1fr} }
+@media (max-width:520px){ .regions{grid-template-columns:1fr} }
+
+.bigfig{display:grid; grid-template-columns:auto 1fr; gap:28px; align-items:center; background:var(--card); border-radius:22px; padding:28px 32px; box-shadow:var(--shadow); margin-top:40px}
+.bigfig b{font-family:"Big Shoulders Display",sans-serif; font-size:clamp(64px,8vw,110px); font-weight:900; line-height:.9; color:var(--ink); font-variant-numeric:tabular-nums}
+.bigfig p{color:var(--ink-2)}
+.bigfig small{display:block; font-size:12.5px; color:var(--ink-3); margin-top:8px}
+@media (max-width:640px){ .bigfig{grid-template-columns:1fr} }
+
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+.stat{padding:22px 22px 20px; background:var(--card); border-radius:16px; box-shadow:var(--shadow-sm)}
+.stat b{display:block; font-family:"Big Shoulders Display",sans-serif; font-size:56px; font-weight:900; line-height:.95; font-variant-numeric:tabular-nums}
+.stat span{font-size:14px; color:var(--ink-2)}
+@media (max-width:720px){ .stats{grid-template-columns:repeat(2,1fr)} }
+
+.areas{display:grid; grid-template-columns:repeat(2,1fr); gap:10px 24px; margin-top:8px; padding:0; list-style:none}
+.areas li{display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--line); font-weight:500}
+.areas li:before{content:""; width:8px; height:8px; border-radius:50%; background:var(--accent-2); flex:none}
+.pilot-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:start}
+.sella{border-radius:22px; padding:30px; background:var(--accent); box-shadow:var(--shadow)}
+.sella .eyebrow{margin-bottom:8px; color:var(--ink)}
+.sella h3{font-size:44px; font-weight:900}
+.sella p{color:var(--ink); margin-top:10px}
+.sella .kv{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:22px}
+.sella .kv b{display:block; font-family:"Big Shoulders Display",sans-serif; font-size:40px; font-weight:900; line-height:1}
+.sella .kv span{font-size:13px; color:var(--ink)}
+@media (max-width:900px){ .pilot-grid{grid-template-columns:1fr} }
+
+.road{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.road > div{padding:24px 24px 26px; background:var(--card); border-radius:18px; box-shadow:var(--shadow-sm)}
+.road .when{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
+.road .when.now{color:var(--ink)}
+.road .when.now:before{content:""; display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--accent); border:2px solid var(--ink); margin-right:8px; vertical-align:-1px}
+.road h3{margin:10px 0 8px}
+.road ul{margin:0; padding-left:18px; color:var(--ink-2)}
+.road li{margin:4px 0}
+@media (max-width:720px){ .road{grid-template-columns:1fr} }
+
+.beta{background:radial-gradient(900px 500px at 20% 0%, var(--dark-2), var(--dark) 60%); color:#eef2f6; padding:96px 0 104px}
+.beta .eyebrow{color:#aab5c2}
+.beta h2{color:#fff}
+.beta .lede{color:#c5ced8; margin-top:22px}
+.beta form{display:flex; gap:10px; margin-top:30px; max-width:600px; flex-wrap:wrap}
+.beta input{flex:1 1 260px; min-height:56px; border-radius:999px; border:2px solid rgba(255,255,255,.3); background:rgba(255,255,255,.06); color:#fff; padding:0 20px; font:inherit; font-size:17px}
+.beta input::placeholder{color:rgba(255,255,255,.5)}
+.beta .fine{font-size:13px; color:#8f9aa7; margin-top:14px}
+.beta .ok{margin-top:18px; font-weight:600; color:var(--accent)}
+.beta .ok[hidden]{display:none}
+.beta .contact{margin-top:44px; padding-top:28px; border-top:1px solid rgba(255,255,255,.14); display:flex; gap:24px; align-items:center; flex-wrap:wrap; justify-content:space-between}
+.beta .contact p{color:#c5ced8; max-width:52ch}
+.beta .contact a.mail{font-family:"IBM Plex Mono",monospace; font-size:15px; color:var(--accent); text-decoration:none; border-bottom:2px solid rgba(255,179,0,.4); padding-bottom:2px; word-break:break-all}
+.beta .contact a.mail:hover{border-bottom-color:var(--accent)}
+.beta-teaser{padding:26px 28px; margin-top:40px; background:var(--card); border-radius:18px; box-shadow:var(--shadow-sm); display:flex; gap:20px; align-items:center; flex-wrap:wrap; justify-content:space-between}
+.beta-teaser p{color:var(--ink-2); max-width:56ch}
+
+footer{padding:32px 0 44px; border-top:1px solid var(--line); font-size:14px; color:var(--ink-3); background:var(--bg-2)}
+footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center}
+footer nav{display:flex; gap:18px; flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- Mappa stilizzata riusata nei telefoni -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="map" viewBox="0 0 360 620">
+    <rect width="360" height="620" fill="#111820"/>
+    <path d="M0,80 C80,20 160,60 220,10 L360,0 L360,200 C300,220 240,160 180,220 C120,280 60,240 0,300 Z" fill="#18212c"/>
+    <path d="M0,340 C90,300 140,380 200,330 C260,280 320,340 360,300 L360,620 L0,620 Z" fill="#141c26"/>
+    <path d="M60,460 C120,420 200,470 260,430 C300,400 340,430 360,410 L360,620 L0,620 L0,500 Z" fill="#1a2330"/>
+    <g fill="none" stroke="#243040" stroke-width="1">
+      <path d="M-10,150 C80,110 150,170 240,120 S340,90 370,110"/><path d="M-10,230 C70,190 160,250 250,200 S340,180 370,200"/>
+      <path d="M-10,400 C90,360 160,420 260,380 S340,360 370,380"/><path d="M-10,520 C90,480 180,540 280,500 S340,480 370,500"/>
+    </g>
+    <g fill="none" stroke="#7d8896" stroke-width="2" stroke-dasharray="5 6"><path d="M62,560 L118,110"/><path d="M212,590 L318,130"/><path d="M44,330 L300,88"/></g>
+    <g fill="none" stroke-linecap="round" stroke-width="5">
+      <path d="M118,110 C160,180 130,250 110,330 S150,460 200,520" stroke="#3399ff"/><path d="M300,88 C262,150 250,220 262,300" stroke="#3399ff"/>
+      <path d="M212,60 C230,140 190,220 236,300 S260,440 212,590" stroke="#ff9900"/><path d="M318,130 C310,210 322,280 280,350 S236,470 246,520" stroke="#cfd6de"/>
+      <path d="M118,110 C90,200 70,260 62,560" stroke="#ff9900"/>
+    </g>
+    <g fill="#f0883e" stroke="#0d1117" stroke-width="2.5">
+      <circle cx="118" cy="110" r="7"/><circle cx="62" cy="560" r="7"/><circle cx="212" cy="590" r="7"/><circle cx="318" cy="130" r="7"/>
+      <circle cx="44" cy="330" r="7"/><circle cx="300" cy="88" r="7"/><circle cx="262" cy="300" r="6"/><circle cx="200" cy="520" r="6"/>
+      <circle cx="236" cy="300" r="6"/><circle cx="212" cy="60" r="6"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#home" aria-label="SkiMap, torna alla home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>
+      SkiMap
+    </a>
+    <nav class="nav-links" aria-label="Sezioni">
+      <a href="#come-funziona" data-nav="come-funziona">Come funziona</a>
+      <a href="#pensata" data-nav="pensata">Pensata per chi scia</a>
+      <a href="#mondo" data-nav="mondo">Ovunque nel mondo</a>
+      <a href="#pilot" data-nav="pilot">Il banco di prova</a>
+    </nav>
+    <a class="btn primary" href="#beta">Entra nella beta</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menu</button>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Sezioni">
+    <a href="#come-funziona" data-nav="come-funziona">Come funziona</a>
+    <a href="#pensata" data-nav="pensata">Pensata per chi scia</a>
+    <a href="#mondo" data-nav="mondo">Ovunque nel mondo</a>
+    <a href="#pilot" data-nav="pilot">Il banco di prova</a>
+    <a href="#beta" data-nav="beta">Entra nella beta</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<section class="view" id="view-home" data-title="SkiMap">
+  <div class="hero" id="hero">
+    <canvas id="net" aria-label="Mappa interattiva: tocca un punto e SkiMap disegna il percorso" role="img"></canvas>
+    <div class="veil"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="disc globe"></span>Il navigatore per chi scia · ovunque ci sia una pista</div>
+        <h1>
+          <span class="line">Tocca un punto.</span>
+          <span class="line"><span class="mark">Scia fino a lì.</span></span>
+        </h1>
+        <p class="lede measure">Su qualsiasi comprensorio del mondo: il percorso adatto al tuo livello, pista dopo pista, impianto dopo impianto. Pensato per chi ha i guanti addosso.</p>
+        <div class="cta">
+          <a class="btn primary" href="#beta">Entra nella closed beta</a>
+          <a class="btn ghost" href="#come-funziona">Come funziona</a>
+        </div>
+        <div class="hint"><i></i>Prova: tocca un punto sulla mappa</div>
+      </div>
+
+      <div class="routecard" aria-live="polite">
+        <div>
+          <div class="dest">Destinazione</div>
+          <div class="name" id="rc-name">—</div>
+          <div class="from">da <span id="rc-from">—</span></div>
+        </div>
+        <div class="levels">
+          <div class="lvl" id="rc-beg"><span class="sk" style="background:#3fb950"></span><div class="t"><b>Principiante</b><small id="rc-beg-s">Solo piste facili</small></div><div class="n" id="rc-beg-n">—</div></div>
+          <div class="lvl" id="rc-int"><span class="sk" style="background:#f0883e"></span><div class="t"><b>Intermedio</b><small id="rc-int-s">Facili + medie</small></div><div class="n" id="rc-int-n">—</div></div>
+          <div class="lvl sel" id="rc-adv"><span class="sk" style="background:#f85149"></span><div class="t"><b>Avanzato</b><small>Tutte le piste</small></div><div class="n" id="rc-adv-n">—</div></div>
+        </div>
+        <a class="go" href="#come-funziona">▶ &nbsp;Avvia</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true"><div class="track" id="ticker-track"></div></div>
+
+  <!-- La tesi: una mappa, tutte le montagne -->
+  <div class="world">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow"><span class="disc globe"></span>Ovunque nel mondo</div>
+        <h2>Una mappa.<br><em>Tutte le montagne.</em></h2>
+        <p class="lede measure">SkiMap non è un'app per un comprensorio: è un modo di leggere qualsiasi comprensorio. Dove esiste una pista mappata, esiste un percorso. Partiamo dalle Dolomiti perché sono il banco di prova più difficile, non perché siano il traguardo.</p>
+        <div class="cta">
+          <a class="btn ghost" href="#mondo">Perché funziona ovunque</a>
+        </div>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><span class="k">Dati</span><h3>Le piste del mondo parlano una lingua sola</h3><p>OpenStreetMap descrive piste e impianti dalle Alpi al Giappone con lo stesso schema. I modelli del terreno dicono da che parte scende ogni pista, in ogni paese.</p></div>
+        <div class="pillar"><span class="k">Metodo</span><h3>Un comprensorio nuovo è un file, non una versione</h3><p>La stessa catena costruisce il grafo, lo verifica e lo pubblica. L'app lo scarica. Nessuna riscrittura, da 25 nodi a cinquemila.</p></div>
+        <div class="pillar"><span class="k">Regole</span><h3>Blu, rossa, nera valgono su ogni pendio</h3><p>I tre livelli e la logica del percorso sono gli stessi ovunque. Cambiano i nomi delle piste, non il modo di leggerle.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doors">
+    <div class="wrap">
+      <a class="door" href="#come-funziona">
+        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 66 L66 34" stroke="var(--blue)" stroke-width="16" stroke-linecap="round"/></svg>
+        <div class="eyebrow"><span class="disc"></span>Come funziona</div>
+        <h3>Tre gesti.<br>Poi si scia.</h3>
+        <p>Tocchi la destinazione, scegli il livello, avvii. Il resto lo fa la montagna.</p>
+        <span class="go">Esplora</span>
+      </a>
+      <a class="door" href="#pensata">
+        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 66 L66 34" stroke="var(--red)" stroke-width="16" stroke-linecap="round"/></svg>
+        <div class="eyebrow"><span class="disc red"></span>Pensata per chi scia</div>
+        <h3>Progettata sulla seggiovia.</h3>
+        <p>Guanti, sole, tre momenti in cui guardi il telefono. Tutto parte da lì.</p>
+        <span class="go">Esplora</span>
+      </a>
+      <a class="door" href="#mondo">
+        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 66 L66 34" stroke="var(--adv)" stroke-width="16" stroke-linecap="round"/></svg>
+        <div class="eyebrow"><span class="disc globe"></span>Ovunque nel mondo</div>
+        <h3>Ogni montagna.<br>Un motore solo.</h3>
+        <p>Perché lo stesso motore funziona nelle Alpi, sulle Rocciose, in Giappone.</p>
+        <span class="go">Esplora</span>
+      </a>
+      <a class="door" href="#pilot">
+        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 66 L66 34" stroke="var(--accent)" stroke-width="16" stroke-linecap="round"/></svg>
+        <div class="eyebrow"><span class="disc amber"></span>Il banco di prova</div>
+        <h3>Dolomiti Superski.</h3>
+        <p>Dodici aree, Sellaronda inclusa: il test più duro, scelto apposta.</p>
+        <span class="go">Esplora</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COME FUNZIONA ================= -->
+<section class="view" id="view-come-funziona" data-title="Come funziona · SkiMap">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc"></span>Come funziona</div>
+    <h2>Tre gesti. Poi si scia.</h2>
+    <p class="lede measure">Nessun menu da esplorare e nessuna ricerca da digitare per forza. Tutto ciò che è raggiungibile è un punto sulla mappa, e ogni punto si tocca.</p>
+  </div></div>
+
+  <div class="view-body"><div class="wrap">
+    <div class="steps">
+      <div class="step">
+        <div class="phone small" role="img" aria-label="Mappa con i punti toccabili e la ricerca in alto">
+          <div class="screen">
+            <svg class="map" aria-hidden="true"><use href="#map"/></svg>
+            <div class="notch"></div>
+            <div class="searchbar">🔍 Pista, impianto, rifugio…</div>
+            <svg class="map" viewBox="0 0 360 620" aria-hidden="true">
+              <circle cx="212" cy="590" r="22" fill="#ffb300" opacity=".25"/><circle cx="212" cy="590" r="9" fill="#ffb300" stroke="#0d1117" stroke-width="2.5"/>
+              <circle cx="300" cy="330" r="7" fill="#58a6ff" stroke="#fff" stroke-width="2.5"/>
+            </svg>
+            <div class="chip" style="left:120px; top:470px">Corvara · base cabinovia Boè</div>
+          </div>
+        </div>
+        <div class="num">1 <small>Tocca</small></div>
+        <h3>Scegli dove vuoi arrivare</h3>
+        <p>Un rifugio, la base di una cabinovia, il paese dove hai parcheggiato. Se un punto non è raggiungibile da dove sei, la mappa te lo mostra spento: niente percorsi impossibili.</p>
+      </div>
+      <div class="step">
+        <div class="phone small" role="img" aria-label="Scheda di scelta del percorso con tre livelli: principiante non disponibile, intermedio 40 minuti, avanzato 31 minuti">
+          <div class="screen">
+            <svg class="map" aria-hidden="true" style="opacity:.55"><use href="#map"/></svg>
+            <div class="notch"></div>
+            <div class="sheet">
+              <div class="grab"></div>
+              <div class="dest">Destinazione</div>
+              <div class="destname">Corvara</div>
+              <div class="card off"><span class="sk" style="background:#3fb950"></span><div class="t"><b>Principiante</b><small>Percorso non disponibile</small></div><div class="n">—</div></div>
+              <div class="card"><span class="sk" style="background:#f0883e"></span><div class="t"><b>Intermedio</b><small>Facili + medie</small><span class="badge">percorso indiretto</span></div><div class="n"><b>~40 min</b>8,8 km</div></div>
+              <div class="card sel"><span class="sk" style="background:#f85149"></span><div class="t"><b>Avanzato</b><small>Tutte le piste</small></div><div class="n"><b>~31 min</b>6,9 km</div></div>
+              <div class="go">▶ &nbsp;AVVIA</div>
+            </div>
+          </div>
+        </div>
+        <div class="num">2 <small>Scegli il livello</small></div>
+        <h3>Il percorso giusto per te, in minuti reali</h3>
+        <p>Tre proposte, una per livello. Il tempo somma discese, risalite e attese: se un percorso è molto più lungo della linea d'aria, te lo dice prima che tu parta.</p>
+      </div>
+      <div class="step">
+        <div class="phone small" role="img" aria-label="Navigazione attiva: pista corrente, avanzamento e prossima tratta">
+          <div class="screen">
+            <svg class="map" aria-hidden="true"><use href="#map"/></svg>
+            <svg class="map" viewBox="0 0 360 620" aria-hidden="true">
+              <path d="M118,110 C160,180 130,250 110,330 S150,460 200,520" fill="none" stroke="#0d1117" stroke-width="11" stroke-linecap="round" opacity=".7"/>
+              <path d="M118,110 C160,180 130,250 110,330 S150,460 200,520" fill="none" stroke="#ffb300" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="118" cy="230" r="7" fill="#58a6ff" stroke="#fff" stroke-width="2.5"/>
+            </svg>
+            <div class="notch"></div>
+            <div class="hud-top" style="padding-top:38px"><span class="dot" style="background:#3399ff"></span><div><b>Pralongià</b><small>Pista facile</small></div></div>
+            <div class="hud-progress" style="top:90px"><i style="background:#3399ff; width:35%"></i></div>
+            <div class="hud-bottom"><div><div class="lbl">Prossima tratta</div><div class="nxt">→ Arlara</div></div><div class="stop">✕ Fine</div></div>
+          </div>
+        </div>
+        <div class="num">3 <small>Avvia</small></div>
+        <h3>Guardi il telefono solo quando serve</h3>
+        <p>In alto la pista su cui sei, in basso la prossima tratta. Se a fine discesa hai preso un'altra direzione, SkiMap te lo chiede e ricalcola. Mai una voce che ti parla mentre scendi.</p>
+      </div>
+    </div>
+
+    <div class="beta-teaser">
+      <p>Vuoi provarlo sulla neve questa stagione? La closed beta è aperta a sciatori di ogni livello.</p>
+      <a class="btn primary" href="#beta">Entra nella beta</a>
+    </div>
+  </div></div>
+
+  <div class="view-nav"><div class="wrap">
+    <a href="#home" class="prev"><small>← Torna</small><b>Home</b></a>
+    <a href="#pensata" class="next"><small>Avanti →</small><b>Pensata per chi scia</b></a>
+  </div></div>
+</section>
+
+<!-- ================= PENSATA PER CHI SCIA ================= -->
+<section class="view" id="view-pensata" data-title="Pensata per chi scia · SkiMap">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc red"></span>Pensata per chi scia</div>
+    <h2>Progettata sulla seggiovia,<br>non alla scrivania.</h2>
+    <p class="lede measure">Uno sciatore consulta il telefono in tre momenti: in cima all'impianto, a un bivio, in coda. Ogni scelta di interfaccia parte da lì.</p>
+  </div></div>
+
+  <div class="view-body tint"><div class="wrap">
+    <div class="eyebrow"><span class="disc adv"></span>Il problema, su ogni montagna</div>
+    <div class="pains">
+      <div class="pain"><h3>Cieco al bivio</h3><p>La cartina di carta sta in tasca sotto due strati di giacca. Il cartello dice il nome della pista, non se ti porta davvero a destinazione.</p></div>
+      <div class="pain"><h3>La nera per sbaglio</h3><p>Una scelta sbagliata a un incrocio e il principiante si ritrova su un muro. Le app di mappa generiche non conoscono la differenza tra blu, rossa e nera.</p></div>
+      <div class="pain"><h3>Tra un'area e l'altra</h3><p>Skibus, treni, funicolari, tratti a piedi: i collegamenti tra comprensori esistono, ma nessuna mappa te li mette in fila con gli orari.</p></div>
+    </div>
+  </div></div>
+
+  <div class="view-body"><div class="wrap">
+    <div class="eyebrow"><span class="disc red"></span>Le scelte di interfaccia</div>
+    <div class="features">
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V6a2 2 0 0 1 4 0v5M11 9V4a2 2 0 0 1 4 0v5M15 10V6a2 2 0 0 1 4 0v8a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L4.5 14A1.8 1.8 0 0 1 7 11.5"/></svg></div>
+        <h3>Si usa con i guanti</h3>
+        <p>Bersagli grandi, contrasto alto anche sotto il sole, poche interazioni per volta. Niente gesti di precisione e niente menu a scorrimento laterale.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>La seggiovia è il momento giusto</h3>
+        <p>Otto, dodici minuti fermi in salita: il momento per guardare dove si va dopo. SkiMap ti mostra la prossima tratta e quanto manca, senza distrarti in discesa.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 10 4l4 8 3-4 3 12"/></svg></div>
+        <h3>Blu, rossa, nera: conta davvero</h3>
+        <p>Il percorso rispetta il livello che scegli. Un principiante non viene mai instradato su una nera "perché è più corta". Se un livello non ha una via, te lo diciamo.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.3M21 12a9 9 0 0 1-15.5 6.3M18 3v3.5h-3.5M6 21v-3.5h3.5"/></svg></div>
+        <h3>Ricalcolo gentile</h3>
+        <p>Hai preso un'altra pista? Nessun allarme a metà discesa. Alla prossima fermata compare una proposta: continua così, oppure torna sul percorso.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></div>
+        <h3>Funziona anche senza rete</h3>
+        <p>Serve una connessione per avviare il percorso. Da lì in poi la mappa e la guida restano sul telefono, anche dove il segnale sparisce tra le creste.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5zM3 13l9 5 9-5"/></svg></div>
+        <h3>Onesta sui limiti</h3>
+        <p>I punti che oggi non si raggiungono sono spenti, non nascosti. Un percorso molto indiretto porta un avviso. Preferiamo dirti "non ancora" che mandarti in giro.</p>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="view-nav"><div class="wrap">
+    <a href="#come-funziona" class="prev"><small>← Indietro</small><b>Come funziona</b></a>
+    <a href="#mondo" class="next"><small>Avanti →</small><b>Ovunque nel mondo</b></a>
+  </div></div>
+</section>
+
+<!-- ================= OVUNQUE NEL MONDO ================= -->
+<section class="view" id="view-mondo" data-title="Ovunque nel mondo · SkiMap">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc globe"></span>Ovunque nel mondo</div>
+    <h2>Una mappa. Tutte le montagne.</h2>
+    <p class="lede measure">SkiMap non è costruita attorno a un comprensorio: è costruita attorno al modo in cui ogni comprensorio è fatto. Le piste scendono, gli impianti salgono, i collegamenti uniscono. Vale nelle Alpi come sulle Rocciose o in Hokkaido.</p>
+  </div></div>
+
+  <div class="view-body"><div class="wrap">
+    <div class="eyebrow"><span class="disc globe"></span>Perché funziona ovunque</div>
+    <div class="cols3">
+      <div class="col"><span class="k">Dati</span><h3>Le piste del mondo parlano una lingua sola</h3><p>OpenStreetMap descrive piste e impianti dalle Alpi al Giappone con lo stesso schema: tipo, difficoltà, tracciato. I modelli digitali del terreno, disponibili per tutto il pianeta, dicono da che parte scende ogni pista. Dove esistono open data dei trasporti, entrano anche skibus e treni con gli orari veri.</p></div>
+      <div class="col"><span class="k">Metodo</span><h3>Un comprensorio nuovo è un file, non una versione</h3><p>Una sola catena di lavoro costruisce il grafo, lo controlla con strumenti di diagnosi, ripara i buchi con fonti verificabili e lo pubblica. L'app lo scarica. È già successo una volta: da un comprensorio appenninico di 25 nodi al Dolomiti Superski, oltre tremila nodi, senza toccare il motore.</p></div>
+      <div class="col"><span class="k">Regole</span><h3>Blu, rossa, nera valgono su ogni pendio</h3><p>I tre livelli, il tempo in minuti reali, il ricalcolo a fine discesa, l'onestà sui punti irraggiungibili: sono regole della navigazione, non della località. Cambiano i nomi delle piste e la lingua dei cartelli, non il modo di leggerli.</p></div>
+    </div>
+
+    <div class="bigfig">
+      <b>~6.000</b>
+      <div>
+        <p class="lede">comprensori sciistici nel mondo, in quasi settanta paesi. Ognuno è una rete di piste e impianti. Ognuno può diventare una mappa navigabile con la stessa app.</p>
+        <small>Ordine di grandezza dall'International Report on Snow &amp; Mountain Tourism (L. Vanat). Il numero esatto dipende da cosa si conta come comprensorio.</small>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="view-body tint"><div class="wrap">
+    <div class="eyebrow"><span class="disc lift"></span>Il motore</div>
+    <div class="engine">
+      <div>
+        <h3 style="font-size:34px; margin-bottom:14px">Il comprensorio come una rete a senso unico</h3>
+        <p class="lede">SkiMap tratta ogni comprensorio come un grafo orientato: ogni pista, impianto e collegamento è un arco con lunghezza, difficoltà, tempo e stato. Sopra gira lo stesso tipo di algoritmo dei navigatori stradali, con una differenza: il peso di ogni tratto cambia con il tuo livello.</p>
+        <p style="margin-top:18px; color:var(--ink-2)">Una nera non esiste per un principiante. Un'attesa allo skibus vale minuti veri. Un traino a cavalli fuori skipass è un arco come gli altri, con la sua nota. Tutto ciò che un comprensorio offre per spostarsi entra nella rete, con una fonte.</p>
+        <ul class="links" aria-label="Collegamenti reali già inclusi nel grafo del pilot">
+          <li><span class="disc amber"></span><span>Sellaronda in entrambi i sensi, orario e antiorario</span><span class="k">sci</span></li>
+          <li><span class="disc lift"></span><span>Skibus e treni tra le aree, <span class="who">con orari reali dagli open data</span></span><span class="k">bus · treno</span></li>
+          <li><span class="disc lift"></span><span>Funicolare Ronda Express tra Sellaronda e Seceda</span><span class="k">funicolare</span></li>
+          <li><span class="disc lift"></span><span>Cabinovia Cortina Skyline verso le Cinque Torri</span><span class="k">cabinovia</span></li>
+          <li><span class="disc lift"></span><span>Il traino a cavalli sul piano di Armentarola, <span class="who">fuori skipass</span></span><span class="k">cavalli</span></li>
+        </ul>
+      </div>
+      <div class="graph" aria-label="Schema del grafo: le piste scendono, gli impianti salgono, i collegamenti vanno nei due sensi">
+        <svg viewBox="0 0 520 380" role="img">
+          <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-2)"/></marker></defs>
+          <path d="M90,320 L150,70" fill="none" stroke="var(--lift)" stroke-width="2.5" stroke-dasharray="6 6" marker-end="url(#ah)"/>
+          <path d="M160,66 C220,110 230,170 280,200" fill="none" stroke="var(--blue)" stroke-width="5" stroke-linecap="round" marker-end="url(#ah)"/>
+          <path d="M282,208 C250,260 180,270 100,318" fill="none" stroke="var(--red)" stroke-width="5" stroke-linecap="round" marker-end="url(#ah)"/>
+          <path d="M290,208 C330,250 380,280 410,320" fill="none" stroke="var(--adv)" stroke-width="5" stroke-linecap="round" marker-end="url(#ah)"/>
+          <path d="M420,330 L470,330" fill="none" stroke="var(--lift)" stroke-width="2.5" marker-end="url(#ah)" marker-start="url(#ah)"/>
+          <g stroke="var(--card)" stroke-width="3">
+            <circle cx="90" cy="325" r="10" fill="var(--accent-2)"/><circle cx="155" cy="62" r="10" fill="var(--accent-2)"/><circle cx="285" cy="205" r="9" fill="var(--accent-2)"/>
+            <circle cx="415" cy="325" r="10" fill="var(--accent-2)"/><circle cx="478" cy="330" r="10" fill="var(--accent-2)"/>
+          </g>
+          <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink-2)" font-weight="600">
+            <text x="150" y="42" text-anchor="middle">CIMA IMPIANTO</text><text x="90" y="356" text-anchor="middle">BASE</text><text x="300" y="196">BIVIO</text>
+            <text x="404" y="360" text-anchor="middle">ARRIVO</text><text x="480" y="360" text-anchor="middle">SKIBUS</text>
+          </g>
+          <g font-family="Barlow, sans-serif" font-size="13" fill="var(--ink-3)">
+            <text x="94" y="190" transform="rotate(-76 94 190)">impianto · 9 min</text><text x="196" y="118" transform="rotate(35 196 118)">facile · 1,8 km</text>
+            <text x="164" y="272" transform="rotate(-30 164 272)">media · 2,4 km</text><text x="330" y="246" transform="rotate(45 330 246)">nera · 1,3 km</text>
+          </g>
+        </svg>
+        <div class="legend">
+          <span><i style="background:var(--blue)"></i>pista facile</span><span><i style="background:var(--red)"></i>pista media</span><span><i style="background:var(--adv)"></i>pista nera</span>
+          <span><i style="background:transparent; height:0; border-top:3px dashed var(--lift)"></i>impianto</span><span><i style="background:var(--accent-2); width:10px; height:10px; border-radius:50%"></i>punto toccabile</span>
+        </div>
+        <p style="font-size:14px; color:var(--ink-3); margin-top:14px">Fonti: OpenStreetMap per piste e impianti, modelli digitali del terreno per il verso di discesa, open data del trasporto pubblico per gli orari, cartine ufficiali dei resort per i tratti mancanti. Ogni collegamento aggiunto a mano ha una fonte verificabile.</p>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="view-body"><div class="wrap">
+    <div class="eyebrow"><span class="disc amber"></span>Dove andremo</div>
+    <h2 style="font-size:clamp(34px,4vw,52px)">Prima un comprensorio. Poi le Alpi. Poi il mondo.</h2>
+    <ul class="regions">
+      <li class="now"><b>Dolomiti Superski</b><span>Ora: il banco di prova, dodici aree in una mappa</span></li>
+      <li><b>Le Alpi</b><span>Italia, Austria, Svizzera, Francia: i grandi caroselli collegati</span></li>
+      <li><b>Pirenei e Scandinavia</b><span>Comprensori diversi per forma, stessa lettura</span></li>
+      <li><b>Rocciose e Ande</b><span>Nord America e Sud America, stagioni opposte</span></li>
+      <li><b>Giappone</b><span>Hokkaido e le Alpi giapponesi</span></li>
+      <li><b>Nuova Zelanda e Australia</b><span>L'inverno australe</span></li>
+      <li><b>Appennini</b><span>Casa nostra: dove il primo prototipo è nato, a Ovindoli</span></li>
+      <li><b>Ovunque ci sia una pista mappata</b><span>Se è in OpenStreetMap, può entrare in SkiMap</span></li>
+    </ul>
+    <div class="road" style="margin-top:40px">
+      <div><div class="when now">Ora</div><h3>Closed beta 2026/27</h3><ul><li>Dolomiti Superski, app Android</li><li>Percorso per livello, guida attiva, ricalcolo</li><li>Stato di piste e impianti segnalato dagli utenti</li></ul></div>
+      <div><div class="when">Poi</div><h3>Le Alpi</h3><ul><li>iOS e store pubblici</li><li>Nuovi comprensori aggiunti come dati, non come codice</li><li>Stato impianti in tempo reale dai gestori</li></ul></div>
+      <div><div class="when">Dopo</div><h3>Il mondo</h3><ul><li>Rocciose, Giappone, Ande, Oceania</li><li>Percorsi salvati e condivisi con il gruppo</li><li>Una sola app, in ogni stagione dell'anno</li></ul></div>
+    </div>
+  </div></div>
+
+  <div class="view-nav"><div class="wrap">
+    <a href="#pensata" class="prev"><small>← Indietro</small><b>Pensata per chi scia</b></a>
+    <a href="#pilot" class="next"><small>Avanti →</small><b>Il banco di prova</b></a>
+  </div></div>
+</section>
+
+<!-- ================= IL BANCO DI PROVA ================= -->
+<section class="view" id="view-pilot" data-title="Il banco di prova · SkiMap">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc amber"></span>Il banco di prova</div>
+    <h2>Partiamo dal più difficile: Dolomiti Superski</h2>
+    <p class="lede measure">Un solo test, scelto apposta. Il comprensorio più esteso d'Italia, dodici aree in tre province, collegate da sci, bus e treni. Se la navigazione regge qui, regge ovunque.</p>
+  </div></div>
+
+  <div class="view-body"><div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>12</b><span>comprensori collegati in un'unica mappa</span></div>
+      <div class="stat"><b>1.057</b><span>piste nel grafo di navigazione</span></div>
+      <div class="stat"><b>384</b><span>impianti di risalita</span></div>
+      <div class="stat"><b>3</b><span>livelli: principiante, intermedio, avanzato</span></div>
+    </div>
+  </div></div>
+
+  <div class="view-body tint"><div class="wrap">
+    <div class="pilot-grid">
+      <div>
+        <div class="eyebrow"><span class="disc adv"></span>Le dodici aree</div>
+        <ul class="areas">
+          <li>Val Gardena / Alpe di Siusi</li><li>Alta Badia</li><li>Arabba / Marmolada</li><li>Val di Fassa / Carezza</li>
+          <li>Cortina d'Ampezzo</li><li>Plan de Corones</li><li>3 Cime Dolomiti</li><li>Civetta</li>
+          <li>Val di Fiemme / Obereggen</li><li>San Martino / Passo Rolle</li><li>Rio Pusteria / Bressanone</li><li>Tre Valli</li>
+        </ul>
+        <p style="margin-top:22px; color:var(--ink-2)">Perché proprio qui: dodici società diverse, tre province, collegamenti che in nessuna mappa pubblica sono messi in fila. Se i dati aperti bastano a rendere navigabile questo, bastano quasi ovunque.</p>
+      </div>
+      <div class="sella">
+        <div class="eyebrow"><span class="disc adv"></span>Percorso di riferimento</div>
+        <h3>Sellaronda</h3>
+        <p>Il giro dei quattro passi attorno al Sella è il banco di prova: SkiMap lo chiude in entrambi i sensi, con le tratte in ordine, i tempi degli impianti e il rientro a fine giornata.</p>
+        <div class="kv">
+          <div><b>4</b><span>passi dolomitici</span></div>
+          <div><b>~40 km</b><span>di cui 26 di piste</span></div>
+          <div><b>2</b><span>sensi: orario e antiorario</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="view-nav"><div class="wrap">
+    <a href="#mondo" class="prev"><small>← Indietro</small><b>Ovunque nel mondo</b></a>
+    <a href="#beta" class="next"><small>Avanti →</small><b>Entra nella beta</b></a>
+  </div></div>
+</section>
+
+<!-- ================= BETA ================= -->
+<section class="view" id="view-beta" data-title="Closed beta · SkiMap">
+  <div class="beta">
+    <div class="wrap">
+      <div class="eyebrow"><span class="disc amber"></span>Closed beta · inverno 2026/27</div>
+      <h2>Vieni a provarla sulla neve.</h2>
+      <p class="lede measure">Cerchiamo sciatori di ogni livello che passano almeno qualche giornata sul Dolomiti Superski questa stagione. Ti mandiamo l'app, tu ci racconti dove ti ha portato e dove ha sbagliato. Scii altrove? Iscriviti lo stesso: i prossimi comprensori li scegliamo anche da chi ce lo chiede.</p>
+      <form id="beta-form" novalidate>
+        <label for="email" style="position:absolute;left:-9999px">La tua email</label>
+        <input id="email" name="email" type="email" required placeholder="la-tua@email.it" autocomplete="email">
+        <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <button class="btn primary" type="submit" id="beta-submit">Entra nella beta</button>
+      </form>
+      <p class="ok" id="beta-ok" hidden>Grazie. Ti scriviamo prima dell'apertura degli impianti.</p>
+      <p class="ok" id="beta-err" hidden style="color:#ff8a3d">Non siamo riusciti a registrare l'iscrizione. Scrivici direttamente a <a href="mailto:chris.business.skimap@gmail.com?subject=Beta%20SkiMap" style="color:inherit">chris.business.skimap@gmail.com</a>.</p>
+      <p class="fine">Nessuna newsletter, nessun account: usiamo la tua email solo per invitarti alla beta.</p>
+      <div class="contact">
+        <p><b style="color:#fff">Collaborazioni e investitori.</b> Gestori di comprensori, partner tecnologici, chi vuole portare SkiMap sulla propria montagna o sostenere il progetto: scrivici direttamente.</p>
+        <a class="mail" href="mailto:chris.business.skimap@gmail.com?subject=SkiMap">chris.business.skimap@gmail.com</a>
+      </div>
+    </div>
+  </div>
+  <div class="view-nav"><div class="wrap">
+    <a href="#pilot" class="prev"><small>← Indietro</small><b>Il banco di prova</b></a>
+    <a href="#home" class="next"><small>Torna</small><b>Home</b></a>
+  </div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 SkiMap · Il navigatore per chi scia</span>
+    <nav aria-label="Sezioni, piè di pagina">
+      <a href="#come-funziona">Come funziona</a>
+      <a href="#pensata">Pensata per chi scia</a>
+      <a href="#mondo">Ovunque nel mondo</a>
+      <a href="#pilot">Il banco di prova</a>
+      <a href="#beta">Beta</a>
+    </nav>
+    <span>Contatti: <a href="mailto:chris.business.skimap@gmail.com">chris.business.skimap@gmail.com</a></span>
+    <span>Dati mappa © contributori OpenStreetMap · Orari: open data STA Südtirolmobil e Trentino Trasporti</span>
+  </div>
+</footer>
+
+<script>
+/* ============ router a sezioni ============ */
+var VIEWS = ['home','come-funziona','pensata','mondo','pilot','beta'];
+var menuBtn = document.getElementById('menu-btn');
+var mobileMenu = document.getElementById('mobile-menu');
+var nav = document.getElementById('nav');
+
+function route(){
+  var id = (location.hash || '#home').slice(1);
+  if (id === 'motore') id = 'mondo';
+  if (VIEWS.indexOf(id) < 0) id = 'home';
+  var i, views = document.querySelectorAll('.view');
+  for (i = 0; i < views.length; i++) views[i].classList.remove('active');
+  var v = document.getElementById('view-' + id);
+  v.classList.add('active');
+  document.title = v.getAttribute('data-title') || 'SkiMap';
+  var links = document.querySelectorAll('[data-nav]');
+  for (i = 0; i < links.length; i++) links[i].classList.toggle('active', links[i].getAttribute('data-nav') === id);
+  mobileMenu.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  window.scrollTo(0, 0);
+  nav.classList.toggle('solid', id !== 'home');
+  if (id === 'home' && window.SkiNet) window.SkiNet.resize();
+}
+window.addEventListener('hashchange', route);
+menuBtn.addEventListener('click', function(){
+  var open = !mobileMenu.classList.contains('open');
+  mobileMenu.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+});
+window.addEventListener('scroll', function(){
+  var home = (location.hash || '#home') === '#home';
+  nav.classList.toggle('solid', !home || window.scrollY > 40);
+}, { passive:true });
+
+/* ============ ticker: le montagne del mondo ============ */
+(function(){
+  var PLACES = ['Dolomiti','Alpi','Pirenei','Scandinavia','Rocciose','Ande','Hokkaido','Alpi giapponesi','Nuova Zelanda','Appennini','Caucaso','Tatra','Sierra Nevada','Alpi australiane','Kashmir','Alaska'];
+  var t = document.getElementById('ticker-track'), html = '';
+  for (var k = 0; k < 2; k++) for (var i = 0; i < PLACES.length; i++) html += '<span>' + PLACES[i] + '</span>';
+  t.innerHTML = html;
+})();
+
+/* ============ mappa viva: rete di piste + percorso al tocco ============ */
+(function(){
+  var cv = document.getElementById('net'); if (!cv) return;
+  var ctx = cv.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NAMES = ['Piz La Ila','Pralongià','Corvara','Passo Gardena','Dantercepies','Ciampinoi','Sass Pordoi','Arabba','Col Alt','Boè','La Villa','Santa Croce','Plan de Gralba','Selva','Colfosco','Campolongo','Belvedere','Canazei','Pecol','Cherz','Porta Vescovo','Piz Sorega','Gran Risa','Vallon','Bioch','Armentarola','Lagazuoi','Cinque Torri','Pordoi','Sella','Seceda','Col Raiser','Ortisei','Alpe di Siusi','Ciampac','Buffaure','Col Rodella','Campitello','Pozza','Moena','Cortina','Tofana','Faloria','Kronplatz','San Vigilio','Piculin','Sompunt','Padeon','Marmolada','Malga Ciapela','Alleghe','Pescul','Carezza','Obereggen','Latemar','Pampeago','Falcade','San Pellegrino','Baranci','Monte Elmo','Versciaco','Gitschberg','Jochtal','Maranza'];
+  var W, H, DPR, nodes = [], edges = [], adj = [], bg = null;
+  var you = 0, target = -1, routeEdges = [], routeLen = 0, drawn = 0, lastT = 0, raf = null, idle = null, hover = -1, pulse = 0;
+  var SCALE_M = 11, V_SKI = 250, V_LIFT = 200, LIFT_WAIT = 4;
+
+  function rnd(a,b){ return a + Math.random()*(b-a); }
+  function dist(a,b){ var dx=a.x-b.x, dy=a.y-b.y; return Math.sqrt(dx*dx+dy*dy); }
+  function shuffle(arr){ for (var i=arr.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=arr[i]; arr[i]=arr[j]; arr[j]=t; } return arr; }
+
+  function build(){
+    var host = cv.parentNode.getBoundingClientRect();
+    W = Math.max(320, host.width); H = Math.max(420, host.height); DPR = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = W*DPR; cv.height = H*DPR; cv.style.width = W+'px'; cv.style.height = H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+
+    nodes = []; edges = []; adj = [];
+    var sp = W < 700 ? 96 : 124;
+    var cols = Math.ceil(W/sp)+2, rows = Math.ceil(H/sp)+2;
+    var names = shuffle(NAMES.slice());
+    var idx = {};
+    for (var r=0;r<rows;r++) for (var c=0;c<cols;c++){
+      var n = { x: (c-.5)*sp + rnd(-sp*.32, sp*.32), y: (r-.5)*sp + rnd(-sp*.32, sp*.32), name: names[nodes.length % names.length] };
+      idx[r+','+c] = nodes.length; nodes.push(n); adj.push([]);
+    }
+    function link(a,b,p){
+      if (a==null || b==null || Math.random()>p) return;
+      var kind = Math.random() < .3 ? 'lift' : 'piste';
+      var d = kind==='lift' ? 'lift' : (Math.random()<.45 ? 'easy' : (Math.random()<.65 ? 'mid' : 'adv'));
+      var e = { a:a, b:b, kind:kind, diff:d, len: dist(nodes[a],nodes[b]) };
+      edges.push(e); adj[a].push(e); adj[b].push(e);
+    }
+    for (var r2=0;r2<rows;r2++) for (var c2=0;c2<cols;c2++){
+      var i = idx[r2+','+c2];
+      link(i, idx[r2+','+(c2+1)], .8); link(i, idx[(r2+1)+','+c2], .8);
+      link(i, idx[(r2+1)+','+(c2+1)], .22); link(i, idx[(r2+1)+','+(c2-1)], .18);
+    }
+    var px = W < 900 ? W*.5 : W*.7, py = W < 900 ? H*.42 : H*.52, best = 1e9;
+    for (var k=0;k<nodes.length;k++){ var dd = Math.abs(nodes[k].x-px)+Math.abs(nodes[k].y-py); if (dd<best){best=dd; you=k;} }
+    nodes[you].name = 'Passo Campolongo';
+    paintBackground();
+    pickTarget(false);
+  }
+
+  function paintBackground(){
+    bg = document.createElement('canvas'); bg.width = W*DPR; bg.height = H*DPR;
+    var b = bg.getContext('2d'); b.setTransform(DPR,0,0,DPR,0,0);
+    /* fondo trasparente: il cielo lo dà il CSS. Curve di livello come isoipse. */
+    b.strokeStyle = 'rgba(16,20,24,.085)'; b.lineWidth = 1;
+    var step = 26;
+    for (var y = -40; y < H+40; y += step){
+      b.beginPath();
+      for (var x = -10; x <= W+10; x += 8){
+        var yy = y + Math.sin(x*.012 + y*.02)*14 + Math.sin(x*.031 - y*.011)*7 + Math.cos(x*.005 + y*.004)*22;
+        if (x === -10) b.moveTo(x,yy); else b.lineTo(x,yy);
+      }
+      b.stroke();
+    }
+    /* ombra morbida sotto la rete: dà spessore */
+    b.save(); b.shadowColor = 'rgba(16,20,24,.18)'; b.shadowBlur = 10; b.shadowOffsetY = 4;
+    for (var i=0;i<edges.length;i++){
+      var e = edges[i], A = nodes[e.a], B = nodes[e.b];
+      b.beginPath(); b.moveTo(A.x,A.y); b.lineTo(B.x,B.y);
+      if (e.kind === 'lift'){ b.setLineDash([4,7]); b.lineWidth = 1.6; b.strokeStyle = '#8f9ba8'; }
+      else { b.setLineDash([]); b.lineWidth = 2.8; b.strokeStyle = e.diff==='easy' ? 'rgba(47,125,225,.9)' : e.diff==='mid' ? 'rgba(229,72,77,.9)' : 'rgba(16,20,24,.85)'; }
+      b.stroke();
+    }
+    b.restore(); b.setLineDash([]);
+    for (var k=0;k<nodes.length;k++){
+      b.beginPath(); b.arc(nodes[k].x,nodes[k].y,4.4,0,Math.PI*2);
+      b.fillStyle = '#ff8a3d'; b.fill(); b.lineWidth = 2; b.strokeStyle = 'rgba(255,255,255,.95)'; b.stroke();
+    }
+  }
+
+  function dijkstra(src, allow){
+    var n = nodes.length, d = new Array(n), prev = new Array(n), done = new Array(n);
+    for (var i=0;i<n;i++){ d[i]=Infinity; prev[i]=null; done[i]=false; }
+    d[src]=0;
+    for (var it=0; it<n; it++){
+      var u=-1, best=Infinity;
+      for (var j=0;j<n;j++) if(!done[j] && d[j]<best){best=d[j]; u=j;}
+      if (u<0) break; done[u]=true;
+      var es = adj[u];
+      for (var k=0;k<es.length;k++){
+        var e=es[k]; if (!allow(e)) continue;
+        var v = e.a===u ? e.b : e.a;
+        var w = e.kind==='lift' ? e.len*1.25 : e.len;
+        if (d[u]+w < d[v]){ d[v]=d[u]+w; prev[v]=e; }
+      }
+    }
+    return { d:d, prev:prev };
+  }
+  function pathTo(res, t){
+    var out=[], cur=t;
+    while (cur!==you){ var e=res.prev[cur]; if(!e) return null; out.unshift(e); cur = e.a===cur ? e.b : e.a; }
+    return out;
+  }
+  function cost(path){
+    var km=0, min=0;
+    for (var i=0;i<path.length;i++){ var m=path[i].len*SCALE_M; km+=m; if(path[i].kind==='lift') min += m/V_LIFT + LIFT_WAIT; else min += m/V_SKI; }
+    return { km:(km/1000), min:Math.round(min) };
+  }
+  function fmtKm(v){ return v.toFixed(1).replace('.',',') + ' km'; }
+
+  function pickTarget(user, forced){
+    var all = dijkstra(you, function(){return true;});
+    var t = forced;
+    if (t == null){
+      var good = [], any = [];
+      for (var i0=0;i0<nodes.length;i0++){
+        if (i0===you || !isFinite(all.d[i0])) continue;
+        any.push(i0);
+        var n0 = nodes[i0];
+        if (dist(n0,nodes[you]) >= 180 && !(W>=900 && n0.x < W*.42) && n0.x>20 && n0.x<W-20 && n0.y>70 && n0.y<H-20) good.push(i0);
+      }
+      var pool = good.length ? good : any;
+      if (!pool.length) return;
+      t = pool[Math.floor(Math.random()*pool.length)];
+    }
+    var p = pathTo(all, t);
+    if (!p) return;
+    target = t; routeEdges = p; routeLen = 0;
+    for (var i=0;i<p.length;i++) routeLen += p[i].len;
+    drawn = reduce ? routeLen : 0;
+
+    var beg = pathTo(dijkstra(you, function(e){ return e.kind==='lift' || e.diff==='easy'; }), t);
+    var mid = pathTo(dijkstra(you, function(e){ return e.kind==='lift' || e.diff!=='adv'; }), t);
+    var adv = cost(p);
+    document.getElementById('rc-name').textContent = nodes[t].name;
+    document.getElementById('rc-from').textContent = nodes[you].name;
+    setLevel('rc-beg', beg, 'Solo piste facili', adv);
+    setLevel('rc-int', mid, 'Facili + medie', adv);
+    document.getElementById('rc-adv-n').innerHTML = '<b>~'+adv.min+' min</b>'+fmtKm(adv.km);
+
+    clearTimeout(idle);
+    idle = setTimeout(function(){ pickTarget(false); }, user ? 12000 : 6500);
+    if (!raf) { lastT = 0; raf = requestAnimationFrame(frame); }
+  }
+  function setLevel(id, path, label, adv){
+    var el = document.getElementById(id), s = document.getElementById(id+'-s'), n = document.getElementById(id+'-n');
+    if (!path){ el.classList.add('off'); s.textContent = 'Percorso non disponibile'; n.innerHTML = '—'; return; }
+    var c = cost(path); el.classList.remove('off');
+    s.textContent = (c.km > adv.km*1.8) ? label + ' · percorso indiretto' : label;
+    n.innerHTML = '<b>~'+c.min+' min</b>'+fmtKm(c.km);
+  }
+
+  function frame(ts){
+    if (!lastT) lastT = ts;
+    var dt = Math.min(50, ts-lastT); lastT = ts;
+    if (drawn < routeLen) drawn = Math.min(routeLen, drawn + dt*.62);
+    pulse += dt/900;
+    render();
+    raf = requestAnimationFrame(frame);
+  }
+
+  function render(){
+    ctx.clearRect(0,0,W,H);
+    ctx.drawImage(bg, 0, 0, W, H);
+    if (routeEdges.length){
+      for (var pass=0; pass<2; pass++){
+        ctx.beginPath(); var acc=0, cur=you; ctx.moveTo(nodes[cur].x,nodes[cur].y);
+        for (var i=0;i<routeEdges.length;i++){
+          var e=routeEdges[i], nx = e.a===cur ? e.b : e.a, A=nodes[cur], B=nodes[nx];
+          if (acc+e.len <= drawn){ ctx.lineTo(B.x,B.y); acc+=e.len; cur=nx; }
+          else { var f=(drawn-acc)/e.len; ctx.lineTo(A.x+(B.x-A.x)*f, A.y+(B.y-A.y)*f); break; }
+        }
+        ctx.lineCap='round'; ctx.lineJoin='round';
+        if (pass===0){ ctx.lineWidth=12; ctx.strokeStyle='rgba(255,255,255,.95)'; ctx.shadowColor='rgba(16,20,24,.35)'; ctx.shadowBlur=14; ctx.shadowOffsetY=6; }
+        else { ctx.shadowColor='transparent'; ctx.shadowBlur=0; ctx.shadowOffsetY=0; ctx.lineWidth=5.5; ctx.strokeStyle='#ffb300'; }
+        ctx.stroke();
+      }
+      if (drawn < routeLen){
+        var acc2=0, c2=you, hx=nodes[you].x, hy=nodes[you].y;
+        for (var j=0;j<routeEdges.length;j++){ var ee=routeEdges[j], n2 = ee.a===c2 ? ee.b : ee.a; if (acc2+ee.len<=drawn){acc2+=ee.len; c2=n2; hx=nodes[c2].x; hy=nodes[c2].y;} else { var ff=(drawn-acc2)/ee.len; hx=nodes[c2].x+(nodes[n2].x-nodes[c2].x)*ff; hy=nodes[c2].y+(nodes[n2].y-nodes[c2].y)*ff; break; } }
+        ctx.beginPath(); ctx.arc(hx,hy,5,0,Math.PI*2); ctx.fillStyle='#101418'; ctx.fill();
+      }
+    }
+    if (target>=0){
+      var T=nodes[target], ring = 10 + (pulse%1)*16;
+      ctx.beginPath(); ctx.arc(T.x,T.y,ring,0,Math.PI*2); ctx.strokeStyle='rgba(255,122,0,'+(1-(pulse%1))*.7+')'; ctx.lineWidth=2; ctx.stroke();
+      ctx.beginPath(); ctx.arc(T.x,T.y,8,0,Math.PI*2); ctx.fillStyle='#ffb300'; ctx.fill(); ctx.lineWidth=2.5; ctx.strokeStyle='#101418'; ctx.stroke();
+      label(T.x, T.y, T.name, true);
+    }
+    var Y=nodes[you];
+    ctx.beginPath(); ctx.arc(Y.x,Y.y,16,0,Math.PI*2); ctx.fillStyle='rgba(47,125,225,.18)'; ctx.fill();
+    ctx.beginPath(); ctx.arc(Y.x,Y.y,7.5,0,Math.PI*2); ctx.fillStyle='#2f7de1'; ctx.fill(); ctx.lineWidth=3; ctx.strokeStyle='#fff'; ctx.stroke();
+    label(Y.x, Y.y, 'Sei qui', false);
+    if (hover>=0 && hover!==target){ var Hh=nodes[hover]; ctx.beginPath(); ctx.arc(Hh.x,Hh.y,11,0,Math.PI*2); ctx.strokeStyle='#101418'; ctx.lineWidth=2; ctx.stroke(); label(Hh.x,Hh.y,Hh.name,false); }
+  }
+  function label(x,y,text,strong){
+    ctx.font = (strong ? '700 13px' : '600 12px') + ' Barlow, sans-serif';
+    var w = ctx.measureText(text).width + 16, h = 24, lx = x + 14, ly = y - h/2;
+    if (lx + w > W - 8) lx = x - 14 - w;
+    ctx.save(); ctx.shadowColor='rgba(16,20,24,.25)'; ctx.shadowBlur=10; ctx.shadowOffsetY=3;
+    ctx.fillStyle = strong ? '#101418' : 'rgba(255,255,255,.97)';
+    ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(lx,ly,w,h,6); else ctx.rect(lx,ly,w,h); ctx.fill();
+    ctx.restore();
+    ctx.fillStyle = strong ? '#ffb300' : '#101418'; ctx.textBaseline='middle'; ctx.fillText(text, lx+8, ly+h/2+1);
+  }
+
+  function nearest(px,py,maxd){
+    var b=-1, bd=maxd;
+    for (var i=0;i<nodes.length;i++){ var d=Math.hypot(nodes[i].x-px,nodes[i].y-py); if(d<bd){bd=d;b=i;} }
+    return b;
+  }
+  function pos(ev){ var r=cv.getBoundingClientRect(); return { x: ev.clientX-r.left, y: ev.clientY-r.top }; }
+  cv.addEventListener('pointerdown', function(ev){ var p=pos(ev), n=nearest(p.x,p.y,28); if (n>=0 && n!==you) pickTarget(true, n); });
+  cv.addEventListener('pointermove', function(ev){
+    if (ev.pointerType==='touch') return;
+    var p=pos(ev), n=nearest(p.x,p.y,22);
+    if (n!==hover){ hover=n; cv.style.cursor = n>=0 ? 'pointer' : 'crosshair'; if (!raf && bg) render(); }
+  });
+  cv.addEventListener('pointerleave', function(){ hover=-1; });
+
+  var rt;
+  window.SkiNet = { resize: function(){ clearTimeout(rt); rt = setTimeout(function(){ if (document.getElementById('view-home').classList.contains('active')) { cancelAnimationFrame(raf); raf=null; clearTimeout(idle); build(); } }, 120); } };
+  window.addEventListener('resize', window.SkiNet.resize);
+  document.addEventListener('visibilitychange', function(){ if (document.hidden){ cancelAnimationFrame(raf); raf=null; } else if (routeEdges.length){ lastT=0; raf=requestAnimationFrame(frame); } });
+  window.route(); /* attiva la vista giusta; se è la home, SkiNet.resize() costruisce la mappa a dimensioni reali */
+})();
+
+/* ============ modulo beta ============
+   Le iscrizioni arrivano via email a BETA_TO. Servizio di inoltro: Web3Forms (https://web3forms.com).
+   Per attivarlo: su web3forms.com inserisci l'indirizzo BETA_TO, ricevi la chiave via email e incollala in WEB3FORMS_KEY.
+   In alternativa puoi usare Formspree: crea un modulo su formspree.io e incolla l'URL (https://formspree.io/f/xxxx) in FORMSPREE_URL.
+   Se nessuno dei due è configurato, il pulsante apre il client di posta con l'indirizzo precompilato. */
+var BETA_TO       = "chris.business.skimap@gmail.com";
+var WEB3FORMS_KEY = "";   // <-- incolla qui la chiave ricevuta da Web3Forms
+var FORMSPREE_URL = "";   // <-- oppure l'URL del modulo Formspree
+(function(){
+  var form = document.getElementById('beta-form'), input = document.getElementById('email');
+  var ok = document.getElementById('beta-ok'), err = document.getElementById('beta-err'), btn = document.getElementById('beta-submit');
+  var hp = document.getElementById('botcheck');
+
+  function mailto(email){
+    return 'mailto:' + BETA_TO + '?subject=' + encodeURIComponent('Beta SkiMap') + '&body=' + encodeURIComponent('Vorrei partecipare alla closed beta. Email: ' + email);
+  }
+  function busy(on){ btn.disabled = on; btn.textContent = on ? 'Invio…' : 'Entra nella beta'; }
+  function done(){ ok.hidden = false; err.hidden = true; form.reset(); busy(false); }
+  function fail(){ err.hidden = false; ok.hidden = true; busy(false); }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (hp && hp.checked) return;           /* trappola anti-bot: gli umani non la vedono */
+    var email = (input.value || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { input.focus(); input.setAttribute('aria-invalid','true'); input.placeholder = 'Serve un indirizzo email valido'; return; }
+    input.removeAttribute('aria-invalid');
+    ok.hidden = true; err.hidden = true;
+
+    var page = location.href.split('#')[0];
+    if (WEB3FORMS_KEY) {
+      busy(true);
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: 'Nuova iscrizione beta SkiMap',
+          from_name: 'SkiMap sito',
+          email: email,
+          message: 'Iscrizione alla closed beta dal sito. Email: ' + email + ' | Pagina: ' + page,
+          botcheck: hp ? hp.checked : false
+        })
+      }).then(function(r){ return r.json(); }).then(function(j){ if (j && j.success) done(); else fail(); }).catch(fail);
+    } else if (FORMSPREE_URL) {
+      busy(true);
+      fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email: email, _subject: 'Nuova iscrizione beta SkiMap', message: 'Iscrizione alla closed beta dal sito. Pagina: ' + page })
+      }).then(function(r){ if (r.ok) done(); else fail(); }).catch(fail);
+    } else {
+      window.location.href = mailto(email);
+      ok.hidden = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>
