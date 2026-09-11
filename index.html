@@ -983,9 +983,18 @@ window.addEventListener('scroll', function(){
     function tx(lat,lon){ return { x:(lon-DEM.lon0)/(DEM.lon1-DEM.lon0)*S, y:(DEM.lat1-lat)/(DEM.lat1-DEM.lat0)*Hs }; }
     /* neve: più bianca in quota, un filo grigio-azzurra a valle */
     var img=g.createImageData(S,Hs), d=img.data, cols=DEM.cols, rows=DEM.rows;
-    for (var yy=0;yy<Hs;yy++){ var rr=Math.min(rows-1, yy/Hs*rows); for (var xx=0;xx<S;xx++){ var cc=Math.min(cols-1, xx/S*cols);
-      var zv=DEM.z[Math.floor(rr)*cols+Math.floor(cc)], t=Math.max(0,Math.min(1,(zv-1300)/1800));
-      var o=(yy*S+xx)*4; d[o]=228+t*27; d[o+1]=232+t*23; d[o+2]=237+t*18; d[o+3]=255; } }
+    /* ombreggiatura per cella (luce da nord-ovest) */
+    var shade=new Float32Array(cols*rows), mx=DEM.cell*111320*Math.cos(latC*Math.PI/180), my=DEM.cellLat*111320;
+    for (var r0=0;r0<rows;r0++) for (var c0=0;c0<cols;c0++){
+      var zl=DEM.z[r0*cols+Math.max(0,c0-1)], zr=DEM.z[r0*cols+Math.min(cols-1,c0+1)], zu=DEM.z[Math.max(0,r0-1)*cols+c0], zd=DEM.z[Math.min(rows-1,r0+1)*cols+c0];
+      var nx=-(zr-zl)/(2*mx), ny=-(zd-zu)/(2*my), nl=Math.sqrt(nx*nx+ny*ny+1);
+      shade[r0*cols+c0] = Math.max(0, Math.min(1, .5 + ((nx*-.6 + ny*-.6 + .53)/nl)*.9));
+    }
+    for (var yy=0;yy<Hs;yy++){ var rr=Math.min(rows-1.001, yy/Hs*rows); for (var xx=0;xx<S;xx++){ var cc=Math.min(cols-1.001, xx/S*cols);
+      var ri=Math.floor(rr), ci=Math.floor(cc), fx=cc-ci, fy=rr-ri, i00=ri*cols+ci, i10=i00+(ci<cols-1?1:0), i01=i00+(ri<rows-1?cols:0), i11=i01+(ci<cols-1?1:0);
+      var zv=(DEM.z[i00]*(1-fx)+DEM.z[i10]*fx)*(1-fy)+(DEM.z[i01]*(1-fx)+DEM.z[i11]*fx)*fy, t=Math.max(0,Math.min(1,(zv-1300)/1800));
+      var sh=(shade[i00]*(1-fx)+shade[i10]*fx)*(1-fy)+(shade[i01]*(1-fx)+shade[i11]*fx)*fy, k=.62+sh*.48;
+      var o=(yy*S+xx)*4; d[o]=(212+t*43)*k; d[o+1]=(220+t*35)*k; d[o+2]=(230+t*25)*Math.min(1,k+.06); d[o+3]=255; } }
     g.putImageData(img,0,0);
     /* isoipse ogni 100 m, ogni 500 più scure (marching squares sul DEM) */
     g.lineCap='round'; g.lineJoin='round';
@@ -1002,7 +1011,7 @@ window.addEventListener('scroll', function(){
         if ((z01>=lvl)!==(z00>=lvl)) ip(z01,z00,x0,y1,x0,y0);
         if (pts.length>=2){ g.moveTo(pts[0][0],pts[0][1]); g.lineTo(pts[1][0],pts[1][1]); if (pts.length===4){ g.moveTo(pts[2][0],pts[2][1]); g.lineTo(pts[3][0],pts[3][1]); } }
       }
-      g.lineWidth = lvl%500===0 ? 2.2 : 1.1; g.strokeStyle = lvl%500===0 ? 'rgba(16,20,24,.42)' : 'rgba(16,20,24,.2)'; g.stroke();
+      g.lineWidth = lvl%500===0 ? 3 : 1.6; g.strokeStyle = lvl%500===0 ? 'rgba(16,20,24,.5)' : 'rgba(16,20,24,.26)'; g.stroke();
     }
     /* grafo drappeggiato: collegamenti, piste con battuta, impianti, stazioni */
     var i, e, q, p;
@@ -1046,8 +1055,8 @@ window.addEventListener('scroll', function(){
     renderer=new T.WebGLRenderer({ canvas:cv, antialias:true, alpha:true }); renderer.setPixelRatio(DPR); renderer.setSize(W,H,false); renderer.setClearColor(0x000000,0);
     scene=new T.Scene();
     camera=new T.PerspectiveCamera(34, W/H, .1, 200);
-    scene.add(new T.HemisphereLight(0xffffff, 0xb9c6d4, .95));
-    var sun=new T.DirectionalLight(0xffffff, .75); sun.position.set(-14, 22, -10); scene.add(sun);
+    scene.add(new T.HemisphereLight(0xffffff, 0x8fa0b3, .8));
+    var sun=new T.DirectionalLight(0xffffff, 1.0); sun.position.set(-16, 18, -12); scene.add(sun);
     buildTerrain();
     /* tu */
     youMesh=new T.Group();
@@ -1069,13 +1078,13 @@ window.addEventListener('scroll', function(){
   function layout(){
     var host=cv.parentNode.getBoundingClientRect(); W=Math.max(320,host.width); H=Math.max(420,host.height);
     renderer.setSize(W,H,false); camera.aspect=W/H;
-    if (W>=900) camera.setViewOffset(W*1.62, H, 0, 0, W, H); else camera.clearViewOffset();
+    if (W>=900) camera.setViewOffset(W*1.42, H, 0, 0, W, H); else camera.clearViewOffset();
     camera.updateProjectionMatrix();
   }
   var orbitCenter=null;
   function placeCamera(){
-    if (!orbitCenter) orbitCenter = toWorld(46.53,11.815,0); orbitCenter.y = 2.0*EXAG;
-    var dist = W>=900 ? 31 : 36, elev = .66;
+    if (!orbitCenter) orbitCenter = toWorld(46.535,11.815,0); orbitCenter.y = 1.6*EXAG;
+    var dist = W>=900 ? 34 : 36, elev = .64;
     camera.position.set(orbitCenter.x+Math.cos(az)*dist*Math.cos(elev), orbitCenter.y+dist*Math.sin(elev), orbitCenter.z+Math.sin(az)*dist*Math.cos(elev));
     camera.lookAt(orbitCenter);
   }
