@@ -984,17 +984,21 @@ window.addEventListener('scroll', function(){
     /* neve: più bianca in quota, un filo grigio-azzurra a valle */
     var img=g.createImageData(S,Hs), d=img.data, cols=DEM.cols, rows=DEM.rows;
     /* ombreggiatura per cella (luce da nord-ovest) */
-    var shade=new Float32Array(cols*rows), mx=DEM.cell*111320*Math.cos(latC*Math.PI/180), my=DEM.cellLat*111320;
+    var shade=new Float32Array(cols*rows), steep=new Float32Array(cols*rows), mx=DEM.cell*111320*Math.cos(latC*Math.PI/180), my=DEM.cellLat*111320;
     for (var r0=0;r0<rows;r0++) for (var c0=0;c0<cols;c0++){
       var zl=DEM.z[r0*cols+Math.max(0,c0-1)], zr=DEM.z[r0*cols+Math.min(cols-1,c0+1)], zu=DEM.z[Math.max(0,r0-1)*cols+c0], zd=DEM.z[Math.min(rows-1,r0+1)*cols+c0];
       var nx=-(zr-zl)/(2*mx), ny=-(zd-zu)/(2*my), nl=Math.sqrt(nx*nx+ny*ny+1);
       shade[r0*cols+c0] = Math.max(0, Math.min(1, .5 + ((nx*-.6 + ny*-.6 + .53)/nl)*.9));
+      steep[r0*cols+c0] = 1 - 1/nl;   /* 1 - cos(pendenza) */
     }
     for (var yy=0;yy<Hs;yy++){ var rr=Math.min(rows-1.001, yy/Hs*rows); for (var xx=0;xx<S;xx++){ var cc=Math.min(cols-1.001, xx/S*cols);
       var ri=Math.floor(rr), ci=Math.floor(cc), fx=cc-ci, fy=rr-ri, i00=ri*cols+ci, i10=i00+(ci<cols-1?1:0), i01=i00+(ri<rows-1?cols:0), i11=i01+(ci<cols-1?1:0);
       var zv=(DEM.z[i00]*(1-fx)+DEM.z[i10]*fx)*(1-fy)+(DEM.z[i01]*(1-fx)+DEM.z[i11]*fx)*fy, t=Math.max(0,Math.min(1,(zv-1300)/1800));
       var sh=(shade[i00]*(1-fx)+shade[i10]*fx)*(1-fy)+(shade[i01]*(1-fx)+shade[i11]*fx)*fy, k=.62+sh*.48;
-      var o=(yy*S+xx)*4; d[o]=(212+t*43)*k; d[o+1]=(220+t*35)*k; d[o+2]=(230+t*25)*Math.min(1,k+.06); d[o+3]=255; } }
+      var st=(steep[i00]*(1-fx)+steep[i10]*fx)*(1-fy)+(steep[i01]*(1-fx)+steep[i11]*fx)*fy;  /* 0 = piano, 1 = parete */
+      var rock=Math.max(0, Math.min(1, (st-.45)/.3)) * (zv>2000 ? 1 : Math.max(0,(zv-1700)/300));
+      var sr=212+t*43, sg=220+t*35, sb=230+t*25, rr2=168, rg=160, rb=150;
+      var o=(yy*S+xx)*4; d[o]=(sr*(1-rock)+rr2*rock)*k; d[o+1]=(sg*(1-rock)+rg*rock)*k; d[o+2]=(sb*(1-rock)+rb*rock)*Math.min(1,k+.06*(1-rock)); d[o+3]=255; } }
     g.putImageData(img,0,0);
     /* isoipse ogni 100 m, ogni 500 più scure (marching squares sul DEM) */
     g.lineCap='round'; g.lineJoin='round';
@@ -1034,6 +1038,40 @@ window.addEventListener('scroll', function(){
     return cvs;
   }
 
+  /* conifere: coni con la punta innevata (colore per vertice), solo sotto il limite del bosco e lontano dalle piste */
+  var forest=null, snowPts=null, snowVel=null;
+  function buildForest(){
+    var cellDeg=.0011, occ={};
+    function key(lat,lon){ return Math.floor(lat/cellDeg)+'_'+Math.floor(lon/cellDeg); }
+    for (var i=0;i<edges.length;i++){ var cs=edges[i].coords; for (var q=0;q<cs.length;q++){ occ[key(cs[q][0],cs[q][1])]=1; if (q>0){ var n=Math.ceil(Math.hypot((cs[q][0]-cs[q-1][0])*111320,(cs[q][1]-cs[q-1][1])*76500)/70); for (var k=1;k<n;k++){ var f=k/n; occ[key(cs[q-1][0]+(cs[q][0]-cs[q-1][0])*f, cs[q-1][1]+(cs[q][1]-cs[q-1][1])*f)]=1; } } } }
+    var geo=new T.ConeGeometry(.032, .085, 6, 1); geo.translate(0,.042,0);
+    var pos=geo.attributes.position, col=new Float32Array(pos.count*3);
+    for (var v=0;v<pos.count;v++){ var y=pos.getY(v)/.085, w=Math.max(0,Math.min(1,(y-.35)/.5)); col[v*3]=.18+(1-.18)*w; col[v*3+1]=.32+(1-.32)*w; col[v*3+2]=.24+(1-.24)*w; }
+    geo.setAttribute('color', new T.BufferAttribute(col,3));
+    var mat=new T.MeshLambertMaterial({ vertexColors:true });
+    var N = W>=900 ? 5200 : 2600, m=new T.Matrix4(), placed=0, tries=0;
+    forest=new T.InstancedMesh(geo, mat, N);
+    var latA=DEM.lat0+(DEM.lat1-DEM.lat0)*.1, latB=DEM.lat1-(DEM.lat1-DEM.lat0)*.1, lonA=DEM.lon0+(DEM.lon1-DEM.lon0)*.1, lonB=DEM.lon1-(DEM.lon1-DEM.lon0)*.1;
+    while (placed<N && tries<N*8){ tries++;
+      var lat=latA+Math.random()*(latB-latA), lon=lonA+Math.random()*(lonB-lonA), z=ele(lat,lon);
+      if (z<1250 || z>2150) continue;
+      if (Math.random() > Math.min(1,(2150-z)/650)) continue;      /* più fitto in basso, rado al limite del bosco */
+      if (occ[key(lat,lon)]) continue;
+      var p=toKm(lat,lon), sc=.75+Math.random()*.7;
+      m.makeRotationY(Math.random()*6.28); m.scale(new T.Vector3(sc,sc*(.9+Math.random()*.4),sc)); m.setPosition(p.x, z/1000*EXAG, p.z);
+      forest.setMatrixAt(placed++, m);
+    }
+    forest.count=placed; forest.instanceMatrix.needsUpdate=true; scene.add(forest);
+  }
+  /* neve: punti bianchi che scendono sopra il massiccio */
+  function buildSnow(){
+    var N = reduce ? 0 : (W>=900 ? 900 : 400); if (!N) return;
+    var arr=new Float32Array(N*3); snowVel=new Float32Array(N);
+    for (var i=0;i<N;i++){ arr[i*3]=(Math.random()-.5)*22; arr[i*3+1]=1.2+Math.random()*4.5; arr[i*3+2]=(Math.random()-.5)*18; snowVel[i]=.35+Math.random()*.35; }
+    var g=new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(arr,3));
+    snowPts=new T.Points(g, new T.PointsMaterial({ color:0xffffff, size:.055, transparent:true, opacity:.85, depthWrite:false }));
+    scene.add(snowPts);
+  }
   function makeLabel(text, strong, small){
     var c=document.createElement('canvas'), g=c.getContext('2d'), fs = small ? 26 : 30;
     g.font=(strong?'700 ':'600 ')+fs+'px Barlow, sans-serif';
@@ -1057,7 +1095,8 @@ window.addEventListener('scroll', function(){
     camera=new T.PerspectiveCamera(34, W/H, .1, 200);
     scene.add(new T.HemisphereLight(0xffffff, 0x8fa0b3, .8));
     var sun=new T.DirectionalLight(0xffffff, 1.0); sun.position.set(-16, 18, -12); scene.add(sun);
-    buildTerrain();
+    buildTerrain(); buildForest(); buildSnow();
+    scene.fog = new T.Fog(0xe3ebf4, 30, 64);
     /* tu */
     youMesh=new T.Group();
     var s1=new T.Mesh(new T.SphereGeometry(.13,18,14), new T.MeshBasicMaterial({color:0xffffff})); var s2=new T.Mesh(new T.SphereGeometry(.095,18,14), new T.MeshBasicMaterial({color:0x2f7de1}));
@@ -1135,6 +1174,7 @@ window.addEventListener('scroll', function(){
     if (autoRot && !reduce) az += dt*.055;
     placeCamera();
     if (routeMesh && routeShown<routeTotal){ routeShown=Math.min(routeTotal, routeShown + dt*routeTotal*.32); routeMesh.geometry.setDrawRange(0, Math.floor(routeShown/42)*42); }
+    if (snowPts){ var sp=snowPts.geometry.attributes.position, ar=sp.array; for (var si=0;si<snowVel.length;si++){ ar[si*3+1]-=snowVel[si]*dt; ar[si*3]+=Math.sin(clock*1.3+si)*dt*.15; if (ar[si*3+1]<1.0){ ar[si*3+1]=5.7; ar[si*3]=(Math.random()-.5)*22; ar[si*3+2]=(Math.random()-.5)*18; } } sp.needsUpdate=true; }
     if (targetRing){ var ph=(clock*.9)%1; targetRing.scale.set(1+ph*1.6,1+ph*1.6,1); targetRing.material.opacity=.7*(1-ph); }
     renderer.render(scene, camera);
     raf=requestAnimationFrame(frame);
