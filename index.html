@@ -939,7 +939,7 @@ window.addEventListener('scroll', function(){
   function fillCard(t, p){
     var adv=cost(p);
     document.getElementById('rc-name').textContent = pretty(t);
-    document.getElementById('rc-from').textContent = 'da Corvara (Boè) · ' + adv.legs + ' tratte · ' + adv.lifts + (adv.lifts===1?' impianto':' impianti');
+    document.getElementById('rc-from').textContent = 'Corvara (Boè) · ' + adv.legs + ' tratte · ' + adv.lifts + (adv.lifts===1?' impianto':' impianti');
     setLevel('rc-beg', pathTo(dijkstra(you, ALLOW.beg), t), 'Solo piste facili', adv);
     setLevel('rc-int', pathTo(dijkstra(you, ALLOW.int), t), 'Facili + medie', adv);
     document.getElementById('rc-adv-n').innerHTML = '<b>~'+adv.min+' min</b>'+fmtKm(adv.km);
@@ -1035,7 +1035,7 @@ window.addEventListener('scroll', function(){
     g.shadowColor='transparent'; g.fillStyle = strong ? '#ffb300' : '#101418'; g.textBaseline='middle'; g.fillText(text, 17, h/2+1);
     var tex=new T.CanvasTexture(c); tex.minFilter=T.LinearFilter;
     var sp=new T.Sprite(new T.SpriteMaterial({ map:tex, transparent:true, depthTest:false }));
-    var kmH = small ? .42 : .5; sp.scale.set(kmH*w/h, kmH, 1); sp.center.set(0, .5); sp.renderOrder=10;
+    var kmH = small ? .3 : .36; sp.scale.set(kmH*w/h, kmH, 1); sp.center.set(0, .5); sp.renderOrder=10;
     return sp;
   }
 
@@ -1045,7 +1045,7 @@ window.addEventListener('scroll', function(){
     latC=(DEM.lat0+DEM.lat1)/2; lonC=(DEM.lon0+DEM.lon1)/2; kmY=111.32; kmX=111.32*Math.cos(latC*Math.PI/180);
     renderer=new T.WebGLRenderer({ canvas:cv, antialias:true, alpha:true }); renderer.setPixelRatio(DPR); renderer.setSize(W,H,false); renderer.setClearColor(0x000000,0);
     scene=new T.Scene();
-    camera=new T.PerspectiveCamera(36, W/H, .1, 200);
+    camera=new T.PerspectiveCamera(34, W/H, .1, 200);
     scene.add(new T.HemisphereLight(0xffffff, 0xb9c6d4, .95));
     var sun=new T.DirectionalLight(0xffffff, .75); sun.position.set(-14, 22, -10); scene.add(sun);
     buildTerrain();
@@ -1069,13 +1069,13 @@ window.addEventListener('scroll', function(){
   function layout(){
     var host=cv.parentNode.getBoundingClientRect(); W=Math.max(320,host.width); H=Math.max(420,host.height);
     renderer.setSize(W,H,false); camera.aspect=W/H;
-    if (W>=900) camera.setViewOffset(W*1.5, H, 0, 0, W, H); else camera.clearViewOffset();
+    if (W>=900) camera.setViewOffset(W*1.62, H, 0, 0, W, H); else camera.clearViewOffset();
     camera.updateProjectionMatrix();
   }
   var orbitCenter=null;
   function placeCamera(){
-    if (!orbitCenter) orbitCenter = toWorld(46.522,11.822,0); orbitCenter.y = 2.3*EXAG;
-    var dist = W>=900 ? 21 : 26, elev = .52;
+    if (!orbitCenter) orbitCenter = toWorld(46.53,11.815,0); orbitCenter.y = 2.0*EXAG;
+    var dist = W>=900 ? 31 : 36, elev = .66;
     camera.position.set(orbitCenter.x+Math.cos(az)*dist*Math.cos(elev), orbitCenter.y+dist*Math.sin(elev), orbitCenter.z+Math.sin(az)*dist*Math.cos(elev));
     camera.lookAt(orbitCenter);
   }
