@@ -1044,9 +1044,9 @@ window.addEventListener('scroll', function(){
     var cellDeg=.0011, occ={};
     function key(lat,lon){ return Math.floor(lat/cellDeg)+'_'+Math.floor(lon/cellDeg); }
     for (var i=0;i<edges.length;i++){ var cs=edges[i].coords; for (var q=0;q<cs.length;q++){ occ[key(cs[q][0],cs[q][1])]=1; if (q>0){ var n=Math.ceil(Math.hypot((cs[q][0]-cs[q-1][0])*111320,(cs[q][1]-cs[q-1][1])*76500)/70); for (var k=1;k<n;k++){ var f=k/n; occ[key(cs[q-1][0]+(cs[q][0]-cs[q-1][0])*f, cs[q-1][1]+(cs[q][1]-cs[q-1][1])*f)]=1; } } } }
-    var geo=new T.ConeGeometry(.032, .085, 6, 1); geo.translate(0,.042,0);
+    var geo=new T.ConeGeometry(.04, .105, 6, 1); geo.translate(0,.052,0);
     var pos=geo.attributes.position, col=new Float32Array(pos.count*3);
-    for (var v=0;v<pos.count;v++){ var y=pos.getY(v)/.085, w=Math.max(0,Math.min(1,(y-.35)/.5)); col[v*3]=.18+(1-.18)*w; col[v*3+1]=.32+(1-.32)*w; col[v*3+2]=.24+(1-.24)*w; }
+    for (var v=0;v<pos.count;v++){ var y=pos.getY(v)/.105, w=Math.max(0,Math.min(1,(y-.35)/.5)); col[v*3]=.18+(1-.18)*w; col[v*3+1]=.32+(1-.32)*w; col[v*3+2]=.24+(1-.24)*w; }
     geo.setAttribute('color', new T.BufferAttribute(col,3));
     var mat=new T.MeshLambertMaterial({ vertexColors:true });
     var N = W>=900 ? 5200 : 2600, m=new T.Matrix4(), placed=0, tries=0;
@@ -1065,11 +1065,11 @@ window.addEventListener('scroll', function(){
   }
   /* neve: punti bianchi che scendono sopra il massiccio */
   function buildSnow(){
-    var N = reduce ? 0 : (W>=900 ? 900 : 400); if (!N) return;
+    var N = reduce ? 0 : (W>=900 ? 1300 : 500); if (!N) return;
     var arr=new Float32Array(N*3); snowVel=new Float32Array(N);
     for (var i=0;i<N;i++){ arr[i*3]=(Math.random()-.5)*22; arr[i*3+1]=1.2+Math.random()*4.5; arr[i*3+2]=(Math.random()-.5)*18; snowVel[i]=.35+Math.random()*.35; }
     var g=new T.BufferGeometry(); g.setAttribute('position', new T.BufferAttribute(arr,3));
-    snowPts=new T.Points(g, new T.PointsMaterial({ color:0xffffff, size:.055, transparent:true, opacity:.85, depthWrite:false }));
+    snowPts=new T.Points(g, new T.PointsMaterial({ color:0xffffff, size:.085, transparent:true, opacity:.9, depthWrite:false }));
     scene.add(snowPts);
   }
   function makeLabel(text, strong, small){
