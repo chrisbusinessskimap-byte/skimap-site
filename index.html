@@ -93,7 +93,7 @@ a{color:inherit}
 .view{display:none}
 .view.active{display:block; animation:fade .35s ease}
 @keyframes fade{from{opacity:.001; transform:translateY(8px)} to{opacity:1; transform:none}}
-.view-head{padding:72px 0 48px; background:linear-gradient(180deg, var(--sky), var(--bg) 85%); border-bottom:1px solid var(--line)}
+.view-head{padding:72px 0 48px; background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'><path d='M0 200 L0 150 L120 90 L200 130 L300 60 L380 110 L470 40 L560 120 L640 80 L740 140 L820 70 L920 120 L1000 50 L1100 110 L1200 80 L1200 200 Z' fill='%23101418' fill-opacity='.06'/></svg>") bottom/100% 170px no-repeat, linear-gradient(180deg, var(--sky), var(--bg) 85%); border-bottom:1px solid var(--line)}
 .view-head .lede{margin-top:22px}
 .view-body{padding:64px 0 72px}
 .view-body.tint{background:var(--bg-2); box-shadow:inset 0 1px 0 var(--line), inset 0 -1px 0 var(--line)}
@@ -147,12 +147,14 @@ a{color:inherit}
 .ticker{border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); background:var(--accent); color:var(--ink); overflow:hidden; white-space:nowrap; position:relative; z-index:3; box-shadow:0 14px 30px -20px rgba(16,20,24,.5)}
 .ticker .track{display:inline-flex; animation:slide 60s linear infinite; padding:12px 0}
 .ticker span{font-family:"Big Shoulders Display",sans-serif; font-size:26px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; padding:0 22px; display:inline-flex; align-items:center; gap:22px}
-.ticker span:after{content:""; width:8px; height:8px; border-radius:50%; background:var(--ink)}
+.ticker span:after{content:""; width:15px; height:15px; background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23101418' stroke-width='2.4' stroke-linecap='round'><path d='M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1'/><circle cx='12' cy='12' r='2.2' fill='%23101418' stroke='none'/></svg>") center/contain no-repeat}
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* fascia scura: la tesi globale */
 .world{background:radial-gradient(1200px 600px at 80% 0%, var(--dark-2), var(--dark) 60%); color:#eef2f6; padding:96px 0 104px; position:relative; overflow:hidden}
 .world:before{content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.09) 1px, transparent 1.4px); background-size:26px 26px; pointer-events:none; mask-image:linear-gradient(90deg, transparent 30%, #000 100%)}
+.world .ridge{position:absolute; left:0; right:0; bottom:-2px; width:100%; height:140px; pointer-events:none; display:block}
+.world .wrap{z-index:1}
 .world .wrap{position:relative; display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:start}
 .world .eyebrow{color:#aab5c2}
 .world h2{color:#fff}
@@ -178,11 +180,13 @@ a{color:inherit}
 .door .go{font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:20px; letter-spacing:.08em; text-transform:uppercase; display:inline-flex; gap:8px; align-items:center; margin-top:8px}
 .door .go:after{content:"→"; transition:transform .15s ease}
 .door > *{position:relative; z-index:1}
-.door .slash{position:absolute; right:-22px; top:-22px; width:96px; height:96px; opacity:.95; z-index:0; transition:transform .3s ease}
+.door .slash{position:absolute; right:22px; top:22px; width:72px; height:72px; opacity:.95; z-index:0; transition:transform .3s ease}
+.door:hover .slash *{stroke:var(--bg)}
+.door:hover .slash .fillme{fill:var(--bg)}
 .door:hover{background:var(--ink); color:var(--bg); transform:translateY(-4px); box-shadow:var(--shadow-lg)}
 .door:hover p, .door:hover .eyebrow{color:var(--bg-3)}
 .door:hover .go:after{transform:translateX(6px)}
-.door:hover .slash{transform:rotate(-8deg) scale(1.08)}
+.door:hover .slash{transform:translateY(-4px) scale(1.06)}
 @media (max-width:900px){ .doors .wrap{grid-template-columns:1fr 1fr} .door{min-height:260px} }
 @media (max-width:560px){ .doors .wrap{grid-template-columns:1fr} .door{min-height:0} }
 
@@ -230,7 +234,9 @@ a{color:inherit}
 .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:32px}
 .step{display:flex; flex-direction:column; gap:22px}
 .step .phone{align-self:center}
-.step .num{font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:84px; line-height:.85; color:var(--accent-2); display:flex; align-items:baseline; gap:12px}
+.step .num{display:flex; align-items:center; gap:14px}
+.pnum{width:64px; height:64px; border-radius:50%; display:grid; place-items:center; font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:40px; color:#fff; box-shadow:var(--shadow-sm); border:3px solid #fff}
+.pnum.blue{background:var(--blue)} .pnum.red{background:var(--red)} .pnum.adv{background:var(--adv)}
 .step .num small{font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
 .step h3{margin-top:-6px}
 .step p{color:var(--ink-2)}
@@ -309,7 +315,9 @@ a{color:inherit}
 .road li{margin:4px 0}
 @media (max-width:720px){ .road{grid-template-columns:1fr} }
 
-.beta{background:radial-gradient(900px 500px at 20% 0%, var(--dark-2), var(--dark) 60%); color:#eef2f6; padding:96px 0 104px}
+.beta{background:radial-gradient(900px 500px at 20% 0%, var(--dark-2), var(--dark) 60%); color:#eef2f6; padding:96px 0 104px; position:relative; overflow:hidden}
+.beta .ridge{position:absolute; left:0; right:0; bottom:-2px; width:100%; height:140px; pointer-events:none; display:block}
+.beta .wrap{position:relative; z-index:1}
 .beta .eyebrow{color:#aab5c2}
 .beta h2{color:#fff}
 .beta .lede{color:#c5ced8; margin-top:22px}
@@ -328,6 +336,8 @@ a{color:inherit}
 
 footer{padding:32px 0 44px; border-top:1px solid var(--line); font-size:14px; color:var(--ink-3); background:var(--bg-2)}
 footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center}
+footer .season{display:inline-flex; align-items:center; gap:8px}
+footer .season:before{content:""; width:13px; height:13px; background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23101418' stroke-width='2.4' stroke-linecap='round'><path d='M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1'/><circle cx='12' cy='12' r='2.2' fill='%23101418' stroke='none'/></svg>") center/contain no-repeat; opacity:.7}
 footer nav{display:flex; gap:18px; flex-wrap:wrap}
 footer a{text-decoration:none}
 footer a:hover{color:var(--ink)}
@@ -390,7 +400,7 @@ footer a:hover{color:var(--ink)}
 <!-- ================= HOME ================= -->
 <section class="view" id="view-home" data-title="SkiMap">
   <div class="hero" id="hero">
-    <canvas id="net" aria-label="Mappa interattiva: tocca un punto e SkiMap disegna il percorso" role="img"></canvas>
+    <canvas id="net" aria-label="Cartina interattiva di un comprensorio: tocca un rifugio, un paese o una cima e SkiMap disegna il percorso" role="img"></canvas>
     <div class="veil"></div>
     <div class="wrap">
       <div class="hero-copy">
@@ -404,7 +414,7 @@ footer a:hover{color:var(--ink)}
           <a class="btn primary" href="#beta">Entra nella closed beta</a>
           <a class="btn ghost" href="#come-funziona">Come funziona</a>
         </div>
-        <div class="hint"><i></i>Prova: tocca un punto sulla mappa</div>
+        <div class="hint"><i></i>Prova: tocca un rifugio, un paese o una cima</div>
       </div>
 
       <div class="routecard" aria-live="polite">
@@ -427,6 +437,7 @@ footer a:hover{color:var(--ink)}
 
   <!-- La tesi: una mappa, tutte le montagne -->
   <div class="world">
+    <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/><path d="M250 44 L330 84 M420 30 L500 92 M760 50 L860 96 M940 36 L1040 86" stroke="rgba(255,255,255,.12)" stroke-width="2" fill="none"/></svg>
     <div class="wrap">
       <div>
         <div class="eyebrow"><span class="disc globe"></span>Ovunque nel mondo</div>
@@ -447,28 +458,28 @@ footer a:hover{color:var(--ink)}
   <div class="doors">
     <div class="wrap">
       <a class="door" href="#come-funziona">
-        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 66 L66 34" stroke="var(--blue)" stroke-width="16" stroke-linecap="round"/></svg>
+        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="var(--blue)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle class="fillme" cx="60" cy="18" r="7" fill="var(--blue)" stroke="none"/><path d="M54 32 L42 58 L60 68"/><path d="M54 36 L72 44 L80 66"/><path d="M24 76 L86 58" stroke-width="5"/><path d="M40 60 L26 66"/></svg>
         <div class="eyebrow"><span class="disc"></span>Come funziona</div>
         <h3>Tre gesti.<br>Poi si scia.</h3>
         <p>Tocchi la destinazione, scegli il livello, avvii. Il resto lo fa la montagna.</p>
         <span class="go">Esplora</span>
       </a>
       <a class="door" href="#pensata">
-        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 66 L66 34" stroke="var(--red)" stroke-width="16" stroke-linecap="round"/></svg>
+        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="var(--red)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34 L92 12" stroke-width="3.5"/><path d="M50 23 L50 46"/><path d="M32 46 L68 46 L68 56 L32 56 Z"/><path d="M38 56 L38 72 M62 56 L62 72"/><path d="M30 66 L70 66"/></svg>
         <div class="eyebrow"><span class="disc red"></span>Pensata per chi scia</div>
         <h3>Progettata sulla seggiovia.</h3>
         <p>Guanti, sole, tre momenti in cui guardi il telefono. Tutto parte da lì.</p>
         <span class="go">Esplora</span>
       </a>
       <a class="door" href="#mondo">
-        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 66 L66 34" stroke="var(--adv)" stroke-width="16" stroke-linecap="round"/></svg>
+        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="var(--adv)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><circle cx="76" cy="26" r="8" stroke="var(--accent-2)"/><path d="M6 82 L30 40 L44 62 L60 30 L80 66 L94 82 Z"/><path d="M52 44 L60 30 L67 42" stroke-width="4"/></svg>
         <div class="eyebrow"><span class="disc globe"></span>Ovunque nel mondo</div>
         <h3>Ogni montagna.<br>Un motore solo.</h3>
         <p>Perché lo stesso motore funziona nelle Alpi, sulle Rocciose, in Giappone.</p>
         <span class="go">Esplora</span>
       </a>
       <a class="door" href="#pilot">
-        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M34 66 L66 34" stroke="var(--accent)" stroke-width="16" stroke-linecap="round"/></svg>
+        <svg class="slash" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"><circle cx="50" cy="50" r="30" stroke-dasharray="36 12"/><circle class="fillme" cx="50" cy="20" r="5" fill="var(--adv)" stroke="none"/><circle class="fillme" cx="80" cy="50" r="5" fill="var(--adv)" stroke="none"/><circle class="fillme" cx="50" cy="80" r="5" fill="var(--adv)" stroke="none"/><circle class="fillme" cx="20" cy="50" r="5" fill="var(--adv)" stroke="none"/><path d="M62 42 L70 50 L62 58" stroke="var(--adv)" stroke-width="4" stroke-linejoin="round"/></svg>
         <div class="eyebrow"><span class="disc amber"></span>Il banco di prova</div>
         <h3>Dolomiti Superski.</h3>
         <p>Dodici aree, Sellaronda inclusa: il test più duro, scelto apposta.</p>
@@ -501,7 +512,7 @@ footer a:hover{color:var(--ink)}
             <div class="chip" style="left:120px; top:470px">Corvara · base cabinovia Boè</div>
           </div>
         </div>
-        <div class="num">1 <small>Tocca</small></div>
+        <div class="num"><span class="pnum blue">1</span><small>Tocca</small></div>
         <h3>Scegli dove vuoi arrivare</h3>
         <p>Un rifugio, la base di una cabinovia, il paese dove hai parcheggiato. Se un punto non è raggiungibile da dove sei, la mappa te lo mostra spento: niente percorsi impossibili.</p>
       </div>
@@ -521,7 +532,7 @@ footer a:hover{color:var(--ink)}
             </div>
           </div>
         </div>
-        <div class="num">2 <small>Scegli il livello</small></div>
+        <div class="num"><span class="pnum red">2</span><small>Scegli il livello</small></div>
         <h3>Il percorso giusto per te, in minuti reali</h3>
         <p>Tre proposte, una per livello. Il tempo somma discese, risalite e attese: se un percorso è molto più lungo della linea d'aria, te lo dice prima che tu parta.</p>
       </div>
@@ -540,7 +551,7 @@ footer a:hover{color:var(--ink)}
             <div class="hud-bottom"><div><div class="lbl">Prossima tratta</div><div class="nxt">→ Arlara</div></div><div class="stop">✕ Fine</div></div>
           </div>
         </div>
-        <div class="num">3 <small>Avvia</small></div>
+        <div class="num"><span class="pnum adv">3</span><small>Avvia</small></div>
         <h3>Guardi il telefono solo quando serve</h3>
         <p>In alto la pista su cui sei, in basso la prossima tratta. Se a fine discesa hai preso un'altra direzione, SkiMap te lo chiede e ricalcola. Mai una voce che ti parla mentre scendi.</p>
       </div>
@@ -553,8 +564,8 @@ footer a:hover{color:var(--ink)}
   </div></div>
 
   <div class="view-nav"><div class="wrap">
-    <a href="#home" class="prev"><small>← Torna</small><b>Home</b></a>
-    <a href="#pensata" class="next"><small>Avanti →</small><b>Pensata per chi scia</b></a>
+    <a href="#home" class="prev"><small>← Rientro a valle</small><b>Home</b></a>
+    <a href="#pensata" class="next"><small>Prossima tratta →</small><b>Pensata per chi scia</b></a>
   </div></div>
 </section>
 
@@ -612,8 +623,8 @@ footer a:hover{color:var(--ink)}
   </div></div>
 
   <div class="view-nav"><div class="wrap">
-    <a href="#come-funziona" class="prev"><small>← Indietro</small><b>Come funziona</b></a>
-    <a href="#mondo" class="next"><small>Avanti →</small><b>Ovunque nel mondo</b></a>
+    <a href="#come-funziona" class="prev"><small>← Tratta precedente</small><b>Come funziona</b></a>
+    <a href="#mondo" class="next"><small>Prossima tratta →</small><b>Ovunque nel mondo</b></a>
   </div></div>
 </section>
 
@@ -708,8 +719,8 @@ footer a:hover{color:var(--ink)}
   </div></div>
 
   <div class="view-nav"><div class="wrap">
-    <a href="#pensata" class="prev"><small>← Indietro</small><b>Pensata per chi scia</b></a>
-    <a href="#pilot" class="next"><small>Avanti →</small><b>Il banco di prova</b></a>
+    <a href="#pensata" class="prev"><small>← Tratta precedente</small><b>Pensata per chi scia</b></a>
+    <a href="#pilot" class="next"><small>Prossima tratta →</small><b>Il banco di prova</b></a>
   </div></div>
 </section>
 
@@ -755,14 +766,15 @@ footer a:hover{color:var(--ink)}
   </div></div>
 
   <div class="view-nav"><div class="wrap">
-    <a href="#mondo" class="prev"><small>← Indietro</small><b>Ovunque nel mondo</b></a>
-    <a href="#beta" class="next"><small>Avanti →</small><b>Entra nella beta</b></a>
+    <a href="#mondo" class="prev"><small>← Tratta precedente</small><b>Ovunque nel mondo</b></a>
+    <a href="#beta" class="next"><small>Prossima tratta →</small><b>Entra nella beta</b></a>
   </div></div>
 </section>
 
 <!-- ================= BETA ================= -->
 <section class="view" id="view-beta" data-title="Closed beta · SkiMap">
   <div class="beta">
+    <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/><path d="M250 44 L330 84 M420 30 L500 92 M760 50 L860 96 M940 36 L1040 86" stroke="rgba(255,255,255,.12)" stroke-width="2" fill="none"/></svg>
     <div class="wrap">
       <div class="eyebrow"><span class="disc amber"></span>Closed beta · inverno 2026/27</div>
       <h2>Vieni a provarla sulla neve.</h2>
@@ -783,8 +795,8 @@ footer a:hover{color:var(--ink)}
     </div>
   </div>
   <div class="view-nav"><div class="wrap">
-    <a href="#pilot" class="prev"><small>← Indietro</small><b>Il banco di prova</b></a>
-    <a href="#home" class="next"><small>Torna</small><b>Home</b></a>
+    <a href="#pilot" class="prev"><small>← Tratta precedente</small><b>Il banco di prova</b></a>
+    <a href="#home" class="next"><small>Rientro a valle →</small><b>Home</b></a>
   </div></div>
 </section>
 
@@ -792,7 +804,7 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <div class="wrap">
-    <span>© 2026 SkiMap · Il navigatore per chi scia</span>
+    <span class="season">© 2026 SkiMap · Stagione 2026/27</span>
     <nav aria-label="Sezioni, piè di pagina">
       <a href="#come-funziona">Come funziona</a>
       <a href="#pensata">Pensata per chi scia</a>
@@ -848,161 +860,299 @@ window.addEventListener('scroll', function(){
   t.innerHTML = html;
 })();
 
-/* ============ mappa viva: rete di piste + percorso al tocco ============ */
+/* ============ mappa viva: un comprensorio generato come una cartina delle piste ============ */
 (function(){
   var cv = document.getElementById('net'); if (!cv) return;
   var ctx = cv.getContext('2d');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var NAMES = ['Piz La Ila','Pralongià','Corvara','Passo Gardena','Dantercepies','Ciampinoi','Sass Pordoi','Arabba','Col Alt','Boè','La Villa','Santa Croce','Plan de Gralba','Selva','Colfosco','Campolongo','Belvedere','Canazei','Pecol','Cherz','Porta Vescovo','Piz Sorega','Gran Risa','Vallon','Bioch','Armentarola','Lagazuoi','Cinque Torri','Pordoi','Sella','Seceda','Col Raiser','Ortisei','Alpe di Siusi','Ciampac','Buffaure','Col Rodella','Campitello','Pozza','Moena','Cortina','Tofana','Faloria','Kronplatz','San Vigilio','Piculin','Sompunt','Padeon','Marmolada','Malga Ciapela','Alleghe','Pescul','Carezza','Obereggen','Latemar','Pampeago','Falcade','San Pellegrino','Baranci','Monte Elmo','Versciaco','Gitschberg','Jochtal','Maranza'];
-  var W, H, DPR, nodes = [], edges = [], adj = [], bg = null;
-  var you = 0, target = -1, routeEdges = [], routeLen = 0, drawn = 0, lastT = 0, raf = null, idle = null, hover = -1, pulse = 0;
-  var SCALE_M = 11, V_SKI = 250, V_LIFT = 200, LIFT_WAIT = 4;
+  var PEAKS = ['Sass Pordoi','Piz Boè','Marmolada','Lagazuoi','Seceda','Tofana','Sassolungo','Piz Sella','Kronplatz','Col Rodella','Ciampinoi','Dantercepies','Piz Arlara','Sass Becè'];
+  var MID   = ['Pralongià','Piz La Ila','Col Alt','Belvedere','Arlara','Cherz','Bioch','Vallon','Plan de Gralba','Ciampac','Buffaure','Piz Sorega','Porta Vescovo','Col Raiser','Piculin','Padeon','Cinque Torri','Passo Gardena','Passo Sella','Campolongo','Pordoi','Costabella','Gardenaccia','Sponata'];
+  var HUTS  = ['Rif. Comici','Rif. Emilio','Rif. Piz Boè','Rif. Pralongià','Rif. Lagazuoi','Rif. Scotoni','Rif. Salei','Baita Cuz','Rif. Col Alt','Rif. Bioch','Rif. Averau','Rif. Fodara','Rif. Fedarola','Baita Gardenacia','Rif. Las Vegas','Rif. Piz Seteur'];
+  var BASE  = ['Corvara','Selva','Arabba','Canazei','La Villa','Colfosco','Ortisei','San Cassiano','Campitello','Pozza','Alleghe','Malga Ciapela','San Vigilio','Cortina','Moena','Armentarola','Santa Cristina','Badia'];
+
+  var W, H, DPR, nodes = [], edges = [], out = [], inn = [], trees = [], flakes = [], bg = null;
+  var you = 0, target = -1, routeEdges = [], routePts = [], routeLen = 0, drawn = 0, lastT = 0, raf = null, idle = null, hover = -1, clock = 0;
+  var SCALE_M = 11, V_SKI = 250, V_LIFT = 200;
 
   function rnd(a,b){ return a + Math.random()*(b-a); }
   function dist(a,b){ var dx=a.x-b.x, dy=a.y-b.y; return Math.sqrt(dx*dx+dy*dy); }
   function shuffle(arr){ for (var i=arr.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=arr[i]; arr[i]=arr[j]; arr[j]=t; } return arr; }
+  function fmtEle(e){ return String(e).replace(/\B(?=(\d{3})+(?!\d))/g,'.') + ' m'; }
+  function fmtKm(v){ return v.toFixed(1).replace('.',',') + ' km'; }
+  function bezier(p0,p1,p2,p3,n){
+    var pts=[]; for (var i=0;i<=n;i++){ var t=i/n, u=1-t;
+      pts.push({ x:u*u*u*p0.x+3*u*u*t*p1.x+3*u*t*t*p2.x+t*t*t*p3.x, y:u*u*u*p0.y+3*u*u*t*p1.y+3*u*t*t*p2.y+t*t*t*p3.y }); }
+    return pts;
+  }
+  function polyLen(pts){ var l=0; for (var i=1;i<pts.length;i++) l+=dist(pts[i-1],pts[i]); return l; }
+  function hasEdge(a,b){ for (var i=0;i<out[a].length;i++) if (out[a][i].b===b) return true; return false; }
+  function ridgeY(x, base, seed){ return base + Math.sin(x*.0042+seed)*30 + Math.sin(x*.0131+seed*2)*14 + Math.sin(x*.033+seed*3)*6; }
 
+  /* ---------- costruzione del comprensorio ---------- */
   function build(){
     var host = cv.parentNode.getBoundingClientRect();
     W = Math.max(320, host.width); H = Math.max(420, host.height); DPR = Math.min(2, window.devicePixelRatio || 1);
     cv.width = W*DPR; cv.height = H*DPR; cv.style.width = W+'px'; cv.style.height = H+'px';
     ctx.setTransform(DPR,0,0,DPR,0,0);
 
-    nodes = []; edges = []; adj = [];
-    var sp = W < 700 ? 96 : 124;
-    var cols = Math.ceil(W/sp)+2, rows = Math.ceil(H/sp)+2;
-    var names = shuffle(NAMES.slice());
-    var idx = {};
-    for (var r=0;r<rows;r++) for (var c=0;c<cols;c++){
-      var n = { x: (c-.5)*sp + rnd(-sp*.32, sp*.32), y: (r-.5)*sp + rnd(-sp*.32, sp*.32), name: names[nodes.length % names.length] };
-      idx[r+','+c] = nodes.length; nodes.push(n); adj.push([]);
+    nodes=[]; edges=[]; out=[]; inn=[]; trees=[]; flakes=[];
+    var B = 5, top = H*.2, bot = H*.9, bandH = (bot-top)/(B-1);
+    var per = Math.max(3, Math.round(W/150));
+    var pk=shuffle(PEAKS.slice()), md=shuffle(MID.slice()), ht=shuffle(HUTS.slice()), bs=shuffle(BASE.slice());
+    var bands=[], b, i;
+    for (b=0;b<B;b++){
+      var cnt = Math.max(3, Math.round(per*(.45+.55*b/(B-1))));
+      var list=[];
+      for (i=0;i<cnt;i++){
+        var x = (i+.5)*W/cnt + rnd(-W/cnt*.28, W/cnt*.28);
+        var y = top + bandH*b + (b===0 ? rnd(-bandH*.1, bandH*.18) : b===B-1 ? rnd(-bandH*.15, bandH*.1) : rnd(-bandH*.25, bandH*.25));
+        var kind = b===0 ? 'peak' : b===B-1 ? 'base' : (Math.random()<.32 ? 'hut' : 'mid');
+        var name = kind==='peak' ? (pk.pop()||'Cima') : kind==='base' ? (bs.pop()||'Paese') : kind==='hut' ? (ht.pop()||'Rifugio') : (md.pop()||'Bivio');
+        var n = { x:x, y:y, band:b, kind:kind, name:name };
+        n.ele = Math.round((1380 + (1-(y-top)/(bot-top))*1650)/10)*10;
+        list.push(nodes.length); nodes.push(n); out.push([]); inn.push([]);
+      }
+      bands.push(list);
     }
-    function link(a,b,p){
-      if (a==null || b==null || Math.random()>p) return;
-      var kind = Math.random() < .3 ? 'lift' : 'piste';
-      var d = kind==='lift' ? 'lift' : (Math.random()<.45 ? 'easy' : (Math.random()<.65 ? 'mid' : 'adv'));
-      var e = { a:a, b:b, kind:kind, diff:d, len: dist(nodes[a],nodes[b]) };
-      edges.push(e); adj[a].push(e); adj[b].push(e);
+    function addPiste(a,c){
+      var A=nodes[a], C=nodes[c]; if (A.y>=C.y || hasEdge(a,c)) return;
+      var dx=C.x-A.x, dy=C.y-A.y, w=rnd(18,60)*(Math.random()<.5?-1:1);
+      var pts = bezier(A, {x:A.x+dx*.15+w, y:A.y+dy*.42}, {x:C.x-dx*.15-w, y:C.y-dy*.42}, C, 16);
+      var steep = dy/(Math.abs(dx)+30), r=Math.random();
+      var diff = steep>1.5 ? (r<.6?'adv':'mid') : steep>.8 ? (r<.5?'mid':(r<.8?'easy':'adv')) : (r<.7?'easy':'mid');
+      var e={a:a,b:c,kind:'piste',diff:diff,pts:pts,len:polyLen(pts)};
+      edges.push(e); out[a].push(e); inn[c].push(e);
     }
-    for (var r2=0;r2<rows;r2++) for (var c2=0;c2<cols;c2++){
-      var i = idx[r2+','+c2];
-      link(i, idx[r2+','+(c2+1)], .8); link(i, idx[(r2+1)+','+c2], .8);
-      link(i, idx[(r2+1)+','+(c2+1)], .22); link(i, idx[(r2+1)+','+(c2-1)], .18);
+    function addLift(a,c,type){
+      var A=nodes[a], C=nodes[c]; if (A.y<=C.y || hasEdge(a,c)) return;
+      var e={a:a,b:c,kind:'lift',type:type||(Math.random()<.3?'gondola':'chair'),pts:[{x:A.x,y:A.y},{x:C.x,y:C.y}],len:dist(A,C)};
+      edges.push(e); out[a].push(e); inn[c].push(e);
     }
-    var px = W < 900 ? W*.5 : W*.7, py = W < 900 ? H*.42 : H*.52, best = 1e9;
-    for (var k=0;k<nodes.length;k++){ var dd = Math.abs(nodes[k].x-px)+Math.abs(nodes[k].y-py); if (dd<best){best=dd; you=k;} }
-    nodes[you].name = 'Passo Campolongo';
+    function nearestIn(list, x, y, excl){
+      var best=-1, bd=1e9;
+      for (var k=0;k<list.length;k++){ var id=list[k]; if (id===excl) continue; var d=Math.abs(nodes[id].x-x)*1.6+Math.abs(nodes[id].y-y); if (d<bd){bd=d;best=id;} }
+      return best;
+    }
+    function sortedIn(list, x){ return list.slice().sort(function(p,q){ return Math.abs(nodes[p].x-x)-Math.abs(nodes[q].x-x); }); }
+
+    /* piste: da ogni nodo scendono 1-2 piste alla fascia sotto, a volte una discesa lunga */
+    for (b=0;b<B-1;b++){
+      var below = bands[b+1];
+      for (i=0;i<bands[b].length;i++){
+        var id=bands[b][i], s=sortedIn(below, nodes[id].x);
+        addPiste(id, s[0]);
+        if (s[1]!=null && Math.random()<.6 && Math.abs(nodes[s[1]].x-nodes[id].x) < W/per*1.8) addPiste(id, s[1]);
+        if (b<B-2 && Math.random()<.25){ var far=sortedIn(bands[b+2], nodes[id].x)[0]; addPiste(id, far); }
+      }
+    }
+    /* impianti: ogni nodo (tranne la valle) è servito da almeno un impianto dal basso */
+    for (b=0;b<B-1;b++){
+      for (i=0;i<bands[b].length;i++){
+        var t=bands[b][i], from = nearestIn(bands[b+1], nodes[t].x, nodes[t].y);
+        if (b===0 || Math.random()<.8) addLift(from, t, b===0 && Math.random()<.5 ? 'gondola' : null);
+      }
+    }
+    /* cabinovie lunghe: dalla valle dritte in quota */
+    var basesR = shuffle(bands[B-1].slice());
+    for (i=0;i<Math.min(2, basesR.length);i++){ var pkId = nearestIn(bands[0], nodes[basesR[i]].x, 0); addLift(basesR[i], pkId, 'gondola'); }
+    /* garanzie: nessun nodo senza discesa in arrivo (tranne le cime) né senza impianto in arrivo (tranne la valle) */
+    for (i=0;i<nodes.length;i++){
+      var nd=nodes[i], hasP=false, hasL=false, k;
+      for (k=0;k<inn[i].length;k++){ if (inn[i][k].kind==='piste') hasP=true; else hasL=true; }
+      if (!hasP && nd.band>0) addPiste(nearestIn(bands[nd.band-1], nd.x, nd.y), i);
+      if (!hasL && nd.band<B-1) addLift(nearestIn(bands[nd.band+1], nd.x, nd.y), i);
+    }
+    /* e da ogni paese a valle parte almeno un impianto */
+    for (i=0;i<bands[B-1].length;i++){
+      var bId=bands[B-1][i], hasUp=false;
+      for (var k3=0;k3<out[bId].length;k3++) if (out[bId][k3].kind==='lift') hasUp=true;
+      if (!hasUp) addLift(bId, nearestIn(bands[B-2], nodes[bId].x, nodes[bId].y), Math.random()<.4?'gondola':'chair');
+    }
+
+    /* traversi (skiweg) fra nodi vicini della stessa fascia: leggera discesa, piste facili */
+    for (b=1;b<B-1;b++){
+      var row = bands[b].slice().sort(function(p,q){ return nodes[p].x-nodes[q].x; });
+      for (i=0;i<row.length-1;i++){
+        if (Math.random()>.55) continue;
+        var p1=row[i], p2=row[i+1], hi = nodes[p1].y<nodes[p2].y ? p1 : p2, lo = hi===p1 ? p2 : p1;
+        if (Math.abs(nodes[hi].x-nodes[lo].x) > W/per*2.2) continue;
+        addPiste(hi, lo); var last=edges[edges.length-1]; if (last && last.a===hi && last.b===lo) last.diff='easy';
+      }
+    }
+    /* partenza: un paese a valle, sul lato scoperto della mappa */
+    var cand = bands[B-1].filter(function(id){ return W<900 || nodes[id].x > W*.5; });
+    if (!cand.length) cand = bands[B-1];
+    you = cand[Math.floor(cand.length/2)];
+    /* riparazione: tutto ciò che è sulla cartina deve essere raggiungibile dalla partenza */
+    var start = you, guard=0;
+    while (guard++ < 80){
+      var reach = dijkstra(start, function(){return true;}).d, bestP=null, bestD=1e9;
+      for (i=0;i<nodes.length;i++){ if (!isFinite(reach[i])) continue;
+        for (var j=0;j<nodes.length;j++){ if (isFinite(reach[j])) continue;
+          var dd2 = dist(nodes[i],nodes[j]); if (dd2<bestD){ bestD=dd2; bestP=[i,j]; } } }
+      if (!bestP) break;
+      var ra=nodes[bestP[0]], rb=nodes[bestP[1]];
+      if (ra.y < rb.y) addPiste(bestP[0], bestP[1]); else addLift(bestP[0], bestP[1]);
+      if (!hasEdge(bestP[0], bestP[1])) break;
+    }
+
+    /* boschi: nella metà bassa, lontano da piste e nodi */
+    var nTrees = Math.round(W*H/7000);
+    for (i=0;i<nTrees;i++){
+      var tx=rnd(0,W), ty=rnd(top+bandH*1.1, H-6), okT=true, k2;
+      for (k2=0;k2<nodes.length && okT;k2++) if (dist(nodes[k2],{x:tx,y:ty})<30) okT=false;
+      for (k2=0;k2<edges.length && okT;k2++){ var ps=edges[k2].pts; for (var q=0;q<ps.length;q++) if (dist(ps[q],{x:tx,y:ty})< (edges[k2].kind==='piste'?14:9)){ okT=false; break; } }
+      if (okT) trees.push({x:tx,y:ty,s:rnd(.7,1.3)});
+    }
+    /* neve */
+    for (i=0;i<Math.round(W/22);i++) flakes.push({x:rnd(0,W), y:rnd(0,H), r:rnd(1.2,2.8), v:rnd(9,22), ph:rnd(0,6.28)});
+
+
     paintBackground();
     pickTarget(false);
   }
 
+  /* ---------- sfondo statico: creste, isoipse, boschi, piste, impianti, nodi ---------- */
   function paintBackground(){
     bg = document.createElement('canvas'); bg.width = W*DPR; bg.height = H*DPR;
     var b = bg.getContext('2d'); b.setTransform(DPR,0,0,DPR,0,0);
-    /* fondo trasparente: il cielo lo dà il CSS. Curve di livello come isoipse. */
-    b.strokeStyle = 'rgba(16,20,24,.085)'; b.lineWidth = 1;
-    var step = 26;
-    for (var y = -40; y < H+40; y += step){
+    var top = H*.2, x, i;
+
+    /* catena lontana e cresta vicina */
+    function ridge(base, seed, fillTop, fillBot, snow){
+      b.beginPath(); b.moveTo(-10,H);
+      for (x=-10;x<=W+10;x+=6) b.lineTo(x, ridgeY(x, base, seed));
+      b.lineTo(W+10,H); b.closePath();
+      var g=b.createLinearGradient(0,base-40,0,base+220); g.addColorStop(0,fillTop); g.addColorStop(1,fillBot);
+      b.fillStyle=g; b.fill();
+      if (snow){ b.beginPath(); for (x=-10;x<=W+10;x+=6){ var yy=ridgeY(x, base, seed); if (x===-10) b.moveTo(x,yy); else b.lineTo(x,yy); } b.strokeStyle='rgba(255,255,255,.9)'; b.lineWidth=2.5; b.stroke(); }
+    }
+    ridge(top-92, 1.3, 'rgba(168,188,210,.55)', 'rgba(244,246,249,0)', false);
+    ridge(top-48, 4.1, 'rgba(198,212,228,.75)', 'rgba(244,246,249,0)', true);
+
+    /* isoipse */
+    b.strokeStyle='rgba(16,20,24,.07)'; b.lineWidth=1;
+    for (var y=top-10; y<H+40; y+=24){
       b.beginPath();
-      for (var x = -10; x <= W+10; x += 8){
-        var yy = y + Math.sin(x*.012 + y*.02)*14 + Math.sin(x*.031 - y*.011)*7 + Math.cos(x*.005 + y*.004)*22;
-        if (x === -10) b.moveTo(x,yy); else b.lineTo(x,yy);
-      }
+      for (x=-10;x<=W+10;x+=8){ var yy2 = y + Math.sin(x*.012+y*.02)*12 + Math.sin(x*.031-y*.011)*6 + Math.cos(x*.005+y*.004)*18; if (x===-10) b.moveTo(x,yy2); else b.lineTo(x,yy2); }
       b.stroke();
     }
-    /* ombra morbida sotto la rete: dà spessore */
-    b.save(); b.shadowColor = 'rgba(16,20,24,.18)'; b.shadowBlur = 10; b.shadowOffsetY = 4;
-    for (var i=0;i<edges.length;i++){
-      var e = edges[i], A = nodes[e.a], B = nodes[e.b];
-      b.beginPath(); b.moveTo(A.x,A.y); b.lineTo(B.x,B.y);
-      if (e.kind === 'lift'){ b.setLineDash([4,7]); b.lineWidth = 1.6; b.strokeStyle = '#8f9ba8'; }
-      else { b.setLineDash([]); b.lineWidth = 2.8; b.strokeStyle = e.diff==='easy' ? 'rgba(47,125,225,.9)' : e.diff==='mid' ? 'rgba(229,72,77,.9)' : 'rgba(16,20,24,.85)'; }
-      b.stroke();
+    /* boschi */
+    for (i=0;i<trees.length;i++){
+      var t=trees[i], s=t.s;
+      b.fillStyle='rgba(70,104,86,.38)';
+      b.beginPath(); b.moveTo(t.x, t.y-11*s); b.lineTo(t.x+5*s, t.y-2*s); b.lineTo(t.x-5*s, t.y-2*s); b.closePath(); b.fill();
+      b.beginPath(); b.moveTo(t.x, t.y-7*s); b.lineTo(t.x+6.5*s, t.y+4*s); b.lineTo(t.x-6.5*s, t.y+4*s); b.closePath(); b.fill();
     }
-    b.restore(); b.setLineDash([]);
-    for (var k=0;k<nodes.length;k++){
-      b.beginPath(); b.arc(nodes[k].x,nodes[k].y,4.4,0,Math.PI*2);
-      b.fillStyle = '#ff8a3d'; b.fill(); b.lineWidth = 2; b.strokeStyle = 'rgba(255,255,255,.95)'; b.stroke();
+    /* piste: battuta bianca + colore, con ombra morbida */
+    b.lineCap='round'; b.lineJoin='round';
+    for (i=0;i<edges.length;i++){
+      var e=edges[i]; if (e.kind!=='piste') continue;
+      b.beginPath(); for (var p=0;p<e.pts.length;p++){ if (p===0) b.moveTo(e.pts[p].x,e.pts[p].y); else b.lineTo(e.pts[p].x,e.pts[p].y); }
+      b.save(); b.shadowColor='rgba(16,20,24,.22)'; b.shadowBlur=8; b.shadowOffsetY=3; b.lineWidth=7; b.strokeStyle='rgba(255,255,255,.95)'; b.stroke(); b.restore();
+      b.lineWidth=3.2; b.strokeStyle = e.diff==='easy' ? '#2f7de1' : e.diff==='mid' ? '#e5484d' : '#101418'; b.stroke();
     }
+    /* impianti: cavo, piloni, stazioni */
+    for (i=0;i<edges.length;i++){
+      var L=edges[i]; if (L.kind!=='lift') continue;
+      var A=L.pts[0], C=L.pts[1], dx=C.x-A.x, dy=C.y-A.y, len=L.len, ux=dx/len, uy=dy/len;
+      b.beginPath(); b.moveTo(A.x,A.y); b.lineTo(C.x,C.y); b.lineWidth=1.6; b.strokeStyle='rgba(16,20,24,.55)'; b.stroke();
+      for (var d=34; d<len-20; d+=Math.max(48, len/5)){ var px=A.x+ux*d, py=A.y+uy*d; b.beginPath(); b.moveTo(px-uy*5,py+ux*5); b.lineTo(px+uy*5,py-ux*5); b.lineWidth=2.2; b.strokeStyle='rgba(16,20,24,.6)'; b.stroke(); }
+      b.fillStyle='rgba(16,20,24,.8)'; b.fillRect(A.x-5,A.y-3,10,6); b.fillRect(C.x-5,C.y-3,10,6);
+    }
+    /* nodi */
+    for (i=0;i<nodes.length;i++){
+      var n=nodes[i];
+      if (n.kind==='hut'){
+        b.save(); b.shadowColor='rgba(16,20,24,.25)'; b.shadowBlur=6; b.shadowOffsetY=2;
+        b.fillStyle='#fff'; b.fillRect(n.x-7,n.y-2,14,9); b.restore();
+        b.strokeStyle='#101418'; b.lineWidth=1.5; b.strokeRect(n.x-7,n.y-2,14,9);
+        b.beginPath(); b.moveTo(n.x-9,n.y-2); b.lineTo(n.x,n.y-10); b.lineTo(n.x+9,n.y-2); b.closePath(); b.fillStyle='#ffb300'; b.fill(); b.stroke();
+      } else if (n.kind==='peak'){
+        b.beginPath(); b.moveTo(n.x,n.y-22); b.lineTo(n.x+9,n.y-8); b.lineTo(n.x-9,n.y-8); b.closePath(); b.fillStyle='#101418'; b.fill();
+        b.beginPath(); b.moveTo(n.x,n.y-22); b.lineTo(n.x+4,n.y-15); b.lineTo(n.x-4,n.y-15); b.closePath(); b.fillStyle='#fff'; b.fill();
+        b.font='600 11px IBM Plex Mono, monospace'; b.fillStyle='rgba(16,20,24,.7)'; b.textAlign='center'; b.textBaseline='bottom'; b.fillText(fmtEle(n.ele), n.x, n.y-25); b.textAlign='start';
+        dot(b,n);
+      } else if (n.kind==='base'){
+        for (var h=0;h<3;h++){ var hx=n.x-16+h*12, hy=n.y+9; b.fillStyle='rgba(16,20,24,.55)'; b.fillRect(hx-4,hy,8,6); b.beginPath(); b.moveTo(hx-5,hy); b.lineTo(hx,hy-5); b.lineTo(hx+5,hy); b.closePath(); b.fill(); }
+        dot(b,n);
+      } else dot(b,n);
+    }
+    function dot(c,n){ c.beginPath(); c.arc(n.x,n.y,4.6,0,Math.PI*2); c.fillStyle='#ff8a3d'; c.fill(); c.lineWidth=2; c.strokeStyle='rgba(255,255,255,.95)'; c.stroke(); }
   }
 
+  /* ---------- routing orientato: le piste scendono, gli impianti salgono ---------- */
   function dijkstra(src, allow){
-    var n = nodes.length, d = new Array(n), prev = new Array(n), done = new Array(n);
-    for (var i=0;i<n;i++){ d[i]=Infinity; prev[i]=null; done[i]=false; }
+    var n=nodes.length, d=new Array(n), prev=new Array(n), done=new Array(n), i;
+    for (i=0;i<n;i++){ d[i]=Infinity; prev[i]=null; done[i]=false; }
     d[src]=0;
     for (var it=0; it<n; it++){
       var u=-1, best=Infinity;
       for (var j=0;j<n;j++) if(!done[j] && d[j]<best){best=d[j]; u=j;}
       if (u<0) break; done[u]=true;
-      var es = adj[u];
-      for (var k=0;k<es.length;k++){
-        var e=es[k]; if (!allow(e)) continue;
-        var v = e.a===u ? e.b : e.a;
-        var w = e.kind==='lift' ? e.len*1.25 : e.len;
-        if (d[u]+w < d[v]){ d[v]=d[u]+w; prev[v]=e; }
+      for (var k=0;k<out[u].length;k++){
+        var e=out[u][k]; if (!allow(e)) continue;
+        var w = e.kind==='lift' ? e.len*1.3+40 : e.len;
+        if (d[u]+w < d[e.b]){ d[e.b]=d[u]+w; prev[e.b]=e; }
       }
     }
     return { d:d, prev:prev };
   }
-  function pathTo(res, t){
-    var out=[], cur=t;
-    while (cur!==you){ var e=res.prev[cur]; if(!e) return null; out.unshift(e); cur = e.a===cur ? e.b : e.a; }
-    return out;
-  }
+  function pathTo(res, t){ var o=[], cur=t; while (cur!==you){ var e=res.prev[cur]; if(!e) return null; o.unshift(e); cur=e.a; } return o; }
   function cost(path){
-    var km=0, min=0;
-    for (var i=0;i<path.length;i++){ var m=path[i].len*SCALE_M; km+=m; if(path[i].kind==='lift') min += m/V_LIFT + LIFT_WAIT; else min += m/V_SKI; }
-    return { km:(km/1000), min:Math.round(min) };
+    var km=0, min=0, drop=0, lifts=0;
+    for (var i=0;i<path.length;i++){ var e=path[i], m=e.len*SCALE_M; km+=m;
+      if (e.kind==='lift'){ min += m/V_LIFT + (e.type==='gondola'?3:5); lifts++; }
+      else { min += m/V_SKI; drop += Math.max(0, nodes[e.a].ele-nodes[e.b].ele); } }
+    return { km:km/1000, min:Math.round(min), drop:drop, lifts:lifts };
   }
-  function fmtKm(v){ return v.toFixed(1).replace('.',',') + ' km'; }
 
   function pickTarget(user, forced){
     var all = dijkstra(you, function(){return true;});
     var t = forced;
     if (t == null){
-      var good = [], any = [];
+      var good=[], any=[];
       for (var i0=0;i0<nodes.length;i0++){
         if (i0===you || !isFinite(all.d[i0])) continue;
-        any.push(i0);
-        var n0 = nodes[i0];
-        if (dist(n0,nodes[you]) >= 180 && !(W>=900 && n0.x < W*.42) && n0.x>20 && n0.x<W-20 && n0.y>70 && n0.y<H-20) good.push(i0);
+        any.push(i0); var n0=nodes[i0];
+        if (dist(n0,nodes[you])>=170 && !(W>=900 && n0.x<W*.44) && n0.x>24 && n0.x<W-24 && n0.y>60) good.push(i0);
       }
-      var pool = good.length ? good : any;
-      if (!pool.length) return;
+      var pool = good.length ? good : any; if (!pool.length) return;
       t = pool[Math.floor(Math.random()*pool.length)];
     }
-    var p = pathTo(all, t);
-    if (!p) return;
-    target = t; routeEdges = p; routeLen = 0;
-    for (var i=0;i<p.length;i++) routeLen += p[i].len;
+    var p = pathTo(all, t); if (!p) return;
+    target=t; routeEdges=p; routePts=[]; routeLen=0;
+    for (var i=0;i<p.length;i++){ var ps=p[i].pts; for (var q=(i===0?0:1); q<ps.length; q++) routePts.push(ps[q]); routeLen+=p[i].len; }
     drawn = reduce ? routeLen : 0;
 
     var beg = pathTo(dijkstra(you, function(e){ return e.kind==='lift' || e.diff==='easy'; }), t);
     var mid = pathTo(dijkstra(you, function(e){ return e.kind==='lift' || e.diff!=='adv'; }), t);
     var adv = cost(p);
     document.getElementById('rc-name').textContent = nodes[t].name;
-    document.getElementById('rc-from').textContent = nodes[you].name;
+    document.getElementById('rc-from').textContent = nodes[you].name + ' · ↓ ' + fmtEle(adv.drop) + ' di discesa · ' + adv.lifts + (adv.lifts===1?' impianto':' impianti');
     setLevel('rc-beg', beg, 'Solo piste facili', adv);
     setLevel('rc-int', mid, 'Facili + medie', adv);
     document.getElementById('rc-adv-n').innerHTML = '<b>~'+adv.min+' min</b>'+fmtKm(adv.km);
 
     clearTimeout(idle);
-    idle = setTimeout(function(){ pickTarget(false); }, user ? 12000 : 6500);
+    idle = setTimeout(function(){ pickTarget(false); }, user ? 12000 : 7000);
     if (!raf) { lastT = 0; raf = requestAnimationFrame(frame); }
   }
   function setLevel(id, path, label, adv){
-    var el = document.getElementById(id), s = document.getElementById(id+'-s'), n = document.getElementById(id+'-n');
-    if (!path){ el.classList.add('off'); s.textContent = 'Percorso non disponibile'; n.innerHTML = '—'; return; }
-    var c = cost(path); el.classList.remove('off');
-    s.textContent = (c.km > adv.km*1.8) ? label + ' · percorso indiretto' : label;
+    var el=document.getElementById(id), s=document.getElementById(id+'-s'), n=document.getElementById(id+'-n');
+    if (!path){ el.classList.add('off'); s.textContent='Percorso non disponibile'; n.innerHTML='—'; return; }
+    var c=cost(path); el.classList.remove('off');
+    s.textContent = (c.km > adv.km*1.8) ? label+' · percorso indiretto' : label;
     n.innerHTML = '<b>~'+c.min+' min</b>'+fmtKm(c.km);
   }
 
+  /* ---------- animazione ---------- */
   function frame(ts){
-    if (!lastT) lastT = ts;
-    var dt = Math.min(50, ts-lastT); lastT = ts;
-    if (drawn < routeLen) drawn = Math.min(routeLen, drawn + dt*.62);
-    pulse += dt/900;
+    if (!lastT) lastT=ts;
+    var dt=Math.min(50, ts-lastT); lastT=ts;
+    if (drawn < routeLen) drawn = Math.min(routeLen, drawn + dt*.6);
+    clock += dt/1000;
+    if (!reduce) for (var i=0;i<flakes.length;i++){ var f=flakes[i]; f.y += f.v*dt/1000; f.x += Math.sin(clock*.8+f.ph)*.25; if (f.y>H+4){ f.y=-4; f.x=rnd(0,W); } }
     render();
     raf = requestAnimationFrame(frame);
   }
@@ -1010,13 +1160,28 @@ window.addEventListener('scroll', function(){
   function render(){
     ctx.clearRect(0,0,W,H);
     ctx.drawImage(bg, 0, 0, W, H);
-    if (routeEdges.length){
+    var i, k;
+    /* seggiole e cabine che salgono lungo i cavi */
+    for (i=0;i<edges.length;i++){
+      var L=edges[i]; if (L.kind!=='lift') continue;
+      var A=L.pts[0], C=L.pts[1], ux=(C.x-A.x)/L.len, uy=(C.y-A.y)/L.len, gap=L.type==='gondola'?44:26, n=Math.floor((L.len-16)/gap);
+      var ph = reduce ? 0 : ((clock*(L.type==='gondola'?14:10)) % gap);
+      for (k=0;k<=n;k++){
+        var dd = 8 + k*gap + ph; if (dd > L.len-8) continue;
+        var px=A.x+ux*dd, py=A.y+uy*dd;
+        ctx.fillStyle='rgba(16,20,24,.85)';
+        if (L.type==='gondola'){ ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(px-3.5,py+1,7,8,2); else ctx.rect(px-3.5,py+1,7,8); ctx.fill(); ctx.fillRect(px-.6,py-1,1.2,3); }
+        else { ctx.fillRect(px-.6,py,1.2,5); ctx.fillRect(px-3,py+5,6,2.2); }
+      }
+    }
+    /* percorso attivo */
+    if (routePts.length){
       for (var pass=0; pass<2; pass++){
-        ctx.beginPath(); var acc=0, cur=you; ctx.moveTo(nodes[cur].x,nodes[cur].y);
-        for (var i=0;i<routeEdges.length;i++){
-          var e=routeEdges[i], nx = e.a===cur ? e.b : e.a, A=nodes[cur], B=nodes[nx];
-          if (acc+e.len <= drawn){ ctx.lineTo(B.x,B.y); acc+=e.len; cur=nx; }
-          else { var f=(drawn-acc)/e.len; ctx.lineTo(A.x+(B.x-A.x)*f, A.y+(B.y-A.y)*f); break; }
+        ctx.beginPath(); ctx.moveTo(routePts[0].x, routePts[0].y); var acc=0;
+        for (i=1;i<routePts.length;i++){
+          var sl=dist(routePts[i-1],routePts[i]);
+          if (acc+sl<=drawn){ ctx.lineTo(routePts[i].x,routePts[i].y); acc+=sl; }
+          else { var f=(drawn-acc)/sl; ctx.lineTo(routePts[i-1].x+(routePts[i].x-routePts[i-1].x)*f, routePts[i-1].y+(routePts[i].y-routePts[i-1].y)*f); break; }
         }
         ctx.lineCap='round'; ctx.lineJoin='round';
         if (pass===0){ ctx.lineWidth=12; ctx.strokeStyle='rgba(255,255,255,.95)'; ctx.shadowColor='rgba(16,20,24,.35)'; ctx.shadowBlur=14; ctx.shadowOffsetY=6; }
@@ -1024,45 +1189,46 @@ window.addEventListener('scroll', function(){
         ctx.stroke();
       }
       if (drawn < routeLen){
-        var acc2=0, c2=you, hx=nodes[you].x, hy=nodes[you].y;
-        for (var j=0;j<routeEdges.length;j++){ var ee=routeEdges[j], n2 = ee.a===c2 ? ee.b : ee.a; if (acc2+ee.len<=drawn){acc2+=ee.len; c2=n2; hx=nodes[c2].x; hy=nodes[c2].y;} else { var ff=(drawn-acc2)/ee.len; hx=nodes[c2].x+(nodes[n2].x-nodes[c2].x)*ff; hy=nodes[c2].y+(nodes[n2].y-nodes[c2].y)*ff; break; } }
+        var acc2=0, hx=routePts[0].x, hy=routePts[0].y;
+        for (i=1;i<routePts.length;i++){ var sl2=dist(routePts[i-1],routePts[i]); if (acc2+sl2<=drawn){ acc2+=sl2; hx=routePts[i].x; hy=routePts[i].y; } else { var ff=(drawn-acc2)/sl2; hx=routePts[i-1].x+(routePts[i].x-routePts[i-1].x)*ff; hy=routePts[i-1].y+(routePts[i].y-routePts[i-1].y)*ff; break; } }
         ctx.beginPath(); ctx.arc(hx,hy,5,0,Math.PI*2); ctx.fillStyle='#101418'; ctx.fill();
       }
     }
+    /* destinazione: bandierina da pista */
     if (target>=0){
-      var T=nodes[target], ring = 10 + (pulse%1)*16;
-      ctx.beginPath(); ctx.arc(T.x,T.y,ring,0,Math.PI*2); ctx.strokeStyle='rgba(255,122,0,'+(1-(pulse%1))*.7+')'; ctx.lineWidth=2; ctx.stroke();
-      ctx.beginPath(); ctx.arc(T.x,T.y,8,0,Math.PI*2); ctx.fillStyle='#ffb300'; ctx.fill(); ctx.lineWidth=2.5; ctx.strokeStyle='#101418'; ctx.stroke();
-      label(T.x, T.y, T.name, true);
+      var T=nodes[target], ring=10+((clock*.9)%1)*16;
+      ctx.beginPath(); ctx.arc(T.x,T.y,ring,0,Math.PI*2); ctx.strokeStyle='rgba(255,122,0,'+(1-((clock*.9)%1))*.7+')'; ctx.lineWidth=2; ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(T.x,T.y); ctx.lineTo(T.x,T.y-26); ctx.lineWidth=2.5; ctx.strokeStyle='#101418'; ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(T.x,T.y-26); ctx.lineTo(T.x+16,T.y-20); ctx.lineTo(T.x,T.y-14); ctx.closePath(); ctx.fillStyle='#ffb300'; ctx.fill(); ctx.lineWidth=1.5; ctx.stroke();
+      ctx.beginPath(); ctx.arc(T.x,T.y,5,0,Math.PI*2); ctx.fillStyle='#101418'; ctx.fill();
+      label(T.x+4, T.y-32, T.name+' · '+fmtEle(T.ele), true);
     }
+    /* tu */
     var Y=nodes[you];
     ctx.beginPath(); ctx.arc(Y.x,Y.y,16,0,Math.PI*2); ctx.fillStyle='rgba(47,125,225,.18)'; ctx.fill();
     ctx.beginPath(); ctx.arc(Y.x,Y.y,7.5,0,Math.PI*2); ctx.fillStyle='#2f7de1'; ctx.fill(); ctx.lineWidth=3; ctx.strokeStyle='#fff'; ctx.stroke();
-    label(Y.x, Y.y, 'Sei qui', false);
-    if (hover>=0 && hover!==target){ var Hh=nodes[hover]; ctx.beginPath(); ctx.arc(Hh.x,Hh.y,11,0,Math.PI*2); ctx.strokeStyle='#101418'; ctx.lineWidth=2; ctx.stroke(); label(Hh.x,Hh.y,Hh.name,false); }
+    label(Y.x, Y.y, 'Sei qui · '+fmtEle(Y.ele), false);
+    if (hover>=0 && hover!==target){ var Hh=nodes[hover]; ctx.beginPath(); ctx.arc(Hh.x,Hh.y,11,0,Math.PI*2); ctx.strokeStyle='#101418'; ctx.lineWidth=2; ctx.stroke(); label(Hh.x,Hh.y,Hh.name+' · '+fmtEle(Hh.ele),false); }
+    /* neve */
+    for (i=0;i<flakes.length;i++){ var fl=flakes[i]; ctx.beginPath(); ctx.arc(fl.x,fl.y,fl.r,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.95)'; ctx.fill(); ctx.lineWidth=1; ctx.strokeStyle='rgba(120,140,160,.35)'; ctx.stroke(); }
   }
   function label(x,y,text,strong){
     ctx.font = (strong ? '700 13px' : '600 12px') + ' Barlow, sans-serif';
-    var w = ctx.measureText(text).width + 16, h = 24, lx = x + 14, ly = y - h/2;
-    if (lx + w > W - 8) lx = x - 14 - w;
+    var w=ctx.measureText(text).width+16, h=24, lx=x+14, ly=y-h/2;
+    if (lx+w > W-8) lx = x-14-w;
     ctx.save(); ctx.shadowColor='rgba(16,20,24,.25)'; ctx.shadowBlur=10; ctx.shadowOffsetY=3;
     ctx.fillStyle = strong ? '#101418' : 'rgba(255,255,255,.97)';
-    ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(lx,ly,w,h,6); else ctx.rect(lx,ly,w,h); ctx.fill();
-    ctx.restore();
+    ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(lx,ly,w,h,6); else ctx.rect(lx,ly,w,h); ctx.fill(); ctx.restore();
     ctx.fillStyle = strong ? '#ffb300' : '#101418'; ctx.textBaseline='middle'; ctx.fillText(text, lx+8, ly+h/2+1);
   }
 
-  function nearest(px,py,maxd){
-    var b=-1, bd=maxd;
-    for (var i=0;i<nodes.length;i++){ var d=Math.hypot(nodes[i].x-px,nodes[i].y-py); if(d<bd){bd=d;b=i;} }
-    return b;
-  }
-  function pos(ev){ var r=cv.getBoundingClientRect(); return { x: ev.clientX-r.left, y: ev.clientY-r.top }; }
-  cv.addEventListener('pointerdown', function(ev){ var p=pos(ev), n=nearest(p.x,p.y,28); if (n>=0 && n!==you) pickTarget(true, n); });
+  function nearest(px,py,maxd){ var b=-1, bd=maxd; for (var i=0;i<nodes.length;i++){ var d=Math.hypot(nodes[i].x-px,nodes[i].y-py); if(d<bd){bd=d;b=i;} } return b; }
+  function pos(ev){ var r=cv.getBoundingClientRect(); return { x:ev.clientX-r.left, y:ev.clientY-r.top }; }
+  cv.addEventListener('pointerdown', function(ev){ var p=pos(ev), n=nearest(p.x,p.y,30); if (n>=0 && n!==you) pickTarget(true, n); });
   cv.addEventListener('pointermove', function(ev){
     if (ev.pointerType==='touch') return;
     var p=pos(ev), n=nearest(p.x,p.y,22);
-    if (n!==hover){ hover=n; cv.style.cursor = n>=0 ? 'pointer' : 'crosshair'; if (!raf && bg) render(); }
+    if (n!==hover){ hover=n; cv.style.cursor = n>=0 ? 'pointer' : 'default'; if (!raf && bg) render(); }
   });
   cv.addEventListener('pointerleave', function(){ hover=-1; });
 
@@ -1070,6 +1236,7 @@ window.addEventListener('scroll', function(){
   window.SkiNet = { resize: function(){ clearTimeout(rt); rt = setTimeout(function(){ if (document.getElementById('view-home').classList.contains('active')) { cancelAnimationFrame(raf); raf=null; clearTimeout(idle); build(); } }, 120); } };
   window.addEventListener('resize', window.SkiNet.resize);
   document.addEventListener('visibilitychange', function(){ if (document.hidden){ cancelAnimationFrame(raf); raf=null; } else if (routeEdges.length){ lastT=0; raf=requestAnimationFrame(frame); } });
+
   window.route(); /* attiva la vista giusta; se è la home, SkiNet.resize() costruisce la mappa a dimensioni reali */
 })();
 
