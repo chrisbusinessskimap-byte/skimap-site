@@ -910,7 +910,7 @@ h3.big{font-size:clamp(32px,3.6vw,44px); line-height:.95}
         <li><strong>Cloudflare R2</strong>: da qui l&rsquo;app scarica la mappa dei percorsi e lo stato dei comprensori;</li>
         <li><strong>MapTiler</strong>: serve le mappe di sfondo, quindi vede quali zone guardi e quali scarichi per l&rsquo;uso offline. Se la sua mappa non &egrave; disponibile, l&rsquo;app ripiega su OpenStreetMap, con lo stesso effetto.</li>
       </ul>
-      <p>Questi passaggi non dipendono dalla diagnostica: servono a far funzionare la mappa. Nessun dato viene venduto, n&eacute; usato per profilazione o pubblicit&agrave;.</p>
+      <p>Questi passaggi non dipendono dalla diagnostica: servono a far funzionare la mappa. Nessun dato viene venduto, n&eacute; usato per profilazione o pubblicit&agrave;. Supabase, Cloudflare e MapTiler trattano questi dati per conto del titolare: sono responsabili del trattamento e non decidono loro cosa farne.</p>
 
       <h3>La richiesta di partecipare alla beta</h3>
       <p>Se lasci la tua email in questa pagina, viene inoltrata alla casella di posta di SkiMap tramite il servizio <strong>Web3Forms</strong> e serve a un&rsquo;unica cosa: mandarti l&rsquo;invito alla beta. Nessuna newsletter, nessun account, nessuna cessione a terzi. Per farla cancellare basta rispondere all&rsquo;indirizzo qui sotto.</p>
@@ -922,7 +922,15 @@ h3.big{font-size:clamp(32px,3.6vw,44px); line-height:.95}
       <p>Puoi ritirare il consenso quando vuoi, in Impostazioni. Con &ldquo;Cancella i miei dati&rdquo; l&rsquo;app elimina dal telefono il codice casuale, gli eventi ancora in attesa di invio, i voti salvati e l&rsquo;utenza anonima delle segnalazioni: al riavvio ti viene chiesto di nuovo cosa preferisci. Quello che &egrave; gi&agrave; stato inviato al server resta l&igrave;: per chiederne la cancellazione, o per sapere quali dati esistono, scrivi all&rsquo;indirizzo qui sotto. Essendo dati pseudonimi, per rintracciarli serve il codice casuale: lo trovi in Impostazioni, prima di cancellarlo.</p>
 
       <h3>Titolare e contatti</h3>
-      <p>SkiMap &egrave; in closed beta e non &egrave; ancora un servizio pubblico. Il responsabile del trattamento &egrave; la persona raggiungibile all&rsquo;indirizzo <a href="mailto:chris.business.skimap@gmail.com?subject=Privacy%20SkiMap">chris.business.skimap@gmail.com</a>, a cui puoi scrivere per qualsiasi domanda. I riferimenti completi del titolare, e l&rsquo;aggiornamento di questa informativa, arriveranno con la pubblicazione dell&rsquo;app.</p>
+      <p>SkiMap &egrave; in closed beta e non &egrave; ancora un servizio pubblico. Il titolare del trattamento &mdash; chi decide quali dati si raccolgono e perch&eacute; &mdash; &egrave; la persona raggiungibile all&rsquo;indirizzo <a href="mailto:chris.business.skimap@gmail.com?subject=Privacy%20SkiMap">chris.business.skimap@gmail.com</a>, a cui puoi scrivere per qualsiasi domanda. I riferimenti completi del titolare, e l&rsquo;aggiornamento di questa informativa, arriveranno con la pubblicazione dell&rsquo;app.</p>
+
+      <h3>Fonti dei dati e licenze</h3>
+      <p>Non riguarda i tuoi dati, ma va detto qui. La mappa dei percorsi di SkiMap &egrave; costruita da <strong>OpenStreetMap</strong>: &egrave; un database derivato, distribuito sotto licenza <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a> &mdash; &copy; contributori OpenStreetMap, dati modificati. Il rilievo che dice da che parte scende ogni pista viene da due modelli del terreno:</p>
+      <ul>
+        <li><strong>INGV TINITALY</strong> (CC BY 4.0): Tarquini S., I. Isola, M. Favalli, A. Battistini, G. Dotta (2023). TINITALY, a digital elevation model of Italy with a 10 meters cell size (Version 1.1). Istituto Nazionale di Geofisica e Vulcanologia (INGV). <a href="https://doi.org/10.13127/tinitaly/1.1">https://doi.org/10.13127/tinitaly/1.1</a>;</li>
+        <li><strong>Copernicus EU-DEM</strong>: prodotto con i dati del servizio Copernicus dell&rsquo;Unione Europea. I dati sono stati modificati. L&rsquo;Unione Europea non &egrave; responsabile di questo prodotto e non lo avvalla.</li>
+      </ul>
+      <p>Gli orari di skibus e treni vengono dagli open data di <strong>STA S&uuml;dtirolmobil</strong> e <strong>Trentino Trasporti</strong>; le date di stagione da <strong>Open Data Hub S&uuml;dtirol</strong>. Lo sfondo cartografico &egrave; di <strong>MapTiler</strong>. L&rsquo;elenco completo, con la licenza di ogni fonte, &egrave; anche dentro l&rsquo;app, in Impostazioni &rarr; Fonti e licenze.</p>
     </div>
   </div></div>
 
@@ -946,7 +954,7 @@ h3.big{font-size:clamp(32px,3.6vw,44px); line-height:.95}
       <a href="#privacy">Privacy</a>
     </nav>
     <span>Contatti: <a href="mailto:chris.business.skimap@gmail.com">chris.business.skimap@gmail.com</a></span>
-    <span>Dati mappa © contributori OpenStreetMap · Orari: open data STA Südtirolmobil e Trentino Trasporti</span>
+    <span>Dati mappa © contributori OpenStreetMap, licenza ODbL · Rilievo: INGV TINITALY e Copernicus EU-DEM (dati modificati) · Orari: open data STA Südtirolmobil e Trentino Trasporti · <a href="#privacy">Fonti e licenze</a></span>
   </div>
 </footer>
 
