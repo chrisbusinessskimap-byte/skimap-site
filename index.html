@@ -922,7 +922,7 @@ h3.big{font-size:clamp(32px,3.6vw,44px); line-height:.95}
       <p>Questi passaggi non dipendono dalla diagnostica: servono a far funzionare la mappa. Nessun dato viene venduto, n&eacute; usato per profilazione o pubblicit&agrave;. Supabase, Cloudflare e MapTiler trattano questi dati per conto del titolare: sono responsabili del trattamento e non decidono loro cosa farne.</p>
 
       <h3>La richiesta di partecipare alla beta</h3>
-      <p>Se lasci la tua email in questa pagina, viene inoltrata alla casella di posta di SkiMap tramite il servizio <strong>Web3Forms</strong> e serve a un&rsquo;unica cosa: mandarti l&rsquo;invito alla beta. Nessuna newsletter, nessun account, nessuna cessione a terzi. Per farla cancellare basta rispondere all&rsquo;indirizzo qui sotto.</p>
+      <p>Se lasci la tua email in questa pagina, si apre il tuo programma di posta con un messaggio gi&agrave; pronto per la casella di SkiMap: parte solo se lo invii tu, come una normale email dal tuo indirizzo. Serve a un&rsquo;unica cosa: mandarti l&rsquo;invito alla beta. Nessuna newsletter, nessun account, nessuna cessione a terzi. Per farla cancellare basta rispondere all&rsquo;indirizzo qui sotto.</p>
 
       <h3>Per quanto tempo</h3>
       <p>Sul server niente resta per sempre: ogni notte si cancella da solo quello che &egrave; scaduto. Gli eventi di diagnostica restano 12 mesi, che coprono una stagione intera e l&rsquo;estate in cui si corregge la mappa. I voti sulle piste si vedono nell&rsquo;app per 12 ore e sul telefono restano lo stesso tempo; dal server si cancellano dopo 30 giorni, i tempi di attesa dopo 60. L&rsquo;utenza anonima di segnalazioni e tempi di attesa si cancella dopo 12 mesi senza uso.</p>
@@ -1333,7 +1333,11 @@ window.addEventListener('scroll', function(){
    Le iscrizioni arrivano via email a BETA_TO. Servizio di inoltro: Web3Forms (https://web3forms.com).
    Per attivarlo: su web3forms.com inserisci l'indirizzo BETA_TO, ricevi la chiave via email e incollala in WEB3FORMS_KEY.
    In alternativa puoi usare Formspree: crea un modulo su formspree.io e incolla l'URL (https://formspree.io/f/xxxx) in FORMSPREE_URL.
-   Se nessuno dei due è configurato, il pulsante apre il client di posta con l'indirizzo precompilato. */
+   Se nessuno dei due è configurato, il pulsante apre il client di posta con l'indirizzo precompilato.
+   ⚠️ INFORMATIVA: oggi (28-09-2026) nessuno dei due è configurato e il paragrafo "La richiesta di
+   partecipare alla beta" dice il client di posta. Attivando Web3Forms o Formspree va riscritto
+   quel paragrafo (nome del servizio che inoltra l'email) e il trattamento 6 di
+   docs/REGISTRO_TRATTAMENTI.md. */
 var BETA_TO       = "chris.business.skimap@gmail.com";
 var WEB3FORMS_KEY = "";   // <-- incolla qui la chiave ricevuta da Web3Forms
 var FORMSPREE_URL = "";   // <-- oppure l'URL del modulo Formspree
