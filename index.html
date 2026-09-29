@@ -857,6 +857,7 @@ h3.big{font-size:clamp(32px,3.6vw,44px); line-height:.95}
         <button class="btn primary" type="submit" id="beta-submit">Entra nella beta</button>
       </form>
       <p class="ok" id="beta-ok" hidden>Grazie. Ti scriviamo prima dell'apertura degli impianti.</p>
+      <p class="ok" id="beta-mailto" hidden>Si è aperto il tuo programma di posta: l'iscrizione parte quando premi <b>Invia</b>. Non si è aperto? Scrivici a <a href="mailto:chris.business.skimap@gmail.com?subject=Beta%20SkiMap" style="color:inherit">chris.business.skimap@gmail.com</a>.</p>
       <p class="ok" id="beta-err" hidden style="color:#ff8a3d">Non siamo riusciti a registrare l'iscrizione. Scrivici a <a href="mailto:chris.business.skimap@gmail.com?subject=Beta%20SkiMap" style="color:inherit">chris.business.skimap@gmail.com</a>.</p>
       <p class="fine">Niente newsletter, niente account: la tua email serve solo per l'invito. <a href="#privacy" style="color:inherit">Informativa privacy</a>.</p>
       <div class="contact">
@@ -1344,14 +1345,15 @@ var FORMSPREE_URL = "";   // <-- oppure l'URL del modulo Formspree
 (function(){
   var form = document.getElementById('beta-form'), input = document.getElementById('email');
   var ok = document.getElementById('beta-ok'), err = document.getElementById('beta-err'), btn = document.getElementById('beta-submit');
+  var viaMail = document.getElementById('beta-mailto');
   var hp = document.getElementById('botcheck');
 
   function mailto(email){
     return 'mailto:' + BETA_TO + '?subject=' + encodeURIComponent('Beta SkiMap') + '&body=' + encodeURIComponent('Vorrei partecipare alla closed beta. Email: ' + email);
   }
   function busy(on){ btn.disabled = on; btn.textContent = on ? 'Invio…' : 'Entra nella beta'; }
-  function done(){ ok.hidden = false; err.hidden = true; form.reset(); busy(false); }
-  function fail(){ err.hidden = false; ok.hidden = true; busy(false); }
+  function done(){ ok.hidden = false; err.hidden = true; viaMail.hidden = true; form.reset(); busy(false); }
+  function fail(){ err.hidden = false; ok.hidden = true; viaMail.hidden = true; busy(false); }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -1359,7 +1361,7 @@ var FORMSPREE_URL = "";   // <-- oppure l'URL del modulo Formspree
     var email = (input.value || '').trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { input.focus(); input.setAttribute('aria-invalid','true'); input.placeholder = 'Serve un indirizzo email valido'; return; }
     input.removeAttribute('aria-invalid');
-    ok.hidden = true; err.hidden = true;
+    ok.hidden = true; err.hidden = true; viaMail.hidden = true;
 
     var page = location.href.split('#')[0];
     if (WEB3FORMS_KEY) {
@@ -1384,8 +1386,11 @@ var FORMSPREE_URL = "";   // <-- oppure l'URL del modulo Formspree
         body: JSON.stringify({ email: email, _subject: 'Nuova iscrizione beta SkiMap', message: 'Iscrizione alla closed beta dal sito. Pagina: ' + page })
       }).then(function(r){ if (r.ok) done(); else fail(); }).catch(fail);
     } else {
+      /* Col client di posta non sappiamo se l'email partirà davvero: dipende da Invia, e il
+         client potrebbe anche non aprirsi. Quindi niente "Grazie" (sarebbe una promessa), ma
+         l'istruzione e l'indirizzo; il campo resta pieno, per chi deve riprovare. */
       window.location.href = mailto(email);
-      ok.hidden = false;
+      viaMail.hidden = false;
     }
   });
 })();
