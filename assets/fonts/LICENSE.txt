@@ -1,0 +1,6 @@
+Font inclusi nel sito, tutti con licenza SIL Open Font License 1.1 (https://openfontlicense.org):
+- Big Shoulders Display
+- Barlow
+- IBM Plex Mono
+Sottoinsieme "latin" scaricato da Google Fonts (https://fonts.google.com).
+Il testo completo della licenza è disponibile all'indirizzo qui sopra.

@@ -1,0 +1,43 @@
+# ESEMPIO, NON ATTIVO. Per usarlo: spostalo in .github/workflows/pages.yml e in GitHub →
+# Settings → Pages → Source scegli "GitHub Actions". È un cambio di hosting: lo decidi tu.
+# Serve solo se vuoi che il modulo beta invii davvero le email (chiave in un secret, non nel repo).
+name: Pubblica il sito
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Controlli (con --release si ferma se restano segnaposto [DA CONFERMARE])
+        run: node tools/check.mjs --release
+      - name: Scrivi la configurazione del modulo dai secret
+        env:
+          WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
+          FORMSPREE_URL: ${{ secrets.FORMSPREE_URL }}
+        run: node tools/write-config.mjs
+      - name: Prepara la cartella da pubblicare
+        run: |
+          mkdir _site
+          cp -r index.html en privacy.html elimina-account.html assets sitemap.xml robots.txt CNAME .nojekyll _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
