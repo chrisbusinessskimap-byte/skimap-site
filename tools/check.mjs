@@ -15,12 +15,16 @@ const errors = [], warns = [];
 const err = (m) => errors.push(m), warn = (m) => warns.push(m);
 const read = (p) => readFileSync(join(root, p), 'utf8');
 
-const ids = {}, hashRoutes = ['home', 'come-funziona', 'pensata', 'mondo', 'pilot', 'beta'];
+const ids = {}, hashRoutes = []; // la home è una pagina unica: ogni ancora deve esistere come id
 for (const p of PAGES) {
   if (!existsSync(join(root, p))) { err(`manca ${p}`); continue; }
   const h = read(p);
-  ids[p] = new Set([...h.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+  const idList = [...h.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+  ids[p] = new Set(idList);
+  for (const d of idList.filter((x, i) => idList.indexOf(x) !== i)) err(`${p}: id duplicato ${d}`);
   if (/SkiMap/.test(h)) err(`${p}: contiene ancora "SkiMap"`);
+  if (/\bSlopes\b/.test(h)) err(`${p}: contiene la parola "Slopes"`);
+  if (/(index\.html|^)$/.test(p) && /\b(grafo|routing|algoritmo)\b/i.test(h.replace(/<script[\s\S]*?<\/script>/g, ''))) err(`${p}: gergo tecnico (grafo, routing, algoritmo) nel testo`);
   if (!/<html lang="(it|en)"/.test(h)) err(`${p}: manca lang`);
   for (const t of ['<title>', 'name="description"', 'rel="canonical"', 'hreflang="it"', 'hreflang="en"', 'property="og:title"', 'property="og:image"', 'name="twitter:card"', 'rel="icon"']) if (!h.includes(t)) err(`${p}: manca ${t}`);
   // risorse esterne (script, css, font, immagini): non ne servono
@@ -46,14 +50,14 @@ for (const p of PAGES) {
   }
   for (const m of h.matchAll(/href="#([^"]+)"/g)) {
     const id = m[1];
-    if (!ids[p].has(id) && !(p.endsWith('index.html') && (hashRoutes.includes(id) || id === 'map'))) err(`${p}: ancora locale #${id} non esiste`);
+    if (!ids[p].has(id)) err(`${p}: ancora locale #${id} non esiste`);
   }
   const todo = (h.match(/\[DA CONFERMARE/g) || []).length;
   if (todo) { if (RELEASE) err(`${p}: ${todo} segnaposto [DA CONFERMARE] ancora da risolvere`); else warn(`${p}: ${todo} segnaposto [DA CONFERMARE]`); }
   if (LIST) for (const m of h.matchAll(/\[DA CONFERMARE: ([^\]]*)\]/g)) console.log(`${p}\t${m[1].replace(/<[^>]+>/g, '')}`);
 }
 // parità IT/EN: stesse sezioni, stesse ancore
-const sec = (p) => [...read(p).matchAll(/<section class="view[^"]*" id="([^"]+)"/g)].map((m) => m[1]).join(',');
+const sec = (p) => [...read(p).matchAll(/<section class="sec[^"]*" id="([^"]+)"/g)].map((m) => m[1]).join(',');
 if (sec('index.html') !== sec('en/index.html')) err('sezioni diverse tra index.html e en/index.html');
 for (const [a, b] of [['privacy.html', 'en/privacy.html'], ['elimina-account.html', 'en/delete-account.html']]) {
   const cnt = (p) => [(read(p).match(/<h3/g) || []).length, (read(p).match(/\[DA CONFERMARE/g) || []).length].join('/');

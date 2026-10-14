@@ -7,11 +7,13 @@ Sito statico in italiano e inglese, senza cookie né strumenti di tracciamento, 
 
 | Pagina IT | Pagina EN | Contenuto |
 |---|---|---|
-| `index.html` | `en/index.html` | landing a sezioni (`#home`, `#come-funziona`, `#pensata`, `#mondo`, `#pilot`, `#beta`) |
+| `index.html` | `en/index.html` | home a pagina unica: `#home`, `#giro`, `#come-funziona`, `#funzioni`, `#fiducia`, `#dove`, `#domande`, `#avvisami` (con `#impianti`) |
 | `privacy.html` | `en/privacy.html` | informativa privacy (versione 5) |
 | `elimina-account.html` | `en/delete-account.html` | come eliminare l'account |
 
 I vecchi indirizzi `/#privacy` e `/#elimina-account` (EN: `/en/#privacy`, `/en/#delete-account`) portano alle pagine a sé.
+Le vecchie sezioni restano come ancore: `#pensata` → Funzioni, `#mondo`/`#pilot`/`#motore` → Dove funziona, `#beta` → Avvisami.
+I riquadri `[SCREENSHOT: …]` sono segnaposto: vanno sostituiti con le schermate vere dell'app.
 
 - `assets/`: CSS, JS, font (`fonts/`), three.js (`vendor/`), dati del grafo (`graph-data.js`), icone e immagine social.
   Nessuna risorsa viene caricata da altri siti.
@@ -21,14 +23,15 @@ I vecchi indirizzi `/#privacy` e `/#elimina-account` (EN: `/en/#privacy`, `/en/#
 ## Verifica
 
 ```
-node tools/check.mjs            # link, ancore, risorse esterne, vecchio nome, parità IT/EN
+node tools/check.mjs            # link, ancore, id duplicati, risorse esterne, vecchio nome, parole vietate, parità IT/EN
 node tools/check.mjs --list     # elenca i segnaposto [DA CONFERMARE]
 node tools/check.mjs --release  # come sopra, ma i segnaposto rimasti sono errori: da lanciare prima di pubblicare
 python3 -m http.server 8000     # anteprima su http://localhost:8000
 ```
 
 ## Regole del sito
-- Nome: **Ski Maps**. Nessun numero di utenti, recensioni o premi; nessun concorrente nominato.
+- Nome: **Ski Maps**. Nessun numero di utenti, recensioni, premi, partner o date d'uscita; nessun concorrente nominato; niente superlativi né gergo tecnico.
+- Disponibilità: «In arrivo su Google Play», iOS «in seguito». Aree: solo Dolomiti Superski + «altre aree in arrivo» finché non confermate.
 - Dove compare una mappa: attribuzione «© OpenStreetMap contributors».
 - Nessun cookie né analytics senza una richiesta esplicita.
 - Le pagine IT e EN vanno tenute allineate (stesse sezioni): `tools/check.mjs` lo controlla.

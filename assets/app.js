@@ -1,31 +1,19 @@
-/* ============ router a sezioni ============ */
+/* ============ pagina unica a sezioni ============ */
 var L10N = window.SKIMAP_T || {};
-var VIEWS = ['home','come-funziona','pensata','mondo','pilot','beta'];
-/* Pagine a sé: i vecchi indirizzi con l'ancora (#privacy, #elimina-account) portano alla pagina vera. */
+/* Pagine a sé: i vecchi indirizzi con l'ancora (#privacy, #elimina-account) portano alla pagina vera.
+   Le vecchie sezioni (#pensata, #mondo, #pilot, #beta, #motore) restano come ancore nell'HTML. */
 var PAGES = L10N.pages || {};
 var menuBtn = document.getElementById('menu-btn');
 var mobileMenu = document.getElementById('mobile-menu');
 var nav = document.getElementById('nav');
 
+function closeMenu(){ mobileMenu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
 function route(){
-  var id = (location.hash || '#home').slice(1);
+  var id = location.hash.slice(1);
   if (PAGES[id]) { location.replace(PAGES[id]); return; }
-  if (id === 'motore') id = 'mondo';
-  if (VIEWS.indexOf(id) < 0) id = 'home';
-  var i, views = document.querySelectorAll('.view');
-  for (i = 0; i < views.length; i++) views[i].classList.remove('active');
-  var v = document.getElementById('view-' + id);
-  v.classList.add('active');
-  document.title = v.getAttribute('data-title') || L10N.siteTitle;
-  var links = document.querySelectorAll('[data-nav]');
-  for (i = 0; i < links.length; i++) links[i].classList.toggle('active', links[i].getAttribute('data-nav') === id);
   var sw = document.querySelectorAll('.langsw[data-base]');
-  for (i = 0; i < sw.length; i++) sw[i].setAttribute('href', sw[i].getAttribute('data-base') + (id === 'home' ? '' : '#' + id));
-  mobileMenu.classList.remove('open');
-  menuBtn.setAttribute('aria-expanded', 'false');
-  window.scrollTo(0, 0);
-  nav.classList.toggle('solid', id !== 'home');
-  if (id === 'home' && window.SkiNet) window.SkiNet.resize();
+  for (var i = 0; i < sw.length; i++) sw[i].setAttribute('href', sw[i].getAttribute('data-base') + (id && id !== 'main' ? '#' + id : ''));
+  closeMenu();
 }
 window.addEventListener('hashchange', route);
 menuBtn.addEventListener('click', function(){
@@ -33,20 +21,14 @@ menuBtn.addEventListener('click', function(){
   mobileMenu.classList.toggle('open', open);
   menuBtn.setAttribute('aria-expanded', String(open));
 });
-window.addEventListener('scroll', function(){
-  var home = (location.hash || '#home') === '#home';
-  nav.classList.toggle('solid', !home || window.scrollY > 40);
-}, { passive:true });
+mobileMenu.addEventListener('click', function(e){ if (e.target.closest('a')) closeMenu(); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && mobileMenu.classList.contains('open')) { closeMenu(); menuBtn.focus(); } });
+function solidNav(){ nav.classList.toggle('solid', window.scrollY > 40); }
+window.addEventListener('scroll', solidNav, { passive:true });
+solidNav();
+route();
 
-/* ============ ticker: le montagne del mondo ============ */
-(function(){
-  var PLACES = L10N.places || [];
-  var t = document.getElementById('ticker-track'), html = '';
-  for (var k = 0; k < 2; k++) for (var i = 0; i < PLACES.length; i++) html += '<span>' + PLACES[i] + '</span>';
-  t.innerHTML = html;
-})();
-
-/* ============ mappa viva 3D: il gruppo del Sella dal DEM, con il grafo REALE dell'app e il routing vero ============ */
+/* ============ mappa viva 3D: anteprima dimostrativa sul gruppo del Sella (rilievo DEM, piste e impianti OSM) ============ */
 (function(){
   var cv = document.getElementById('net'); if (!cv) return;
   var G = window.SKIMAP_GRAPH; if (!G) return;
@@ -127,7 +109,7 @@ window.addEventListener('scroll', function(){
   /* ---------- scena 3D ---------- */
   var T = window.THREE, renderer, scene, camera, terrain, routeMesh=null, routeTotal=0, routeShown=0;
   var youMesh, targetMesh=null, targetRing=null, hoverSprite=null, labelSprites=[];
-  var target=-1, routeEdges=[], idle=null, raf=null, lastT=0, clock=0, az=0.9, autoRot=true, rotResume=0;
+  var target=-1, routeEdges=[], idle=null, raf=null, onScreen=true, lastT=0, clock=0, az=0.9, autoRot=true, rotResume=0;
   var W, H, DPR, latC, lonC, kmX, kmY, EXAG = 1.35;
   var texSize = 2048;
 
@@ -350,15 +332,20 @@ window.addEventListener('scroll', function(){
     if (snowPts){ var sp=snowPts.geometry.attributes.position, ar=sp.array; for (var si=0;si<snowVel.length;si++){ ar[si*3+1]-=snowVel[si]*dt; ar[si*3]+=Math.sin(clock*1.3+si)*dt*.15; if (ar[si*3+1]<1.0){ ar[si*3+1]=5.7; ar[si*3]=(Math.random()-.5)*22; ar[si*3+2]=(Math.random()-.5)*18; } } sp.needsUpdate=true; }
     if (targetRing){ var ph=(clock*.9)%1; targetRing.scale.set(1+ph*1.6,1+ph*1.6,1); targetRing.material.opacity=.7*(1-ph); }
     renderer.render(scene, camera);
-    raf=requestAnimationFrame(frame);
+    raf = onScreen ? requestAnimationFrame(frame) : null;
   }
 
   var rt;
-  window.SkiNet = { resize: function(){ clearTimeout(rt); rt=setTimeout(function(){ if (!document.getElementById('view-home').classList.contains('active')) return; if (renderer) layout(); else if (hasGL && DEM) init3D(); }, 120); } };
+  window.SkiNet = { resize: function(){ clearTimeout(rt); rt=setTimeout(function(){ if (renderer) layout(); else if (hasGL && DEM) init3D(); }, 120); } };
   window.addEventListener('resize', window.SkiNet.resize);
-  document.addEventListener('visibilitychange', function(){ if (document.hidden){ cancelAnimationFrame(raf); raf=null; } else if (renderer){ lastT=0; raf=requestAnimationFrame(frame); } });
+  document.addEventListener('visibilitychange', function(){ if (document.hidden){ cancelAnimationFrame(raf); raf=null; } else if (renderer && onScreen && !raf){ lastT=0; raf=requestAnimationFrame(frame); } });
 
   if (!(hasGL && DEM)){ var hint=document.querySelector('.hint'); if (hint) hint.textContent=L10N.noWebGL; }
-  window.route(); /* attiva la vista giusta; se è la home, SkiNet.resize() costruisce la scena a dimensioni reali */
+  /* fuori schermo la scena si ferma: niente lavoro della GPU mentre si legge il resto della pagina */
+  if ('IntersectionObserver' in window) new IntersectionObserver(function(es){
+    onScreen = es[0].isIntersecting;
+    if (onScreen && renderer && !raf && !document.hidden){ lastT=0; raf=requestAnimationFrame(frame); }
+  }).observe(cv);
+  window.SkiNet.resize(); /* costruisce la scena a dimensioni reali */
 })();
 
