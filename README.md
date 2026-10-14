@@ -1,7 +1,7 @@
 # Ski Maps — sito
 
 Landing e pagine pubbliche di Ski Maps (*Navigatore GPS per sciatori* / *GPS Navigator for Skiers*), dominio `skimaps.cc`.
-Sito statico in italiano e inglese, senza cookie né strumenti di tracciamento, pubblicato con GitHub Pages dal ramo `main`.
+Sito statico in italiano e inglese, senza cookie né strumenti di tracciamento, pubblicato con GitHub Pages dal ramo `main` tramite il workflow `.github/workflows/pages.yml` (scrive la chiave Web3Forms dal secret `WEB3FORMS_KEY`).
 
 ## Struttura
 
@@ -17,7 +17,7 @@ I riquadri `[SCREENSHOT: …]` sono segnaposto: vanno sostituiti con le schermat
 
 - `assets/`: CSS, JS, font (`fonts/`), three.js (`vendor/`), dati del grafo (`graph-data.js`), icone e immagine social.
   Nessuna risorsa viene caricata da altri siti.
-- `docs/FORM.md`: come attivare il modulo di iscrizione. `docs/pages-deploy.example.yml`: esempio di pubblicazione (non attivo).
+- `docs/FORM.md`: come attivare il modulo di iscrizione. `.github/workflows/pages.yml`: pubblicazione.
 - `tools/check.mjs`: verifica locale. `tools/write-config.mjs`: scrive la configurazione del modulo da variabili d'ambiente.
 
 ## Verifica

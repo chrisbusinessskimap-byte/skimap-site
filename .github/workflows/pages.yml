@@ -1,6 +1,5 @@
-# ESEMPIO, NON ATTIVO. Per usarlo: spostalo in .github/workflows/pages.yml e in GitHub →
-# Settings → Pages → Source scegli "GitHub Actions". È un cambio di hosting: lo decidi tu.
-# Serve solo se vuoi che il modulo beta invii davvero le email (chiave in un secret, non nel repo).
+# Pubblica il sito su GitHub Pages (Settings → Pages → Source: GitHub Actions).
+# Scrive assets/config.js con la chiave Web3Forms presa dal secret WEB3FORMS_KEY: la chiave non sta nel repo.
 name: Pubblica il sito
 on:
   push:
@@ -24,8 +23,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Controlli (con --release si ferma se restano segnaposto [DA CONFERMARE])
-        run: node tools/check.mjs --release
+      - name: Controlli (link, ancore, parità IT/EN; i [DA CONFERMARE] sono solo avvisi)
+        run: node tools/check.mjs
       - name: Scrivi la configurazione del modulo dai secret
         env:
           WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}

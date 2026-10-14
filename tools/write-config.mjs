@@ -2,7 +2,7 @@
 /* Scrive assets/config.js leggendo la chiave dall'ambiente. La chiave non sta mai nel repo.
      WEB3FORMS_KEY=... node tools/write-config.mjs
      FORMSPREE_URL=https://formspree.io/f/xxxx node tools/write-config.mjs
-   In pubblicazione lo esegue il workflow (docs/pages-deploy.example.yml) con i secret di GitHub.
+   In pubblicazione lo esegue il workflow (.github/workflows/pages.yml) con i secret di GitHub.
    In locale: prima `git update-index --skip-worktree assets/config.js`, così non finisce in un commit. */
 import { writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';

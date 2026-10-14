@@ -1,6 +1,7 @@
 # Modulo di iscrizione alla beta: cosa fare
 
-**Oggi** il modulo non invia nulla dal sito: apre il programma di posta del visitatore con un'email già scritta.
+**Stato:** Web3Forms attivo. Il sito si pubblica con `.github/workflows/pages.yml`, che scrive la chiave dal secret `WEB3FORMS_KEY`.
+Senza chiave il modulo apre il programma di posta del visitatore con un'email già scritta.
 Per far arrivare le iscrizioni direttamente nella casella `chris.business.skimap@gmail.com` serve un servizio di form esterno.
 Il codice è già pronto (`assets/beta.js`): supporta **Web3Forms** (consigliato) o **Formspree**. Manca solo la chiave.
 
@@ -9,7 +10,7 @@ Il codice è già pronto (`assets/beta.js`): supporta **Web3Forms** (consigliato
 1. **Crea la chiave.** Vai su <https://web3forms.com>, inserisci `chris.business.skimap@gmail.com`: ricevi per email una *access key*.
 2. **Salvala come secret** (non nel repo): su GitHub, nel repo → *Settings → Secrets and variables → Actions → New repository secret*, nome `WEB3FORMS_KEY`, valore la chiave.
    (In alternativa Formspree: crea il modulo su <https://formspree.io> e salva l'URL `https://formspree.io/f/xxxx` come secret `FORMSPREE_URL`.)
-3. **Attiva la pubblicazione con i secret.** GitHub Pages da solo non può usare i secret. Sposta `docs/pages-deploy.example.yml` in `.github/workflows/pages.yml` e in *Settings → Pages → Source* scegli **GitHub Actions**.
+3. **Attiva la pubblicazione con i secret.** GitHub Pages da solo non può usare i secret. Sposta `.github/workflows/pages.yml` in `.github/workflows/pages.yml` e in *Settings → Pages → Source* scegli **GitHub Actions**.
    Questo cambia come viene pubblicato il sito: non l'ho fatto io, è una tua scelta.
    Il workflow esegue i controlli, scrive `assets/config.js` con la chiave dal secret e pubblica.
 4. **Completa l'informativa.** Quando il servizio è attivo, la pagina privacy mostra da sola il paragrafo che nomina Web3Forms (o Formspree). Rispondi ai `[DA CONFERMARE]` di quel paragrafo (conservazione, ruolo, sede del servizio).
