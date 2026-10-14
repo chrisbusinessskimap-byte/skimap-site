@@ -1,31 +1,37 @@
 # Ski Maps — sito
 
 Landing e pagine pubbliche di Ski Maps (*Navigatore GPS per sciatori* / *GPS Navigator for Skiers*), dominio `skimaps.cc`.
-Sito statico in italiano e inglese, senza cookie né strumenti di tracciamento, pubblicato con GitHub Pages dal ramo `main` tramite il workflow `.github/workflows/pages.yml` (scrive la chiave Web3Forms dal secret `WEB3FORMS_KEY`).
+Sito statico in italiano, inglese e tedesco, senza cookie né strumenti di tracciamento, pubblicato con GitHub Pages dal ramo `main` tramite il workflow `.github/workflows/pages.yml` (scrive la chiave Web3Forms dal secret `WEB3FORMS_KEY`).
 
 ## Struttura
 
-| Pagina IT | Pagina EN | Contenuto |
-|---|---|---|
-| `index.html` | `en/index.html` | sito a sezioni che si aprono al clic: `#home` (mappa 3D + porte), `#giro`, `#come-funziona`, `#funzioni`, `#fiducia`, `#dove`, `#domande`, `#avvisami` (con `#impianti`) |
-| `privacy.html` | `en/privacy.html` | informativa privacy (versione 5) |
-| `elimina-account.html` | `en/delete-account.html` | come eliminare l'account |
+Pagine generate da `tools/build.mjs` con i testi di `content/it.mjs`, `content/en.mjs`, `content/de.mjs`
+(**non modificarle a mano**: cambia i testi e rilancia `node tools/build.mjs`):
 
-I vecchi indirizzi `/#privacy` e `/#elimina-account` (EN: `/en/#privacy`, `/en/#delete-account`) portano alle pagine a sé.
-Le vecchie sezioni portano a quelle nuove: `#pensata` → Funzioni, `#mondo`/`#pilot`/`#motore` → Dove funziona, `#beta` → Avvisami.
+| | Italiano | English | Deutsch |
+|---|---|---|---|
+| Home (mappa 3D, punti chiave, privacy in breve, «Avvisami») | `/` | `/en/` | `/de/` |
+| Come funziona (giro, tre passi, funzioni) | `/come-funziona/` | `/en/how-it-works/` | `/de/so-funktionierts/` |
+| Aree (+ società impianti, `#impianti`) | `/aree/` | `/en/areas/` | `/de/skigebiete/` |
+| Domande | `/domande/` | `/en/faq/` | `/de/fragen/` |
+
+Pagine legali scritte a mano (il generatore aggiorna solo barra in alto e piè di pagina):
+`privacy.html`, `elimina-account.html`, `en/privacy.html`, `en/delete-account.html`. Il tedesco rimanda a quelle inglesi.
+
+I vecchi indirizzi con l'ancora (`/#beta`, `/#giro`, `/#pilot`, `/#privacy`…) portano alla pagina giusta (`assets/site.js`).
 I riquadri `[SCREENSHOT: …]` sono segnaposto: vanno sostituiti con le schermate vere dell'app.
 
-- `assets/`: CSS, JS, font (`fonts/`), three.js (`vendor/`), dati del grafo (`graph-data.js`), icone e immagine social.
-  Nessuna risorsa viene caricata da altri siti.
-- `docs/FORM.md`: come attivare il modulo di iscrizione. `.github/workflows/pages.yml`: pubblicazione.
-- `tools/check.mjs`: verifica locale. `tools/write-config.mjs`: scrive la configurazione del modulo da variabili d'ambiente.
+- `tools/site.mjs`: lingue, pagine e indirizzi. `tools/build.mjs`: genera pagine e `sitemap.xml`. `tools/check.mjs`: controlli.
+- `assets/`: `site.css`, `site.js` (menu), `map3d.js` + `graph-data.js` + `vendor/three.min.js` (mappa 3D della home), `beta.js` + `config.js` (modulo), font e icone. Nessuna risorsa da altri siti.
+- `.github/workflows/pages.yml`: a ogni push su `main` genera le pagine, fa i controlli, scrive la chiave Web3Forms dal secret `WEB3FORMS_KEY` e pubblica.
+- `docs/FORM.md`: il modulo di iscrizione.
 
 ## Verifica
 
 ```
-node tools/check.mjs            # link, ancore, id duplicati, risorse esterne, vecchio nome, parole vietate, parità IT/EN
+node tools/build.mjs            # rigenera le pagine dai testi
+node tools/check.mjs            # link, ancore, id duplicati, meta, risorse esterne, parole vietate, parità tra le lingue
 node tools/check.mjs --list     # elenca i segnaposto [DA CONFERMARE]
-node tools/check.mjs --release  # come sopra, ma i segnaposto rimasti sono errori: da lanciare prima di pubblicare
 python3 -m http.server 8000     # anteprima su http://localhost:8000
 ```
 
@@ -34,6 +40,6 @@ python3 -m http.server 8000     # anteprima su http://localhost:8000
 - Disponibilità: «In arrivo su Google Play», iOS «in seguito». Aree al lancio: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea (con Bardonecchia), Livigno.
 - Dove compare una mappa: attribuzione «© OpenStreetMap contributors».
 - Nessun cookie né analytics senza una richiesta esplicita.
-- Le pagine IT e EN vanno tenute allineate (stesse sezioni): `tools/check.mjs` lo controlla.
+- Le lingue vanno tenute allineate (stesse sezioni e stessi segnaposto): `tools/check.mjs` lo controlla. Il tedesco va fatto rileggere da una persona di madrelingua.
 
 Contatti: chris.business.skimap@gmail.com

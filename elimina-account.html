@@ -35,20 +35,28 @@
 <a class="skip" href="#main">Vai al contenuto</a>
 <header class="nav solid" id="nav">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="Ski Maps, torna alla home">
+    <a class="logo" href="/" aria-label="Ski Maps, torna alla home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>
       Ski Maps
     </a>
     <nav class="nav-links" aria-label="Sezioni">
-      <a href="index.html#giro">Il giro</a>
-      <a href="index.html#come-funziona">Come funziona</a>
-      <a href="index.html#funzioni">Funzioni</a>
-      <a href="index.html#fiducia">Privacy</a>
-      <a href="index.html#dove">Dove</a>
-      <a href="index.html#domande">Domande</a>
+      <a href="/come-funziona/">Come funziona</a>
+      <a href="/aree/">Aree</a>
+      <a href="/domande/">Domande</a>
+      <a href="/privacy.html" aria-current="page">Privacy</a>
     </nav>
-    <a class="langsw" href="en/delete-account.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+    <a class="btn primary" href="/#avvisami">Avvisami</a>
+    <nav class="langs" aria-label="Lingua"><a href="/elimina-account.html" hreflang="it" lang="it" aria-current="true" title="Italiano">IT</a><a href="/en/delete-account.html" hreflang="en" lang="en" title="English">EN</a><a href="/de/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menu</button>
   </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Sezioni">
+    <a href="/come-funziona/">Come funziona</a>
+    <a href="/aree/">Aree</a>
+    <a href="/domande/">Domande</a>
+    <a href="/privacy.html" aria-current="page">Privacy</a>
+    <a href="/#avvisami">Avvisami quando esce</a>
+    <nav class="mm-langs" aria-label="Lingua"><a href="/elimina-account.html" hreflang="it" lang="it" aria-current="true" title="Italiano">IT</a><a href="/en/delete-account.html" hreflang="en" lang="en" title="English">EN</a><a href="/de/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
+  </nav>
 </header>
 <main id="main" tabindex="-1">
 <section class="view active">
@@ -90,8 +98,7 @@
   </div></div>
 
   <div class="view-nav"><div class="wrap">
-    <a href="privacy.html" class="prev"><small>← Tratta precedente</small><b>Informativa privacy</b></a>
-    <a href="index.html" class="next"><small>Rientro a valle →</small><b>Home</b></a>
+    <a href="/" class="prev"><small>←</small><b>Home</b></a>
   </div></div>
 </section>
 </main>
@@ -100,13 +107,14 @@
   <div class="wrap">
     <span class="season">© 2026 Ski Maps</span>
     <nav aria-label="Piè di pagina">
-      <a href="privacy.html">Informativa privacy</a>
-      <a href="elimina-account.html">Elimina account</a>
-      <a href="index.html#impianti">Per le società impianti</a>
+      <a href="/privacy.html">Informativa privacy</a>
+      <a href="/elimina-account.html">Elimina account</a>
+      <a href="/aree/#impianti">Per le società impianti</a>
     </nav>
     <span>Contatti: <a href="mailto:chris.business.skimap@gmail.com">chris.business.skimap@gmail.com</a></span>
-    <span>Dati mappa © OpenStreetMap contributors, licenza ODbL · Mappe di sfondo nell’app © MapTiler · Rilievo: INGV TINITALY e Copernicus EU-DEM (dati modificati) · Orari: open data STA Südtirolmobil e Trentino Trasporti · <a href="privacy.html#fonti">Fonti e licenze</a></span>
+    <span>Dati mappa © OpenStreetMap contributors, licenza ODbL · Mappe di sfondo nell’app © MapTiler · Rilievo: INGV TINITALY e Copernicus EU-DEM (dati modificati) · Orari: open data STA Südtirolmobil e Trentino Trasporti · <a href="/privacy.html#fonti">Fonti e licenze</a></span>
   </div>
 </footer>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>

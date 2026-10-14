@@ -4,13 +4,85 @@
     <loc>https://skimaps.cc/</loc>
     <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/"/>
   </url>
   <url>
     <loc>https://skimaps.cc/en/</loc>
     <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/de/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/come-funziona/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/come-funziona/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/so-funktionierts/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/come-funziona/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/en/how-it-works/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/come-funziona/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/so-funktionierts/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/come-funziona/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/de/so-funktionierts/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/come-funziona/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/how-it-works/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/so-funktionierts/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/come-funziona/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/aree/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/aree/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/areas/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/skigebiete/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/aree/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/en/areas/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/aree/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/areas/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/skigebiete/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/aree/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/de/skigebiete/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/aree/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/areas/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/skigebiete/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/aree/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/domande/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/domande/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/fragen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/domande/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/en/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/domande/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/fragen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/domande/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/de/fragen/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/domande/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/fragen/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/domande/"/>
   </url>
   <url>
     <loc>https://skimaps.cc/privacy.html</loc>

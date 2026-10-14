@@ -23,7 +23,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Controlli (link, ancore, parità IT/EN; i [DA CONFERMARE] sono solo avvisi)
+      - name: Genera le pagine dai testi in content/
+        run: node tools/build.mjs
+      - name: Controlli (link, ancore, parità tra le lingue; i [DA CONFERMARE] sono solo avvisi)
         run: node tools/check.mjs
       - name: Scrivi la configurazione del modulo dai secret
         env:
@@ -33,7 +35,7 @@ jobs:
       - name: Prepara la cartella da pubblicare
         run: |
           mkdir _site
-          cp -r index.html en privacy.html elimina-account.html assets sitemap.xml robots.txt CNAME .nojekyll _site/
+          cp -r index.html come-funziona aree domande en de privacy.html elimina-account.html assets sitemap.xml robots.txt CNAME .nojekyll _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

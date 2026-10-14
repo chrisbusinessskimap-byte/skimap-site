@@ -515,3 +515,38 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .site .regions li.now{grid-column:span 2}
 @media (max-width:900px){ .site .regions{grid-template-columns:1fr 1fr} .site .regions li.now{grid-column:1 / -1} }
 @media (max-width:520px){ .site .regions{grid-template-columns:1fr} }
+
+/* ---------- sito a pagine (tools/build.mjs) ---------- */
+/* selettore lingua: in alto su computer, dentro il menu su telefono */
+.langs{display:flex; gap:2px; border:2px solid var(--ink); border-radius:999px; padding:2px}
+.langs a, .mm-langs a{display:inline-flex; align-items:center; justify-content:center; min-width:40px; min-height:40px; border-radius:999px; text-decoration:none; font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600; letter-spacing:.06em; color:var(--ink)}
+.langs a:hover{background:var(--bg-3)}
+.langs a[aria-current], .mm-langs a[aria-current]{background:var(--ink); color:var(--bg)}
+.nav .wrap > .langs{margin-left:auto}
+.mobile-menu .mm-langs{display:flex; gap:8px; padding:16px 28px; border-bottom:1px solid var(--line)}
+.mobile-menu .mm-langs a{border:2px solid var(--ink); font-size:15px; padding:0 14px}
+.nav-links a[aria-current]{background:var(--ink); color:var(--bg)}
+.mobile-menu a[aria-current="page"]{box-shadow:inset 6px 0 0 var(--accent)}
+@media (max-width:560px){ .nav .wrap > .langs{display:none} .nav .wrap > .menu-btn{margin-left:auto} }
+
+/* titolo della home: due righe lunghe, un po' più piccolo dell'originale */
+.hero h1.long{font-size:clamp(50px,7.2vw,112px)}
+.view-head h1 em{font-style:normal; color:var(--ink); background:linear-gradient(transparent 58%, var(--accent) 58%, var(--accent) 94%, transparent 94%); padding:0 .04em}
+.view-head .pagetitle{margin:0}
+
+/* home: tre punti sotto la mappa */
+.sec.points{padding:56px 0 64px}
+.site .features.three{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){ .site .features.three{grid-template-columns:1fr} }
+.site .doors{padding:64px 0 80px}
+
+/* aree: scheda per le società impianti */
+.bizcard{display:flex; gap:24px; align-items:center; justify-content:space-between; flex-wrap:wrap; padding:32px; border-radius:22px; background:var(--dark); color:#eef2f6; box-shadow:var(--shadow)}
+.bizcard .eyebrow{color:#c5ced8; margin-bottom:10px}
+.bizcard h2{font-size:clamp(32px,4vw,48px); color:#fff; margin-bottom:10px}
+.bizcard p{color:#c9d1da; max-width:52ch; margin:0}
+.bizcard a.mail{font-family:"IBM Plex Mono",monospace; font-size:15px; color:var(--accent); text-decoration:none; border-bottom:2px solid rgba(255,179,0,.4); padding-bottom:2px; word-break:break-all}
+.bizcard a.mail:hover{border-bottom-color:var(--accent)}
+.site .sec#impianti{padding-top:56px}
+.hero h1.long{font-size:clamp(44px,5.6vw,88px)}
+.sec:not(.dark) h2 em{color:var(--ink); background:linear-gradient(transparent 58%, var(--accent) 58%, var(--accent) 94%, transparent 94%); padding:0 .04em}

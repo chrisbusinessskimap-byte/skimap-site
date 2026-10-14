@@ -35,27 +35,35 @@
 <a class="skip" href="#main">Vai al contenuto</a>
 <header class="nav solid" id="nav">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="Ski Maps, torna alla home">
+    <a class="logo" href="/" aria-label="Ski Maps, torna alla home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>
       Ski Maps
     </a>
     <nav class="nav-links" aria-label="Sezioni">
-      <a href="index.html#giro">Il giro</a>
-      <a href="index.html#come-funziona">Come funziona</a>
-      <a href="index.html#funzioni">Funzioni</a>
-      <a href="index.html#fiducia">Privacy</a>
-      <a href="index.html#dove">Dove</a>
-      <a href="index.html#domande">Domande</a>
+      <a href="/come-funziona/">Come funziona</a>
+      <a href="/aree/">Aree</a>
+      <a href="/domande/">Domande</a>
+      <a href="/privacy.html" aria-current="page">Privacy</a>
     </nav>
-    <a class="langsw" href="en/privacy.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+    <a class="btn primary" href="/#avvisami">Avvisami</a>
+    <nav class="langs" aria-label="Lingua"><a href="/privacy.html" hreflang="it" lang="it" aria-current="true" title="Italiano">IT</a><a href="/en/privacy.html" hreflang="en" lang="en" title="English">EN</a><a href="/de/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menu</button>
   </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Sezioni">
+    <a href="/come-funziona/">Come funziona</a>
+    <a href="/aree/">Aree</a>
+    <a href="/domande/">Domande</a>
+    <a href="/privacy.html" aria-current="page">Privacy</a>
+    <a href="/#avvisami">Avvisami quando esce</a>
+    <nav class="mm-langs" aria-label="Lingua"><a href="/privacy.html" hreflang="it" lang="it" aria-current="true" title="Italiano">IT</a><a href="/en/privacy.html" hreflang="en" lang="en" title="English">EN</a><a href="/de/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
+  </nav>
 </header>
 <main id="main" tabindex="-1">
 <section class="view active">
   <div class="view-head"><div class="wrap">
     <div class="eyebrow"><span class="disc amber"></span>Privacy</div>
     <h1 class="pagetitle">Cosa resta sul telefono, cosa parte.</h1>
-    <p class="lede measure">La stessa informativa che trovi dentro l’app, alla voce Impostazioni <span class="todo">[DA CONFERMARE: l’app mostra già la versione 5? se no, togli questa frase]</span>. Aggiornata il <span class="todo">[DA CONFERMARE: data di pubblicazione della versione 5]</span> · versione 5 · Ski Maps in closed beta.</p>
+    <p class="lede measure">La stessa informativa che trovi dentro l’app, alla voce Impostazioni <span class="todo">[DA CONFERMARE: l’app mostra già la versione 5? se no, togli questa frase]</span>. Aggiornata il <span class="todo">[DA CONFERMARE: data di pubblicazione della versione 5]</span> · versione 5 · Ski Maps è in arrivo su Google Play.</p>
   </div></div>
 
   <div class="view-body"><div class="wrap">
@@ -130,27 +138,27 @@
         <li><strong>Diagnostica</strong>: il tuo consenso, che dai al primo avvio e puoi ritirare quando vuoi in Impostazioni.</li>
         <li><strong>Account</strong> (email, ID utente, accesso con Google): <span class="todo">[DA CONFERMARE: base giuridica del trattamento dei dati dell’account]</span>.</li>
         <li><strong>Contributi automatici</strong> (segnalazioni, tempi di attesa, tempi delle tappe): <span class="todo">[DA CONFERMARE: base giuridica: consenso o legittimo interesse?]</span>.</li>
-        <li><strong>Richiesta di partecipare alla beta</strong>: <span class="todo">[DA CONFERMARE: base giuridica dell’uso dell’email di iscrizione alla beta]</span>.</li>
+        <li><strong>Iscrizione alla lista d’attesa</strong>: <span class="todo">[DA CONFERMARE: base giuridica dell’uso dell’email di iscrizione alla lista d’attesa]</span>.</li>
       </ul>
 
-      <h3>La richiesta di partecipare alla beta</h3>
-      <p data-beta="mail">Se lasci la tua email in questa pagina, si apre il tuo programma di posta con un messaggio già pronto per la casella di Ski Maps: parte solo se lo invii tu, come una normale email dal tuo indirizzo. Serve a un’unica cosa: mandarti l’invito alla beta. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta rispondere all’indirizzo qui sotto.</p>
-      <p data-beta="web3forms" hidden>Se lasci la tua email in questa pagina, il modulo la invia attraverso il servizio <strong>Web3Forms</strong>, che la consegna alla casella di Ski Maps: Web3Forms riceve l’email e il tuo indirizzo IP e la inoltra. <span class="todo">[DA CONFERMARE: Web3Forms conserva una copia dell’email? per quanto tempo? è responsabile del trattamento? dove ha sede?]</span> Serve a un’unica cosa: mandarti l’invito alla beta. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta scrivere all’indirizzo qui sotto.</p>
-      <p data-beta="formspree" hidden>Se lasci la tua email in questa pagina, il modulo la invia attraverso il servizio <strong>Formspree</strong>, che la consegna alla casella di Ski Maps: Formspree riceve l’email e il tuo indirizzo IP e la inoltra. <span class="todo">[DA CONFERMARE: Formspree conserva una copia dell’email? per quanto tempo? è responsabile del trattamento? dove ha sede?]</span> Serve a un’unica cosa: mandarti l’invito alla beta. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta scrivere all’indirizzo qui sotto.</p>
+      <h3>L’iscrizione alla lista d’attesa</h3>
+      <p data-beta="mail">Se lasci la tua email nel modulo «Avvisami quando esce» di questo sito, si apre il tuo programma di posta con un messaggio già pronto per la casella di Ski Maps: parte solo se lo invii tu, come una normale email dal tuo indirizzo. Serve a un’unica cosa: avvisarti quando Ski Maps esce. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta rispondere all’indirizzo qui sotto.</p>
+      <p data-beta="web3forms" hidden>Se lasci la tua email nel modulo «Avvisami quando esce» di questo sito, il modulo la invia attraverso il servizio <strong>Web3Forms</strong>, che la consegna alla casella di Ski Maps: Web3Forms riceve l’email e il tuo indirizzo IP e la inoltra. <span class="todo">[DA CONFERMARE: Web3Forms conserva una copia dell’email? per quanto tempo? è responsabile del trattamento? dove ha sede?]</span> Serve a un’unica cosa: avvisarti quando Ski Maps esce. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta scrivere all’indirizzo qui sotto.</p>
+      <p data-beta="formspree" hidden>Se lasci la tua email nel modulo «Avvisami quando esce» di questo sito, il modulo la invia attraverso il servizio <strong>Formspree</strong>, che la consegna alla casella di Ski Maps: Formspree riceve l’email e il tuo indirizzo IP e la inoltra. <span class="todo">[DA CONFERMARE: Formspree conserva una copia dell’email? per quanto tempo? è responsabile del trattamento? dove ha sede?]</span> Serve a un’unica cosa: avvisarti quando Ski Maps esce. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta scrivere all’indirizzo qui sotto.</p>
 
       <h3 id="sito">Questo sito</h3>
       <p>Questo sito (skimaps.cc) non usa cookie e non ha strumenti di analisi o di tracciamento. Font e script sono serviti dal sito stesso, non da altri siti. Come ogni sito, il server che lo ospita vede il tuo indirizzo IP e i dati tecnici della richiesta. <span class="todo">[DA CONFERMARE: chi ospita il sito (oggi GitHub Pages?) e per quanto tempo conserva i log]</span></p>
 
       <h3>Per quanto tempo</h3>
       <p>Sul server niente resta per sempre: ogni notte si cancella da solo quello che è scaduto. Gli eventi di diagnostica restano 12 mesi, che coprono una stagione intera e l’estate in cui si corregge la mappa. I voti sulle piste si vedono nell’app per 12 ore e sul telefono restano lo stesso tempo; dal server si cancellano dopo 30 giorni, i tempi di attesa dopo 60, i tempi delle tappe dopo 12 mesi, perché servono a confrontare una stagione intera. L’utenza anonima di segnalazioni, tempi di attesa e tempi delle tappe si cancella dopo 12 mesi senza uso.</p>
-      <p><strong>Account:</strong> l’ID utente e l’email restano finché l’account esiste <span class="todo">[DA CONFERMARE: per quanto tempo si conservano se l’account non viene usato?]</span>; dopo la richiesta di eliminazione vengono cancellati entro <span class="todo">[DA CONFERMARE: quanti giorni?]</span>. <strong>Email dell’iscrizione alla beta:</strong> <span class="todo">[DA CONFERMARE: per quanto tempo si conserva?]</span>.</p>
+      <p><strong>Account:</strong> l’ID utente e l’email restano finché l’account esiste <span class="todo">[DA CONFERMARE: per quanto tempo si conservano se l’account non viene usato?]</span>; dopo la richiesta di eliminazione vengono cancellati entro <span class="todo">[DA CONFERMARE: quanti giorni?]</span>. <strong>Email della lista d’attesa:</strong> <span class="todo">[DA CONFERMARE: per quanto tempo si conserva?]</span>.</p>
 
       <h3>I tuoi diritti</h3>
       <p>Puoi ritirare il consenso quando vuoi, in Impostazioni, e con «Contributi automatici» puoi opporti alle misure che l’app fa da sola in navigazione. Con “Cancella i miei dati” l’app elimina dal telefono il codice casuale, gli eventi ancora in attesa di invio, i voti salvati, i tempi non ancora partiti e l’utenza anonima delle segnalazioni: al riavvio ti viene chiesto di nuovo cosa preferisci. Quello che è già arrivato al server resta lì fino alla scadenza. Per sapere quali eventi di diagnostica esistono, o per farli cancellare prima, scrivi all’indirizzo qui sotto: la risposta arriva entro un mese. Per ritrovarli serve il codice casuale, che trovi in Impostazioni: annotalo prima di cancellarlo. Segnalazioni, tempi di attesa e tempi delle tappe, invece, non sono collegati a quel codice, e non abbiamo modo di sapere quali siano i tuoi: si cancellano da soli alla scadenza. Puoi anche proporre reclamo al <a href="https://www.garanteprivacy.it">Garante per la protezione dei dati personali</a> o all’autorità di controllo del paese in cui vivi.</p>
       <p>Per i dati dell’account puoi chiederci di eliminarli (<a href="elimina-account.html">come fare</a>). <span class="todo">[DA CONFERMARE: accesso, correzione e portabilità dei dati dell’account: modalità e tempi da riportare]</span></p>
 
       <h3>Titolare e contatti</h3>
-      <p>Ski Maps è in closed beta e non è ancora un servizio pubblico. Il titolare del trattamento — chi decide quali dati si raccolgono e perché — è la persona raggiungibile all’indirizzo <a href="mailto:chris.business.skimap@gmail.com?subject=Privacy%20Ski%20Maps">chris.business.skimap@gmail.com</a>, a cui puoi scrivere per qualsiasi domanda. I riferimenti completi del titolare, e l’aggiornamento di questa informativa, arriveranno con la pubblicazione dell’app. <span class="todo">[DA CONFERMARE: nome o ragione sociale, indirizzo e recapiti del titolare]</span></p>
+      <p>Ski Maps non è ancora un servizio pubblico: è in arrivo su Google Play. Il titolare del trattamento — chi decide quali dati si raccolgono e perché — è la persona raggiungibile all’indirizzo <a href="mailto:chris.business.skimap@gmail.com?subject=Privacy%20Ski%20Maps">chris.business.skimap@gmail.com</a>, a cui puoi scrivere per qualsiasi domanda. I riferimenti completi del titolare, e l’aggiornamento di questa informativa, arriveranno con la pubblicazione dell’app. <span class="todo">[DA CONFERMARE: nome o ragione sociale, indirizzo e recapiti del titolare]</span></p>
 
       <h3 id="fonti">Fonti dei dati e licenze</h3>
       <p>Non riguarda i tuoi dati, ma va detto qui. La mappa dei percorsi di Ski Maps è costruita da <strong>OpenStreetMap</strong>: è un database derivato, distribuito sotto licenza <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a> — © OpenStreetMap contributors, dati modificati. Il rilievo che dice da che parte scende ogni pista viene da due modelli del terreno:</p>
@@ -163,8 +171,7 @@
   </div></div>
 
   <div class="view-nav"><div class="wrap">
-    <a href="index.html#avvisami" class="prev"><small>← Tratta precedente</small><b>Avvisami quando esce</b></a>
-    <a href="index.html" class="next"><small>Rientro a valle →</small><b>Home</b></a>
+    <a href="/" class="prev"><small>←</small><b>Home</b></a>
   </div></div>
 </section>
 </main>
@@ -173,15 +180,16 @@
   <div class="wrap">
     <span class="season">© 2026 Ski Maps</span>
     <nav aria-label="Piè di pagina">
-      <a href="privacy.html">Informativa privacy</a>
-      <a href="elimina-account.html">Elimina account</a>
-      <a href="index.html#impianti">Per le società impianti</a>
+      <a href="/privacy.html">Informativa privacy</a>
+      <a href="/elimina-account.html">Elimina account</a>
+      <a href="/aree/#impianti">Per le società impianti</a>
     </nav>
     <span>Contatti: <a href="mailto:chris.business.skimap@gmail.com">chris.business.skimap@gmail.com</a></span>
-    <span>Dati mappa © OpenStreetMap contributors, licenza ODbL · Mappe di sfondo nell’app © MapTiler · Rilievo: INGV TINITALY e Copernicus EU-DEM (dati modificati) · Orari: open data STA Südtirolmobil e Trentino Trasporti · <a href="privacy.html#fonti">Fonti e licenze</a></span>
+    <span>Dati mappa © OpenStreetMap contributors, licenza ODbL · Mappe di sfondo nell’app © MapTiler · Rilievo: INGV TINITALY e Copernicus EU-DEM (dati modificati) · Orari: open data STA Südtirolmobil e Trentino Trasporti · <a href="/privacy.html#fonti">Fonti e licenze</a></span>
   </div>
 </footer>
 <script src="assets/config.js"></script>
 <script src="assets/privacy.js"></script>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>

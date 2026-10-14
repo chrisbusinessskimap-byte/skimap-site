@@ -1,0 +1,462 @@
+#!/usr/bin/env node
+/* Genera le pagine del sito dai testi in content/*.mjs (nessuna dipendenza):
+     node tools/build.mjs
+   Produce: home, Come funziona, Aree, Domande per ogni lingua (it, en, de) e sitemap.xml.
+   Nelle pagine legali scritte a mano (privacy, elimina account) aggiorna SOLO barra in alto,
+   piè di pagina e link di ritorno: il testo legale non viene toccato.
+   Le pagine generate non vanno modificate a mano: si cambiano i testi in content/ e si rilancia. */
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { join, dirname, resolve } from 'node:path';
+import { ORIGIN, MAIL, LANGS, LANG_ORDER, PAGE_KEYS, LEGAL, fileOf } from './site.mjs';
+
+const root = resolve(dirname(new URL(import.meta.url).pathname), '..');
+const C = {};
+for (const l of LANG_ORDER) C[l] = (await import(join(root, 'content', `${l}.mjs`))).default;
+
+const GENERATED = '<!-- Pagina generata da tools/build.mjs: per cambiare i testi modifica content/*.mjs e rilancia il comando. -->';
+const LOGO = '<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>';
+const RIDGE = '<svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/></svg>';
+const SHIELD = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 16 19 12 21 C8 19 5 15.5 5 11 V6 Z"/><path d="M9 12 L11 14 L15 10"/></svg>';
+const ICONS = {
+  level: '<path d="M3 20 L9 9 L13 15 L16 11 L21 20 Z"/><path d="M7.5 12 L9 9 L10.5 11.5"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7 V12 L15.5 14"/>',
+  voice: '<path d="M4 9 H8 L13 5 V19 L8 15 H4 Z"/><path d="M16.5 9 a4 4 0 0 1 0 6"/><path d="M19 6.5 a7.5 7.5 0 0 1 0 11"/>',
+  pocket: '<rect x="7" y="2.5" width="10" height="13" rx="2"/><path d="M4 12 H20 V20 a2 2 0 0 1 -2 2 H6 a2 2 0 0 1 -2 -2 Z"/>',
+  offline: '<path d="M12 3 V15"/><path d="M7 10 L12 15 L17 10"/><path d="M4 19 H20"/>',
+  sign: '<path d="M12 3 V21"/><path d="M5 5 H17 L20 8 L17 11 H5 Z"/><path d="M19 13 H8 L5 16 L8 19 H19 Z"/>',
+  lang: '<path d="M4 5 H16 a2 2 0 0 1 2 2 V13 a2 2 0 0 1 -2 2 H10 L6 19 V15 H4 a2 2 0 0 1 -2 -2 V7 a2 2 0 0 1 2 -2 Z"/><path d="M7 9 H13 M7 12 H11"/>',
+  map: '<path d="M3 6 L9 3 L15 6 L21 3 V18 L15 21 L9 18 L3 21 Z"/><path d="M9 3 V18 M15 6 V21"/>',
+  ask: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5 a2.5 2.5 0 1 1 3.5 2.3 c-.7 .3 -1 .8 -1 1.5 V14"/><path d="M12 17 h.01"/>',
+};
+const icon = (k) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>`;
+const attr = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+const jsq = (s) => "'" + String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'";
+const enc = encodeURIComponent;
+
+/* segnaposto di uno screenshot dell'app: va sostituito con la schermata vera */
+const shot = (c, [label, caption], w = 1080, h = 2340) =>
+  `<figure class="shot"><div class="shot-ph" style="aspect-ratio:${w}/${h}" role="img" aria-label="${attr(caption)}"><span>[SCREENSHOT: ${label}]</span><small>${c.ui.shotSize(w, h)}</small></div><figcaption>${caption}</figcaption></figure>`;
+
+/* {home} {privacy} {delete} nei testi → indirizzi della lingua */
+const fill = (s, l) => s.replace(/\{home\}/g, LANGS[l].pages.home).replace(/\{privacy\}/g, LANGS[l].legal.privacy).replace(/\{delete\}/g, LANGS[l].legal.delete);
+
+function langSwitch(cls, current, urls, c) {
+  return `<nav class="${cls}" aria-label="${c.ui.langs}">` + LANG_ORDER.map((l) =>
+    `<a href="${urls[l]}" hreflang="${l}" lang="${l}"${l === current ? ' aria-current="true"' : ''} title="${C[l].name}">${l.toUpperCase()}</a>`).join('') + '</nav>';
+}
+
+function header(l, current, urls, { solid = true } = {}) {
+  const c = C[l], P = LANGS[l].pages, links = [['how', P.how], ['areas', P.areas], ['faq', P.faq], ['privacy', LANGS[l].legal.privacy]];
+  const a = (k, href) => `<a href="${href}"${k === current ? ' aria-current="page"' : ''}>${c.nav[k]}</a>`;
+  return `<header class="nav${solid ? ' solid' : ''}" id="nav">
+  <div class="wrap">
+    <a class="logo" href="${P.home}" aria-label="${c.ui.homeAria}">
+      ${LOGO}
+      Ski Maps
+    </a>
+    <nav class="nav-links" aria-label="${c.ui.sections}">
+      ${links.map(([k, h]) => a(k, h)).join('\n      ')}
+    </nav>
+    <a class="btn primary" href="${P.home}#avvisami">${c.ui.ctaShort}</a>
+    ${langSwitch('langs', l, urls, c)}
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">${c.ui.menu}</button>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="${c.ui.sections}">
+    ${links.map(([k, h]) => a(k, h)).join('\n    ')}
+    <a href="${P.home}#avvisami">${c.ui.cta}</a>
+    ${langSwitch('mm-langs', l, urls, c)}
+  </nav>
+</header>`;
+}
+
+function footer(l) {
+  const c = C[l], P = LANGS[l].pages, G = LANGS[l].legal;
+  return `<footer>
+  <div class="wrap">
+    <span class="season">© 2026 Ski Maps</span>
+    <nav aria-label="${c.ui.footer}">
+      <a href="${G.privacy}">${c.ui.privacy}</a>
+      <a href="${G.delete}">${c.ui.delete}</a>
+      <a href="${P.areas}#impianti">${c.ui.biz}</a>
+    </nav>
+    <span>${c.ui.contact} <a href="mailto:${MAIL}">${MAIL}</a></span>
+    <span>${c.ui.data} <a href="${G.sources}">${c.ui.sources}</a></span>
+  </div>
+</footer>`;
+}
+
+function head(l, key, { title, desc, ogAlt }) {
+  const c = C[l], url = ORIGIN + LANGS[l].pages[key];
+  const alts = LANG_ORDER.map((x) => `<link rel="alternate" hreflang="${x}" href="${ORIGIN + LANGS[x].pages[key]}">`).join('\n')
+    + `\n<link rel="alternate" hreflang="x-default" href="${ORIGIN + LANGS.it.pages[key]}">`;
+  const altLoc = LANG_ORDER.filter((x) => x !== l).map((x) => `<meta property="og:locale:alternate" content="${C[x].locale}">`).join('\n');
+  return `<!doctype html>
+<html lang="${l}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+${GENERATED}
+<title>${title}</title>
+<meta name="description" content="${attr(desc)}">
+<meta name="theme-color" content="#101418">
+<link rel="canonical" href="${url}">
+${alts}
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:site_name" content="Ski Maps">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${attr(title)}">
+<meta property="og:description" content="${attr(desc)}">
+<meta property="og:url" content="${url}">
+<meta property="og:locale" content="${c.locale}">
+${altLoc}
+<meta property="og:image" content="${ORIGIN}/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${attr(ogAlt || C[l].home.ogAlt)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${attr(title)}">
+<meta name="twitter:description" content="${attr(desc)}">
+<meta name="twitter:image" content="${ORIGIN}/assets/og-image.png">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
+</head>`;
+}
+
+function T(l, extra = '') {
+  return `<script>
+window.SKIMAP_T = {
+  siteTitle: ${jsq(C[l].siteTitle)}${extra}
+};
+</script>`;
+}
+
+function page(l, key, main, { scripts = '', tvars = '', solid = true } = {}) {
+  const c = C[l], meta = c[key];
+  const urls = Object.fromEntries(LANG_ORDER.map((x) => [x, LANGS[x].pages[key]]));
+  return `${head(l, key, meta)}
+<body class="site">
+
+<a class="skip" href="#main">${c.ui.skip}</a>
+${header(l, key, urls, { solid })}
+
+<main id="main" tabindex="-1">
+${main}
+</main>
+
+${footer(l)}
+
+${T(l, tvars)}
+<script src="/assets/site.js" defer></script>
+${scripts}</body>
+</html>
+`;
+}
+
+const secHead = (eyebrow, h, id, lede = '') =>
+  `<div class="sec-head">
+      <div class="eyebrow"><span class="disc"></span>${eyebrow}</div>
+      <h2 id="${id}">${h}</h2>${lede ? `\n      <p class="lede measure">${lede}</p>` : ''}
+    </div>`;
+
+const pageHead = (eyebrow, h1, lede = '') =>
+  `<div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc"></span>${eyebrow}</div>
+    <h1 class="pagetitle">${h1}</h1>${lede ? `\n    <p class="lede measure">${lede}</p>` : ''}
+  </div></div>`;
+
+const ctaBand = (l) => `<section class="ctaband" aria-label="${attr(C[l].ui.cta)}"><div class="wrap">
+  <p>${C[l].ui.ctaBand}</p>
+  <a class="btn primary" href="${LANGS[l].pages.home}#avvisami">${C[l].ui.cta}</a>
+</div></section>`;
+
+/* ---------------- home ---------------- */
+function home(l) {
+  const c = C[l], h = c.home, P = LANGS[l].pages, G = LANGS[l].legal, j = c.js;
+  const redirects = l === 'de' ? {} : {
+    giro: P.how, 'come-funziona': P.how, funzioni: P.how, pensata: P.how,
+    dove: P.areas, mondo: P.areas, pilot: P.areas, motore: P.areas, impianti: P.areas + '#impianti',
+    domande: P.faq, fiducia: '#privacy-in-breve', beta: '#avvisami',
+    privacy: G.privacy, 'elimina-account': G.delete, 'delete-account': G.delete,
+  };
+  const subj = enc(h.wl.subject);
+  const main = `
+<section class="sec" id="home" aria-labelledby="h-home">
+  <div class="hero" id="hero">
+    <canvas id="net" role="img" aria-label="${attr(h.canvasAria)}"></canvas>
+    <div class="veil"></div>
+    <div class="databadge" id="databadge"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="disc"></span>${h.eyebrow}</div>
+        <h1 id="h-home" class="long">
+          <span class="line">${h.h1a}</span>
+          <span class="line"><span class="mark">${h.h1b}</span></span>
+        </h1>
+        <p class="lede measure">${h.lede}</p>
+        <div class="cta">
+          <a class="btn primary" href="#avvisami">${c.ui.cta}</a>
+          <a class="btn ghost" href="${P.how}">${h.howBtn}</a>
+        </div>
+        <p class="store">${h.store}</p>
+        <p class="trustline">${SHIELD}${h.trust} <a href="#privacy-in-breve">${c.nav.privacy}</a></p>
+        <div class="hint"><i></i>${h.hint}</div>
+      </div>
+
+      <div class="routecard" aria-live="polite">
+        <div>
+          <div class="dest">${h.rc.dest}</div>
+          <div class="name" id="rc-name">—</div>
+          <div class="from">${h.rc.from} <span id="rc-from">—</span></div>
+        </div>
+        <div class="levels">
+          <div class="lvl" id="rc-beg"><span class="sk" style="background:#3fb950"></span><div class="t"><b>${h.rc.beg}</b><small id="rc-beg-s">${h.rc.begS}</small></div><div class="n" id="rc-beg-n">—</div></div>
+          <div class="lvl" id="rc-int"><span class="sk" style="background:#f0883e"></span><div class="t"><b>${h.rc.int}</b><small id="rc-int-s">${h.rc.intS}</small></div><div class="n" id="rc-int-n">—</div></div>
+          <div class="lvl sel" id="rc-adv"><span class="sk" style="background:#f85149"></span><div class="t"><b>${h.rc.adv}</b><small>${h.rc.advS}</small></div><div class="n" id="rc-adv-n">—</div></div>
+        </div>
+        <div class="legs" id="rc-legs" aria-label="${attr(h.rc.legs)}"></div>
+        <a class="go" href="${P.how}">▶ &nbsp;${h.howBtn}</a>
+      </div>
+    </div>
+  </div>
+  <p class="mapcredit phone-only">${c.ui.mapdata} <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
+</section>
+
+<section class="sec points" id="cosa-fa" aria-labelledby="h-points">
+  <div class="wrap">
+    <h2 id="h-points" class="sr-only">${h.pointsTitle}</h2>
+    <ul class="features three">
+${h.points.map(([k, t, p]) => `      <li class="feat"><span class="ico">${icon(k)}</span><h3>${t}</h3><p>${p}</p></li>`).join('\n')}
+    </ul>
+  </div>
+</section>
+
+<section class="doors" id="scopri" aria-labelledby="h-doors">
+  <h2 id="h-doors" class="sr-only">${h.doorsTitle}</h2>
+  <div class="wrap">
+${[['how', 'map'], ['areas', 'level'], ['faq', 'ask']].map(([k, ic]) => {
+    const [ey, t, p] = h.doors[k];
+    return `    <a class="door" href="${P[k]}">
+      <span class="ico">${icon(ic)}</span>
+      <div class="eyebrow">${ey}</div>
+      <h3>${t}</h3>
+      <p>${p}</p>
+      <span class="go">${h.open}</span>
+    </a>`;
+  }).join('\n')}
+  </div>
+</section>
+
+<section class="sec" id="privacy-in-breve" aria-labelledby="h-trust">
+  <div class="wrap">
+    ${secHead(h.trustBox.eyebrow, h.trustBox.h, 'h-trust')}
+    <ul class="cols4">
+${h.trustBox.items.map(([t, p]) => `      <li class="col"><h3>${t}</h3><p>${fill(p, l)}</p></li>`).join('\n')}
+    </ul>
+    <p class="more"><a class="btn ghost" href="${G.privacy}">${h.trustBox.link}</a></p>
+  </div>
+</section>
+
+<section class="sec" id="avvisami" aria-labelledby="h-wl">
+  <div class="beta">
+    ${RIDGE}
+    <div class="wrap">
+      <div class="eyebrow"><span class="disc amber"></span>${h.wl.eyebrow}</div>
+      <h2 id="h-wl">${h.wl.h}</h2>
+      <p class="lede measure">${h.wl.lede}</p>
+      <form id="beta-form" novalidate>
+        <label for="email" class="sr-only">${h.wl.label}</label>
+        <input id="email" name="email" type="email" required placeholder="${h.wl.ph}" autocomplete="email" aria-describedby="beta-fine">
+        <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <button class="btn primary" type="submit" id="beta-submit">${h.wl.send}</button>
+      </form>
+      <p class="ok" id="beta-ok" role="status" hidden>${h.wl.ok}</p>
+      <p class="ok" id="beta-mailto" role="status" hidden>${h.wl.mailto} <a href="mailto:${MAIL}?subject=${subj}" style="color:inherit">${MAIL}</a>.</p>
+      <p class="ok warn" id="beta-invalid" role="alert" hidden>${h.wl.invalid}</p>
+      <p class="ok warn" id="beta-err" role="alert" hidden>${h.wl.err} <a href="mailto:${MAIL}?subject=${subj}" style="color:inherit">${MAIL}</a>.</p>
+      <p class="fine" id="beta-fine">${h.wl.fine} <a href="${G.privacy}" style="color:inherit">${c.ui.privacy}</a>.</p>
+    </div>
+  </div>
+</section>
+`;
+  const tvars = `,
+  redirects: ${JSON.stringify(redirects)},
+  decimal: ${jsq(j.decimal)}, thousands: ${jsq(j.thousands)},
+  routeUnavailable: ${jsq(j.routeUnavailable)}, indirect: ${jsq(j.indirect)},
+  easyOnly: ${jsq(j.easyOnly)}, easyMedium: ${jsq(j.easyMedium)},
+  fromLabel: ${j.fromLabel},
+  badge: ${j.badge},
+  youAre: ${jsq(j.youAre)},
+  noWebGL: ${jsq(j.noWebGL)},
+  beta: {
+    subject: ${jsq(h.wl.subject)}, send: ${jsq(h.wl.send)}, sending: ${jsq(j.sending)},
+    mailBody: ${j.mailBody},
+    formSubject: ${jsq(j.formSubject)}, fromName: ${jsq(j.fromName)},
+    formMessage: ${j.formMessage}
+  }`;
+  const scripts = `<script src="/assets/vendor/three.min.js" defer></script>
+<script src="/assets/graph-data.js" defer></script>
+<script src="/assets/config.js" defer></script>
+<script src="/assets/map3d.js" defer></script>
+<script src="/assets/beta.js" defer></script>
+`;
+  return page(l, 'home', main, { scripts, tvars, solid: false });
+}
+
+/* ---------------- come funziona ---------------- */
+function how(l) {
+  const c = C[l], h = c.how;
+  const pillar = ([k, t, p]) => `<div class="pillar"><span class="k">${k}</span><h3>${t}</h3><p>${p}</p></div>`;
+  const main = `
+${pageHead(h.eyebrow, h.h1, h.lede)}
+
+<section class="sec dark" id="giro" aria-labelledby="h-giro">
+  ${RIDGE}
+  <h2 id="h-giro" class="sr-only">${h.toursTitle}</h2>
+  <div class="wrap split">
+    <div>
+      <div class="pillars">
+        ${pillar(h.prob)}
+        ${pillar(h.sol)}
+      </div>
+      <h3 class="listh">${h.toursTitle}</h3>
+      <ul class="tours">
+${h.tours.map(([t, p]) => `        <li><b>${t}</b><span>${p}</span></li>`).join('\n')}
+      </ul>
+    </div>
+    <div class="shotcol">
+      ${shot(c, h.shotTour)}
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="passi" aria-labelledby="h-steps">
+  <div class="wrap">
+    ${secHead(h.stepsEyebrow, h.stepsH, 'h-steps')}
+    <ol class="steps">
+${h.steps.map(([t, p, s], k) => `      <li class="step">
+        <div class="num"><span class="pnum ${['blue', 'red', 'adv'][k]}" aria-hidden="true">${k + 1}</span><small>${h.step} ${k + 1}</small></div>
+        <h3>${t}</h3>
+        <p>${p}</p>
+        ${shot(c, s)}
+      </li>`).join('\n')}
+    </ol>
+  </div>
+</section>
+
+<section class="sec tint" id="funzioni" aria-labelledby="h-feat">
+  <div class="wrap">
+    ${secHead(h.featEyebrow, h.featH, 'h-feat', h.featLede)}
+    <ul class="features">
+${h.feats.map(([k, t, p]) => `      <li class="feat"><span class="ico">${icon(k)}</span><h3>${t}</h3><p>${p}</p></li>`).join('\n')}
+    </ul>
+  </div>
+</section>
+
+${ctaBand(l)}
+`;
+  return page(l, 'how', main);
+}
+
+/* ---------------- aree ---------------- */
+function areas(l) {
+  const c = C[l], a = c.areas;
+  const main = `
+${pageHead(a.eyebrow, a.h1, a.lede)}
+
+<section class="sec tint" id="elenco" aria-label="${attr(a.eyebrow)}">
+  <div class="wrap">
+    <ul class="regions">
+      <li class="now"><span class="k">${a.main[0]}</span><b>${a.main[1]}</b><span>${a.main[2]}</span></li>
+${a.list.map(([n, d]) => `      <li><b>${n}</b>${d ? `<span>${d}</span>` : ''}</li>`).join('\n')}
+    </ul>
+    <p class="mapcredit">${c.ui.mapdata} <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
+  </div>
+</section>
+
+<section class="sec" id="impianti" aria-labelledby="h-biz">
+  <div class="wrap">
+    <div class="bizcard">
+      <div>
+        <div class="eyebrow"><span class="disc"></span>${a.biz.eyebrow}</div>
+        <h2 id="h-biz">${a.biz.h}</h2>
+        <p>${a.biz.p}</p>
+      </div>
+      <a class="mail" href="mailto:${MAIL}?subject=${enc(a.biz.subject)}">${MAIL}</a>
+    </div>
+  </div>
+</section>
+
+${ctaBand(l)}
+`;
+  return page(l, 'areas', main);
+}
+
+/* ---------------- domande ---------------- */
+function faq(l) {
+  const c = C[l], f = c.faq;
+  const main = `
+${pageHead(f.eyebrow, f.h1)}
+
+<section class="sec" id="elenco-domande" aria-label="${attr(f.eyebrow)}">
+  <div class="wrap">
+    <div class="faq">
+${f.items.map(([q, a]) => `      <details><summary>${q}</summary><p>${fill(a, l)}</p></details>`).join('\n')}
+    </div>
+  </div>
+</section>
+
+${ctaBand(l)}
+`;
+  return page(l, 'faq', main);
+}
+
+/* ---------------- scrittura ---------------- */
+const out = [];
+const write = (file, html) => { mkdirSync(dirname(join(root, file)), { recursive: true }); writeFileSync(join(root, file), html); out.push(file); };
+for (const l of LANG_ORDER) {
+  write(fileOf(LANGS[l].pages.home), home(l));
+  write(fileOf(LANGS[l].pages.how), how(l));
+  write(fileOf(LANGS[l].pages.areas), areas(l));
+  write(fileOf(LANGS[l].pages.faq), faq(l));
+}
+
+/* pagine legali: solo barra in alto, piè di pagina, link di ritorno e script del menu */
+for (const p of LEGAL) {
+  const f = join(root, p.file);
+  let s = readFileSync(f, 'utf8');
+  const urls = { it: LANGS.it.legal[p.key], en: LANGS.en.legal[p.key], de: LANGS.de.pages.home };
+  const rep = (re, html, what) => { if (!re.test(s)) throw new Error(`${p.file}: non trovo ${what}`); s = s.replace(re, () => html); };
+  rep(/<header class="nav[^"]*" id="nav">[\s\S]*?<\/header>/, header(p.lang, 'privacy', urls), 'la barra in alto');
+  rep(/<footer>[\s\S]*?<\/footer>/, footer(p.lang), 'il piè di pagina');
+  rep(/<div class="view-nav">[\s\S]*?<\/div><\/div>/, `<div class="view-nav"><div class="wrap">
+    <a href="${LANGS[p.lang].pages.home}" class="prev"><small>←</small><b>${C[p.lang].ui.home}</b></a>
+  </div></div>`, 'il link di ritorno');
+  if (!s.includes('/assets/site.js')) s = s.replace('</body>', '<script src="/assets/site.js" defer></script>\n</body>');
+  writeFileSync(f, s);
+  out.push(p.file + ' (solo barra e piè di pagina)');
+}
+
+/* sitemap */
+const urlEntry = (loc, alts) => `  <url>
+    <loc>${ORIGIN}${loc}</loc>
+${alts.map(([hl, u]) => `    <xhtml:link rel="alternate" hreflang="${hl}" href="${ORIGIN}${u}"/>`).join('\n')}
+  </url>`;
+const entries = [];
+for (const k of PAGE_KEYS) {
+  const alts = [...LANG_ORDER.map((l) => [l, LANGS[l].pages[k]]), ['x-default', LANGS.it.pages[k]]];
+  for (const l of LANG_ORDER) entries.push(urlEntry(LANGS[l].pages[k], alts));
+}
+for (const key of ['privacy', 'delete']) {
+  const alts = [['it', LANGS.it.legal[key]], ['en', LANGS.en.legal[key]], ['x-default', LANGS.it.legal[key]]];
+  entries.push(urlEntry(LANGS.it.legal[key], alts), urlEntry(LANGS.en.legal[key], alts));
+}
+writeFileSync(join(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${entries.join('\n')}
+</urlset>
+`);
+out.push('sitemap.xml');
+console.log('Generati:\n  ' + out.join('\n  '));

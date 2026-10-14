@@ -1,56 +1,4 @@
-/* ============ sezioni che si aprono al clic ============ */
 var L10N = window.SKIMAP_T || {};
-var VIEWS = ['home','giro','come-funziona','funzioni','fiducia','dove','domande','avvisami'];
-/* vecchi indirizzi: le sezioni di prima portano a quelle nuove; #privacy e #elimina-account alle pagine a sé */
-var ALIAS = { pensata:'funzioni', mondo:'dove', pilot:'dove', motore:'dove', beta:'avvisami', impianti:'avvisami', main:'home' };
-var PAGES = L10N.pages || {};
-var menuBtn = document.getElementById('menu-btn');
-var mobileMenu = document.getElementById('mobile-menu');
-var nav = document.getElementById('nav');
-var firstRoute = true;
-
-function closeMenu(){ mobileMenu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
-function route(){
-  var hash = (location.hash || '#home').slice(1), id = hash;
-  if (PAGES[id]) { location.replace(PAGES[id]); return; }
-  if (ALIAS[id]) id = ALIAS[id];
-  if (VIEWS.indexOf(id) < 0) id = 'home';
-  var i, views = document.querySelectorAll('.view');
-  for (i = 0; i < views.length; i++) views[i].classList.remove('active');
-  var v = document.getElementById('view-' + id);
-  v.classList.add('active');
-  document.title = v.getAttribute('data-title') || L10N.siteTitle;
-  var links = document.querySelectorAll('[data-nav]');
-  for (i = 0; i < links.length; i++) {
-    var on = links[i].getAttribute('data-nav') === id;
-    links[i].classList.toggle('active', on);
-    if (on) links[i].setAttribute('aria-current', 'page'); else links[i].removeAttribute('aria-current');
-  }
-  var sw = document.querySelectorAll('.langsw[data-base]');
-  for (i = 0; i < sw.length; i++) sw[i].setAttribute('href', sw[i].getAttribute('data-base') + (id === 'home' ? '' : '#' + hash));
-  closeMenu();
-  var target = hash === 'impianti' ? document.getElementById('impianti') : null;
-  if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
-  /* a ogni cambio di sezione il lettore di schermo riparte dal contenuto nuovo */
-  if (!firstRoute) document.getElementById('main').focus({ preventScroll: true });
-  firstRoute = false;
-  solidNav();
-  if (id === 'home' && window.SkiNet) window.SkiNet.resize();
-}
-function solidNav(){
-  var home = document.getElementById('view-home').classList.contains('active');
-  nav.classList.toggle('solid', !home || window.scrollY > 40);
-}
-window.addEventListener('hashchange', route);
-menuBtn.addEventListener('click', function(){
-  var open = !mobileMenu.classList.contains('open');
-  mobileMenu.classList.toggle('open', open);
-  menuBtn.setAttribute('aria-expanded', String(open));
-});
-mobileMenu.addEventListener('click', function(e){ if (e.target.closest('a')) closeMenu(); });
-document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && mobileMenu.classList.contains('open')) { closeMenu(); menuBtn.focus(); } });
-window.addEventListener('scroll', solidNav, { passive:true });
-route();
 
 /* ============ mappa viva 3D: anteprima dimostrativa sul gruppo del Sella (rilievo DEM, piste e impianti OSM) ============ */
 (function(){
@@ -360,7 +308,7 @@ route();
   }
 
   var rt;
-  window.SkiNet = { resize: function(){ clearTimeout(rt); rt=setTimeout(function(){ if (!document.getElementById('view-home').classList.contains('active')) return; if (renderer) layout(); else if (hasGL && DEM) init3D(); }, 120); } };
+  window.SkiNet = { resize: function(){ clearTimeout(rt); rt=setTimeout(function(){ if (renderer) layout(); else if (hasGL && DEM) init3D(); }, 120); } };
   window.addEventListener('resize', window.SkiNet.resize);
   document.addEventListener('visibilitychange', function(){ if (document.hidden){ cancelAnimationFrame(raf); raf=null; } else if (renderer && onScreen && !raf){ lastT=0; raf=requestAnimationFrame(frame); } });
 

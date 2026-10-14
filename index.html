@@ -3,70 +3,70 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Pagina generata da tools/build.mjs: per cambiare i testi modifica content/*.mjs e rilancia il comando. -->
 <title>Ski Maps · Navigatore GPS per sciatori</title>
-<meta name="description" content="Ski Maps, navigatore GPS per sciatori: ti dice dove andare, pista per pista e impianto per impianto, per tutto il giro, compresi bus e treni tra i comprensori. In arrivo su Google Play.">
+<meta name="description" content="Ski Maps, navigatore GPS per sciatori: ti dice dove andare, pista per pista e impianto per impianto, per tutto il giro, anche tra un comprensorio e l’altro con bus e treni. In arrivo su Google Play.">
 <meta name="theme-color" content="#101418">
 <link rel="canonical" href="https://skimaps.cc/">
 <link rel="alternate" hreflang="it" href="https://skimaps.cc/">
 <link rel="alternate" hreflang="en" href="https://skimaps.cc/en/">
+<link rel="alternate" hreflang="de" href="https://skimaps.cc/de/">
 <link rel="alternate" hreflang="x-default" href="https://skimaps.cc/">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:site_name" content="Ski Maps">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ski Maps · Navigatore GPS per sciatori">
-<meta property="og:description" content="Ski Maps, navigatore GPS per sciatori: ti dice dove andare, pista per pista e impianto per impianto, per tutto il giro, compresi bus e treni tra i comprensori. In arrivo su Google Play.">
+<meta property="og:description" content="Ski Maps, navigatore GPS per sciatori: ti dice dove andare, pista per pista e impianto per impianto, per tutto il giro, anche tra un comprensorio e l’altro con bus e treni. In arrivo su Google Play.">
 <meta property="og:url" content="https://skimaps.cc/">
 <meta property="og:locale" content="it_IT">
 <meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="de_DE">
 <meta property="og:image" content="https://skimaps.cc/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Logo di Ski Maps con la scritta «GPS Navigator for Skiers · Navigatore GPS per sciatori»">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ski Maps · Navigatore GPS per sciatori">
-<meta name="twitter:description" content="Ski Maps, navigatore GPS per sciatori: ti dice dove andare, pista per pista e impianto per impianto, per tutto il giro, compresi bus e treni tra i comprensori. In arrivo su Google Play.">
+<meta name="twitter:description" content="Ski Maps, navigatore GPS per sciatori: ti dice dove andare, pista per pista e impianto per impianto, per tutto il giro, anche tra un comprensorio e l’altro con bus e treni. In arrivo su Google Play.">
 <meta name="twitter:image" content="https://skimaps.cc/assets/og-image.png">
-<link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/site.css">
-<noscript><style>.view{display:block}.menu-btn,.mobile-menu,.view-nav{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
 </head>
 <body class="site">
 
 <a class="skip" href="#main">Vai al contenuto</a>
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="logo" href="#home" aria-label="Ski Maps, torna all’inizio">
+    <a class="logo" href="/" aria-label="Ski Maps, torna alla home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>
       Ski Maps
     </a>
     <nav class="nav-links" aria-label="Sezioni">
-      <a href="#giro" data-nav="giro">Il giro</a>
-      <a href="#come-funziona" data-nav="come-funziona">Come funziona</a>
-      <a href="#funzioni" data-nav="funzioni">Funzioni</a>
-      <a href="#fiducia" data-nav="fiducia">Privacy</a>
-      <a href="#dove" data-nav="dove">Dove</a>
-      <a href="#domande" data-nav="domande">Domande</a>
+      <a href="/come-funziona/">Come funziona</a>
+      <a href="/aree/">Aree</a>
+      <a href="/domande/">Domande</a>
+      <a href="/privacy.html">Privacy</a>
     </nav>
-    <a class="btn primary" href="#avvisami">Avvisami</a>
-    <a class="langsw" href="en/" hreflang="en" lang="en" aria-label="English version" data-base="en/">EN</a>
+    <a class="btn primary" href="/#avvisami">Avvisami</a>
+    <nav class="langs" aria-label="Lingua"><a href="/" hreflang="it" lang="it" aria-current="true" title="Italiano">IT</a><a href="/en/" hreflang="en" lang="en" title="English">EN</a><a href="/de/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menu</button>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="Sezioni">
-    <a href="#giro" data-nav="giro">Il giro</a>
-    <a href="#come-funziona" data-nav="come-funziona">Come funziona</a>
-    <a href="#funzioni" data-nav="funzioni">Funzioni</a>
-    <a href="#fiducia" data-nav="fiducia">Privacy</a>
-    <a href="#dove" data-nav="dove">Dove</a>
-    <a href="#domande" data-nav="domande">Domande</a>
-    <a href="#avvisami" data-nav="avvisami">Avvisami quando esce</a>
+    <a href="/come-funziona/">Come funziona</a>
+    <a href="/aree/">Aree</a>
+    <a href="/domande/">Domande</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/#avvisami">Avvisami quando esce</a>
+    <nav class="mm-langs" aria-label="Lingua"><a href="/" hreflang="it" lang="it" aria-current="true" title="Italiano">IT</a><a href="/en/" hreflang="en" lang="en" title="English">EN</a><a href="/de/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
   </nav>
 </header>
 
 <main id="main" tabindex="-1">
 
-<section class="view" id="view-home" data-title="Ski Maps · Navigatore GPS per sciatori" aria-labelledby="h-home">
+<section class="sec" id="home" aria-labelledby="h-home">
   <div class="hero" id="hero">
     <canvas id="net" role="img" aria-label="Anteprima 3D dimostrativa del gruppo del Sella con piste e impianti: tocca una stazione per vedere un percorso di esempio per ogni livello"></canvas>
     <div class="veil"></div>
@@ -74,17 +74,17 @@
     <div class="wrap">
       <div class="hero-copy">
         <div class="eyebrow"><span class="disc"></span>Ski Maps · Navigatore GPS per sciatori</div>
-        <h1 id="h-home">
-          <span class="line">Scia</span>
-          <span class="line"><span class="mark">fino a lì.</span></span>
+        <h1 id="h-home" class="long">
+          <span class="line">Tutto il giro.</span>
+          <span class="line"><span class="mark">Anche tra i comprensori.</span></span>
         </h1>
-        <p class="lede measure">Ti dice dove andare, pista per pista e impianto per impianto, dal punto dove sei a quello dove vuoi arrivare.</p>
+        <p class="lede measure">Ski Maps ti dice dove andare, pista per pista e impianto per impianto, dal punto dove sei a quello dove vuoi arrivare. Compresi i bus e i treni di collegamento.</p>
         <div class="cta">
           <a class="btn primary" href="#avvisami">Avvisami quando esce</a>
-          <a class="btn ghost" href="#come-funziona">Come funziona</a>
+          <a class="btn ghost" href="/come-funziona/">Come funziona</a>
         </div>
         <p class="store">In arrivo su Google Play · iOS in seguito</p>
-        <p class="trustline"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 16 19 12 21 C8 19 5 15.5 5 11 V6 Z"/><path d="M9 12 L11 14 L15 10"/></svg>La tua posizione GPS resta sul telefono. <a href="#fiducia">Privacy</a></p>
+        <p class="trustline"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 16 19 12 21 C8 19 5 15.5 5 11 V6 Z"/><path d="M9 12 L11 14 L15 10"/></svg>La tua posizione GPS resta sul telefono. <a href="#privacy-in-breve">Privacy</a></p>
         <div class="hint"><i></i>Anteprima: tocca una stazione sulla montagna</div>
       </div>
 
@@ -100,220 +100,73 @@
           <div class="lvl sel" id="rc-adv"><span class="sk" style="background:#f85149"></span><div class="t"><b>Avanzato</b><small>Tutte le piste</small></div><div class="n" id="rc-adv-n">—</div></div>
         </div>
         <div class="legs" id="rc-legs" aria-label="Tratte del percorso"></div>
-        <a class="go" href="#come-funziona">▶ &nbsp;Come funziona</a>
+        <a class="go" href="/come-funziona/">▶ &nbsp;Come funziona</a>
       </div>
     </div>
   </div>
   <p class="mapcredit phone-only">Dati mappa: <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
+</section>
 
-  <div class="doors">
-    <div class="wrap">
-      <a class="door" href="#giro">
-        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L9 9 L13 15 L16 11 L21 20 Z"/><path d="M7.5 12 L9 9 L10.5 11.5"/></svg></span>
-        <div class="eyebrow">Per tutto il giro</div>
-        <h3>Un percorso.<br>Tutto il giro.</h3>
-        <p>Da un comprensorio all’altro, con bus e treni di collegamento.</p>
-        <span class="go">Apri</span>
-      </a>
-      <a class="door" href="#come-funziona">
-        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 V21"/><path d="M5 5 H17 L20 8 L17 11 H5 Z"/><path d="M19 13 H8 L5 16 L8 19 H19 Z"/></svg></span>
-        <div class="eyebrow">Come funziona</div>
-        <h3>Tre passi.<br>Poi si scia.</h3>
-        <p>Scegli dove arrivare, scegli il livello, segui le indicazioni.</p>
-        <span class="go">Apri</span>
-      </a>
-      <a class="door" href="#funzioni">
-        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9 H8 L13 5 V19 L8 15 H4 Z"/><path d="M16.5 9 a4 4 0 0 1 0 6"/><path d="M19 6.5 a7.5 7.5 0 0 1 0 11"/></svg></span>
-        <div class="eyebrow">Funzioni</div>
-        <h3>Quello che fa,<br>sulla neve.</h3>
-        <p>Livelli, orari degli impianti, guida vocale, offline.</p>
-        <span class="go">Apri</span>
-      </a>
-      <a class="door" href="#fiducia">
-        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="13" rx="2"/><path d="M4 12 H20 V20 a2 2 0 0 1 -2 2 H6 a2 2 0 0 1 -2 -2 Z"/></svg></span>
-        <div class="eyebrow">Privacy e fiducia</div>
-        <h3>La posizione<br>resta tua.</h3>
-        <p>Il GPS resta sul telefono. Diagnostica solo con il consenso.</p>
-        <span class="go">Apri</span>
-      </a>
-      <a class="door" href="#dove">
-        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 V15"/><path d="M7 10 L12 15 L17 10"/><path d="M4 19 H20"/></svg></span>
-        <div class="eyebrow">Dove funziona</div>
-        <h3>Cinque aree<br>al lancio.</h3>
-        <p>Dolomiti Superski, Ovindoli, Campo Felice, Vialattea, Livigno.</p>
-        <span class="go">Apri</span>
-      </a>
-      <a class="door" href="#domande">
-        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5 H16 a2 2 0 0 1 2 2 V13 a2 2 0 0 1 -2 2 H10 L6 19 V15 H4 a2 2 0 0 1 -2 -2 V7 a2 2 0 0 1 2 -2 Z"/><path d="M7 9 H13 M7 12 H11"/></svg></span>
-        <div class="eyebrow">Domande frequenti</div>
-        <h3>Domande<br>e risposte.</h3>
-        <p>Quando esce, iPhone, rete, lingue.</p>
-        <span class="go">Apri</span>
-      </a>
-    </div>
-  </div>
-  <div class="ctaband"><div class="wrap">
-    <p>Ski Maps è in arrivo su Google Play. Ti avvisiamo quando esce.</p>
-    <a class="btn primary" href="#avvisami">Avvisami quando esce</a>
-  </div></div>
-</section>
-<section class="view" id="view-giro" data-title="Per tutto il giro · Ski Maps" aria-labelledby="h-giro">
-  <div class="view-head"><div class="wrap">
-    <div class="eyebrow"><span class="disc"></span>Per tutto il giro</div>
-    <h2 id="h-giro">Un percorso.<br><em>Tutto il giro.</em></h2>
-    <p class="lede measure">I giri più belli passano da un comprensorio all’altro. Ski Maps li tiene insieme in un solo percorso, compresi i bus e i treni di collegamento.</p>
-  </div></div>
-  <div class="sec dark">
-    <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/></svg>
-    <div class="wrap split">
-      <div>
-        <div class="pillars">
-          <div class="pillar"><span class="k">Il problema</span><h3>Bloccati a metà giro</h3><p>Tra un comprensorio e l’altro non è sempre chiaro quale pista, quale impianto o quale bus prendere per andare avanti o tornare indietro.</p></div>
-          <div class="pillar"><span class="k">Con Ski Maps</span><h3>Sai sempre il prossimo passo</h3><p>Dal punto dove sei a quello dove vuoi arrivare: piste, impianti, bus e treni, uno dopo l’altro.</p></div>
-        </div>
-        <h3 class="listh">Giri tra comprensori</h3>
-        <ul class="tours">
-          <li><b>Sellaronda</b><span>Il giro attorno al Sella</span></li>
-          <li><b>Cortina – Alta Badia</b><span>Tra Ampezzo e Badia</span></li>
-          <li><b>Fassa – Fiemme</b><span>Tra le due valli</span></li>
-          <li><b>Bus e treni</b><span>I collegamenti tra i comprensori</span></li>
-        </ul>
-      </div>
-      <div class="shotcol">
-        <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="La scheda del percorso Sellaronda nell’app"><span>[SCREENSHOT: scheda del percorso Sellaronda]</span><small>1080 × 2340 px</small></div><figcaption>La scheda del percorso Sellaronda nell’app</figcaption></figure>
-      </div>
-    </div>
-  </div>
-  <div class="view-nav"><div class="wrap">
-    <a href="#home" class="prev"><small>← Tratta precedente</small><b>Home</b></a>
-    <a href="#come-funziona" class="next"><small>Prossima tratta →</small><b>Come funziona</b></a>
-  </div></div>
-</section>
-<section class="view" id="view-come-funziona" data-title="Come funziona · Ski Maps" aria-labelledby="h-come-funziona">
-  <div class="view-head"><div class="wrap">
-    <div class="eyebrow"><span class="disc"></span>Come funziona</div>
-    <h2 id="h-come-funziona">Tre passi.<br>Poi si scia.</h2>
-    <p class="lede measure">Scegli dove arrivare, scegli il livello, segui le indicazioni.</p>
-  </div></div>
-  <div class="view-body"><div class="wrap">
-    <ol class="steps">
-      <li class="step">
-        <div class="num"><span class="pnum blue" aria-hidden="true">1</span><small>Passo 1</small></div>
-        <h3>Scegli dove vuoi arrivare</h3>
-        <p>Indica sulla mappa il punto dove vuoi arrivare: un impianto, un rifugio, il paese.</p>
-        <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="Scegliere la destinazione sulla mappa"><span>[SCREENSHOT: mappa con la destinazione scelta]</span><small>1080 × 2340 px</small></div><figcaption>Scegliere la destinazione sulla mappa</figcaption></figure>
-      </li>
-      <li class="step">
-        <div class="num"><span class="pnum red" aria-hidden="true">2</span><small>Passo 2</small></div>
-        <h3>Scegli il tuo livello</h3>
-        <p>Principiante, intermedio o avanzato: il percorso segue il tuo livello.</p>
-        <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="I percorsi per principiante, intermedio e avanzato"><span>[SCREENSHOT: i tre percorsi per livello verso la stessa destinazione]</span><small>1080 × 2340 px</small></div><figcaption>I percorsi per principiante, intermedio e avanzato</figcaption></figure>
-      </li>
-      <li class="step">
-        <div class="num"><span class="pnum adv" aria-hidden="true">3</span><small>Passo 3</small></div>
-        <h3>Segui le indicazioni</h3>
-        <p>Pista per pista e impianto per impianto, con il nome e il colore della pista e la guida vocale. Il telefono può restare in tasca.</p>
-        <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="La navigazione con il nome e il colore della pista"><span>[SCREENSHOT: navigazione in corso con l’istruzione «nome e colore della pista»]</span><small>1080 × 2340 px</small></div><figcaption>La navigazione con il nome e il colore della pista</figcaption></figure>
-      </li>
-    </ol>
-  </div></div>
-  <div class="view-nav"><div class="wrap">
-    <a href="#giro" class="prev"><small>← Tratta precedente</small><b>Il giro</b></a>
-    <a href="#funzioni" class="next"><small>Prossima tratta →</small><b>Funzioni</b></a>
-  </div></div>
-</section>
-<section class="view" id="view-funzioni" data-title="Funzioni · Ski Maps" aria-labelledby="h-funzioni">
-  <div class="view-head"><div class="wrap">
-    <div class="eyebrow"><span class="disc"></span>Funzioni</div>
-    <h2 id="h-funzioni">Quello che fa,<br>sulla neve.</h2>
-    <p class="lede measure">Funzioni già provate sul telefono.</p>
-  </div></div>
-  <div class="view-body tint"><div class="wrap">
-    <ul class="features">
-      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L9 9 L13 15 L16 11 L21 20 Z"/><path d="M7.5 12 L9 9 L10.5 11.5"/></svg></span><h3>Percorsi per livello</h3><p>Principiante, intermedio o avanzato: scegli tu, il percorso si adatta.</p></li>
-      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7 V12 L15.5 14"/></svg></span><h3>Chiusure e orari degli impianti</h3><p>L’app conosce chiusure e orari degli impianti e ti avvisa se riesci a tornare in tempo.</p></li>
-      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9 H8 L13 5 V19 L8 15 H4 Z"/><path d="M16.5 9 a4 4 0 0 1 0 6"/><path d="M19 6.5 a7.5 7.5 0 0 1 0 11"/></svg></span><h3>Guida vocale</h3><p>Le indicazioni arrivano a voce, mentre scii.</p></li>
-      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="13" rx="2"/><path d="M4 12 H20 V20 a2 2 0 0 1 -2 2 H6 a2 2 0 0 1 -2 -2 Z"/></svg></span><h3>Telefono in tasca</h3><p>La navigazione continua anche con il telefono in tasca.</p></li>
-      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 V15"/><path d="M7 10 L12 15 L17 10"/><path d="M4 19 H20"/></svg></span><h3>Funziona offline</h3><p>Mappe e percorsi si scaricano: li usi anche senza rete.</p></li>
-      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 V21"/><path d="M5 5 H17 L20 8 L17 11 H5 Z"/><path d="M19 13 H8 L5 16 L8 19 H19 Z"/></svg></span><h3>Nome e colore della pista</h3><p>Ogni istruzione dice il nome della pista e il suo colore.</p></li>
-      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5 H16 a2 2 0 0 1 2 2 V13 a2 2 0 0 1 -2 2 H10 L6 19 V15 H4 a2 2 0 0 1 -2 -2 V7 a2 2 0 0 1 2 -2 Z"/><path d="M7 9 H13 M7 12 H11"/></svg></span><h3>In cinque lingue</h3><p>Italiano, inglese, tedesco, francese e spagnolo.</p></li>
+<section class="sec points" id="cosa-fa" aria-labelledby="h-points">
+  <div class="wrap">
+    <h2 id="h-points" class="sr-only">Cosa fa Ski Maps</h2>
+    <ul class="features three">
+      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L9 9 L13 15 L16 11 L21 20 Z"/><path d="M7.5 12 L9 9 L10.5 11.5"/></svg></span><h3>Per il tuo livello</h3><p>Principiante, intermedio o avanzato: il percorso segue il tuo livello.</p></li>
+      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7 V12 L15.5 14"/></svg></span><h3>Impianti e orari</h3><p>Conosce chiusure e orari degli impianti e ti avvisa se riesci a tornare in tempo.</p></li>
+      <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="13" rx="2"/><path d="M4 12 H20 V20 a2 2 0 0 1 -2 2 H6 a2 2 0 0 1 -2 -2 Z"/></svg></span><h3>Telefono in tasca</h3><p>Guida vocale con nome e colore della pista. Funziona anche offline.</p></li>
     </ul>
-  </div></div>
-  <div class="view-nav"><div class="wrap">
-    <a href="#come-funziona" class="prev"><small>← Tratta precedente</small><b>Come funziona</b></a>
-    <a href="#fiducia" class="next"><small>Prossima tratta →</small><b>Privacy</b></a>
-  </div></div>
+  </div>
 </section>
-<section class="view" id="view-fiducia" data-title="Privacy e fiducia · Ski Maps" aria-labelledby="h-fiducia">
-  <div class="view-head"><div class="wrap">
-    <div class="eyebrow"><span class="disc"></span>Privacy e fiducia</div>
-    <h2 id="h-fiducia">La tua posizione<br><em>resta tua.</em></h2>
-    <p class="lede measure">Ski Maps ti guida con il GPS del telefono, e la posizione rimane lì.</p>
-  </div></div>
-  <div class="view-body"><div class="wrap">
+
+<section class="doors" id="scopri" aria-labelledby="h-doors">
+  <h2 id="h-doors" class="sr-only">Scopri Ski Maps</h2>
+  <div class="wrap">
+    <a class="door" href="/come-funziona/">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6 L9 3 L15 6 L21 3 V18 L15 21 L9 18 L3 21 Z"/><path d="M9 3 V18 M15 6 V21"/></svg></span>
+      <div class="eyebrow">Come funziona</div>
+      <h3>Un percorso.<br>Tutto il giro.</h3>
+      <p>Il giro tra comprensori, i tre passi e tutte le funzioni.</p>
+      <span class="go">Apri</span>
+    </a>
+    <a class="door" href="/aree/">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L9 9 L13 15 L16 11 L21 20 Z"/><path d="M7.5 12 L9 9 L10.5 11.5"/></svg></span>
+      <div class="eyebrow">Aree</div>
+      <h3>Cinque aree<br>al lancio.</h3>
+      <p>Dolomiti Superski, Ovindoli, Campo Felice, Vialattea e Livigno.</p>
+      <span class="go">Apri</span>
+    </a>
+    <a class="door" href="/domande/">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5 a2.5 2.5 0 1 1 3.5 2.3 c-.7 .3 -1 .8 -1 1.5 V14"/><path d="M12 17 h.01"/></svg></span>
+      <div class="eyebrow">Domande</div>
+      <h3>Domande<br>e risposte.</h3>
+      <p>Quando esce, iPhone, rete, lingue, posizione.</p>
+      <span class="go">Apri</span>
+    </a>
+  </div>
+</section>
+
+<section class="sec" id="privacy-in-breve" aria-labelledby="h-trust">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="disc"></span>Privacy</div>
+      <h2 id="h-trust">La tua posizione<br><em>resta tua.</em></h2>
+    </div>
     <ul class="cols4">
       <li class="col"><h3>GPS sul telefono</h3><p>La posizione GPS resta sul telefono.</p></li>
       <li class="col"><h3>Diagnostica solo con il consenso</h3><p>I dati di diagnostica partono solo se dai il consenso.</p></li>
       <li class="col"><h3>Account facoltativo</h3><p>Puoi usare Ski Maps senza account. <span class="todo">[DA CONFERMARE: account facoltativo nella v1?]</span></p></li>
-      <li class="col"><h3>Cancellazione dell’account</h3><p>Se hai un account, puoi eliminarlo: <a href="elimina-account.html">come fare</a>.</p></li>
+      <li class="col"><h3>Cancellazione dell’account</h3><p>Se hai un account, puoi eliminarlo: <a href="/elimina-account.html">come fare</a>.</p></li>
     </ul>
-    <p class="more"><a class="btn ghost" href="privacy.html">Leggi l’informativa privacy</a></p>
-  </div></div>
-  <div class="view-nav"><div class="wrap">
-    <a href="#funzioni" class="prev"><small>← Tratta precedente</small><b>Funzioni</b></a>
-    <a href="#dove" class="next"><small>Prossima tratta →</small><b>Dove</b></a>
-  </div></div>
+    <p class="more"><a class="btn ghost" href="/privacy.html">Leggi l’informativa privacy</a></p>
+  </div>
 </section>
-<section class="view" id="view-dove" data-title="Dove funziona · Ski Maps" aria-labelledby="h-dove">
-  <div class="view-head"><div class="wrap">
-    <div class="eyebrow"><span class="disc"></span>Dove funziona</div>
-    <h2 id="h-dove">Cinque aree<br>al lancio.</h2>
-    <p class="lede measure">Al lancio Ski Maps funziona in Dolomiti Superski, Ovindoli, Campo Felice, Vialattea e Livigno.</p>
-  </div></div>
-  <div class="view-body tint"><div class="wrap">
-    <ul class="regions">
-      <li class="now"><span class="k">Al lancio</span><b>Dolomiti Superski</b><span>Compresi Sellaronda, Cortina – Alta Badia e Fassa – Fiemme.</span></li>
-      <li><b>Ovindoli</b></li>
-      <li><b>Campo Felice</b></li>
-      <li><b>Vialattea</b><span>Con Bardonecchia.</span></li>
-      <li><b>Livigno</b></li>
 
-    </ul>
-    <p class="mapcredit">Dati mappa: <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
-  </div></div>
-  <div class="view-nav"><div class="wrap">
-    <a href="#fiducia" class="prev"><small>← Tratta precedente</small><b>Privacy</b></a>
-    <a href="#domande" class="next"><small>Prossima tratta →</small><b>Domande</b></a>
-  </div></div>
-</section>
-<section class="view" id="view-domande" data-title="Domande frequenti · Ski Maps" aria-labelledby="h-domande">
-  <div class="view-head"><div class="wrap">
-    <div class="eyebrow"><span class="disc"></span>Domande frequenti</div>
-    <h2 id="h-domande">Domande.</h2>
-  </div></div>
-  <div class="view-body"><div class="wrap">
-    <div class="faq">
-      <details><summary>Quando esce?</summary><p>È in arrivo su Google Play. Lascia la tua email qui sotto e ti avvisiamo quando esce.</p></details>
-      <details><summary>C’è anche per iPhone?</summary><p>La versione per iOS arriverà in seguito.</p></details>
-      <details><summary>Funziona senza rete?</summary><p>Sì. Mappe e percorsi si scaricano prima e funzionano anche offline.</p></details>
-      <details><summary>Devo guardare il telefono mentre scio?</summary><p>No. Con la guida vocale le indicazioni arrivano a voce, e la navigazione continua con il telefono in tasca.</p></details>
-      <details><summary>E se un impianto chiude?</summary><p>Ski Maps conosce chiusure e orari degli impianti e ti avvisa se riesci a tornare in tempo.</p></details>
-      <details><summary>Va bene anche per chi inizia?</summary><p>Sì. Scegli il livello principiante e il percorso segue quello.</p></details>
-      <details><summary>In che lingue è?</summary><p>Italiano, inglese, tedesco, francese e spagnolo.</p></details>
-      <details><summary>Dove finisce la mia posizione?</summary><p>Resta sul telefono. La diagnostica parte solo con il tuo consenso. Dettagli nell’<a href="privacy.html">informativa privacy</a>.</p></details>
-    </div>
-  </div></div>
-  <div class="view-nav"><div class="wrap">
-    <a href="#dove" class="prev"><small>← Tratta precedente</small><b>Dove</b></a>
-    <a href="#avvisami" class="next"><small>Prossima tratta →</small><b>Avvisami quando esce</b></a>
-  </div></div>
-</section>
-<section class="view" id="view-avvisami" data-title="Avvisami quando esce · Ski Maps" aria-labelledby="h-avvisami">
+<section class="sec" id="avvisami" aria-labelledby="h-wl">
   <div class="beta">
     <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/></svg>
     <div class="wrap">
       <div class="eyebrow"><span class="disc amber"></span>In arrivo su Google Play</div>
-      <h2 id="h-avvisami">Avvisami quando esce.</h2>
+      <h2 id="h-wl">Avvisami quando esce.</h2>
       <p class="lede measure">Lascia la tua email: ti scriviamo quando Ski Maps è disponibile su Google Play. La versione per iOS arriverà in seguito.</p>
       <form id="beta-form" novalidate>
         <label for="email" class="sr-only">La tua email</label>
@@ -325,20 +178,9 @@
       <p class="ok" id="beta-mailto" role="status" hidden>Si è aperto il tuo programma di posta: l’iscrizione parte quando premi <b>Invia</b>. Non si è aperto? Scrivici a <a href="mailto:chris.business.skimap@gmail.com?subject=Ski%20Maps%3A%20avvisami%20quando%20esce" style="color:inherit">chris.business.skimap@gmail.com</a>.</p>
       <p class="ok warn" id="beta-invalid" role="alert" hidden>Serve un indirizzo email valido.</p>
       <p class="ok warn" id="beta-err" role="alert" hidden>Non siamo riusciti a registrare l’iscrizione. Scrivici a <a href="mailto:chris.business.skimap@gmail.com?subject=Ski%20Maps%3A%20avvisami%20quando%20esce" style="color:inherit">chris.business.skimap@gmail.com</a>.</p>
-      <p class="fine" id="beta-fine">Niente newsletter: la tua email serve solo per avvisarti dell’uscita. <a href="privacy.html" style="color:inherit">Informativa privacy</a>.</p>
-      <div class="contact" id="impianti">
-        <div>
-          <div class="eyebrow"><span class="disc"></span>Per le società impianti</div>
-          <p><b style="color:#fff">Gestite impianti?</b> Se gestite un comprensorio e volete parlare di una possibile collaborazione, scriveteci.</p>
-        </div>
-        <a class="mail" href="mailto:chris.business.skimap@gmail.com?subject=Ski%20Maps%20%C2%B7%20societ%C3%A0%20impianti">chris.business.skimap@gmail.com</a>
-      </div>
+      <p class="fine" id="beta-fine">Niente newsletter: la tua email serve solo per avvisarti dell’uscita. <a href="/privacy.html" style="color:inherit">Informativa privacy</a>.</p>
     </div>
   </div>
-  <div class="view-nav"><div class="wrap">
-    <a href="#domande" class="prev"><small>← Tratta precedente</small><b>Domande</b></a>
-    <a href="#home" class="next"><small>Rientro a valle →</small><b>Home</b></a>
-  </div></div>
 </section>
 
 </main>
@@ -347,22 +189,19 @@
   <div class="wrap">
     <span class="season">© 2026 Ski Maps</span>
     <nav aria-label="Piè di pagina">
-      <a href="privacy.html">Informativa privacy</a>
-      <a href="elimina-account.html">Elimina account</a>
-      <a href="#impianti">Per le società impianti</a>
+      <a href="/privacy.html">Informativa privacy</a>
+      <a href="/elimina-account.html">Elimina account</a>
+      <a href="/aree/#impianti">Per le società impianti</a>
     </nav>
     <span>Contatti: <a href="mailto:chris.business.skimap@gmail.com">chris.business.skimap@gmail.com</a></span>
-    <span>Dati mappa © OpenStreetMap contributors, licenza ODbL · Mappe di sfondo nell’app © MapTiler · Rilievo: INGV TINITALY e Copernicus EU-DEM (dati modificati) · Orari: open data STA Südtirolmobil e Trentino Trasporti · <a href="privacy.html#fonti">Fonti e licenze</a></span>
+    <span>Dati mappa © OpenStreetMap contributors, licenza ODbL · Mappe di sfondo nell’app © MapTiler · Rilievo: INGV TINITALY e Copernicus EU-DEM (dati modificati) · Orari: open data STA Südtirolmobil e Trentino Trasporti · <a href="/privacy.html#fonti">Fonti e licenze</a></span>
   </div>
 </footer>
 
-<script src="assets/vendor/three.min.js" defer></script>
-<script src="assets/graph-data.js" defer></script>
-<script src="assets/config.js" defer></script>
 <script>
 window.SKIMAP_T = {
   siteTitle: 'Ski Maps · Navigatore GPS per sciatori',
-  pages: { 'privacy': 'privacy.html', 'elimina-account': 'elimina-account.html', 'delete-account': 'elimina-account.html' },
+  redirects: {"giro":"/come-funziona/","come-funziona":"/come-funziona/","funzioni":"/come-funziona/","pensata":"/come-funziona/","dove":"/aree/","mondo":"/aree/","pilot":"/aree/","motore":"/aree/","impianti":"/aree/#impianti","domande":"/domande/","fiducia":"#privacy-in-breve","beta":"#avvisami","privacy":"/privacy.html","elimina-account":"/elimina-account.html","delete-account":"/elimina-account.html"},
   decimal: ',', thousands: '.',
   routeUnavailable: 'Percorso non disponibile', indirect: ' · percorso indiretto',
   easyOnly: 'Solo piste facili', easyMedium: 'Facili + medie',
@@ -378,7 +217,11 @@ window.SKIMAP_T = {
   }
 };
 </script>
-<script src="assets/app.js" defer></script>
-<script src="assets/beta.js" defer></script>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/vendor/three.min.js" defer></script>
+<script src="/assets/graph-data.js" defer></script>
+<script src="/assets/config.js" defer></script>
+<script src="/assets/map3d.js" defer></script>
+<script src="/assets/beta.js" defer></script>
 </body>
 </html>
