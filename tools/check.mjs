@@ -15,7 +15,7 @@ const errors = [], warns = [];
 const err = (m) => errors.push(m), warn = (m) => warns.push(m);
 const read = (p) => readFileSync(join(root, p), 'utf8');
 
-const ids = {}, hashRoutes = []; // la home è una pagina unica: ogni ancora deve esistere come id
+const ids = {}, hashRoutes = ['home', 'giro', 'come-funziona', 'funzioni', 'fiducia', 'dove', 'domande', 'avvisami', 'pensata', 'mondo', 'pilot', 'motore', 'beta'];
 for (const p of PAGES) {
   if (!existsSync(join(root, p))) { err(`manca ${p}`); continue; }
   const h = read(p);
@@ -50,14 +50,14 @@ for (const p of PAGES) {
   }
   for (const m of h.matchAll(/href="#([^"]+)"/g)) {
     const id = m[1];
-    if (!ids[p].has(id)) err(`${p}: ancora locale #${id} non esiste`);
+    if (!ids[p].has(id) && !(p.endsWith('index.html') && hashRoutes.includes(id))) err(`${p}: ancora locale #${id} non esiste`);
   }
   const todo = (h.match(/\[DA CONFERMARE/g) || []).length;
   if (todo) { if (RELEASE) err(`${p}: ${todo} segnaposto [DA CONFERMARE] ancora da risolvere`); else warn(`${p}: ${todo} segnaposto [DA CONFERMARE]`); }
   if (LIST) for (const m of h.matchAll(/\[DA CONFERMARE: ([^\]]*)\]/g)) console.log(`${p}\t${m[1].replace(/<[^>]+>/g, '')}`);
 }
 // parità IT/EN: stesse sezioni, stesse ancore
-const sec = (p) => [...read(p).matchAll(/<section class="sec[^"]*" id="([^"]+)"/g)].map((m) => m[1]).join(',');
+const sec = (p) => [...read(p).matchAll(/<section class="view[^"]*" id="([^"]+)"/g)].map((m) => m[1]).join(',');
 if (sec('index.html') !== sec('en/index.html')) err('sezioni diverse tra index.html e en/index.html');
 for (const [a, b] of [['privacy.html', 'en/privacy.html'], ['elimina-account.html', 'en/delete-account.html']]) {
   const cnt = (p) => [(read(p).match(/<h3/g) || []).length, (read(p).match(/\[DA CONFERMARE/g) || []).length].join('/');

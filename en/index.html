@@ -30,9 +30,9 @@
 <meta name="twitter:image" content="https://skimaps.cc/assets/og-image.png">
 <link rel="stylesheet" href="../assets/fonts.css">
 <link rel="stylesheet" href="../assets/site.css">
-<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
+<noscript><style>.view{display:block}.menu-btn,.mobile-menu,.view-nav{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
 </head>
-<body class="onepage">
+<body class="site">
 
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" id="nav">
@@ -42,32 +42,31 @@
       Ski Maps
     </a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#giro">The tour</a>
-      <a href="#come-funziona">How it works</a>
-      <a href="#funzioni">Features</a>
-      <a href="#fiducia">Privacy</a>
-      <a href="#dove">Where</a>
-      <a href="#domande">FAQ</a>
+      <a href="#giro" data-nav="giro">The tour</a>
+      <a href="#come-funziona" data-nav="come-funziona">How it works</a>
+      <a href="#funzioni" data-nav="funzioni">Features</a>
+      <a href="#fiducia" data-nav="fiducia">Privacy</a>
+      <a href="#dove" data-nav="dove">Where</a>
+      <a href="#domande" data-nav="domande">FAQ</a>
     </nav>
     <a class="btn primary" href="#avvisami">Notify me</a>
     <a class="langsw" href="../" hreflang="it" lang="it" aria-label="Versione italiana" data-base="../">IT</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menu</button>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="Sections">
-    <a href="#giro">The tour</a>
-    <a href="#come-funziona">How it works</a>
-    <a href="#funzioni">Features</a>
-    <a href="#fiducia">Privacy</a>
-    <a href="#dove">Where</a>
-    <a href="#domande">FAQ</a>
-    <a href="#avvisami">Notify me at launch</a>
+    <a href="#giro" data-nav="giro">The tour</a>
+    <a href="#come-funziona" data-nav="come-funziona">How it works</a>
+    <a href="#funzioni" data-nav="funzioni">Features</a>
+    <a href="#fiducia" data-nav="fiducia">Privacy</a>
+    <a href="#dove" data-nav="dove">Where</a>
+    <a href="#domande" data-nav="domande">FAQ</a>
+    <a href="#avvisami" data-nav="avvisami">Notify me at launch</a>
   </nav>
 </header>
 
 <main id="main" tabindex="-1">
 
-<!-- 1 · HERO -->
-<section class="sec" id="home" aria-labelledby="h-home">
+<section class="view" id="view-home" data-title="Ski Maps · GPS Navigator for Skiers" aria-labelledby="h-home">
   <div class="hero" id="hero">
     <canvas id="net" role="img" aria-label="Demo 3D preview of the Sella group with pistes and lifts: tap a station to see a sample route for each level"></canvas>
     <div class="veil"></div>
@@ -85,7 +84,7 @@
           <a class="btn ghost" href="#come-funziona">How it works</a>
         </div>
         <p class="store">Coming soon to Google Play · iOS later</p>
-        <p class="trustline"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 16 19 12 21 C8 19 5 15.5 5 11 V6 Z"/><path d="M9 12 L11 14 L15 10"/></svg>Your GPS location stays on your phone. <a href="privacy.html">Privacy notice</a></p>
+        <p class="trustline"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 16 19 12 21 C8 19 5 15.5 5 11 V6 Z"/><path d="M9 12 L11 14 L15 10"/></svg>Your GPS location stays on your phone. <a href="#fiducia">Privacy</a></p>
         <div class="hint"><i></i>Preview: tap a station on the mountain</div>
       </div>
 
@@ -106,42 +105,97 @@
     </div>
   </div>
   <p class="mapcredit phone-only">Map data: <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
-</section>
 
-<!-- 2 · PER TUTTO IL GIRO -->
-<section class="sec dark" id="giro" aria-labelledby="h-giro">
-  <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/></svg>
-  <div class="wrap split">
-    <div>
-      <div class="eyebrow"><span class="disc"></span>For the whole tour</div>
-      <h2 id="h-giro">One route.<br><em>The whole tour.</em></h2>
-      <p class="lede measure">The best tours run from one ski area to the next. Ski Maps keeps them together in a single route, including the buses and trains that connect them.</p>
-      <div class="pillars">
-        <div class="pillar"><span class="k">The problem</span><h3>Stuck halfway round</h3><p>Between ski areas it is not always clear which piste, lift or bus takes you onward or back.</p></div>
-        <div class="pillar"><span class="k">With Ski Maps</span><h3>You always know the next step</h3><p>From where you are to where you want to be: pistes, lifts, buses and trains, one after another.</p></div>
-      </div>
-      <h3 class="listh">Tours across ski areas</h3>
-      <ul class="tours">
+  <div class="doors">
+    <div class="wrap">
+      <a class="door" href="#giro">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L9 9 L13 15 L16 11 L21 20 Z"/><path d="M7.5 12 L9 9 L10.5 11.5"/></svg></span>
+        <div class="eyebrow">For the whole tour</div>
+        <h3>One route.<br>The whole tour.</h3>
+        <p>From one ski area to the next, with the buses and trains between them.</p>
+        <span class="go">Open</span>
+      </a>
+      <a class="door" href="#come-funziona">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 V21"/><path d="M5 5 H17 L20 8 L17 11 H5 Z"/><path d="M19 13 H8 L5 16 L8 19 H19 Z"/></svg></span>
+        <div class="eyebrow">How it works</div>
+        <h3>Three steps.<br>Then ski.</h3>
+        <p>Choose where to go, choose your level, follow the directions.</p>
+        <span class="go">Open</span>
+      </a>
+      <a class="door" href="#funzioni">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9 H8 L13 5 V19 L8 15 H4 Z"/><path d="M16.5 9 a4 4 0 0 1 0 6"/><path d="M19 6.5 a7.5 7.5 0 0 1 0 11"/></svg></span>
+        <div class="eyebrow">Features</div>
+        <h3>What it does,<br>on the snow.</h3>
+        <p>Levels, lift hours, voice guidance, offline.</p>
+        <span class="go">Open</span>
+      </a>
+      <a class="door" href="#fiducia">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="13" rx="2"/><path d="M4 12 H20 V20 a2 2 0 0 1 -2 2 H6 a2 2 0 0 1 -2 -2 Z"/></svg></span>
+        <div class="eyebrow">Privacy and trust</div>
+        <h3>Your location<br>stays yours.</h3>
+        <p>GPS stays on your phone. Diagnostics only with consent.</p>
+        <span class="go">Open</span>
+      </a>
+      <a class="door" href="#dove">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 V15"/><path d="M7 10 L12 15 L17 10"/><path d="M4 19 H20"/></svg></span>
+        <div class="eyebrow">Where it works</div>
+        <h3>Starting<br>in the Dolomites.</h3>
+        <p>Dolomiti Superski. More areas coming.</p>
+        <span class="go">Open</span>
+      </a>
+      <a class="door" href="#domande">
+        <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5 H16 a2 2 0 0 1 2 2 V13 a2 2 0 0 1 -2 2 H10 L6 19 V15 H4 a2 2 0 0 1 -2 -2 V7 a2 2 0 0 1 2 -2 Z"/><path d="M7 9 H13 M7 12 H11"/></svg></span>
+        <div class="eyebrow">FAQ</div>
+        <h3>Questions<br>and answers.</h3>
+        <p>Launch, iPhone, signal, languages.</p>
+        <span class="go">Open</span>
+      </a>
+    </div>
+  </div>
+  <div class="ctaband"><div class="wrap">
+    <p>Ski Maps is coming soon to Google Play. We will let you know when it is out.</p>
+    <a class="btn primary" href="#avvisami">Notify me at launch</a>
+  </div></div>
+</section>
+<section class="view" id="view-giro" data-title="For the whole tour · Ski Maps" aria-labelledby="h-giro">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc"></span>For the whole tour</div>
+    <h2 id="h-giro">One route.<br><em>The whole tour.</em></h2>
+    <p class="lede measure">The best tours run from one ski area to the next. Ski Maps keeps them together in a single route, including the buses and trains that connect them.</p>
+  </div></div>
+  <div class="sec dark">
+    <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/></svg>
+    <div class="wrap split">
+      <div>
+        <div class="pillars">
+          <div class="pillar"><span class="k">The problem</span><h3>Stuck halfway round</h3><p>Between ski areas it is not always clear which piste, lift or bus takes you onward or back.</p></div>
+          <div class="pillar"><span class="k">With Ski Maps</span><h3>You always know the next step</h3><p>From where you are to where you want to be: pistes, lifts, buses and trains, one after another.</p></div>
+        </div>
+        <h3 class="listh">Tours across ski areas</h3>
+        <ul class="tours">
           <li><b>Sellaronda</b><span>The tour around the Sella</span></li>
           <li><b>Cortina – Alta Badia</b><span>Between Ampezzo and Badia</span></li>
           <li><b>Fassa – Fiemme</b><span>Between the two valleys</span></li>
           <li><b>Buses and trains</b><span>The links between ski areas</span></li>
-      </ul>
-    </div>
-    <div class="shotcol">
-      <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="The Sellaronda route card in the app"><span>[SCREENSHOT: scheda del percorso Sellaronda]</span><small>1080 × 2340 px</small></div><figcaption>The Sellaronda route card in the app</figcaption></figure>
+        </ul>
+      </div>
+      <div class="shotcol">
+        <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="The Sellaronda route card in the app"><span>[SCREENSHOT: scheda del percorso Sellaronda]</span><small>1080 × 2340 px</small></div><figcaption>The Sellaronda route card in the app</figcaption></figure>
+      </div>
     </div>
   </div>
+  <div class="view-nav"><div class="wrap">
+    <a href="#home" class="prev"><small>← Previous leg</small><b>Home</b></a>
+    <a href="#come-funziona" class="next"><small>Next leg →</small><b>How it works</b></a>
+  </div></div>
 </section>
-
-<!-- 3 · COME FUNZIONA -->
-<section class="sec" id="come-funziona" aria-labelledby="h-how">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="disc"></span>How it works</div>
-      <h2 id="h-how">Three steps.<br>Then ski.</h2>
-      <p class="lede measure">Choose where to go, choose your level, follow the directions.</p>
-    </div>
+<section class="view" id="view-come-funziona" data-title="How it works · Ski Maps" aria-labelledby="h-come-funziona">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc"></span>How it works</div>
+    <h2 id="h-come-funziona">Three steps.<br>Then ski.</h2>
+    <p class="lede measure">Choose where to go, choose your level, follow the directions.</p>
+  </div></div>
+  <div class="view-body"><div class="wrap">
     <ol class="steps">
       <li class="step">
         <div class="num"><span class="pnum blue" aria-hidden="true">1</span><small>Step 1</small></div>
@@ -162,18 +216,19 @@
         <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="Navigation showing the piste name and colour"><span>[SCREENSHOT: navigazione in corso con l’istruzione «nome e colore della pista»]</span><small>1080 × 2340 px</small></div><figcaption>Navigation showing the piste name and colour</figcaption></figure>
       </li>
     </ol>
-  </div>
+  </div></div>
+  <div class="view-nav"><div class="wrap">
+    <a href="#giro" class="prev"><small>← Previous leg</small><b>The tour</b></a>
+    <a href="#funzioni" class="next"><small>Next leg →</small><b>Features</b></a>
+  </div></div>
 </section>
-
-<!-- 4 · FUNZIONI -->
-<section class="sec tint" id="funzioni" aria-labelledby="h-feat">
-  <span class="anchor" id="pensata"></span>
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="disc"></span>Features</div>
-      <h2 id="h-feat">What it does,<br>on the snow.</h2>
-      <p class="lede measure">Features already tested on the phone.</p>
-    </div>
+<section class="view" id="view-funzioni" data-title="Features · Ski Maps" aria-labelledby="h-funzioni">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc"></span>Features</div>
+    <h2 id="h-funzioni">What it does,<br>on the snow.</h2>
+    <p class="lede measure">Features already tested on the phone.</p>
+  </div></div>
+  <div class="view-body tint"><div class="wrap">
     <ul class="features">
       <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L9 9 L13 15 L16 11 L21 20 Z"/><path d="M7.5 12 L9 9 L10.5 11.5"/></svg></span><h3>Routes by level</h3><p>Beginner, intermediate or advanced: you choose, the route adapts.</p></li>
       <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7 V12 L15.5 14"/></svg></span><h3>Lift closures and hours</h3><p>The app knows lift closures and opening hours and tells you whether you can get back in time.</p></li>
@@ -183,17 +238,19 @@
       <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 V21"/><path d="M5 5 H17 L20 8 L17 11 H5 Z"/><path d="M19 13 H8 L5 16 L8 19 H19 Z"/></svg></span><h3>Piste name and colour</h3><p>Every direction gives the name of the piste and its colour.</p></li>
       <li class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5 H16 a2 2 0 0 1 2 2 V13 a2 2 0 0 1 -2 2 H10 L6 19 V15 H4 a2 2 0 0 1 -2 -2 V7 a2 2 0 0 1 2 -2 Z"/><path d="M7 9 H13 M7 12 H11"/></svg></span><h3>In five languages</h3><p>Italian, English, German, French and Spanish.</p></li>
     </ul>
-  </div>
+  </div></div>
+  <div class="view-nav"><div class="wrap">
+    <a href="#come-funziona" class="prev"><small>← Previous leg</small><b>How it works</b></a>
+    <a href="#fiducia" class="next"><small>Next leg →</small><b>Privacy</b></a>
+  </div></div>
 </section>
-
-<!-- 5 · PRIVACY E FIDUCIA -->
-<section class="sec" id="fiducia" aria-labelledby="h-trust">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="disc"></span>Privacy and trust</div>
-      <h2 id="h-trust">Your location<br><em>stays yours.</em></h2>
-      <p class="lede measure">Ski Maps guides you with your phone’s GPS, and your location stays there.</p>
-    </div>
+<section class="view" id="view-fiducia" data-title="Privacy and trust · Ski Maps" aria-labelledby="h-fiducia">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc"></span>Privacy and trust</div>
+    <h2 id="h-fiducia">Your location<br><em>stays yours.</em></h2>
+    <p class="lede measure">Ski Maps guides you with your phone’s GPS, and your location stays there.</p>
+  </div></div>
+  <div class="view-body"><div class="wrap">
     <ul class="cols4">
       <li class="col"><h3>GPS on your phone</h3><p>Your GPS location stays on your phone.</p></li>
       <li class="col"><h3>Diagnostics only with consent</h3><p>Diagnostic data is sent only if you give your consent.</p></li>
@@ -201,33 +258,36 @@
       <li class="col"><h3>Account deletion</h3><p>If you have an account, you can delete it: <a href="delete-account.html">how</a>.</p></li>
     </ul>
     <p class="more"><a class="btn ghost" href="privacy.html">Read the privacy notice</a></p>
-  </div>
+  </div></div>
+  <div class="view-nav"><div class="wrap">
+    <a href="#funzioni" class="prev"><small>← Previous leg</small><b>Features</b></a>
+    <a href="#dove" class="next"><small>Next leg →</small><b>Where</b></a>
+  </div></div>
 </section>
-
-<!-- 6 · DOVE FUNZIONA -->
-<section class="sec tint" id="dove" aria-labelledby="h-where">
-  <span class="anchor" id="mondo"></span><span class="anchor" id="pilot"></span><span class="anchor" id="motore"></span>
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="disc"></span>Where it works</div>
-      <h2 id="h-where">Starting<br>in the Dolomites.</h2>
-      <p class="lede measure">At launch Ski Maps covers Dolomiti Superski. More areas are coming.</p>
-    </div>
+<section class="view" id="view-dove" data-title="Where it works · Ski Maps" aria-labelledby="h-dove">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc"></span>Where it works</div>
+    <h2 id="h-dove">Starting<br>in the Dolomites.</h2>
+    <p class="lede measure">At launch Ski Maps covers Dolomiti Superski. More areas are coming.</p>
+  </div></div>
+  <div class="view-body tint"><div class="wrap">
     <ul class="regions">
       <li class="now"><span class="k">Available</span><b>Dolomiti Superski</b><span>Including Sellaronda, Cortina – Alta Badia and Fassa – Fiemme.</span></li>
       <li><span class="k">Coming</span><b>More areas</b><span>More areas coming. <span class="todo">[DA CONFERMARE: quali altre aree includere al lancio]</span></span></li>
     </ul>
     <p class="mapcredit">Map data: <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
-  </div>
+  </div></div>
+  <div class="view-nav"><div class="wrap">
+    <a href="#fiducia" class="prev"><small>← Previous leg</small><b>Privacy</b></a>
+    <a href="#domande" class="next"><small>Next leg →</small><b>FAQ</b></a>
+  </div></div>
 </section>
-
-<!-- 7 · DOMANDE FREQUENTI -->
-<section class="sec" id="domande" aria-labelledby="h-faq">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow"><span class="disc"></span>Frequently asked questions</div>
-      <h2 id="h-faq">Questions.</h2>
-    </div>
+<section class="view" id="view-domande" data-title="FAQ · Ski Maps" aria-labelledby="h-domande">
+  <div class="view-head"><div class="wrap">
+    <div class="eyebrow"><span class="disc"></span>Frequently asked questions</div>
+    <h2 id="h-domande">Questions.</h2>
+  </div></div>
+  <div class="view-body"><div class="wrap">
     <div class="faq">
       <details><summary>When is it out?</summary><p>It is coming soon to Google Play. Leave your email below and we will let you know when it is out.</p></details>
       <details><summary>Is there an iPhone version?</summary><p>The iOS version will follow later.</p></details>
@@ -238,17 +298,18 @@
       <details><summary>Which languages?</summary><p>Italian, English, German, French and Spanish.</p></details>
       <details><summary>Where does my location go?</summary><p>It stays on your phone. Diagnostics are sent only with your consent. Details in the <a href="privacy.html">privacy notice</a>.</p></details>
     </div>
-  </div>
+  </div></div>
+  <div class="view-nav"><div class="wrap">
+    <a href="#dove" class="prev"><small>← Previous leg</small><b>Where</b></a>
+    <a href="#avvisami" class="next"><small>Next leg →</small><b>Notify me at launch</b></a>
+  </div></div>
 </section>
-
-<!-- LISTA D'ATTESA (destinazione del pulsante dell'hero) + 8 · PER LE SOCIETÀ IMPIANTI -->
-<section class="sec" id="avvisami" aria-labelledby="h-wl">
-  <span class="anchor" id="beta"></span>
+<section class="view" id="view-avvisami" data-title="Notify me at launch · Ski Maps" aria-labelledby="h-avvisami">
   <div class="beta">
     <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/></svg>
     <div class="wrap">
       <div class="eyebrow"><span class="disc amber"></span>Coming soon to Google Play</div>
-      <h2 id="h-wl">Notify me at launch.</h2>
+      <h2 id="h-avvisami">Notify me at launch.</h2>
       <p class="lede measure">Leave your email: we will write to you when Ski Maps is available on Google Play. The iOS version will follow later.</p>
       <form id="beta-form" novalidate>
         <label for="email" class="sr-only">Your email</label>
@@ -270,11 +331,14 @@
       </div>
     </div>
   </div>
+  <div class="view-nav"><div class="wrap">
+    <a href="#domande" class="prev"><small>← Previous leg</small><b>FAQ</b></a>
+    <a href="#home" class="next"><small>Back to the valley →</small><b>Home</b></a>
+  </div></div>
 </section>
 
 </main>
 
-<!-- 9 · FOOTER -->
 <footer>
   <div class="wrap">
     <span class="season">© 2026 Ski Maps</span>

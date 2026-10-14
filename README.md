@@ -7,12 +7,12 @@ Sito statico in italiano e inglese, senza cookie né strumenti di tracciamento, 
 
 | Pagina IT | Pagina EN | Contenuto |
 |---|---|---|
-| `index.html` | `en/index.html` | home a pagina unica: `#home`, `#giro`, `#come-funziona`, `#funzioni`, `#fiducia`, `#dove`, `#domande`, `#avvisami` (con `#impianti`) |
+| `index.html` | `en/index.html` | sito a sezioni che si aprono al clic: `#home` (mappa 3D + porte), `#giro`, `#come-funziona`, `#funzioni`, `#fiducia`, `#dove`, `#domande`, `#avvisami` (con `#impianti`) |
 | `privacy.html` | `en/privacy.html` | informativa privacy (versione 5) |
 | `elimina-account.html` | `en/delete-account.html` | come eliminare l'account |
 
 I vecchi indirizzi `/#privacy` e `/#elimina-account` (EN: `/en/#privacy`, `/en/#delete-account`) portano alle pagine a sé.
-Le vecchie sezioni restano come ancore: `#pensata` → Funzioni, `#mondo`/`#pilot`/`#motore` → Dove funziona, `#beta` → Avvisami.
+Le vecchie sezioni portano a quelle nuove: `#pensata` → Funzioni, `#mondo`/`#pilot`/`#motore` → Dove funziona, `#beta` → Avvisami.
 I riquadri `[SCREENSHOT: …]` sono segnaposto: vanno sostituiti con le schermate vere dell'app.
 
 - `assets/`: CSS, JS, font (`fonts/`), three.js (`vendor/`), dati del grafo (`graph-data.js`), icone e immagine social.
