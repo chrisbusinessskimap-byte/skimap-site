@@ -511,3 +511,7 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .nav-links a[aria-current]{background:var(--ink); color:var(--bg)}
 /* parola in evidenza nei titoli su fondo chiaro: sottolineatura ambra come nella home (contrasto pieno) */
 .view-head h2 em{font-style:normal; color:var(--ink); background:linear-gradient(transparent 58%, var(--accent) 58%, var(--accent) 94%, transparent 94%); padding:0 .04em}
+.site .regions{grid-template-columns:repeat(3,1fr); max-width:none}
+.site .regions li.now{grid-column:span 2}
+@media (max-width:900px){ .site .regions{grid-template-columns:1fr 1fr} .site .regions li.now{grid-column:1 / -1} }
+@media (max-width:520px){ .site .regions{grid-template-columns:1fr} }

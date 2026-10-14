@@ -31,7 +31,7 @@ python3 -m http.server 8000     # anteprima su http://localhost:8000
 
 ## Regole del sito
 - Nome: **Ski Maps**. Nessun numero di utenti, recensioni, premi, partner o date d'uscita; nessun concorrente nominato; niente superlativi né gergo tecnico.
-- Disponibilità: «In arrivo su Google Play», iOS «in seguito». Aree: solo Dolomiti Superski + «altre aree in arrivo» finché non confermate.
+- Disponibilità: «In arrivo su Google Play», iOS «in seguito». Aree al lancio: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea (con Bardonecchia), Livigno.
 - Dove compare una mappa: attribuzione «© OpenStreetMap contributors».
 - Nessun cookie né analytics senza una richiesta esplicita.
 - Le pagine IT e EN vanno tenute allineate (stesse sezioni): `tools/check.mjs` lo controlla.
