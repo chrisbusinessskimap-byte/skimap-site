@@ -124,15 +124,17 @@ export default {
 
   about: {
     title: 'Chi siamo · Ski Maps',
-    desc: 'Chi c’è dietro Ski Maps: Christian, 22 anni, di Roma, studente di laurea magistrale.',
+    desc: 'Chi c’è dietro Ski Maps: Christian, 22 anni, di Roma. Ingegneria energetica alle spalle, oggi la laurea magistrale in Strategic Management alla LUISS Guido Carli.',
     eyebrow: 'Chi siamo', h1: 'Dietro<br><em>Ski Maps.</em>',
     paras: [
-      'Ski Maps è il progetto di <strong>Christian</strong>: 22 anni, romano, studente di laurea magistrale.',
+      'Ski Maps è il progetto di <strong>Christian</strong>, 22 anni, di Roma.',
+      'Viene dall’ingegneria energetica e oggi frequenta la laurea magistrale in Strategic Management alla LUISS Guido Carli: competenze tecniche e visione di prodotto, messe al servizio di chi scia.',
       'Lo sviluppa con un obiettivo chiaro: dare a chi scia un navigatore che lo porti dove vuole arrivare, pista dopo pista e impianto dopo impianto, ovunque si trovi.',
       'Si parte dalle cinque aree del lancio. Il traguardo sono le piste di tutto il mondo.',
     ],
+    photoAlt: 'Foto di Christian, che sviluppa Ski Maps',
     write: 'Vuoi scrivergli?',
-    door: ['Chi siamo', 'Dietro<br>Ski Maps.', 'Christian, 22 anni, di Roma: chi sviluppa Ski Maps.'],
+    door: ['Chi siamo', 'Dietro<br>Ski Maps.', 'Christian, 22 anni, di Roma: ingegneria energetica e Strategic Management alla LUISS.'],
   },
 
   /* testi per la mappa 3D e per il modulo (assets/map3d.js, assets/beta.js) */

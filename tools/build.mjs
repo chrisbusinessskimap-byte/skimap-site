@@ -5,7 +5,7 @@
    Nelle pagine legali scritte a mano (privacy, elimina account) aggiorna SOLO barra in alto,
    piè di pagina e link di ritorno: il testo legale non viene toccato.
    Le pagine generate non vanno modificate a mano: si cambiano i testi in content/ e si rilancia. */
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { ORIGIN, MAIL, LANGS, LANG_ORDER, PAGE_KEYS, LEGAL, fileOf } from './site.mjs';
 
@@ -416,6 +416,8 @@ ${ctaBand(l)}
 }
 
 /* ---------------- chi siamo ---------------- */
+/* la foto compare solo se il file esiste (720 × 900 px, JPEG ottimizzato) */
+const PHOTO = existsSync(join(root, 'assets/team/christian.jpg')) ? '/assets/team/christian.jpg' : '';
 function about(l) {
   const c = C[l], a = c.about;
   const main = `
@@ -423,9 +425,12 @@ ${pageHead(a.eyebrow, a.h1)}
 
 <section class="sec" id="team" aria-label="${attr(a.eyebrow)}">
   <div class="wrap">
-    <div class="about">
-${a.paras.map((p, i) => `      <p${i === 0 ? ' class="lead"' : ''}>${p}</p>`).join('\n')}
-      <p class="write">${a.write} <a href="mailto:${MAIL}?subject=${enc('Ski Maps')}">${MAIL}</a></p>
+    <div class="about${PHOTO ? ' with-photo' : ''}">
+      <div class="about-text">
+${a.paras.map((p, i) => `        <p${i === 0 ? ' class="lead"' : ''}>${p}</p>`).join('\n')}
+        <p class="write">${a.write} <a href="mailto:${MAIL}?subject=${enc('Ski Maps')}">${MAIL}</a></p>
+      </div>${PHOTO ? `
+      <figure class="about-photo"><img src="${PHOTO}" alt="${attr(a.photoAlt)}" width="720" height="900" loading="lazy" decoding="async"></figure>` : ''}
     </div>
   </div>
 </section>

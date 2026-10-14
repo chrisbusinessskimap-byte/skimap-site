@@ -122,15 +122,17 @@ export default {
 
   about: {
     title: 'About · Ski Maps',
-    desc: 'Who is behind Ski Maps: Christian, 22, from Rome, a master’s student.',
+    desc: 'Who is behind Ski Maps: Christian, 22, from Rome. A background in energy engineering, now a master’s in Strategic Management at LUISS Guido Carli.',
     eyebrow: 'About', h1: 'Behind<br><em>Ski Maps.</em>',
     paras: [
-      'Ski Maps is <strong>Christian</strong>’s project: 22, from Rome, a master’s student.',
+      'Ski Maps is the project of <strong>Christian</strong>, 22, from Rome.',
+      'He comes from energy engineering and is now studying for a master’s in Strategic Management at LUISS Guido Carli: technical skills and product vision, put to work for skiers.',
       'He is building it with one clear goal: to give every skier a navigator that takes them where they want to go, piste by piste and lift by lift, wherever they ski.',
       'It starts with the five launch areas. The finish line is every piste in the world.',
     ],
+    photoAlt: 'Photo of Christian, who is building Ski Maps',
     write: 'Want to write to him?',
-    door: ['About', 'Behind<br>Ski Maps.', 'Christian, 22, from Rome: the person building Ski Maps.'],
+    door: ['About', 'Behind<br>Ski Maps.', 'Christian, 22, from Rome: energy engineering and Strategic Management at LUISS.'],
   },
 
   js: {
