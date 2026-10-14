@@ -15,7 +15,7 @@ export default {
     ctaBand: 'Ski Maps is coming soon to Google Play. We will let you know when it is out.',
     shotSize: (w, h) => `${w} × ${h} px`,
   },
-  nav: { how: 'How it works', areas: 'Areas', faq: 'FAQ', privacy: 'Privacy' },
+  nav: { how: 'How it works', areas: 'Areas', faq: 'FAQ', privacy: 'Privacy', about: 'About' },
 
   home: {
     title: 'Ski Maps · GPS Navigator for Skiers',
@@ -118,6 +118,19 @@ export default {
       ['Which languages?', 'Italian, English, German, French and Spanish.'],
       ['Where does my location go?', 'It stays on your phone. Diagnostics are sent only with your consent. Details in the <a href="{privacy}">privacy notice</a>.'],
     ],
+  },
+
+  about: {
+    title: 'About · Ski Maps',
+    desc: 'Who is behind Ski Maps: Christian, 22, from Rome, a master’s student.',
+    eyebrow: 'About', h1: 'Behind<br><em>Ski Maps.</em>',
+    paras: [
+      'Ski Maps is <strong>Christian</strong>’s project: 22, from Rome, a master’s student.',
+      'He is building it with one clear goal: to give every skier a navigator that takes them where they want to go, piste by piste and lift by lift, wherever they ski.',
+      'It starts with the five launch areas. The finish line is every piste in the world.',
+    ],
+    write: 'Want to write to him?',
+    door: ['About', 'Behind<br>Ski Maps.', 'Christian, 22, from Rome: the person building Ski Maps.'],
   },
 
   js: {

@@ -26,6 +26,7 @@ const ICONS = {
   sign: '<path d="M12 3 V21"/><path d="M5 5 H17 L20 8 L17 11 H5 Z"/><path d="M19 13 H8 L5 16 L8 19 H19 Z"/>',
   lang: '<path d="M4 5 H16 a2 2 0 0 1 2 2 V13 a2 2 0 0 1 -2 2 H10 L6 19 V15 H4 a2 2 0 0 1 -2 -2 V7 a2 2 0 0 1 2 -2 Z"/><path d="M7 9 H13 M7 12 H11"/>',
   map: '<path d="M3 6 L9 3 L15 6 L21 3 V18 L15 21 L9 18 L3 21 Z"/><path d="M9 3 V18 M15 6 V21"/>',
+  person: '<circle cx="12" cy="8" r="4"/><path d="M4 21 c0-4.4 3.6-7 8-7 s8 2.6 8 7"/>',
   ask: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5 a2.5 2.5 0 1 1 3.5 2.3 c-.7 .3 -1 .8 -1 1.5 V14"/><path d="M12 17 h.01"/>',
 };
 const icon = (k) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>`;
@@ -77,6 +78,7 @@ function footer(l) {
     <nav aria-label="${c.ui.footer}">
       <a href="${G.privacy}">${c.ui.privacy}</a>
       <a href="${G.delete}">${c.ui.delete}</a>
+      <a href="${P.about}">${c.nav.about}</a>
       <a href="${P.areas}#impianti">${c.ui.biz}</a>
     </nav>
     <span>${c.ui.contact} <a href="mailto:${MAIL}">${MAIL}</a></span>
@@ -236,8 +238,8 @@ ${h.points.map(([k, t, p]) => `      <li class="feat"><span class="ico">${icon(k
 <section class="doors" id="scopri" aria-labelledby="h-doors">
   <h2 id="h-doors" class="sr-only">${h.doorsTitle}</h2>
   <div class="wrap">
-${[['how', 'map'], ['areas', 'level'], ['faq', 'ask']].map(([k, ic]) => {
-    const [ey, t, p] = h.doors[k];
+${[['how', 'map'], ['areas', 'level'], ['faq', 'ask'], ['about', 'person']].map(([k, ic]) => {
+    const [ey, t, p] = k === 'about' ? c.about.door : h.doors[k];
     return `    <a class="door" href="${P[k]}">
       <span class="ico">${icon(ic)}</span>
       <div class="eyebrow">${ey}</div>
@@ -413,6 +415,26 @@ ${ctaBand(l)}
   return page(l, 'faq', main);
 }
 
+/* ---------------- chi siamo ---------------- */
+function about(l) {
+  const c = C[l], a = c.about;
+  const main = `
+${pageHead(a.eyebrow, a.h1)}
+
+<section class="sec" id="team" aria-label="${attr(a.eyebrow)}">
+  <div class="wrap">
+    <div class="about">
+${a.paras.map((p, i) => `      <p${i === 0 ? ' class="lead"' : ''}>${p}</p>`).join('\n')}
+      <p class="write">${a.write} <a href="mailto:${MAIL}?subject=${enc('Ski Maps')}">${MAIL}</a></p>
+    </div>
+  </div>
+</section>
+
+${ctaBand(l)}
+`;
+  return page(l, 'about', main);
+}
+
 /* ---------------- scrittura ---------------- */
 const out = [];
 const write = (file, html) => { mkdirSync(dirname(join(root, file)), { recursive: true }); writeFileSync(join(root, file), html); out.push(file); };
@@ -421,6 +443,7 @@ for (const l of LANG_ORDER) {
   write(fileOf(LANGS[l].pages.how), how(l));
   write(fileOf(LANGS[l].pages.areas), areas(l));
   write(fileOf(LANGS[l].pages.faq), faq(l));
+  write(fileOf(LANGS[l].pages.about), about(l));
 }
 
 /* pagine legali: solo barra in alto, piè di pagina, link di ritorno e script del menu */

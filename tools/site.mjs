@@ -10,20 +10,20 @@ export const todo = (q) => `<span class="todo">[DA CONFERMARE: ${q}]</span>`;
    Le pagine legali sono scritte a mano: il tedesco rimanda a quelle inglesi. */
 export const LANGS = {
   it: {
-    pages: { home: '/', how: '/come-funziona/', areas: '/aree/', faq: '/domande/' },
+    pages: { home: '/', how: '/come-funziona/', areas: '/aree/', faq: '/domande/', about: '/chi-siamo/' },
     legal: { privacy: '/privacy.html', delete: '/elimina-account.html', sources: '/privacy.html#fonti' },
   },
   en: {
-    pages: { home: '/en/', how: '/en/how-it-works/', areas: '/en/areas/', faq: '/en/faq/' },
+    pages: { home: '/en/', how: '/en/how-it-works/', areas: '/en/areas/', faq: '/en/faq/', about: '/en/about/' },
     legal: { privacy: '/en/privacy.html', delete: '/en/delete-account.html', sources: '/en/privacy.html#sources' },
   },
   de: {
-    pages: { home: '/de/', how: '/de/so-funktionierts/', areas: '/de/skigebiete/', faq: '/de/fragen/' },
+    pages: { home: '/de/', how: '/de/so-funktionierts/', areas: '/de/skigebiete/', faq: '/de/fragen/', about: '/de/ueber-uns/' },
     legal: { privacy: '/en/privacy.html', delete: '/en/delete-account.html', sources: '/en/privacy.html#sources' },
   },
 };
 export const LANG_ORDER = ['it', 'en', 'de'];
-export const PAGE_KEYS = ['home', 'how', 'areas', 'faq'];
+export const PAGE_KEYS = ['home', 'how', 'areas', 'faq', 'about'];
 
 /* Pagine legali scritte a mano (testo non generato): build.mjs aggiorna solo barra in alto e piè di pagina. */
 export const LEGAL = [

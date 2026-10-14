@@ -16,7 +16,7 @@ export default {
     ctaBand: 'Ski Maps kommt bald auf Google Play. Wir sagen dir Bescheid, sobald es da ist.',
     shotSize: (w, h) => `${w} × ${h} px`,
   },
-  nav: { how: 'So funktioniert’s', areas: 'Skigebiete', faq: 'Fragen', privacy: 'Datenschutz' },
+  nav: { how: 'So funktioniert’s', areas: 'Skigebiete', faq: 'Fragen', privacy: 'Datenschutz', about: 'Über uns' },
 
   home: {
     title: 'Ski Maps · GPS-Navigator für Skifahrer',
@@ -119,6 +119,19 @@ export default {
       ['In welchen Sprachen gibt es sie?', 'Italienisch, Englisch, Deutsch, Französisch und Spanisch.'],
       ['Wo landet mein Standort?', 'Er bleibt auf dem Handy. Diagnosedaten werden nur mit deiner Zustimmung gesendet. Details in der <a href="{privacy}">Datenschutzerklärung (Englisch)</a>.'],
     ],
+  },
+
+  about: {
+    title: 'Über uns · Ski Maps',
+    desc: 'Wer hinter Ski Maps steckt: Christian, 22 Jahre, aus Rom, Masterstudent.',
+    eyebrow: 'Über uns', h1: 'Hinter<br><em>Ski Maps.</em>',
+    paras: [
+      'Ski Maps ist das Projekt von <strong>Christian</strong>: 22 Jahre, aus Rom, Masterstudent.',
+      'Er entwickelt es mit einem klaren Ziel: allen, die Ski fahren, einen Navigator zu geben, der sie dorthin bringt, wo sie hinwollen, Piste für Piste und Lift für Lift, wo auch immer sie fahren.',
+      'Los geht es mit den fünf Startgebieten. Das Ziel sind die Pisten der ganzen Welt.',
+    ],
+    write: 'Möchtest du ihm schreiben?',
+    door: ['Über uns', 'Hinter<br>Ski Maps.', 'Christian, 22 Jahre, aus Rom: der Entwickler von Ski Maps.'],
   },
 
   js: {

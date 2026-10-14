@@ -14,6 +14,7 @@ Pagine generate da `tools/build.mjs` con i testi di `content/it.mjs`, `content/e
 | Come funziona (giro, tre passi, funzioni) | `/come-funziona/` | `/en/how-it-works/` | `/de/so-funktionierts/` |
 | Aree (+ società impianti, `#impianti`) | `/aree/` | `/en/areas/` | `/de/skigebiete/` |
 | Domande | `/domande/` | `/en/faq/` | `/de/fragen/` |
+| Chi siamo | `/chi-siamo/` | `/en/about/` | `/de/ueber-uns/` |
 
 Pagine legali scritte a mano (il generatore aggiorna solo barra in alto e piè di pagina):
 `privacy.html`, `elimina-account.html`, `en/privacy.html`, `en/delete-account.html`. Il tedesco rimanda a quelle inglesi.

@@ -85,6 +85,27 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/domande/"/>
   </url>
   <url>
+    <loc>https://skimaps.cc/chi-siamo/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/chi-siamo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/ueber-uns/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/chi-siamo/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/chi-siamo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/ueber-uns/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/chi-siamo/"/>
+  </url>
+  <url>
+    <loc>https://skimaps.cc/de/ueber-uns/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/chi-siamo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://skimaps.cc/de/ueber-uns/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://skimaps.cc/chi-siamo/"/>
+  </url>
+  <url>
     <loc>https://skimaps.cc/privacy.html</loc>
     <xhtml:link rel="alternate" hreflang="it" href="https://skimaps.cc/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://skimaps.cc/en/privacy.html"/>

@@ -550,3 +550,11 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .site .sec#impianti{padding-top:56px}
 .hero h1.long{font-size:clamp(44px,5.6vw,88px)}
 .sec:not(.dark) h2 em{color:var(--ink); background:linear-gradient(transparent 58%, var(--accent) 58%, var(--accent) 94%, transparent 94%); padding:0 .04em}
+/* chi siamo, e quattro porte in home */
+.about{max-width:62ch}
+.about p{font-size:19px; line-height:1.6; color:var(--ink-2); margin:0 0 18px}
+.about p.lead{font-size:clamp(22px,2.2vw,28px); line-height:1.4; color:var(--ink)}
+.about p.write{margin-top:30px; font-size:16px}
+.about a{color:var(--ink); text-underline-offset:3px}
+@media (min-width:1101px){ .site .doors .wrap{grid-template-columns:repeat(4,1fr)} .site .door h3{font-size:clamp(30px,2.6vw,38px)} }
+@media (min-width:561px) and (max-width:1100px){ .site .doors .wrap{grid-template-columns:1fr 1fr} }

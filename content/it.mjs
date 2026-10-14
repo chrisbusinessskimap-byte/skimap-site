@@ -17,7 +17,7 @@ export default {
     ctaBand: 'Ski Maps è in arrivo su Google Play. Ti avvisiamo quando esce.',
     shotSize: (w, h) => `${w} × ${h} px`,
   },
-  nav: { how: 'Come funziona', areas: 'Aree', faq: 'Domande', privacy: 'Privacy' },
+  nav: { how: 'Come funziona', areas: 'Aree', faq: 'Domande', privacy: 'Privacy', about: 'Chi siamo' },
 
   home: {
     title: 'Ski Maps · Navigatore GPS per sciatori',
@@ -120,6 +120,19 @@ export default {
       ['In che lingue è?', 'Italiano, inglese, tedesco, francese e spagnolo.'],
       ['Dove finisce la mia posizione?', 'Resta sul telefono. La diagnostica parte solo con il tuo consenso. Dettagli nell’<a href="{privacy}">informativa privacy</a>.'],
     ],
+  },
+
+  about: {
+    title: 'Chi siamo · Ski Maps',
+    desc: 'Chi c’è dietro Ski Maps: Christian, 22 anni, di Roma, studente di laurea magistrale.',
+    eyebrow: 'Chi siamo', h1: 'Dietro<br><em>Ski Maps.</em>',
+    paras: [
+      'Ski Maps è il progetto di <strong>Christian</strong>: 22 anni, romano, studente di laurea magistrale.',
+      'Lo sviluppa con un obiettivo chiaro: dare a chi scia un navigatore che lo porti dove vuole arrivare, pista dopo pista e impianto dopo impianto, ovunque si trovi.',
+      'Si parte dalle cinque aree del lancio. Il traguardo sono le piste di tutto il mondo.',
+    ],
+    write: 'Vuoi scrivergli?',
+    door: ['Chi siamo', 'Dietro<br>Ski Maps.', 'Christian, 22 anni, di Roma: chi sviluppa Ski Maps.'],
   },
 
   /* testi per la mappa 3D e per il modulo (assets/map3d.js, assets/beta.js) */
