@@ -75,14 +75,111 @@
 
 <section class="sec tint" id="elenco" aria-label="Aree">
   <div class="wrap">
-    <ul class="regions">
-      <li class="now"><span class="k">Al lancio</span><b>Dolomiti Superski</b><span>Compresi Sellaronda, Cortina – Alta Badia e Fassa – Fiemme.</span></li>
-      <li><b>Ovindoli</b></li>
-      <li><b>Campo Felice</b></li>
-      <li><b>Vialattea</b><span>Con Bardonecchia.</span></li>
-      <li><b>Livigno</b></li>
-    </ul>
-    <p class="mapcredit">Dati mappa: <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
+    <div class="areas-x">
+    <div class="area-tabs" role="tablist" aria-label="Scegli un’area">
+      <button class="area-tab" type="button" role="tab" id="tab-superski" aria-controls="superski" aria-selected="true">
+        <b>Dolomiti Superski</b><span>Alto Adige, Trentino e Veneto</span><small>795 km di piste · 350 impianti</small>
+      </button>
+      <button class="area-tab" type="button" role="tab" id="tab-ovindoli" aria-controls="ovindoli" aria-selected="false" tabindex="-1">
+        <b>Ovindoli</b><span>Abruzzo</span><small>18 km di piste · 10 impianti</small>
+      </button>
+      <button class="area-tab" type="button" role="tab" id="tab-campofelice" aria-controls="campofelice" aria-selected="false" tabindex="-1">
+        <b>Campo Felice</b><span>Abruzzo</span><small>21 km di piste · 14 impianti</small>
+      </button>
+      <button class="area-tab" type="button" role="tab" id="tab-vialattea" aria-controls="vialattea" aria-selected="false" tabindex="-1">
+        <b>Vialattea</b><span>Piemonte e Francia</span><small>328 km di piste · 100 impianti</small>
+      </button>
+      <button class="area-tab" type="button" role="tab" id="tab-livigno" aria-controls="livigno" aria-selected="false" tabindex="-1">
+        <b>Livigno</b><span>Lombardia</span><small>81 km di piste · 32 impianti</small>
+      </button>
+    </div>
+    <div class="area-panels">
+      <article class="area-panel" id="superski" role="tabpanel" aria-labelledby="tab-superski" tabindex="0">
+        <figure class="area-map"><img src="/assets/areas/superski.svg" alt="Piste e impianti di Dolomiti Superski: piste blu, rosse e nere, impianti tratteggiati" width="600" height="431" loading="lazy" decoding="async"></figure>
+        <div class="area-body">
+          <h2>Dolomiti Superski</h2>
+          <p class="area-where">Alto Adige, Trentino e Veneto · Compresi Sellaronda, Cortina – Alta Badia e Fassa – Fiemme.</p>
+          <dl class="area-stats">
+            <div><dt>km di piste</dt><dd>795</dd></div>
+            <div><dt>impianti</dt><dd>350</dd></div>
+            <div><dt>quota massima</dt><dd>3100+ m</dd></div>
+          </dl>
+          <p class="area-k">Piste per colore</p>
+          <div class="area-bar" aria-hidden="true"><i class="easy" style="flex-grow:345"></i><i class="intermediate" style="flex-grow:359"></i><i class="advanced" style="flex-grow:92"></i></div>
+          <ul class="area-legend"><li class="easy"><b>345 km</b> blu · 43%</li><li class="intermediate"><b>359 km</b> rosse · 45%</li><li class="advanced"><b>92 km</b> nere · 12%</li></ul>
+          <ul class="area-lifts"><li><b>99</b> cabinovie e funivie</li><li><b>153</b> seggiovie</li><li><b>98</b> skilift e tapis roulant</li></ul>
+          <p class="area-extra">12 comprensori · Bus e treni tra le valli, nello stesso percorso.</p>
+        </div>
+      </article>
+      <article class="area-panel" id="ovindoli" role="tabpanel" aria-labelledby="tab-ovindoli" tabindex="0">
+        <figure class="area-map"><img src="/assets/areas/ovindoli.svg" alt="Piste e impianti di Ovindoli: piste blu, rosse e nere, impianti tratteggiati" width="600" height="344" loading="lazy" decoding="async"></figure>
+        <div class="area-body">
+          <h2>Ovindoli</h2>
+          <p class="area-where">Abruzzo · Sul Monte Magnola.</p>
+          <dl class="area-stats">
+            <div><dt>km di piste</dt><dd>18</dd></div>
+            <div><dt>impianti</dt><dd>10</dd></div>
+            <div><dt>quota massima</dt><dd>2000+ m</dd></div>
+          </dl>
+          <p class="area-k">Piste per colore</p>
+          <div class="area-bar" aria-hidden="true"><i class="easy" style="flex-grow:4"></i><i class="intermediate" style="flex-grow:8"></i><i class="advanced" style="flex-grow:6"></i></div>
+          <ul class="area-legend"><li class="easy"><b>4 km</b> blu · 22%</li><li class="intermediate"><b>8 km</b> rosse · 44%</li><li class="advanced"><b>6 km</b> nere · 33%</li></ul>
+          <ul class="area-lifts"><li><b>1</b> cabinovie e funivie</li><li><b>6</b> seggiovie</li><li><b>3</b> skilift e tapis roulant</li></ul>
+        </div>
+      </article>
+      <article class="area-panel" id="campofelice" role="tabpanel" aria-labelledby="tab-campofelice" tabindex="0">
+        <figure class="area-map"><img src="/assets/areas/campofelice.svg" alt="Piste e impianti di Campo Felice: piste blu, rosse e nere, impianti tratteggiati" width="600" height="352" loading="lazy" decoding="async"></figure>
+        <div class="area-body">
+          <h2>Campo Felice</h2>
+          <p class="area-where">Abruzzo</p>
+          <dl class="area-stats">
+            <div><dt>km di piste</dt><dd>21</dd></div>
+            <div><dt>impianti</dt><dd>14</dd></div>
+            <div><dt>quota massima</dt><dd>2000+ m</dd></div>
+          </dl>
+          <p class="area-k">Piste per colore</p>
+          <div class="area-bar" aria-hidden="true"><i class="easy" style="flex-grow:7"></i><i class="intermediate" style="flex-grow:9"></i><i class="advanced" style="flex-grow:5"></i></div>
+          <ul class="area-legend"><li class="easy"><b>7 km</b> blu · 33%</li><li class="intermediate"><b>9 km</b> rosse · 43%</li><li class="advanced"><b>5 km</b> nere · 24%</li></ul>
+          <ul class="area-lifts"><li><b>9</b> seggiovie</li><li><b>5</b> skilift e tapis roulant</li></ul>
+        </div>
+      </article>
+      <article class="area-panel" id="vialattea" role="tabpanel" aria-labelledby="tab-vialattea" tabindex="0">
+        <figure class="area-map"><img src="/assets/areas/vialattea.svg" alt="Piste e impianti di Vialattea: piste blu, rosse e nere, impianti tratteggiati" width="600" height="590" loading="lazy" decoding="async"></figure>
+        <div class="area-body">
+          <h2>Vialattea</h2>
+          <p class="area-where">Piemonte e Francia · Con Bardonecchia, Sestriere, Sauze d’Oulx, Sansicario, Cesana, Claviere, Pragelato e Montgenèvre.</p>
+          <dl class="area-stats">
+            <div><dt>km di piste</dt><dd>328</dd></div>
+            <div><dt>impianti</dt><dd>100</dd></div>
+            <div><dt>quota massima</dt><dd>2700+ m</dd></div>
+          </dl>
+          <p class="area-k">Piste per colore</p>
+          <div class="area-bar" aria-hidden="true"><i class="easy" style="flex-grow:125"></i><i class="intermediate" style="flex-grow:170"></i><i class="advanced" style="flex-grow:32"></i></div>
+          <ul class="area-legend"><li class="easy"><b>125 km</b> blu · 38%</li><li class="intermediate"><b>170 km</b> rosse · 52%</li><li class="advanced"><b>32 km</b> nere · 10%</li></ul>
+          <ul class="area-lifts"><li><b>10</b> cabinovie e funivie</li><li><b>49</b> seggiovie</li><li><b>41</b> skilift e tapis roulant</li></ul>
+          <p class="area-extra">Bus di collegamento, nello stesso percorso.</p>
+        </div>
+      </article>
+      <article class="area-panel" id="livigno" role="tabpanel" aria-labelledby="tab-livigno" tabindex="0">
+        <figure class="area-map"><img src="/assets/areas/livigno.svg" alt="Piste e impianti di Livigno: piste blu, rosse e nere, impianti tratteggiati" width="600" height="366" loading="lazy" decoding="async"></figure>
+        <div class="area-body">
+          <h2>Livigno</h2>
+          <p class="area-where">Lombardia · Mottolino, Carosello 3000 e Tagliede, uniti dallo Skilink.</p>
+          <dl class="area-stats">
+            <div><dt>km di piste</dt><dd>81</dd></div>
+            <div><dt>impianti</dt><dd>32</dd></div>
+            <div><dt>quota massima</dt><dd>2700+ m</dd></div>
+          </dl>
+          <p class="area-k">Piste per colore</p>
+          <div class="area-bar" aria-hidden="true"><i class="easy" style="flex-grow:24"></i><i class="intermediate" style="flex-grow:47"></i><i class="advanced" style="flex-grow:9"></i></div>
+          <ul class="area-legend"><li class="easy"><b>24 km</b> blu · 30%</li><li class="intermediate"><b>47 km</b> rosse · 59%</li><li class="advanced"><b>9 km</b> nere · 11%</li></ul>
+          <ul class="area-lifts"><li><b>6</b> cabinovie e funivie</li><li><b>14</b> seggiovie</li><li><b>12</b> skilift e tapis roulant</li></ul>
+          <p class="area-extra">Bus di collegamento, nello stesso percorso.</p>
+        </div>
+      </article>
+    </div>
+    </div>
+    <p class="area-note">Numeri calcolati sulla mappa di Ski Maps, costruita da OpenStreetMap: possono essere diversi da quelli ufficiali del comprensorio. La quota viene dal modello del terreno ed è arrotondata per difetto. Dati mappa: <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
   </div>
 </section>
 
@@ -126,5 +223,6 @@ window.SKIMAP_T = {
 };
 </script>
 <script src="/assets/site.js" defer></script>
+<script src="/assets/areas.js" defer></script>
 </body>
 </html>

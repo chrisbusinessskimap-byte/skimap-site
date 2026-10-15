@@ -402,18 +402,55 @@ ${ctaBand(l)}
 }
 
 /* ---------------- aree ---------------- */
+/* numeri e anteprime da tools/areas.mjs (grafi dell'app): qui si leggono soltanto */
+const AREA_IDS = ['superski', 'ovindoli', 'campofelice', 'vialattea', 'livigno'];
+const AREA_STATS = JSON.parse(readFileSync(join(root, 'content/areas.json'), 'utf8'));
+const areaSvgHeight = (id) => +readFileSync(join(root, `assets/areas/${id}.svg`), 'utf8').match(/viewBox="0 0 600 (\d+)"/)[1];
 function areas(l) {
-  const c = C[l], a = c.areas;
+  const c = C[l], a = c.areas, L = a.l, n = (x) => x.toLocaleString(c.locale.replace('_', '-'));
+  const tab = (id, i) => {
+    const [name, where] = a.items[id], st = AREA_STATS[id];
+    return `      <button class="area-tab" type="button" role="tab" id="tab-${id}" aria-controls="${id}" aria-selected="${i === 0}"${i ? ' tabindex="-1"' : ''}>
+        <b>${name}</b><span>${where}</span><small>${n(st.pisteKm)} ${L.km} · ${n(st.lifts)} ${L.lifts}</small>
+      </button>`;
+  };
+  const panel = (id) => {
+    const [name, where, desc] = a.items[id], st = AREA_STATS[id];
+    const total = st.byDiff.easy + st.byDiff.intermediate + st.byDiff.advanced;
+    const lifts = ['cabin', 'chair', 'surface'].filter((k) => st.liftGroups[k]).map((k) => `<li><b>${n(st.liftGroups[k])}</b> ${L[k]}</li>`).join('');
+    const extra = [st.subAreas ? L.sub(st.subAreas) : '', st.train ? L.busTrain : (st.bus ? L.bus : '')].filter(Boolean);
+    return `      <article class="area-panel" id="${id}" role="tabpanel" aria-labelledby="tab-${id}" tabindex="0">
+        <figure class="area-map"><img src="/assets/areas/${id}.svg" alt="${attr(a.mapAlt(name))}" width="600" height="${areaSvgHeight(id)}" loading="lazy" decoding="async"></figure>
+        <div class="area-body">
+          <h2>${name}</h2>
+          <p class="area-where">${where}${desc ? ` · ${desc}` : ''}</p>
+          <dl class="area-stats">
+            <div><dt>${L.km}</dt><dd>${n(st.pisteKm)}</dd></div>
+            <div><dt>${L.lifts}</dt><dd>${n(st.lifts)}</dd></div>
+            <div><dt>${L.top}</dt><dd>${n(st.topFloor)}+ m</dd></div>
+          </dl>
+          <p class="area-k">${L.colors}</p>
+          <div class="area-bar" aria-hidden="true">${['easy', 'intermediate', 'advanced'].map((d) => `<i class="${d}" style="flex-grow:${st.byDiff[d]}"></i>`).join('')}</div>
+          <ul class="area-legend">${['easy', 'intermediate', 'advanced'].map((d) => `<li class="${d}"><b>${n(st.byDiff[d])} km</b> ${L[d]} · ${Math.round(st.byDiff[d] / total * 100)}%</li>`).join('')}</ul>
+          <ul class="area-lifts">${lifts}</ul>${extra.length ? `
+          <p class="area-extra">${extra.join(' · ')}</p>` : ''}
+        </div>
+      </article>`;
+  };
   const main = `
 ${pageHead(a.eyebrow, a.h1, a.lede)}
 
 <section class="sec tint" id="elenco" aria-label="${attr(a.eyebrow)}">
   <div class="wrap">
-    <ul class="regions">
-      <li class="now"><span class="k">${a.main[0]}</span><b>${a.main[1]}</b><span>${a.main[2]}</span></li>
-${a.list.map(([n, d]) => `      <li><b>${n}</b>${d ? `<span>${d}</span>` : ''}</li>`).join('\n')}
-    </ul>
-    <p class="mapcredit">${c.ui.mapdata} <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
+    <div class="areas-x">
+    <div class="area-tabs" role="tablist" aria-label="${attr(a.tabs)}">
+${AREA_IDS.map(tab).join('\n')}
+    </div>
+    <div class="area-panels">
+${AREA_IDS.map(panel).join('\n')}
+    </div>
+    </div>
+    <p class="area-note">${a.note} ${c.ui.mapdata} <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
   </div>
 </section>
 
@@ -432,7 +469,7 @@ ${a.list.map(([n, d]) => `      <li><b>${n}</b>${d ? `<span>${d}</span>` : ''}</
 
 ${ctaBand(l)}
 `;
-  return page(l, 'areas', main);
+  return page(l, 'areas', main, { scripts: '<script src="/assets/areas.js" defer></script>\n' });
 }
 
 /* ---------------- domande ---------------- */

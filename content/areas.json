@@ -1,0 +1,92 @@
+{
+ "superski": {
+  "pisteKm": 795,
+  "byDiff": {
+   "easy": 345,
+   "intermediate": 359,
+   "advanced": 92
+  },
+  "lifts": 350,
+  "liftGroups": {
+   "cabin": 99,
+   "chair": 153,
+   "surface": 98
+  },
+  "topFloor": 3100,
+  "bus": true,
+  "train": true,
+  "subAreas": 12
+ },
+ "ovindoli": {
+  "pisteKm": 18,
+  "byDiff": {
+   "easy": 4,
+   "intermediate": 8,
+   "advanced": 6
+  },
+  "lifts": 10,
+  "liftGroups": {
+   "cabin": 1,
+   "chair": 6,
+   "surface": 3
+  },
+  "topFloor": 2000,
+  "bus": false,
+  "train": false,
+  "subAreas": null
+ },
+ "campofelice": {
+  "pisteKm": 21,
+  "byDiff": {
+   "easy": 7,
+   "intermediate": 9,
+   "advanced": 5
+  },
+  "lifts": 14,
+  "liftGroups": {
+   "cabin": 0,
+   "chair": 9,
+   "surface": 5
+  },
+  "topFloor": 2000,
+  "bus": false,
+  "train": false,
+  "subAreas": null
+ },
+ "vialattea": {
+  "pisteKm": 328,
+  "byDiff": {
+   "easy": 125,
+   "intermediate": 170,
+   "advanced": 32
+  },
+  "lifts": 100,
+  "liftGroups": {
+   "cabin": 10,
+   "chair": 49,
+   "surface": 41
+  },
+  "topFloor": 2700,
+  "bus": true,
+  "train": false,
+  "subAreas": null
+ },
+ "livigno": {
+  "pisteKm": 81,
+  "byDiff": {
+   "easy": 24,
+   "intermediate": 47,
+   "advanced": 9
+  },
+  "lifts": 32,
+  "liftGroups": {
+   "cabin": 6,
+   "chair": 14,
+   "surface": 12
+  },
+  "topFloor": 2700,
+  "bus": true,
+  "train": false,
+  "subAreas": null
+ }
+}
