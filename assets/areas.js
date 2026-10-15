@@ -1,5 +1,5 @@
 /* Pagina Aree: le cinque aree sono schede. Toccandone una, a destra (sotto, al telefono) compaiono
-   anteprima e numeri. Senza JavaScript le schede restano tutte visibili, una sotto l'altra.
+   i numeri. Senza JavaScript le schede restano tutte visibili, una sotto l'altra.
    L'indirizzo segue la scelta (/aree/#livigno), così un'area si può linkare. */
 (function(){
   var tabs = [].slice.call(document.querySelectorAll('.area-tab'));

@@ -411,10 +411,9 @@ ${ctaBand(l)}
 }
 
 /* ---------------- aree ---------------- */
-/* numeri e anteprime da tools/areas.mjs (grafi dell'app): qui si leggono soltanto */
+/* numeri da tools/areas.mjs (grafi dell'app): qui si leggono soltanto */
 const AREA_IDS = ['superski', 'ovindoli', 'campofelice', 'vialattea', 'livigno'];
 const AREA_STATS = JSON.parse(readFileSync(join(root, 'content/areas.json'), 'utf8'));
-const areaSvgHeight = (id) => +readFileSync(join(root, `assets/areas/${id}.svg`), 'utf8').match(/viewBox="0 0 600 (\d+)"/)[1];
 function areas(l) {
   const c = C[l], a = c.areas, L = a.l, n = (x) => x.toLocaleString(c.locale.replace('_', '-'));
   const tab = (id, i) => {
@@ -429,8 +428,6 @@ function areas(l) {
     const lifts = ['cabin', 'chair', 'surface'].filter((k) => st.liftGroups[k]).map((k) => `<li><b>${n(st.liftGroups[k])}</b> ${L[k]}</li>`).join('');
     const extra = [st.subAreas ? L.sub(st.subAreas) : '', st.train ? L.busTrain : (st.bus ? L.bus : '')].filter(Boolean);
     return `      <article class="area-panel" id="${id}" role="tabpanel" aria-labelledby="tab-${id}" tabindex="0">
-        <figure class="area-map"><img src="/assets/areas/${id}.svg" alt="${attr(a.mapAlt(name, st.labels))}" width="600" height="${areaSvgHeight(id)}" loading="lazy" decoding="async">${st.labels === 'pois' ? `
-          <figcaption class="area-key" aria-hidden="true"><span><i class="k-hut"></i>${a.hut}</span><span><i class="k-park">P</i>${a.parking}</span></figcaption>` : ''}</figure>
         <div class="area-body">
           <h2>${name}</h2>
           <p class="area-where">${where}${desc ? ` · ${desc}` : ''}</p>
