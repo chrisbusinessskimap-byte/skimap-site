@@ -77,7 +77,7 @@ export default {
     sol: ['Con Ski Maps', 'Sai sempre il prossimo passo', 'Dal punto dove sei a quello dove vuoi arrivare: piste, impianti, bus e treni, uno dopo l’altro.'],
     toursTitle: 'Giri tra comprensori',
     tours: [['Sellaronda', 'Il giro attorno al Sella'], ['Cortina – Alta Badia', 'Tra Ampezzo e Badia'], ['Fassa – Fiemme', 'Tra le due valli'], ['Bus e treni', 'I collegamenti tra i comprensori']],
-    shotTour: ['scheda del percorso Sellaronda', 'La scheda del percorso Sellaronda nell’app'],
+    shotTour: ['scheda del percorso Sellaronda', 'Un tratto del Sellaronda nell’app, tappa per tappa'],
     stepsEyebrow: 'In tre passi', stepsH: 'Tre passi.<br>Poi si scia.', step: 'Passo',
     steps: [
       ['Scegli dove vuoi arrivare', 'Indica sulla mappa il punto dove vuoi arrivare: un impianto, un rifugio, il paese.', ['mappa con la destinazione scelta', 'Scegliere la destinazione sulla mappa']],

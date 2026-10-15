@@ -75,7 +75,7 @@ export default {
     sol: ['With Ski Maps', 'You always know the next step', 'From where you are to where you want to be: pistes, lifts, buses and trains, one after another.'],
     toursTitle: 'Tours across ski areas',
     tours: [['Sellaronda', 'The tour around the Sella'], ['Cortina – Alta Badia', 'Between Ampezzo and Badia'], ['Fassa – Fiemme', 'Between the two valleys'], ['Buses and trains', 'The links between ski areas']],
-    shotTour: ['scheda del percorso Sellaronda', 'The Sellaronda route card in the app'],
+    shotTour: ['scheda del percorso Sellaronda', 'A stretch of the Sellaronda in the app, leg by leg'],
     stepsEyebrow: 'In three steps', stepsH: 'Three steps.<br>Then ski.', step: 'Step',
     steps: [
       ['Choose where you want to go', 'Pick the point on the map where you want to end up: a lift, a mountain hut, the village.', ['mappa con la destinazione scelta', 'Choosing the destination on the map']],

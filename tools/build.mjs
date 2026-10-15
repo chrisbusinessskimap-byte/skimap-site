@@ -35,8 +35,9 @@ const attr = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&/g, '&amp;').rep
 const jsq = (s) => "'" + String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'";
 const enc = encodeURIComponent;
 
-/* Schermate dell'app: un file per schermata in assets/shots/ (WebP, 1080 × 2340 px).
-   Finché il file manca la schermata non compare: in pagina non va mai un segnaposto. */
+/* Schermate dell'app: un file per schermata in assets/shots/ (WebP, schermo intero senza la barra dei tasti
+   di Android; larghezza e altezza in pagina si leggono dal file). Finché il file manca la schermata non compare:
+   in pagina non va mai un segnaposto. */
 const SHOTS = {
   'scheda del percorso Sellaronda': 'sellaronda.webp',
   'mappa con la destinazione scelta': 'passo-1-destinazione.webp',
@@ -51,8 +52,16 @@ const shotFile = (label) => {
   missingShots.add(file);
   return '';
 };
-const shot = (c, [label, caption], w = 1080, h = 2340) => {
+/* larghezza e altezza di un WebP, dall'intestazione (VP8, VP8L o VP8X) */
+const webpSize = (file) => {
+  const b = readFileSync(file), kind = b.toString('ascii', 12, 16);
+  if (kind === 'VP8X') return [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+  if (kind === 'VP8L') { const n = b.readUInt32LE(21); return [1 + (n & 0x3fff), 1 + ((n >> 14) & 0x3fff)]; }
+  return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+};
+const shot = (c, [label, caption]) => {
   const src = shotFile(label);
+  const [w, h] = src ? webpSize(join(root, src)) : [];
   return src ? `<figure class="shot"><img src="${src}" alt="${attr(caption)}" width="${w}" height="${h}" loading="lazy" decoding="async"><figcaption>${caption}</figcaption></figure>` : '';
 };
 
@@ -377,11 +386,11 @@ ${h.tours.map(([t, p]) => `        <li><b>${t}</b><span>${p}</span></li>`).join(
   <div class="wrap">
     ${secHead(h.stepsEyebrow, h.stepsH, 'h-steps')}
     <ol class="steps">
-${h.steps.map(([t, p, s], k) => `      <li class="step">
+${h.steps.map(([t, p, s], k, all) => `      <li class="step">
         <div class="num"><span class="pnum ${['blue', 'red', 'adv'][k]}" aria-hidden="true">${k + 1}</span><small>${h.step} ${k + 1}</small></div>
         <h3>${t}</h3>
         <p>${p}</p>
-        ${shot(c, s)}
+        ${all.every((x) => shotFile(x[2][0])) ? shot(c, s) : ''}
       </li>`).join('\n').replace(/\n\s*\n(\s*<\/li>)/g, '\n$1')}
     </ol>
   </div>

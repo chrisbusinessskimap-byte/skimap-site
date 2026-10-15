@@ -20,7 +20,7 @@ Pagine legali scritte a mano (il generatore aggiorna solo barra in alto e piè d
 `privacy.html`, `elimina-account.html`, `en/privacy.html`, `en/delete-account.html`. Il tedesco rimanda a quelle inglesi.
 
 I vecchi indirizzi con l'ancora (`/#beta`, `/#giro`, `/#pilot`, `/#privacy`…) portano alla pagina giusta (`assets/site.js`).
-Le schermate dell'app vanno in `assets/shots/` con i nomi elencati in `tools/build.mjs` (WebP, 1080 × 2340 px): finché un file manca, quella schermata non compare. `node tools/build.mjs` dice quali mancano.
+Le schermate dell'app vanno in `assets/shots/` con i nomi elencati in `tools/build.mjs` (WebP, schermo intero senza la barra dei tasti di Android, tutte della stessa misura; i tre passi compaiono solo quando ci sono tutte e tre): finché un file manca, quella schermata non compare. `node tools/build.mjs` dice quali mancano.
 
 - Pagina Aree: numeri e anteprime vengono dai grafi dell'app (`node tools/areas.mjs --data=../skimap-data` riscrive `content/areas.json` e `assets/areas/*.svg`, da rilanciare quando cambia un grafo). La quota è arrotondata per difetto alle centinaia: il modello del terreno smussa le cime.
 - `tools/site.mjs`: lingue, pagine e indirizzi. `tools/build.mjs`: genera pagine e `sitemap.xml`. `tools/check.mjs`: controlli.
