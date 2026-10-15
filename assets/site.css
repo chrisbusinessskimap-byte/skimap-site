@@ -627,7 +627,12 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .area-panels{position:sticky; top:96px}
 .area-panel{background:var(--card); border-radius:22px; box-shadow:var(--shadow); overflow:hidden}
 .area-panel:focus-visible{outline:3px solid var(--accent-2); outline-offset:3px}
-.area-map{margin:0; background:#eef3f8; border-bottom:1px solid var(--line)}
+.area-map{margin:0; background:#e6edf4; border-bottom:1px solid var(--line)}
+.area-key{display:flex; gap:12px; padding:0 12px 10px; font-size:13px; font-weight:600; color:#1b2430}
+.area-key span{display:inline-flex; align-items:center; gap:5px; padding:2px 8px 2px 5px; background:rgba(255,255,255,.88); border-radius:999px}
+.area-key i{display:inline-grid; place-items:center; font-style:normal}
+.area-key .k-hut{width:0; height:0; border:6px solid transparent; border-bottom:11px solid #7a4a1e; border-top:0}
+.area-key .k-park{width:15px; height:15px; border-radius:3px; background:#2b5fae; color:#fff; font-size:11px; font-weight:800}
 .area-map img{display:block; width:100%; height:auto; max-height:380px; object-fit:contain}
 .area-body{padding:22px 24px 26px}
 .area-body h2{font-size:clamp(32px,4vw,48px)}

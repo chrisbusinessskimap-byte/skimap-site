@@ -15,7 +15,8 @@
   "topFloor": 3100,
   "bus": true,
   "train": true,
-  "subAreas": 12
+  "subAreas": 12,
+  "labels": "areas"
  },
  "ovindoli": {
   "pisteKm": 18,
@@ -33,7 +34,8 @@
   "topFloor": 2000,
   "bus": false,
   "train": false,
-  "subAreas": null
+  "subAreas": null,
+  "labels": "pois"
  },
  "campofelice": {
   "pisteKm": 21,
@@ -51,7 +53,8 @@
   "topFloor": 2000,
   "bus": false,
   "train": false,
-  "subAreas": null
+  "subAreas": null,
+  "labels": "pois"
  },
  "vialattea": {
   "pisteKm": 328,
@@ -69,7 +72,8 @@
   "topFloor": 2700,
   "bus": true,
   "train": false,
-  "subAreas": null
+  "subAreas": null,
+  "labels": "areas"
  },
  "livigno": {
   "pisteKm": 81,
@@ -87,6 +91,7 @@
   "topFloor": 2700,
   "bus": true,
   "train": false,
-  "subAreas": null
+  "subAreas": null,
+  "labels": "areas"
  }
 }
