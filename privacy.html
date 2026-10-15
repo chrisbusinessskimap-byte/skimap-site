@@ -4,29 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Informativa privacy · Ski Maps</title>
-<meta name="description" content="Informativa privacy di Ski Maps, versione 5: posizione, diagnostica, account, accesso con Google, cancellazione e fornitori.">
+<meta name="description" content="Informativa privacy di Ski Maps, versione 4: la posizione resta sul telefono, cosa può partire (diagnostica, segnalazioni, tempi), chi altro vede qualcosa, per quanto tempo e i tuoi diritti.">
 <meta name="theme-color" content="#101418">
 <link rel="canonical" href="https://skimaps.cc/privacy.html">
 <link rel="alternate" hreflang="it" href="https://skimaps.cc/privacy.html">
 <link rel="alternate" hreflang="en" href="https://skimaps.cc/en/privacy.html">
 <link rel="alternate" hreflang="x-default" href="https://skimaps.cc/privacy.html">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:site_name" content="Ski Maps">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Informativa privacy · Ski Maps">
-<meta property="og:description" content="Informativa privacy di Ski Maps, versione 5: posizione, diagnostica, account, accesso con Google, cancellazione e fornitori.">
+<meta property="og:description" content="Informativa privacy di Ski Maps, versione 4: la posizione resta sul telefono, cosa può partire (diagnostica, segnalazioni, tempi), chi altro vede qualcosa, per quanto tempo e i tuoi diritti.">
 <meta property="og:url" content="https://skimaps.cc/privacy.html">
 <meta property="og:locale" content="it_IT">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:image" content="https://skimaps.cc/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Ski Maps, navigatore GPS per sciatori: la mappa 3D del gruppo del Sella con piste e impianti">
+<meta property="og:image:alt" content="Logo di Ski Maps con la scritta «GPS Navigator for Skiers · Navigatore GPS per sciatori»">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Informativa privacy · Ski Maps">
-<meta name="twitter:description" content="Informativa privacy di Ski Maps, versione 5: posizione, diagnostica, account, accesso con Google, cancellazione e fornitori.">
+<meta name="twitter:description" content="Informativa privacy di Ski Maps, versione 4: la posizione resta sul telefono, cosa può partire (diagnostica, segnalazioni, tempi), chi altro vede qualcosa, per quanto tempo e i tuoi diritti.">
 <meta name="twitter:image" content="https://skimaps.cc/assets/og-image.png">
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
@@ -36,7 +35,7 @@
 <header class="nav solid" id="nav">
   <div class="wrap">
     <a class="logo" href="/" aria-label="Ski Maps, torna alla home">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>
+      <img src="/assets/icon-64.png" width="32" height="32" alt="">
       Ski Maps
     </a>
     <nav class="nav-links" aria-label="Sezioni">
@@ -47,7 +46,7 @@
     </nav>
     <a class="btn primary" href="/#avvisami">Avvisami</a>
     <nav class="langs" aria-label="Lingua"><a href="/privacy.html" hreflang="it" lang="it" aria-current="true" title="Italiano">IT</a><a href="/en/privacy.html" hreflang="en" lang="en" title="English">EN</a><a href="/de/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menu</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn"><svg class="mb-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="mb-txt">Menu</span></button>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="Sezioni">
     <a href="/come-funziona/">Come funziona</a>
@@ -63,104 +62,81 @@
   <div class="view-head"><div class="wrap">
     <div class="eyebrow"><span class="disc amber"></span>Privacy</div>
     <h1 class="pagetitle">Cosa resta sul telefono, cosa parte.</h1>
-    <p class="lede measure">La stessa informativa che trovi dentro l’app, alla voce Impostazioni <span class="todo">[DA CONFERMARE: l’app mostra già la versione 5? se no, togli questa frase]</span>. Aggiornata il <span class="todo">[DA CONFERMARE: data di pubblicazione della versione 5]</span> · versione 5 · Ski Maps è in arrivo su Google Play.</p>
+    <p class="lede measure">La stessa informativa che trovi nell’app, in Impostazioni → Informativa privacy. Aggiornata il 12 ottobre 2026 · versione 4 · Ski Maps è in beta chiusa ed è in arrivo su Google Play.</p>
   </div></div>
 
   <div class="view-body"><div class="wrap">
     <div class="legal">
-      <div class="changes" role="note">
-        <h3>Cosa cambia in questa versione</h3>
-        <ul>
-          <li>Account: ID utente ed email, anche con l’accesso con Google, e come eliminarlo (sezioni «L’account», «Accesso con Google» e «Eliminare l’account»).</li>
-          <li>Su quale base trattiamo i dati, e come tratta i dati questo sito.</li>
-          <li>Il resto è invariato rispetto alla versione 4.</li>
-        </ul>
-      </div>
+      <h2 id="summary">In breve</h2>
+      <p>Ski Maps funziona sul telefono. La tua posizione GPS non lascia il dispositivo: serve a disegnare il punto “sei qui”, ad agganciare la pista e a calcolare i percorsi, tutto in locale. Quello che può partire è la diagnostica, che scegli tu; le segnalazioni di pista chiusa, che decidi tu di mandare; e, durante una navigazione, i tempi di attesa agli impianti e i tempi delle tappe, sempre senza la tua posizione, che puoi spegnere in Impostazioni con «Contributi automatici».</p>
 
-      <h3>In breve</h3>
-      <p>Ski Maps funziona sul telefono. La tua posizione GPS non lascia il dispositivo: serve a disegnare il punto “sei qui”, ad agganciare la pista e a calcolare i percorsi, tutto in locale. Quello che può partire è la diagnostica, che scegli tu; le segnalazioni di pista chiusa, che decidi tu di mandare; e, durante una navigazione, i tempi di attesa agli impianti e i tempi delle tappe, sempre senza la tua posizione, che puoi spegnere in Impostazioni con «Contributi automatici». Se crei un account, al server arrivano anche l’ID utente e l’email (vedi «L’account»).</p>
-
-      <h3>La tua posizione</h3>
+      <h2 id="location">La tua posizione</h2>
       <p>Il permesso di posizione serve alla navigazione. Le coordinate restano in memoria e sul telefono: non vengono salvate in nessun archivio remoto e non compaiono in nessun dato inviato. Se rifiuti il permesso, la mappa e il calcolo dei percorsi restano usabili scegliendo la partenza a mano.</p>
 
-      <h3 id="account">L’account</h3>
-      <p>Ski Maps prevede un account utente. I dati dell’account sono due: l’<strong>ID utente</strong>, un codice generato dal sistema, e la tua <strong>email</strong>. Sono facoltativi <span class="todo">[DA CONFERMARE: che cosa significa «facoltativi»: si può usare l’app senza account? l’email si può non fornire? quali funzioni richiedono di accedere?]</span>.</p>
-      <p>L’account serve a <span class="todo">[DA CONFERMARE: a che cosa serve l’account: quali funzioni abilita]</span>.</p>
-      <p><span class="todo">[DA CONFERMARE: ID utente ed email sono collegati a diagnostica, segnalazioni, tempi di attesa e tempi delle tappe, oppure restano separati? Le sezioni qui sotto dicono che non sono collegati a te: se con l’account cambia, vanno corrette]</span></p>
-
-      <h3 id="google">Accesso con Google</h3>
-      <p>Puoi creare l’account e accedere con il tuo account Google. In quel caso la verifica dell’identità la fa Google, secondo la <a href="https://policies.google.com/privacy">propria informativa</a>. A Ski Maps arrivano <span class="todo">[DA CONFERMARE: quali dati arrivano da Google: solo email e ID utente, oppure anche nome e foto del profilo?]</span>. <span class="todo">[DA CONFERMARE: chi gestisce l’accesso (per esempio Supabase) e che ruolo ha Google: titolare autonomo?]</span></p>
-
-      <h3 id="eliminazione">Eliminare l’account</h3>
-      <p>Puoi eliminare l’account in qualsiasi momento, dall’app o scrivendoci. Come fare, in quanto tempo e che cosa viene cancellato: <a href="elimina-account.html">Elimina il tuo account</a>.</p>
-
-      <h3>Diagnostica (facoltativa, spenta per default)</h3>
-      <p>Al primo avvio l’app ti chiede se attivarla: finché non dici sì, non viene scritto nessun identificatore e non parte nessun evento. Il codice nasce solo quando serve: quando acconsenti, oppure quando mandi la tua prima segnalazione. Se la attivi, l’app invia eventi tecnici su come funziona il calcolo dei percorsi, per un motivo solo: trovare i punti del comprensorio che non riesce a collegare, e correggere la mappa. Puoi spegnerla quando vuoi in Impostazioni.</p>
-      <p>Gli eventi sono cinque: hai scelto una destinazione; è stato chiesto un percorso; un percorso non è stato trovato, con il motivo; è stato chiesto un ricalcolo; ti sei allontanato dal percorso. Ognuno porta con sé:</p>
+      <h2 id="diagnostics">Diagnostica (facoltativa, spenta per default)</h2>
+      <p>Se la attivi, l’app invia eventi tecnici su come funziona il calcolo dei percorsi. Serve a un motivo solo: trovare i punti del comprensorio che l’app non riesce a collegare, e correggere la mappa. Puoi spegnerla quando vuoi in Impostazioni; da quel momento non si accumula e non si invia più nulla.</p>
+      <p>Gli eventi sono cinque:</p>
       <ul>
-        <li>un codice casuale generato dall’app, uguale per tutti gli invii di questo telefono, più un codice della singola sessione;</li>
-        <li>versione dell’app, sistema operativo, comprensorio e versione della mappa;</li>
-        <li>i codici dei punti e dei tratti del comprensorio coinvolti, il livello scelto, il motivo del fallimento, quanti percorsi sono stati trovati;</li>
-        <li>quanto eri lontano dal percorso, per fasce (meno di 50 m, 50–100, 100–250, oltre) e non in metri esatti.</li>
+        <li>hai scelto una destinazione</li>
+        <li>è stato chiesto un percorso</li>
+        <li>un percorso non è stato trovato, con il motivo</li>
+        <li>è stato chiesto un ricalcolo</li>
+        <li>ti sei allontanato dal percorso</li>
+      </ul>
+      <p>Ogni evento porta con sé:</p>
+      <ul>
+        <li>un codice casuale generato dall’app, uguale per tutti gli invii di questo telefono (serve a distinguere un problema che si ripete da problemi di dieci persone diverse), più un codice della singola sessione</li>
+        <li>versione dell’app, sistema operativo, comprensorio e versione della mappa</li>
+        <li>i codici dei punti e dei tratti del comprensorio coinvolti, il livello scelto, il motivo del fallimento, quanti percorsi sono stati trovati</li>
+        <li>quanto eri lontano dal percorso, per fasce (meno di 50 m, 50–100, 100–250, oltre) e non in metri esatti</li>
       </ul>
       <p>Nessuna coordinata, nessun contatto, nessun identificativo del telefono o pubblicitario, nessun tracciamento tra app o siti.</p>
 
-      <h3>Pseudonimo, non anonimo</h3>
-      <p>Il codice casuale non contiene niente di te e non è collegato a un nome o a un indirizzo email, ma resta lo stesso nel tempo: una serie di eventi con lo stesso codice è riconducibile alla stessa installazione. Per questo la diagnostica viene chiesta prima, invece di essere data per buona. <span class="todo">[DA CONFERMARE: vale ancora se l’utente ha un account?]</span></p>
+      <h2 id="pseudonym">Pseudonimo, non anonimo</h2>
+      <p>Il codice casuale non contiene niente di te e non è collegato a un nome o a un indirizzo email, ma resta lo stesso nel tempo: una serie di eventi con lo stesso codice è riconducibile alla stessa installazione. Per questo la diagnostica viene chiesta prima, invece di essere data per buona, e per questo il codice nasce solo quando serve: quando acconsenti alla diagnostica, oppure quando mandi la tua prima segnalazione. Se dici no e non segnali nulla, sul telefono non viene scritto.</p>
 
-      <h3>Segnalazioni di pista chiusa</h3>
-      <p>Quando segnali una pista, al server arrivano tre informazioni: il comprensorio, il tratto e lo stato (aperta, chiusa, non lo so). Non l’ora del tuo telefono, non la tua posizione, non il codice della diagnostica. Chi ha votato lo stabilisce il server, tramite un’utenza anonima creata al tuo primo voto: nessuno, guardando i voti, può risalire a te. Leggere i voti degli altri non crea nessuna utenza. <span class="todo">[DA CONFERMARE: l’utenza anonima resta separata dall’account o si unisce quando accedi?]</span></p>
+      <h2 id="reports">Segnalazioni di pista chiusa</h2>
+      <p>Quando segnali una pista, al server arrivano tre informazioni: il comprensorio, il tratto e lo stato (aperta, chiusa, non lo so). Non l’ora del tuo telefono, non la tua posizione, non il codice della diagnostica. Chi ha votato lo stabilisce il server, tramite un’utenza anonima creata al tuo primo voto: nessuno, guardando i voti, può risalire a te. Leggere i voti degli altri non crea nessuna utenza. Le segnalazioni servono agli altri sciatori e per questo non sono coperte dall’interruttore della diagnostica: le mandi perché scegli di votare.</p>
 
-      <h3>Quanto si aspetta agli impianti</h3>
+      <h2 id="waits">Quanto si aspetta agli impianti</h2>
       <p>L’app cronometra da sola quanto resti fermo alla partenza di un impianto prima di cominciare a salire, e manda al server quattro informazioni: quale impianto, quanti minuti, in che mezz’ora del giorno e che giorno della settimana era. Non l’ora esatta, non la tua posizione, non il percorso che stai facendo. Serve a dire agli altri sciatori quanto aspetteranno davvero, che è l’unica cosa che nessuna fonte pubblica sa: il tempo di coda non esiste da nessuna parte se non lo misura chi scia. Come le segnalazioni di pista chiusa, è un contributo alla mappa e non diagnostica, quindi non è coperto dall’interruttore della diagnostica: ha il suo, «Contributi automatici» in Impostazioni, acceso finché non lo spegni. Spento, l’app non misura niente e non manda niente, nemmeno quello che aveva già misurato. Le misure che sembrano sbagliate — più di mezz’ora, o con il GPS perso — vengono buttate sul telefono e non partono mai.</p>
 
-      <h3>Quanto ci vuole per ogni tappa</h3>
+      <h2 id="step-times">Quanto ci vuole per ogni tappa</h2>
       <p>Durante una navigazione l’app confronta, tappa per tappa, il tempo che aveva stimato con quello che ci hai messo davvero, e manda al server: il tipo di tappa (la difficoltà della discesa o il tipo di impianto), la lunghezza arrotondata a 10 metri, il livello scelto, i minuti stimati e quelli veri, e l’ora del giorno in cui la tappa è cominciata. Non la tua posizione, non i nomi o i codici delle piste, non l’ora esatta, non il percorso. Serve a rendere più giusti i tempi che l’app dice a tutti. Le tappe con una pausa lunga, un buco del GPS o un tempo fuori misura vengono buttate sul telefono e non partono mai. Partono insieme a fine navigazione, con la stessa utenza anonima delle segnalazioni, e si spengono con lo stesso interruttore dei tempi di attesa, «Contributi automatici» in Impostazioni.</p>
 
-      <h3>La guida vocale</h3>
+      <h2 id="voice">La guida vocale</h2>
       <p>Se la guida vocale è accesa, le frasi della navigazione («tra 150 metri tieni la destra») le pronuncia il sintetizzatore vocale del <strong>telefono</strong>: Ski Maps non registra niente, non ascolta niente e non manda quelle frasi a nessun server suo. Va detto però chi è quel sintetizzatore: su Android è di solito quello di Google, e a seconda delle impostazioni del telefono una voce può essere generata <strong>online</strong> — in quel caso la frase, che contiene il nome della pista o dell’impianto, passa dai server di chi fornisce la voce. Dall’app non è possibile sapere quali voci lavorano in rete e quali sul telefono: il sistema non lo dichiara. Se preferisci evitarlo, in Impostazioni si spegne la guida vocale, e con la voce spenta non parte nulla.</p>
 
-      <h3>Col telefono in tasca</h3>
+      <h2 id="pocket">Col telefono in tasca</h2>
       <p>Durante una navigazione, e solo allora, Ski Maps continua a usare la posizione anche a schermo spento o con un’altra app aperta: è quello che permette alla guida di seguirti col telefono in tasca. Android lo rende visibile con una notifica fissa, «Navigazione verso…», che resta finché la navigazione è attiva. Si ferma all’arrivo, quando tocchi «Fine» o «Sto esplorando», quando chiudi l’app, e comunque dopo 8 ore. Sui telefoni con Android 13 o successivo, al primo avvio di una navigazione ti viene chiesto il permesso per le notifiche: serve solo a mostrare quella. Le coordinate restano sul telefono come sempre: non vengono salvate in nessun archivio remoto e non partono con nessun dato.</p>
 
-      <h3>Chi altro vede qualcosa</h3>
-      <p>Come in qualsiasi app che usa la rete, i servizi contattati vedono il tuo indirizzo IP:</p>
+      <h2 id="third-parties">Chi altro vede qualcosa</h2>
+      <p>Come in qualsiasi app che usa la rete, i servizi che vengono contattati vedono il tuo indirizzo IP:</p>
       <ul>
-        <li><strong>Supabase</strong> (banca dati): riceve gli eventi di diagnostica, i voti, i tempi di attesa e i tempi delle tappe;</li>
-        <li><strong>Cloudflare R2</strong>: da qui l’app scarica la mappa dei percorsi e lo stato dei comprensori e, se accendi il satellite, la foto d’inverno: in quel caso vede quali zone guardi;</li>
-        <li><strong>MapTiler</strong>: serve le mappe di sfondo, quindi vede quali zone guardi e quali scarichi per l’uso offline. Se la sua mappa non è disponibile, l’app ripiega su OpenStreetMap, con lo stesso effetto;</li>
-        <li><strong>Google</strong>, solo se scegli di accedere con Google: verifica la tua identità e vede che stai accedendo a Ski Maps.</li>
+        <li><strong>Supabase</strong> (banca dati): riceve gli eventi di diagnostica, i voti, i tempi di attesa e i tempi delle tappe</li>
+        <li><strong>Cloudflare R2</strong>: da qui l’app scarica la mappa dei percorsi e lo stato dei comprensori e, se accendi il satellite, la foto d’inverno: in quel caso vede quali zone guardi</li>
+        <li><strong>MapTiler</strong>: serve le mappe di sfondo, quindi vede quali zone guardi e quali scarichi per l’uso offline. Se la sua mappa non è disponibile, l’app ripiega sulle mappe di OpenStreetMap, con lo stesso effetto</li>
       </ul>
-      <p>Questi passaggi non dipendono dalla diagnostica: servono a far funzionare la mappa e l’account. Nessun dato viene venduto, né usato per profilazione o pubblicità. Supabase, Cloudflare e MapTiler trattano questi dati per conto del titolare: sono responsabili del trattamento e non decidono loro cosa farne. <span class="todo">[DA CONFERMARE: Google tratta i dati dell’accesso come titolare autonomo? Supabase gestisce anche l’account (email, ID utente)? Ci sono altri fornitori, per esempio per le email dell’account?]</span></p>
+      <p>Questi passaggi non dipendono dalla diagnostica: servono a far funzionare la mappa. Nessun dato viene venduto, né usato per profilazione o pubblicità. Supabase, Cloudflare e MapTiler trattano questi dati per conto del titolare: sono responsabili del trattamento e non decidono loro cosa farne.</p>
 
-      <h3 id="base">Su quale base trattiamo i dati</h3>
-      <ul>
-        <li><strong>Diagnostica</strong>: il tuo consenso, che dai al primo avvio e puoi ritirare quando vuoi in Impostazioni.</li>
-        <li><strong>Account</strong> (email, ID utente, accesso con Google): <span class="todo">[DA CONFERMARE: base giuridica del trattamento dei dati dell’account]</span>.</li>
-        <li><strong>Contributi automatici</strong> (segnalazioni, tempi di attesa, tempi delle tappe): <span class="todo">[DA CONFERMARE: base giuridica: consenso o legittimo interesse?]</span>.</li>
-        <li><strong>Iscrizione alla lista d’attesa</strong>: <span class="todo">[DA CONFERMARE: base giuridica dell’uso dell’email di iscrizione alla lista d’attesa]</span>.</li>
-      </ul>
-
-      <h3>L’iscrizione alla lista d’attesa</h3>
-      <p data-beta="mail">Se lasci la tua email nel modulo «Avvisami quando esce» di questo sito, si apre il tuo programma di posta con un messaggio già pronto per la casella di Ski Maps: parte solo se lo invii tu, come una normale email dal tuo indirizzo. Serve a un’unica cosa: avvisarti quando Ski Maps esce. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta rispondere all’indirizzo qui sotto.</p>
-      <p data-beta="web3forms" hidden>Se lasci la tua email nel modulo «Avvisami quando esce» di questo sito, il modulo la invia attraverso il servizio <strong>Web3Forms</strong>, che la consegna alla casella di Ski Maps: Web3Forms riceve l’email e il tuo indirizzo IP e la inoltra. <span class="todo">[DA CONFERMARE: Web3Forms conserva una copia dell’email? per quanto tempo? è responsabile del trattamento? dove ha sede?]</span> Serve a un’unica cosa: avvisarti quando Ski Maps esce. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta scrivere all’indirizzo qui sotto.</p>
-      <p data-beta="formspree" hidden>Se lasci la tua email nel modulo «Avvisami quando esce» di questo sito, il modulo la invia attraverso il servizio <strong>Formspree</strong>, che la consegna alla casella di Ski Maps: Formspree riceve l’email e il tuo indirizzo IP e la inoltra. <span class="todo">[DA CONFERMARE: Formspree conserva una copia dell’email? per quanto tempo? è responsabile del trattamento? dove ha sede?]</span> Serve a un’unica cosa: avvisarti quando Ski Maps esce. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta scrivere all’indirizzo qui sotto.</p>
-
-      <h3 id="sito">Questo sito</h3>
-      <p>Questo sito (skimaps.cc) non usa cookie e non ha strumenti di analisi o di tracciamento. Font e script sono serviti dal sito stesso, non da altri siti. Come ogni sito, il server che lo ospita vede il tuo indirizzo IP e i dati tecnici della richiesta. <span class="todo">[DA CONFERMARE: chi ospita il sito (oggi GitHub Pages?) e per quanto tempo conserva i log]</span></p>
-
-      <h3>Per quanto tempo</h3>
+      <h2 id="retention">Per quanto tempo</h2>
       <p>Sul server niente resta per sempre: ogni notte si cancella da solo quello che è scaduto. Gli eventi di diagnostica restano 12 mesi, che coprono una stagione intera e l’estate in cui si corregge la mappa. I voti sulle piste si vedono nell’app per 12 ore e sul telefono restano lo stesso tempo; dal server si cancellano dopo 30 giorni, i tempi di attesa dopo 60, i tempi delle tappe dopo 12 mesi, perché servono a confrontare una stagione intera. L’utenza anonima di segnalazioni, tempi di attesa e tempi delle tappe si cancella dopo 12 mesi senza uso.</p>
-      <p><strong>Account:</strong> l’ID utente e l’email restano finché l’account esiste <span class="todo">[DA CONFERMARE: per quanto tempo si conservano se l’account non viene usato?]</span>; dopo la richiesta di eliminazione vengono cancellati entro <span class="todo">[DA CONFERMARE: quanti giorni?]</span>. <strong>Email della lista d’attesa:</strong> <span class="todo">[DA CONFERMARE: per quanto tempo si conserva?]</span>.</p>
 
-      <h3>I tuoi diritti</h3>
-      <p>Puoi ritirare il consenso quando vuoi, in Impostazioni, e con «Contributi automatici» puoi opporti alle misure che l’app fa da sola in navigazione. Con “Cancella i miei dati” l’app elimina dal telefono il codice casuale, gli eventi ancora in attesa di invio, i voti salvati, i tempi non ancora partiti e l’utenza anonima delle segnalazioni: al riavvio ti viene chiesto di nuovo cosa preferisci. Quello che è già arrivato al server resta lì fino alla scadenza. Per sapere quali eventi di diagnostica esistono, o per farli cancellare prima, scrivi all’indirizzo qui sotto: la risposta arriva entro un mese. Per ritrovarli serve il codice casuale, che trovi in Impostazioni: annotalo prima di cancellarlo. Segnalazioni, tempi di attesa e tempi delle tappe, invece, non sono collegati a quel codice, e non abbiamo modo di sapere quali siano i tuoi: si cancellano da soli alla scadenza. Puoi anche proporre reclamo al <a href="https://www.garanteprivacy.it">Garante per la protezione dei dati personali</a> o all’autorità di controllo del paese in cui vivi.</p>
-      <p>Per i dati dell’account puoi chiederci di eliminarli (<a href="elimina-account.html">come fare</a>). <span class="todo">[DA CONFERMARE: accesso, correzione e portabilità dei dati dell’account: modalità e tempi da riportare]</span></p>
+      <h2 id="rights">I tuoi diritti</h2>
+      <p>Puoi ritirare il consenso quando vuoi, in Impostazioni, e con «Contributi automatici» puoi opporti alle misure che l’app fa da sola in navigazione. Con “Cancella i miei dati” l’app elimina dal telefono il codice casuale, gli eventi ancora in attesa di invio, i voti salvati, i tempi non ancora partiti e l’utenza anonima delle segnalazioni: al riavvio ti viene chiesto di nuovo cosa preferisci. Quello che è già arrivato al server resta lì fino alla scadenza. Per sapere quali eventi di diagnostica esistono, o per farli cancellare prima, scrivi a <a href="mailto:chris.business.skimap@gmail.com?subject=Privacy%20Ski%20Maps">chris.business.skimap@gmail.com</a>: la risposta arriva entro un mese. Per ritrovarli serve il codice casuale, che trovi in Impostazioni: annotalo prima di cancellarlo. Segnalazioni, tempi di attesa e tempi delle tappe, invece, non sono collegati a quel codice, e non abbiamo modo di sapere quali siano i tuoi: si cancellano da soli alla scadenza. Puoi anche proporre reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it">garanteprivacy.it</a>) o all’autorità di controllo del paese in cui vivi.</p>
 
-      <h3>Titolare e contatti</h3>
-      <p>Ski Maps non è ancora un servizio pubblico: è in arrivo su Google Play. Il titolare del trattamento — chi decide quali dati si raccolgono e perché — è la persona raggiungibile all’indirizzo <a href="mailto:chris.business.skimap@gmail.com?subject=Privacy%20Ski%20Maps">chris.business.skimap@gmail.com</a>, a cui puoi scrivere per qualsiasi domanda. I riferimenti completi del titolare, e l’aggiornamento di questa informativa, arriveranno con la pubblicazione dell’app. <span class="todo">[DA CONFERMARE: nome o ragione sociale, indirizzo e recapiti del titolare]</span></p>
+      <h2 id="controller">Titolare e contatti</h2>
+      <p>Ski Maps è in beta chiusa e non è ancora un servizio pubblico. Il titolare del trattamento — chi decide quali dati si raccolgono e perché — è la persona raggiungibile all’indirizzo <a href="mailto:chris.business.skimap@gmail.com?subject=Privacy%20Ski%20Maps">chris.business.skimap@gmail.com</a>, a cui puoi scrivere per qualsiasi domanda. I riferimenti completi del titolare, e l’aggiornamento di questa informativa, arriveranno con la pubblicazione dell’app.</p>
 
-      <h3 id="fonti">Fonti dei dati e licenze</h3>
+      <h2 id="lista-attesa">L’iscrizione alla lista d’attesa</h2>
+      <p data-beta="mail">Se lasci la tua email nel modulo «Avvisami quando esce» di questo sito, si apre il tuo programma di posta con un messaggio già pronto per la casella di Ski Maps: parte solo se lo invii tu, come una normale email dal tuo indirizzo. Serve a un’unica cosa: avvisarti quando Ski Maps esce. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta rispondere all’indirizzo qui sopra.</p>
+      <p data-beta="web3forms" hidden>Se lasci la tua email nel modulo «Avvisami quando esce» di questo sito, il modulo la invia attraverso il servizio <strong>Web3Forms</strong>, che la consegna alla casella di Ski Maps: Web3Forms riceve l’email e il tuo indirizzo IP e la inoltra. Serve a un’unica cosa: avvisarti quando Ski Maps esce. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta scrivere all’indirizzo qui sopra.</p>
+      <p data-beta="formspree" hidden>Se lasci la tua email nel modulo «Avvisami quando esce» di questo sito, il modulo la invia attraverso il servizio <strong>Formspree</strong>, che la consegna alla casella di Ski Maps: Formspree riceve l’email e il tuo indirizzo IP e la inoltra. Serve a un’unica cosa: avvisarti quando Ski Maps esce. Nessuna newsletter, nessuna cessione a terzi, e l’iscrizione non crea un account. Per farla cancellare basta scrivere all’indirizzo qui sopra.</p>
+
+      <h2 id="sito">Questo sito</h2>
+      <p>Questo sito (skimaps.cc) non usa cookie e non ha strumenti di analisi o di tracciamento. Font e script sono serviti dal sito stesso, non da altri siti. Il sito è pubblicato con GitHub Pages: come ogni servizio che ospita un sito, vede il tuo indirizzo IP e i dati tecnici della richiesta.</p>
+
+      <h2 id="fonti">Fonti dei dati e licenze</h2>
       <p>Non riguarda i tuoi dati, ma va detto qui. La mappa dei percorsi di Ski Maps è costruita da <strong>OpenStreetMap</strong>: è un database derivato, distribuito sotto licenza <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a> — © OpenStreetMap contributors, dati modificati. Il rilievo che dice da che parte scende ogni pista viene da due modelli del terreno:</p>
       <ul>
         <li><strong>INGV TINITALY</strong> (CC BY 4.0): Tarquini S., I. Isola, M. Favalli, A. Battistini, G. Dotta (2023). TINITALY, a digital elevation model of Italy with a 10 meters cell size (Version 1.1). Istituto Nazionale di Geofisica e Vulcanologia (INGV). <a href="https://doi.org/10.13127/tinitaly/1.1">https://doi.org/10.13127/tinitaly/1.1</a>;</li>
@@ -181,7 +157,7 @@
     <span class="season">© 2026 Ski Maps</span>
     <nav aria-label="Piè di pagina">
       <a href="/privacy.html">Informativa privacy</a>
-      <a href="/elimina-account.html">Elimina account</a>
+      <a href="/elimina-account.html">Cancella i tuoi dati</a>
       <a href="/chi-siamo/">Chi siamo</a>
       <a href="/aree/#impianti">Per le società impianti</a>
     </nav>

@@ -53,6 +53,7 @@ for (const p of ALL_FILES) {
     if (!existsSync(f)) { err(`${p}: link rotto ${href}`); continue; }
     if (frag && frag.length > 1 && f.endsWith('.html') && !idsFile(relative(root, f)).has(frag.slice(1))) err(`${p}: ancora ${href}${frag} non esiste`);
   }
+  if (/\[SCREENSHOT/.test(h)) err(`${p}: segnaposto [SCREENSHOT] in pagina`);
   const todo = (h.match(/\[DA CONFERMARE/g) || []).length;
   if (todo) { if (RELEASE) err(`${p}: ${todo} segnaposto [DA CONFERMARE] ancora da risolvere`); else warn(`${p}: ${todo} segnaposto [DA CONFERMARE]`); }
   if (LIST) for (const m of h.matchAll(/\[DA CONFERMARE: ([^\]]*)\]/g)) console.log(`${p}\t${m[1].replace(/<[^>]+>/g, '')}`);

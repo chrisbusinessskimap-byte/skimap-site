@@ -44,7 +44,7 @@ a{color:inherit}
 .wrap{max-width:1180px; margin:0 auto; padding:0 28px; width:100%}
 /* Informativa privacy: testo lungo da leggere, non da scorrere di fretta */
 .legal{max-width:72ch}
-.legal h3{margin:30px 0 8px; font-size:20px}
+.legal h2, .legal h3{margin:30px 0 8px; font-size:20px; font-weight:800; text-transform:uppercase; letter-spacing:.01em}
 .legal p{margin:0 0 12px; color:var(--ink-2); line-height:1.65}
 .legal ul{margin:0 0 12px; padding-left:22px; color:var(--ink-2); line-height:1.65}
 .legal li{margin-bottom:6px}
@@ -72,18 +72,32 @@ a{color:inherit}
 .nav.solid{background:color-mix(in srgb, var(--card) 86%, transparent); backdrop-filter:blur(12px); border-bottom-color:var(--line); box-shadow:0 6px 24px -18px rgba(16,20,24,.25)}
 .nav .wrap{display:flex; align-items:center; justify-content:space-between; height:72px; gap:20px}
 .logo{display:flex; align-items:center; gap:10px; text-decoration:none; font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:30px; letter-spacing:.03em; text-transform:uppercase}
-.logo svg{width:32px;height:32px; filter:drop-shadow(0 3px 6px rgba(16,20,24,.25))}
+.logo svg, .logo img{width:32px;height:32px; border-radius:8px; filter:drop-shadow(0 3px 6px rgba(16,20,24,.25))}
 .nav-links{display:flex; gap:2px; font-weight:500; font-size:15px}
 .nav-links a{text-decoration:none; color:var(--ink-2); padding:8px 13px; border-radius:999px}
 .nav-links a:hover{color:var(--ink); background:var(--bg-3)}
 .nav-links a.active{background:var(--ink); color:var(--bg)}
 .nav .btn{min-height:44px; font-size:19px; padding:0 18px}
 .menu-btn{display:none; min-height:44px; padding:0 16px; border-radius:999px; border:2px solid var(--ink); background:var(--card); color:var(--ink); font:inherit; font-weight:600; cursor:pointer}
+.menu-btn .mb-ico{display:none; width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round}
 .mobile-menu{display:none; border-top:1px solid var(--line); background:var(--card); box-shadow:var(--shadow)}
 .mobile-menu.open{display:block}
 .mobile-menu a{display:block; padding:16px 28px; text-decoration:none; font-family:"Big Shoulders Display",sans-serif; font-size:30px; font-weight:800; text-transform:uppercase; border-bottom:1px solid var(--line)}
 .mobile-menu a.active{box-shadow:inset 6px 0 0 var(--accent)}
-@media (max-width:860px){ .nav-links{display:none} .menu-btn{display:inline-flex; align-items:center} .nav .btn.primary{display:none} }
+@media (max-width:860px){ .nav-links{display:none} .menu-btn{display:inline-flex; align-items:center} }
+/* al telefono l'invito resta nella barra, accanto a «Menu»: compatto, ma sempre a 44 px di altezza */
+@media (max-width:560px){
+  .nav .wrap{gap:8px}
+  .logo{font-size:24px; gap:8px}
+  .logo svg, .logo img{width:28px; height:28px}
+  .nav .btn.primary{margin-left:auto; min-height:44px; padding:0 14px; font-size:17px; letter-spacing:.03em; white-space:nowrap}
+  .logo{white-space:nowrap}
+  /* «Menu» diventa l'icona: il testo resta per i lettori di schermo */
+  .nav .wrap > .menu-btn{margin-left:0; width:44px; padding:0; justify-content:center}
+  .menu-btn .mb-ico{display:block}
+  .menu-btn .mb-txt{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+}
+@media (max-width:360px){ .logo{font-size:21px} .nav .btn.primary{padding:0 11px; font-size:16px} }
 
 /* ---------- views ---------- */
 .view{display:none}
@@ -441,6 +455,8 @@ main:focus{outline:none}
 .sec.dark .lede{color:#d3dae2; margin:22px 0 30px}
 .sec.dark .pillar p{color:#c9d1da}
 .split{position:relative; z-index:1; display:grid; grid-template-columns:1.25fr .75fr; gap:56px; align-items:start}
+/* senza la schermata il testo prende tutta la riga */
+.split.solo{grid-template-columns:minmax(0,760px)}
 .listh{font-size:24px; color:#fff; margin:36px 0 12px}
 .tours{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:10px}
 .tours li{border-top:3px solid var(--accent); padding-top:10px}
@@ -450,13 +466,12 @@ main:focus{outline:none}
 @media (max-width:900px){ .split{grid-template-columns:1fr} }
 @media (max-width:480px){ .tours{grid-template-columns:1fr} }
 
-/* segnaposto degli screenshot: da sostituire con le schermate vere */
+/* schermate dell'app (assets/shots/, vedi tools/build.mjs) */
 .shot{margin:0; width:100%; max-width:280px; align-self:center}
-.shot-ph{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:18px; text-align:center; border:3px dashed var(--ink-3); border-radius:30px; background:repeating-linear-gradient(135deg, var(--bg-2) 0 12px, var(--bg) 12px 24px); color:var(--ink); font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600; line-height:1.4}
-.shot-ph small{font-weight:500; color:var(--ink-2)}
+.shot img{display:block; width:100%; height:auto; border-radius:30px; box-shadow:var(--shadow-lg); outline:1px solid rgba(0,0,0,.1); outline-offset:-1px}
 .shot figcaption{margin-top:10px; font-size:14px; color:var(--ink-2); text-align:center}
-.sec.dark .shot-ph{border-color:rgba(255,255,255,.55); background:repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 12px, rgba(255,255,255,.1) 12px 24px); color:#fff}
-.sec.dark .shot-ph small, .sec.dark .shot figcaption{color:#c9d1da}
+.sec.dark .shot img{outline-color:rgba(255,255,255,.1)}
+.sec.dark .shot figcaption{color:#c9d1da}
 
 /* liste semantiche con l'aspetto delle griglie esistenti */
 ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
@@ -527,7 +542,7 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .mobile-menu .mm-langs a{border:2px solid var(--ink); font-size:15px; padding:0 14px}
 .nav-links a[aria-current]{background:var(--ink); color:var(--bg)}
 .mobile-menu a[aria-current="page"]{box-shadow:inset 6px 0 0 var(--accent)}
-@media (max-width:560px){ .nav .wrap > .langs{display:none} .nav .wrap > .menu-btn{margin-left:auto} }
+@media (max-width:560px){ .nav .wrap > .langs{display:none} }
 
 /* titolo della home: due righe lunghe, un po' più piccolo dell'originale */
 .hero h1.long{font-size:clamp(50px,7.2vw,112px)}
@@ -562,3 +577,19 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .about-photo{margin:0}
 .about-photo img{display:block; width:100%; height:auto; border-radius:22px; box-shadow:var(--shadow)}
 @media (max-width:860px){ .about.with-photo{grid-template-columns:1fr; gap:32px} .about-photo{max-width:320px; order:-1} }
+
+/* ---------- anteprima 3D: riquadro per telefono e tablet (assets/hero.js) ---------- */
+/* su computer la mappa è lo sfondo della hero; sotto i 900 px ha un riquadro suo sotto il testo,
+   e finché non la tocchi è un'immagine: il 3D si carica solo a richiesta */
+.mapbox{display:none}
+.hero .wrap .mapbox{pointer-events:auto}
+.hero:not(.ready) .routecard{visibility:hidden}
+@media (max-width:900px){
+  .site .hero .veil{display:none}
+  .mapbox{display:block; position:relative; aspect-ratio:1/1; max-height:72vh; border-radius:22px; overflow:hidden; background:linear-gradient(180deg, #d5e2f0, var(--sky)); box-shadow:var(--shadow)}
+  .mapbox .poster{display:block; width:100%; height:100%; object-fit:cover}
+  .mapbox .try3d{position:absolute; left:0; right:0; bottom:16px; width:max-content; max-width:calc(100% - 32px); margin:0 auto}
+  .hero.live .mapbox .poster, .hero.live .mapbox .try3d{display:none}
+  .hero:not(.live) .routecard, .hero:not(.live) .hint, .hero:not(.live) > canvas{display:none}
+}
+@media (min-width:561px) and (max-width:900px){ .mapbox{aspect-ratio:16/10} }

@@ -12,7 +12,6 @@
 <link rel="alternate" hreflang="en" href="https://skimaps.cc/en/">
 <link rel="alternate" hreflang="de" href="https://skimaps.cc/de/">
 <link rel="alternate" hreflang="x-default" href="https://skimaps.cc/">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:site_name" content="Ski Maps">
@@ -33,7 +32,7 @@
 <meta name="twitter:image" content="https://skimaps.cc/assets/og-image.png">
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="/assets/site.css">
-<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
+<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard,.try3d{display:none}</style></noscript>
 </head>
 <body class="site">
 
@@ -41,7 +40,7 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="logo" href="/de/" aria-label="Ski Maps, zur Startseite">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>
+      <img src="/assets/icon-64.png" width="32" height="32" alt="">
       Ski Maps
     </a>
     <nav class="nav-links" aria-label="Bereiche">
@@ -50,9 +49,9 @@
       <a href="/de/fragen/">Fragen</a>
       <a href="/en/privacy.html">Datenschutz</a>
     </nav>
-    <a class="btn primary" href="/de/#avvisami">Benachrichtigen</a>
+    <a class="btn primary" href="/de/#avvisami">Vormerken</a>
     <nav class="langs" aria-label="Sprache"><a href="/" hreflang="it" lang="it" title="Italiano">IT</a><a href="/en/" hreflang="en" lang="en" title="English">EN</a><a href="/de/" hreflang="de" lang="de" aria-current="true" title="Deutsch">DE</a></nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menü</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn"><svg class="mb-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="mb-txt">Menü</span></button>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="Bereiche">
     <a href="/de/so-funktionierts/">So funktioniert’s</a>
@@ -86,6 +85,11 @@
         <p class="store">Bald auf Google Play · iOS folgt später</p>
         <p class="trustline"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 16 19 12 21 C8 19 5 15.5 5 11 V6 Z"/><path d="M9 12 L11 14 L15 10"/></svg>Dein GPS-Standort bleibt auf dem Handy. <a href="#privacy-in-breve">Datenschutz</a></p>
         <div class="hint"><i></i>Vorschau: tippe auf eine Station am Berg</div>
+      </div>
+
+      <div class="mapbox" id="mapbox">
+        <img class="poster" src="/assets/hero-poster-de.webp" width="720" height="720" alt="Vorschau der 3D-Karte der Sellagruppe mit einer gelb hervorgehobenen Route" loading="lazy" decoding="async">
+        <button class="btn primary try3d" type="button" id="try3d">3D-Vorschau ausprobieren</button>
       </div>
 
       <div class="routecard" aria-live="polite">
@@ -161,8 +165,8 @@
     <ul class="cols4">
       <li class="col"><h3>GPS auf dem Handy</h3><p>Dein GPS-Standort bleibt auf dem Handy.</p></li>
       <li class="col"><h3>Diagnose nur mit Zustimmung</h3><p>Diagnosedaten werden nur gesendet, wenn du zustimmst.</p></li>
-      <li class="col"><h3>Konto freiwillig</h3><p>Du kannst Ski Maps ohne Konto nutzen. <span class="todo">[DA CONFERMARE: account facoltativo nella v1?]</span></p></li>
-      <li class="col"><h3>Konto löschen</h3><p>Wenn du ein Konto hast, kannst du es löschen: <a href="/en/delete-account.html">so geht’s (Englisch)</a>.</p></li>
+      <li class="col"><h3>Ohne Registrierung</h3><p>Ski Maps funktioniert ohne Registrierung: Es gibt kein Konto anzulegen.</p></li>
+      <li class="col"><h3>Daten löschen</h3><p>Auf dem Handy mit einem Tippen, auf dem Server auf Anfrage oder nach Ablauf: <a href="/en/delete-account.html">so geht’s (Englisch)</a>.</p></li>
     </ul>
     <p class="more"><a class="btn ghost" href="/en/privacy.html">Datenschutzerklärung lesen (Englisch)</a></p>
   </div>
@@ -197,7 +201,7 @@
     <span class="season">© 2026 Ski Maps</span>
     <nav aria-label="Fußzeile">
       <a href="/en/privacy.html">Datenschutz (Englisch)</a>
-      <a href="/en/delete-account.html">Konto löschen (Englisch)</a>
+      <a href="/en/delete-account.html">Daten löschen (Englisch)</a>
       <a href="/de/ueber-uns/">Über uns</a>
       <a href="/de/skigebiete/#impianti">Für Liftbetreiber</a>
     </nav>
@@ -211,7 +215,7 @@ window.SKIMAP_T = {
   siteTitle: 'Ski Maps · GPS-Navigator für Skifahrer',
   redirects: {},
   decimal: ',', thousands: '.',
-  routeUnavailable: 'Route nicht verfügbar', indirect: ' · Umweg',
+  routeUnavailable: 'Mit diesen Pisten nicht erreichbar', indirect: ' · Umweg',
   easyOnly: 'Nur leichte Pisten', easyMedium: 'Leicht + mittel',
   fromLabel: function(legs, lifts){ return 'Corvara (Boè) · ' + legs + ' Abschnitte · ' + lifts + (lifts === 1 ? ' Lift' : ' Lifte'); },
   badge: function(){ return '<b>Demovorschau</b> · Sellagebiet · © OpenStreetMap contributors · Gelände INGV TINITALY'; },
@@ -226,10 +230,8 @@ window.SKIMAP_T = {
 };
 </script>
 <script src="/assets/site.js" defer></script>
-<script src="/assets/vendor/three.min.js" defer></script>
-<script src="/assets/graph-data.js" defer></script>
+<script src="/assets/hero.js" defer></script>
 <script src="/assets/config.js" defer></script>
-<script src="/assets/map3d.js" defer></script>
 <script src="/assets/beta.js" defer></script>
 </body>
 </html>

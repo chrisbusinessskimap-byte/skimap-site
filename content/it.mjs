@@ -10,7 +10,7 @@ export default {
   ui: {
     skip: 'Vai al contenuto', homeAria: 'Ski Maps, torna alla home', menu: 'Menu', sections: 'Sezioni', langs: 'Lingua',
     footer: 'Piè di pagina', cta: 'Avvisami quando esce', ctaShort: 'Avvisami',
-    contact: 'Contatti:', privacy: 'Informativa privacy', delete: 'Elimina account', biz: 'Per le società impianti',
+    contact: 'Contatti:', privacy: 'Informativa privacy', delete: 'Cancella i tuoi dati', biz: 'Per le società impianti',
     sources: 'Fonti e licenze', home: 'Home',
     data: 'Dati mappa © OpenStreetMap contributors, licenza ODbL · Mappe di sfondo nell’app © MapTiler · Rilievo: INGV TINITALY e Copernicus EU-DEM (dati modificati) · Orari: open data STA Südtirolmobil e Trentino Trasporti ·',
     mapdata: 'Dati mappa:',
@@ -30,6 +30,7 @@ export default {
     store: 'In arrivo su Google Play · iOS in seguito',
     trust: 'La tua posizione GPS resta sul telefono.',
     hint: 'Anteprima: tocca una stazione sulla montagna',
+    try3d: 'Prova l’anteprima 3D', posterAlt: 'Anteprima della mappa 3D del gruppo del Sella con un percorso evidenziato in giallo',
     canvasAria: 'Anteprima 3D dimostrativa del gruppo del Sella con piste e impianti: tocca una stazione per vedere un percorso di esempio per ogni livello',
     rc: { dest: 'Destinazione', from: 'da', beg: 'Principiante', begS: 'Solo piste facili', int: 'Intermedio', intS: 'Facili + medie', adv: 'Avanzato', advS: 'Tutte le piste', legs: 'Tratte del percorso' },
     pointsTitle: 'Cosa fa Ski Maps',
@@ -50,8 +51,8 @@ export default {
       items: [
         ['GPS sul telefono', 'La posizione GPS resta sul telefono.'],
         ['Diagnostica solo con il consenso', 'I dati di diagnostica partono solo se dai il consenso.'],
-        ['Account facoltativo', 'Puoi usare Ski Maps senza account. ' + todo('account facoltativo nella v1?')],
-        ['Cancellazione dell’account', 'Se hai un account, puoi eliminarlo: <a href="{delete}">come fare</a>.'],
+        ['Senza registrazione', 'Ski Maps funziona senza registrarti: non c’è un account da creare.'],
+        ['Cancellare i tuoi dati', 'Dal telefono con un tocco, dal server su richiesta o alla scadenza: <a href="{delete}">come fare</a>.'],
       ],
       link: 'Leggi l’informativa privacy',
     },
@@ -140,7 +141,7 @@ export default {
   /* testi per la mappa 3D e per il modulo (assets/map3d.js, assets/beta.js) */
   js: {
     decimal: ',', thousands: '.',
-    routeUnavailable: 'Percorso non disponibile', indirect: ' · percorso indiretto',
+    routeUnavailable: 'Non ci si arriva con queste piste', indirect: ' · percorso indiretto',
     easyOnly: 'Solo piste facili', easyMedium: 'Facili + medie',
     fromLabel: "function(legs, lifts){ return 'Corvara (Boè) · ' + legs + ' tratte · ' + lifts + (lifts === 1 ? ' impianto' : ' impianti'); }",
     badge: "function(){ return '<b>Anteprima dimostrativa</b> · area del Sella · © OpenStreetMap contributors · rilievo INGV TINITALY'; }",

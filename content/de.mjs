@@ -8,8 +8,8 @@ export default {
   tagline: 'GPS-Navigator für Skifahrer',
   ui: {
     skip: 'Zum Inhalt', homeAria: 'Ski Maps, zur Startseite', menu: 'Menü', sections: 'Bereiche', langs: 'Sprache',
-    footer: 'Fußzeile', cta: 'Beim Start benachrichtigen', ctaShort: 'Benachrichtigen',
-    contact: 'Kontakt:', privacy: 'Datenschutz (Englisch)', delete: 'Konto löschen (Englisch)', biz: 'Für Liftbetreiber',
+    footer: 'Fußzeile', cta: 'Beim Start benachrichtigen', ctaShort: 'Vormerken',
+    contact: 'Kontakt:', privacy: 'Datenschutz (Englisch)', delete: 'Daten löschen (Englisch)', biz: 'Für Liftbetreiber',
     sources: 'Quellen und Lizenzen', home: 'Start',
     data: 'Kartendaten © OpenStreetMap contributors, Lizenz ODbL · Hintergrundkarten in der App © MapTiler · Gelände: INGV TINITALY und Copernicus EU-DEM (veränderte Daten) · Fahrpläne: Open Data von STA Südtirolmobil und Trentino Trasporti ·',
     mapdata: 'Kartendaten:',
@@ -29,6 +29,7 @@ export default {
     store: 'Bald auf Google Play · iOS folgt später',
     trust: 'Dein GPS-Standort bleibt auf dem Handy.',
     hint: 'Vorschau: tippe auf eine Station am Berg',
+    try3d: '3D-Vorschau ausprobieren', posterAlt: 'Vorschau der 3D-Karte der Sellagruppe mit einer gelb hervorgehobenen Route',
     canvasAria: '3D-Demovorschau der Sellagruppe mit Pisten und Liften: tippe auf eine Station, um eine Beispielroute für jedes Niveau zu sehen',
     rc: { dest: 'Ziel', from: 'ab', beg: 'Anfänger', begS: 'Nur leichte Pisten', int: 'Fortgeschritten', intS: 'Leicht + mittel', adv: 'Experte', advS: 'Alle Pisten', legs: 'Abschnitte der Route' },
     pointsTitle: 'Was Ski Maps kann',
@@ -49,8 +50,8 @@ export default {
       items: [
         ['GPS auf dem Handy', 'Dein GPS-Standort bleibt auf dem Handy.'],
         ['Diagnose nur mit Zustimmung', 'Diagnosedaten werden nur gesendet, wenn du zustimmst.'],
-        ['Konto freiwillig', 'Du kannst Ski Maps ohne Konto nutzen. ' + todo('account facoltativo nella v1?')],
-        ['Konto löschen', 'Wenn du ein Konto hast, kannst du es löschen: <a href="{delete}">so geht’s (Englisch)</a>.'],
+        ['Ohne Registrierung', 'Ski Maps funktioniert ohne Registrierung: Es gibt kein Konto anzulegen.'],
+        ['Daten löschen', 'Auf dem Handy mit einem Tippen, auf dem Server auf Anfrage oder nach Ablauf: <a href="{delete}">so geht’s (Englisch)</a>.'],
       ],
       link: 'Datenschutzerklärung lesen (Englisch)',
     },
@@ -138,7 +139,7 @@ export default {
 
   js: {
     decimal: ',', thousands: '.',
-    routeUnavailable: 'Route nicht verfügbar', indirect: ' · Umweg',
+    routeUnavailable: 'Mit diesen Pisten nicht erreichbar', indirect: ' · Umweg',
     easyOnly: 'Nur leichte Pisten', easyMedium: 'Leicht + mittel',
     fromLabel: "function(legs, lifts){ return 'Corvara (Boè) · ' + legs + ' Abschnitte · ' + lifts + (lifts === 1 ? ' Lift' : ' Lifte'); }",
     badge: "function(){ return '<b>Demovorschau</b> · Sellagebiet · © OpenStreetMap contributors · Gelände INGV TINITALY'; }",

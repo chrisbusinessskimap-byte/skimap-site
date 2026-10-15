@@ -3,7 +3,9 @@
 export const ORIGIN = 'https://skimaps.cc';
 export const MAIL = 'chris.business.skimap@gmail.com';
 
-/* Segnaposto per i fatti non ancora confermati: in pagina si vede evidenziato. */
+/* Segnaposto per i fatti non ancora confermati: in anteprima locale si vede evidenziato,
+   ma la pubblicazione si ferma finché ne resta uno (check.mjs --release nel workflow).
+   Le domande aperte stanno in docs/DA_CONFERMARE.md. */
 export const todo = (q) => `<span class="todo">[DA CONFERMARE: ${q}]</span>`;
 
 /* Indirizzi (sempre con la barra iniziale) delle pagine generate, per lingua.

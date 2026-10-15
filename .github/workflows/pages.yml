@@ -25,8 +25,8 @@ jobs:
           node-version: 22
       - name: Genera le pagine dai testi in content/
         run: node tools/build.mjs
-      - name: Controlli (link, ancore, parità tra le lingue; i [DA CONFERMARE] sono solo avvisi)
-        run: node tools/check.mjs
+      - name: Controlli (link, ancore, parità tra le lingue; un [DA CONFERMARE] blocca la pubblicazione)
+        run: node tools/check.mjs --release
       - name: Scrivi la configurazione del modulo dai secret
         env:
           WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}

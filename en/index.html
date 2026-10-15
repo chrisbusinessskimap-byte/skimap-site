@@ -12,7 +12,6 @@
 <link rel="alternate" hreflang="en" href="https://skimaps.cc/en/">
 <link rel="alternate" hreflang="de" href="https://skimaps.cc/de/">
 <link rel="alternate" hreflang="x-default" href="https://skimaps.cc/">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:site_name" content="Ski Maps">
@@ -33,7 +32,7 @@
 <meta name="twitter:image" content="https://skimaps.cc/assets/og-image.png">
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="/assets/site.css">
-<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
+<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard,.try3d{display:none}</style></noscript>
 </head>
 <body class="site">
 
@@ -41,7 +40,7 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="logo" href="/en/" aria-label="Ski Maps, back to home">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>
+      <img src="/assets/icon-64.png" width="32" height="32" alt="">
       Ski Maps
     </a>
     <nav class="nav-links" aria-label="Sections">
@@ -52,7 +51,7 @@
     </nav>
     <a class="btn primary" href="/en/#avvisami">Notify me</a>
     <nav class="langs" aria-label="Language"><a href="/" hreflang="it" lang="it" title="Italiano">IT</a><a href="/en/" hreflang="en" lang="en" aria-current="true" title="English">EN</a><a href="/de/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menu</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn"><svg class="mb-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="mb-txt">Menu</span></button>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="Sections">
     <a href="/en/how-it-works/">How it works</a>
@@ -86,6 +85,11 @@
         <p class="store">Coming soon to Google Play · iOS later</p>
         <p class="trustline"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 16 19 12 21 C8 19 5 15.5 5 11 V6 Z"/><path d="M9 12 L11 14 L15 10"/></svg>Your GPS location stays on your phone. <a href="#privacy-in-breve">Privacy</a></p>
         <div class="hint"><i></i>Preview: tap a station on the mountain</div>
+      </div>
+
+      <div class="mapbox" id="mapbox">
+        <img class="poster" src="/assets/hero-poster-en.webp" width="720" height="720" alt="Preview of the 3D map of the Sella group with a route highlighted in yellow" loading="lazy" decoding="async">
+        <button class="btn primary try3d" type="button" id="try3d">Try the 3D preview</button>
       </div>
 
       <div class="routecard" aria-live="polite">
@@ -161,8 +165,8 @@
     <ul class="cols4">
       <li class="col"><h3>GPS on your phone</h3><p>Your GPS location stays on your phone.</p></li>
       <li class="col"><h3>Diagnostics only with consent</h3><p>Diagnostic data is sent only if you give your consent.</p></li>
-      <li class="col"><h3>Optional account</h3><p>You can use Ski Maps without an account. <span class="todo">[DA CONFERMARE: account facoltativo nella v1?]</span></p></li>
-      <li class="col"><h3>Account deletion</h3><p>If you have an account, you can delete it: <a href="/en/delete-account.html">how</a>.</p></li>
+      <li class="col"><h3>No sign-up</h3><p>Ski Maps works without signing up: there is no account to create.</p></li>
+      <li class="col"><h3>Deleting your data</h3><p>From the phone with one tap, from the server on request or when it expires: <a href="/en/delete-account.html">how</a>.</p></li>
     </ul>
     <p class="more"><a class="btn ghost" href="/en/privacy.html">Read the privacy notice</a></p>
   </div>
@@ -197,7 +201,7 @@
     <span class="season">© 2026 Ski Maps</span>
     <nav aria-label="Footer">
       <a href="/en/privacy.html">Privacy notice</a>
-      <a href="/en/delete-account.html">Delete account</a>
+      <a href="/en/delete-account.html">Delete your data</a>
       <a href="/en/about/">About</a>
       <a href="/en/areas/#impianti">For lift companies</a>
     </nav>
@@ -211,7 +215,7 @@ window.SKIMAP_T = {
   siteTitle: 'Ski Maps · GPS Navigator for Skiers',
   redirects: {"giro":"/en/how-it-works/","come-funziona":"/en/how-it-works/","funzioni":"/en/how-it-works/","pensata":"/en/how-it-works/","dove":"/en/areas/","mondo":"/en/areas/","pilot":"/en/areas/","motore":"/en/areas/","impianti":"/en/areas/#impianti","domande":"/en/faq/","fiducia":"#privacy-in-breve","beta":"#avvisami","privacy":"/en/privacy.html","elimina-account":"/en/delete-account.html","delete-account":"/en/delete-account.html"},
   decimal: '.', thousands: ',',
-  routeUnavailable: 'Route not available', indirect: ' · indirect route',
+  routeUnavailable: 'Not reachable on these pistes', indirect: ' · indirect route',
   easyOnly: 'Easy pistes only', easyMedium: 'Easy + medium',
   fromLabel: function(legs, lifts){ return 'Corvara (Boè) · ' + legs + ' legs · ' + lifts + (lifts === 1 ? ' lift' : ' lifts'); },
   badge: function(){ return '<b>Demo preview</b> · Sella area · © OpenStreetMap contributors · INGV TINITALY terrain'; },
@@ -226,10 +230,8 @@ window.SKIMAP_T = {
 };
 </script>
 <script src="/assets/site.js" defer></script>
-<script src="/assets/vendor/three.min.js" defer></script>
-<script src="/assets/graph-data.js" defer></script>
+<script src="/assets/hero.js" defer></script>
 <script src="/assets/config.js" defer></script>
-<script src="/assets/map3d.js" defer></script>
 <script src="/assets/beta.js" defer></script>
 </body>
 </html>

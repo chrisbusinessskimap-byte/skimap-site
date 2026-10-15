@@ -13,6 +13,16 @@
   var viaMail = document.getElementById('beta-mailto'), bad = document.getElementById('beta-invalid');
   var hp = document.getElementById('botcheck');
 
+  /* chi tocca «Avvisami» arriva al modulo con il cursore già nel campo email */
+  function focusEmail(){ input.focus({ preventScroll: true }); }
+  /* arrivando da un'altra pagina il browser sposta il focus mentre scorre all'ancora: si aspetta il caricamento */
+  if (location.hash === '#avvisami') window.addEventListener('load', function(){ setTimeout(focusEmail, 0); });
+  window.addEventListener('hashchange', function(){ if (location.hash === '#avvisami') focusEmail(); });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href$="#avvisami"]');
+    if (a && a.pathname === location.pathname) setTimeout(focusEmail, 0);
+  });
+
   function mailto(email){
     return 'mailto:' + BETA_TO + '?subject=' + encodeURIComponent(T.subject) + '&body=' + encodeURIComponent(T.mailBody(email));
   }

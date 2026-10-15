@@ -12,7 +12,6 @@
 <link rel="alternate" hreflang="en" href="https://skimaps.cc/en/">
 <link rel="alternate" hreflang="de" href="https://skimaps.cc/de/">
 <link rel="alternate" hreflang="x-default" href="https://skimaps.cc/">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:site_name" content="Ski Maps">
@@ -33,7 +32,7 @@
 <meta name="twitter:image" content="https://skimaps.cc/assets/og-image.png">
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="/assets/site.css">
-<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
+<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard,.try3d{display:none}</style></noscript>
 </head>
 <body class="site">
 
@@ -41,7 +40,7 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="logo" href="/" aria-label="Ski Maps, torna alla home">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>
+      <img src="/assets/icon-64.png" width="32" height="32" alt="">
       Ski Maps
     </a>
     <nav class="nav-links" aria-label="Sezioni">
@@ -52,7 +51,7 @@
     </nav>
     <a class="btn primary" href="/#avvisami">Avvisami</a>
     <nav class="langs" aria-label="Lingua"><a href="/" hreflang="it" lang="it" aria-current="true" title="Italiano">IT</a><a href="/en/" hreflang="en" lang="en" title="English">EN</a><a href="/de/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menu</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn"><svg class="mb-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="mb-txt">Menu</span></button>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="Sezioni">
     <a href="/come-funziona/">Come funziona</a>
@@ -86,6 +85,11 @@
         <p class="store">In arrivo su Google Play · iOS in seguito</p>
         <p class="trustline"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 16 19 12 21 C8 19 5 15.5 5 11 V6 Z"/><path d="M9 12 L11 14 L15 10"/></svg>La tua posizione GPS resta sul telefono. <a href="#privacy-in-breve">Privacy</a></p>
         <div class="hint"><i></i>Anteprima: tocca una stazione sulla montagna</div>
+      </div>
+
+      <div class="mapbox" id="mapbox">
+        <img class="poster" src="/assets/hero-poster-it.webp" width="720" height="720" alt="Anteprima della mappa 3D del gruppo del Sella con un percorso evidenziato in giallo" loading="lazy" decoding="async">
+        <button class="btn primary try3d" type="button" id="try3d">Prova l’anteprima 3D</button>
       </div>
 
       <div class="routecard" aria-live="polite">
@@ -161,8 +165,8 @@
     <ul class="cols4">
       <li class="col"><h3>GPS sul telefono</h3><p>La posizione GPS resta sul telefono.</p></li>
       <li class="col"><h3>Diagnostica solo con il consenso</h3><p>I dati di diagnostica partono solo se dai il consenso.</p></li>
-      <li class="col"><h3>Account facoltativo</h3><p>Puoi usare Ski Maps senza account. <span class="todo">[DA CONFERMARE: account facoltativo nella v1?]</span></p></li>
-      <li class="col"><h3>Cancellazione dell’account</h3><p>Se hai un account, puoi eliminarlo: <a href="/elimina-account.html">come fare</a>.</p></li>
+      <li class="col"><h3>Senza registrazione</h3><p>Ski Maps funziona senza registrarti: non c’è un account da creare.</p></li>
+      <li class="col"><h3>Cancellare i tuoi dati</h3><p>Dal telefono con un tocco, dal server su richiesta o alla scadenza: <a href="/elimina-account.html">come fare</a>.</p></li>
     </ul>
     <p class="more"><a class="btn ghost" href="/privacy.html">Leggi l’informativa privacy</a></p>
   </div>
@@ -197,7 +201,7 @@
     <span class="season">© 2026 Ski Maps</span>
     <nav aria-label="Piè di pagina">
       <a href="/privacy.html">Informativa privacy</a>
-      <a href="/elimina-account.html">Elimina account</a>
+      <a href="/elimina-account.html">Cancella i tuoi dati</a>
       <a href="/chi-siamo/">Chi siamo</a>
       <a href="/aree/#impianti">Per le società impianti</a>
     </nav>
@@ -211,7 +215,7 @@ window.SKIMAP_T = {
   siteTitle: 'Ski Maps · Navigatore GPS per sciatori',
   redirects: {"giro":"/come-funziona/","come-funziona":"/come-funziona/","funzioni":"/come-funziona/","pensata":"/come-funziona/","dove":"/aree/","mondo":"/aree/","pilot":"/aree/","motore":"/aree/","impianti":"/aree/#impianti","domande":"/domande/","fiducia":"#privacy-in-breve","beta":"#avvisami","privacy":"/privacy.html","elimina-account":"/elimina-account.html","delete-account":"/elimina-account.html"},
   decimal: ',', thousands: '.',
-  routeUnavailable: 'Percorso non disponibile', indirect: ' · percorso indiretto',
+  routeUnavailable: 'Non ci si arriva con queste piste', indirect: ' · percorso indiretto',
   easyOnly: 'Solo piste facili', easyMedium: 'Facili + medie',
   fromLabel: function(legs, lifts){ return 'Corvara (Boè) · ' + legs + ' tratte · ' + lifts + (lifts === 1 ? ' impianto' : ' impianti'); },
   badge: function(){ return '<b>Anteprima dimostrativa</b> · area del Sella · © OpenStreetMap contributors · rilievo INGV TINITALY'; },
@@ -226,10 +230,8 @@ window.SKIMAP_T = {
 };
 </script>
 <script src="/assets/site.js" defer></script>
-<script src="/assets/vendor/three.min.js" defer></script>
-<script src="/assets/graph-data.js" defer></script>
+<script src="/assets/hero.js" defer></script>
 <script src="/assets/config.js" defer></script>
-<script src="/assets/map3d.js" defer></script>
 <script src="/assets/beta.js" defer></script>
 </body>
 </html>

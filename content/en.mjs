@@ -8,7 +8,7 @@ export default {
   ui: {
     skip: 'Skip to content', homeAria: 'Ski Maps, back to home', menu: 'Menu', sections: 'Sections', langs: 'Language',
     footer: 'Footer', cta: 'Notify me at launch', ctaShort: 'Notify me',
-    contact: 'Contact:', privacy: 'Privacy notice', delete: 'Delete account', biz: 'For lift companies',
+    contact: 'Contact:', privacy: 'Privacy notice', delete: 'Delete your data', biz: 'For lift companies',
     sources: 'Sources and licences', home: 'Home',
     data: 'Map data © OpenStreetMap contributors, ODbL licence · Background maps in the app © MapTiler · Terrain: INGV TINITALY and Copernicus EU-DEM (modified data) · Timetables: STA Südtirolmobil and Trentino Trasporti open data ·',
     mapdata: 'Map data:',
@@ -28,6 +28,7 @@ export default {
     store: 'Coming soon to Google Play · iOS later',
     trust: 'Your GPS location stays on your phone.',
     hint: 'Preview: tap a station on the mountain',
+    try3d: 'Try the 3D preview', posterAlt: 'Preview of the 3D map of the Sella group with a route highlighted in yellow',
     canvasAria: 'Demo 3D preview of the Sella group with pistes and lifts: tap a station to see a sample route for each level',
     rc: { dest: 'Destination', from: 'from', beg: 'Beginner', begS: 'Easy pistes only', int: 'Intermediate', intS: 'Easy + medium', adv: 'Advanced', advS: 'All pistes', legs: 'Route legs' },
     pointsTitle: 'What Ski Maps does',
@@ -48,8 +49,8 @@ export default {
       items: [
         ['GPS on your phone', 'Your GPS location stays on your phone.'],
         ['Diagnostics only with consent', 'Diagnostic data is sent only if you give your consent.'],
-        ['Optional account', 'You can use Ski Maps without an account. ' + todo('account facoltativo nella v1?')],
-        ['Account deletion', 'If you have an account, you can delete it: <a href="{delete}">how</a>.'],
+        ['No sign-up', 'Ski Maps works without signing up: there is no account to create.'],
+        ['Deleting your data', 'From the phone with one tap, from the server on request or when it expires: <a href="{delete}">how</a>.'],
       ],
       link: 'Read the privacy notice',
     },
@@ -137,7 +138,7 @@ export default {
 
   js: {
     decimal: '.', thousands: ',',
-    routeUnavailable: 'Route not available', indirect: ' · indirect route',
+    routeUnavailable: 'Not reachable on these pistes', indirect: ' · indirect route',
     easyOnly: 'Easy pistes only', easyMedium: 'Easy + medium',
     fromLabel: "function(legs, lifts){ return 'Corvara (Boè) · ' + legs + ' legs · ' + lifts + (lifts === 1 ? ' lift' : ' lifts'); }",
     badge: "function(){ return '<b>Demo preview</b> · Sella area · © OpenStreetMap contributors · INGV TINITALY terrain'; }",

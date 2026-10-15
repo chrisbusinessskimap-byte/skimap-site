@@ -53,6 +53,9 @@ var L10N = window.SKIMAP_T || {};
     int: function(e){ return e.kind!=='piste' || e.diff==='e' || e.diff==='i' || e.diff===''; },
     adv: function(e){ return e.kind!=='piste' || e.diff!=='f'; }
   };
+  /* «sei qui» non cambia: i percorsi migliori per ogni livello si calcolano una volta sola */
+  var BEST=null;
+  function best(){ return BEST || (BEST={ beg:dijkstra(you, ALLOW.beg), int:dijkstra(you, ALLOW.int), adv:dijkstra(you, ALLOW.adv) }); }
   function pathTo(res, t){ var o=[], cur=t; while (cur!==you){ var e=res.prev[cur]; if(!e) return null; o.unshift(e); cur=e.a; } return o; }
   function cost(path){ var m=0, min=0, lifts=0; for (var i=0;i<path.length;i++){ var e=path[i]; m+=e.len; min+=weight(e); if (e.kind==='lift') lifts++; } return { km:m/1000, min:Math.round(min), lifts:lifts, legs:path.length }; }
   function legNames(path){ var o=[], seen={}; for (var i=0;i<path.length;i++){ var e=path[i]; if (e.kind==='transfer' || !e.name || seen[e.name]) continue; seen[e.name]=1; o.push({ name:e.name, kind:e.kind, diff:e.diff }); } return o; }
@@ -67,13 +70,14 @@ var L10N = window.SKIMAP_T || {};
     var adv=cost(p);
     document.getElementById('rc-name').textContent = pretty(t);
     document.getElementById('rc-from').textContent = L10N.fromLabel(adv.legs, adv.lifts);
-    setLevel('rc-beg', pathTo(dijkstra(you, ALLOW.beg), t), L10N.easyOnly, adv);
-    setLevel('rc-int', pathTo(dijkstra(you, ALLOW.int), t), L10N.easyMedium, adv);
+    setLevel('rc-beg', pathTo(best().beg, t), L10N.easyOnly, adv);
+    setLevel('rc-int', pathTo(best().int, t), L10N.easyMedium, adv);
     document.getElementById('rc-adv-n').innerHTML = '<b>~'+adv.min+' min</b>'+fmtKm(adv.km);
     var legs=legNames(p), html='';
     for (var i=0;i<Math.min(4,legs.length);i++){ var L=legs[i]; html += '<span class="leg '+(L.kind==='lift'?'lift':(L.diff||'x'))+'"><i></i>'+L.name+'</span>'; }
     if (legs.length>4) html += '<span class="leg more">+'+(legs.length-4)+'</span>';
     document.getElementById('rc-legs').innerHTML = html;
+    var hero=document.getElementById('hero'); if (hero) hero.classList.add('ready');
   }
   var nP=0,nL=0; for (var z=0;z<edges.length;z++){ if (edges[z].kind==='piste') nP++; else if (edges[z].kind==='lift') nL++; }
   var badge=document.getElementById('databadge'); if (badge) badge.innerHTML = L10N.badge(fmtN(nP), nL);
@@ -249,8 +253,11 @@ var L10N = window.SKIMAP_T || {};
   }
   var orbitCenter=null;
   function placeCamera(){
-    if (!orbitCenter) orbitCenter = toWorld(46.535,11.815,0); orbitCenter.y = 1.6*EXAG;
-    var dist = W>=900 ? 34 : 36, elev = .64;
+    /* nel riquadro del telefono (assets/hero.js) la mappa non fa da sfondo: la camera si avvicina
+       e guarda tra il Sella e «sei qui», così partenza e percorso restano dentro */
+    var inBox = cv.parentNode.id==='mapbox';
+    if (!orbitCenter) orbitCenter = inBox ? toWorld(46.542,11.845,0) : toWorld(46.535,11.815,0); orbitCenter.y = 1.6*EXAG;
+    var dist = inBox ? (W/H>1.2 ? 28 : 25) : (W>=900 ? 34 : 36), elev = .64;
     camera.position.set(orbitCenter.x+Math.cos(az)*dist*Math.cos(elev), orbitCenter.y+dist*Math.sin(elev), orbitCenter.z+Math.sin(az)*dist*Math.cos(elev));
     camera.lookAt(orbitCenter);
   }
@@ -266,8 +273,13 @@ var L10N = window.SKIMAP_T || {};
     routeTotal=geo.index.count; routeShown = reduce ? routeTotal : 0; geo.setDrawRange(0, routeShown);
   }
   function pickTarget(user, forced){
-    var all=dijkstra(you, ALLOW.adv), t=forced;
-    if (t==null){ var pool=[], seen={}; for (var i0=0;i0<nodes.length;i0++){ var n0=nodes[i0]; if (i0===you || !n0.station || !HUBS[n0.name] || !isFinite(all.d[i0]) || seen[n0.name]) continue; seen[n0.name]=1; pool.push(i0); } if (!pool.length) return; t=pool[Math.floor(Math.random()*pool.length)]; }
+    var B=best(), all=B.adv, t=forced;
+    /* da sola la demo sceglie solo mete raggiungibili con tutti e tre i livelli: la scheda non deve
+       aprire con «principiante: non ci si arriva». Se tocchi tu una stazione, la scheda dice il vero. */
+    if (t==null){ var pool=[], easy=[], seen={}; for (var i0=0;i0<nodes.length;i0++){ var n0=nodes[i0]; if (i0===you || !n0.station || !HUBS[n0.name] || !isFinite(all.d[i0]) || seen[n0.name]) continue; seen[n0.name]=1; pool.push(i0); if (isFinite(B.beg.d[i0]) && isFinite(B.int.d[i0])) easy.push(i0); }
+      if (easy.length) pool=easy; if (!pool.length) return;
+      var prev=target; if (pool.length>1) pool=pool.filter(function(i){ return i!==prev; });
+      t=pool[Math.floor(Math.random()*pool.length)]; }
     var p=pathTo(all,t); if (!p) return;
     target=t; routeEdges=p; buildRoute(p); fillCard(t,p);
     var tp=toWorld(nodes[t].lat,nodes[t].lon,40); targetMesh.position.copy(tp); targetRing.position.copy(tp);

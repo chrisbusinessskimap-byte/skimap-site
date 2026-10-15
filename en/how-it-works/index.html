@@ -12,7 +12,6 @@
 <link rel="alternate" hreflang="en" href="https://skimaps.cc/en/how-it-works/">
 <link rel="alternate" hreflang="de" href="https://skimaps.cc/de/so-funktionierts/">
 <link rel="alternate" hreflang="x-default" href="https://skimaps.cc/come-funziona/">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:site_name" content="Ski Maps">
@@ -33,7 +32,7 @@
 <meta name="twitter:image" content="https://skimaps.cc/assets/og-image.png">
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="/assets/site.css">
-<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
+<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard,.try3d{display:none}</style></noscript>
 </head>
 <body class="site">
 
@@ -41,7 +40,7 @@
 <header class="nav solid" id="nav">
   <div class="wrap">
     <a class="logo" href="/en/" aria-label="Ski Maps, back to home">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>
+      <img src="/assets/icon-64.png" width="32" height="32" alt="">
       Ski Maps
     </a>
     <nav class="nav-links" aria-label="Sections">
@@ -52,7 +51,7 @@
     </nav>
     <a class="btn primary" href="/en/#avvisami">Notify me</a>
     <nav class="langs" aria-label="Language"><a href="/come-funziona/" hreflang="it" lang="it" title="Italiano">IT</a><a href="/en/how-it-works/" hreflang="en" lang="en" aria-current="true" title="English">EN</a><a href="/de/so-funktionierts/" hreflang="de" lang="de" title="Deutsch">DE</a></nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">Menu</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn"><svg class="mb-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="mb-txt">Menu</span></button>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="Sections">
     <a href="/en/how-it-works/" aria-current="page">How it works</a>
@@ -75,7 +74,7 @@
 <section class="sec dark" id="giro" aria-labelledby="h-giro">
   <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/></svg>
   <h2 id="h-giro" class="sr-only">Tours across ski areas</h2>
-  <div class="wrap split">
+  <div class="wrap split solo">
     <div>
       <div class="pillars">
         <div class="pillar"><span class="k">The problem</span><h3>Stuck halfway round</h3><p>Between ski areas it is not always clear which piste, lift or bus takes you onward or back.</p></div>
@@ -89,9 +88,7 @@
         <li><b>Buses and trains</b><span>The links between ski areas</span></li>
       </ul>
     </div>
-    <div class="shotcol">
-      <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="The Sellaronda route card in the app"><span>[SCREENSHOT: scheda del percorso Sellaronda]</span><small>1080 × 2340 px</small></div><figcaption>The Sellaronda route card in the app</figcaption></figure>
-    </div>
+    
   </div>
 </section>
 
@@ -106,19 +103,16 @@
         <div class="num"><span class="pnum blue" aria-hidden="true">1</span><small>Step 1</small></div>
         <h3>Choose where you want to go</h3>
         <p>Pick the point on the map where you want to end up: a lift, a mountain hut, the village.</p>
-        <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="Choosing the destination on the map"><span>[SCREENSHOT: mappa con la destinazione scelta]</span><small>1080 × 2340 px</small></div><figcaption>Choosing the destination on the map</figcaption></figure>
       </li>
       <li class="step">
         <div class="num"><span class="pnum red" aria-hidden="true">2</span><small>Step 2</small></div>
         <h3>Choose your level</h3>
         <p>Beginner, intermediate or advanced: the route follows your level.</p>
-        <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="Routes for beginner, intermediate and advanced"><span>[SCREENSHOT: i tre percorsi per livello verso la stessa destinazione]</span><small>1080 × 2340 px</small></div><figcaption>Routes for beginner, intermediate and advanced</figcaption></figure>
       </li>
       <li class="step">
         <div class="num"><span class="pnum adv" aria-hidden="true">3</span><small>Step 3</small></div>
         <h3>Follow the directions</h3>
         <p>Piste by piste and lift by lift, with the piste name and colour and voice guidance. Your phone can stay in your pocket.</p>
-        <figure class="shot"><div class="shot-ph" style="aspect-ratio:1080/2340" role="img" aria-label="Navigation showing the piste name and colour"><span>[SCREENSHOT: navigazione in corso con l’istruzione «nome e colore della pista»]</span><small>1080 × 2340 px</small></div><figcaption>Navigation showing the piste name and colour</figcaption></figure>
       </li>
     </ol>
   </div>
@@ -155,7 +149,7 @@
     <span class="season">© 2026 Ski Maps</span>
     <nav aria-label="Footer">
       <a href="/en/privacy.html">Privacy notice</a>
-      <a href="/en/delete-account.html">Delete account</a>
+      <a href="/en/delete-account.html">Delete your data</a>
       <a href="/en/about/">About</a>
       <a href="/en/areas/#impianti">For lift companies</a>
     </nav>

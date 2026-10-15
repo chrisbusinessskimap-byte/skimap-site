@@ -14,7 +14,8 @@ const C = {};
 for (const l of LANG_ORDER) C[l] = (await import(join(root, 'content', `${l}.mjs`))).default;
 
 const GENERATED = '<!-- Pagina generata da tools/build.mjs: per cambiare i testi modifica content/*.mjs e rilancia il comando. -->';
-const LOGO = '<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#101418"/><path d="M6 24 L14 10 L19 18 L23 13 L27 24" fill="none" stroke="#ffb300" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="19" cy="18" r="2.6" fill="#2f7de1"/></svg>';
+/* l'icona dell'app (skimap-mobile/src/assets/brand/skimap-logo.png), la stessa del telefono e del Play Store */
+const LOGO = '<img src="/assets/icon-64.png" width="32" height="32" alt="">';
 const RIDGE = '<svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 140 L0 110 L90 70 L160 96 L250 44 L330 84 L420 30 L500 92 L580 62 L680 110 L760 50 L860 96 L940 36 L1040 86 L1120 60 L1200 90 L1200 140 Z" fill="rgba(255,255,255,.06)"/></svg>';
 const SHIELD = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 16 19 12 21 C8 19 5 15.5 5 11 V6 Z"/><path d="M9 12 L11 14 L15 10"/></svg>';
 const ICONS = {
@@ -34,9 +35,26 @@ const attr = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&/g, '&amp;').rep
 const jsq = (s) => "'" + String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'";
 const enc = encodeURIComponent;
 
-/* segnaposto di uno screenshot dell'app: va sostituito con la schermata vera */
-const shot = (c, [label, caption], w = 1080, h = 2340) =>
-  `<figure class="shot"><div class="shot-ph" style="aspect-ratio:${w}/${h}" role="img" aria-label="${attr(caption)}"><span>[SCREENSHOT: ${label}]</span><small>${c.ui.shotSize(w, h)}</small></div><figcaption>${caption}</figcaption></figure>`;
+/* Schermate dell'app: un file per schermata in assets/shots/ (WebP, 1080 × 2340 px).
+   Finché il file manca la schermata non compare: in pagina non va mai un segnaposto. */
+const SHOTS = {
+  'scheda del percorso Sellaronda': 'sellaronda.webp',
+  'mappa con la destinazione scelta': 'passo-1-destinazione.webp',
+  'i tre percorsi per livello verso la stessa destinazione': 'passo-2-livelli.webp',
+  'navigazione in corso con l’istruzione «nome e colore della pista»': 'passo-3-navigazione.webp',
+};
+const missingShots = new Set();
+const shotFile = (label) => {
+  const file = SHOTS[label];
+  if (!file) throw new Error(`schermata senza nome di file: ${label}`);
+  if (existsSync(join(root, 'assets/shots', file))) return '/assets/shots/' + file;
+  missingShots.add(file);
+  return '';
+};
+const shot = (c, [label, caption], w = 1080, h = 2340) => {
+  const src = shotFile(label);
+  return src ? `<figure class="shot"><img src="${src}" alt="${attr(caption)}" width="${w}" height="${h}" loading="lazy" decoding="async"><figcaption>${caption}</figcaption></figure>` : '';
+};
 
 /* {home} {privacy} {delete} nei testi → indirizzi della lingua */
 const fill = (s, l) => s.replace(/\{home\}/g, LANGS[l].pages.home).replace(/\{privacy\}/g, LANGS[l].legal.privacy).replace(/\{delete\}/g, LANGS[l].legal.delete);
@@ -60,7 +78,7 @@ function header(l, current, urls, { solid = true } = {}) {
     </nav>
     <a class="btn primary" href="${P.home}#avvisami">${c.ui.ctaShort}</a>
     ${langSwitch('langs', l, urls, c)}
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn">${c.ui.menu}</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" id="menu-btn"><svg class="mb-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="mb-txt">${c.ui.menu}</span></button>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="${c.ui.sections}">
     ${links.map(([k, h]) => a(k, h)).join('\n    ')}
@@ -103,7 +121,6 @@ ${GENERATED}
 <meta name="theme-color" content="#101418">
 <link rel="canonical" href="${url}">
 ${alts}
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:site_name" content="Ski Maps">
@@ -123,7 +140,7 @@ ${altLoc}
 <meta name="twitter:image" content="${ORIGIN}/assets/og-image.png">
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="/assets/site.css">
-<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard{display:none}</style></noscript>
+<noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard,.try3d{display:none}</style></noscript>
 </head>`;
 }
 
@@ -175,6 +192,8 @@ const ctaBand = (l) => `<section class="ctaband" aria-label="${attr(C[l].ui.cta)
 </div></section>`;
 
 /* ---------------- home ---------------- */
+/* immagine della mappa 3D per telefono e tablet (una per lingua: le etichette sono tradotte) */
+const poster = (l) => existsSync(join(root, `assets/hero-poster-${l}.webp`)) ? `/assets/hero-poster-${l}.webp` : '';
 function home(l) {
   const c = C[l], h = c.home, P = LANGS[l].pages, G = LANGS[l].legal, j = c.js;
   const redirects = l === 'de' ? {} : {
@@ -205,6 +224,11 @@ function home(l) {
         <p class="store">${h.store}</p>
         <p class="trustline">${SHIELD}${h.trust} <a href="#privacy-in-breve">${c.nav.privacy}</a></p>
         <div class="hint"><i></i>${h.hint}</div>
+      </div>
+
+      <div class="mapbox" id="mapbox">
+        ${poster(l) ? `<img class="poster" src="${poster(l)}" width="720" height="720" alt="${attr(h.posterAlt)}" loading="lazy" decoding="async">` : ''}
+        <button class="btn primary try3d" type="button" id="try3d">${h.try3d}</button>
       </div>
 
       <div class="routecard" aria-live="polite">
@@ -298,10 +322,9 @@ ${h.trustBox.items.map(([t, p]) => `      <li class="col"><h3>${t}</h3><p>${fill
     formSubject: ${jsq(j.formSubject)}, fromName: ${jsq(j.fromName)},
     formMessage: ${j.formMessage}
   }`;
-  const scripts = `<script src="/assets/vendor/three.min.js" defer></script>
-<script src="/assets/graph-data.js" defer></script>
+  /* three.js, grafo e mappa 3D li carica hero.js: subito su computer, al tocco su telefono e tablet */
+  const scripts = `<script src="/assets/hero.js" defer></script>
 <script src="/assets/config.js" defer></script>
-<script src="/assets/map3d.js" defer></script>
 <script src="/assets/beta.js" defer></script>
 `;
   return page(l, 'home', main, { scripts, tvars, solid: false });
@@ -317,7 +340,7 @@ ${pageHead(h.eyebrow, h.h1, h.lede)}
 <section class="sec dark" id="giro" aria-labelledby="h-giro">
   ${RIDGE}
   <h2 id="h-giro" class="sr-only">${h.toursTitle}</h2>
-  <div class="wrap split">
+  <div class="wrap split${shotFile(h.shotTour[0]) ? '' : ' solo'}">
     <div>
       <div class="pillars">
         ${pillar(h.prob)}
@@ -328,9 +351,9 @@ ${pageHead(h.eyebrow, h.h1, h.lede)}
 ${h.tours.map(([t, p]) => `        <li><b>${t}</b><span>${p}</span></li>`).join('\n')}
       </ul>
     </div>
-    <div class="shotcol">
+    ${shotFile(h.shotTour[0]) ? `<div class="shotcol">
       ${shot(c, h.shotTour)}
-    </div>
+    </div>` : ''}
   </div>
 </section>
 
@@ -343,7 +366,7 @@ ${h.steps.map(([t, p, s], k) => `      <li class="step">
         <h3>${t}</h3>
         <p>${p}</p>
         ${shot(c, s)}
-      </li>`).join('\n')}
+      </li>`).join('\n').replace(/\n\s*\n(\s*<\/li>)/g, '\n$1')}
     </ol>
   </div>
 </section>
@@ -487,4 +510,5 @@ ${entries.join('\n')}
 </urlset>
 `);
 out.push('sitemap.xml');
+if (missingShots.size) out.push(`(schermate che mancano in assets/shots/, quindi non mostrate: ${[...missingShots].join(', ')})`);
 console.log('Generati:\n  ' + out.join('\n  '));
