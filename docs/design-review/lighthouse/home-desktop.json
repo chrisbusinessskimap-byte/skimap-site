@@ -1,0 +1,849 @@
+{
+ "url": "http://localhost:8001/",
+ "fetchTime": "2026-10-15T13:03:30.550Z",
+ "lighthouseVersion": "12.8.2",
+ "formFactor": "desktop",
+ "throttling": {
+  "rttMs": 40,
+  "throughputKbps": 10240,
+  "requestLatencyMs": 0,
+  "downloadThroughputKbps": 0,
+  "uploadThroughputKbps": 0,
+  "cpuSlowdownMultiplier": 1
+ },
+ "scores": {
+  "performance": 0.53,
+  "accessibility": 0.96,
+  "best-practices": 1,
+  "seo": 1
+ },
+ "audits": {
+  "first-contentful-paint": {
+   "score": 1,
+   "displayValue": "0.5 s",
+   "numericValue": 486.0371
+  },
+  "largest-contentful-paint": {
+   "score": 0.71,
+   "displayValue": "1.8 s",
+   "numericValue": 1756.6914
+  },
+  "total-blocking-time": {
+   "score": 0.01,
+   "displayValue": "1,490 ms",
+   "numericValue": 1489.9999999999998
+  },
+  "cumulative-layout-shift": {
+   "score": 0.68,
+   "displayValue": "0.177",
+   "numericValue": 0.17720632806663797,
+   "details": [
+    {
+     "cumulativeLayoutShiftMainFrame": 0.17720632806663797,
+     "newEngineResult": {
+      "cumulativeLayoutShift": 0.17720632806663797,
+      "cumulativeLayoutShiftMainFrame": 0.17720632806663797
+     },
+     "newEngineResultDiffered": false
+    }
+   ]
+  },
+  "speed-index": {
+   "score": 0.76,
+   "displayValue": "1.7 s",
+   "numericValue": 1665.463785784886
+  },
+  "interactive": {
+   "score": 0.92,
+   "displayValue": "2.3 s",
+   "numericValue": 2294.6913999999997
+  },
+  "bootup-time": {
+   "score": 0,
+   "displayValue": "3.2 s",
+   "numericValue": 3210.91200000037,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/map3d.js",
+     "total": 3229.35500000037,
+     "scripting": 3208.31200000037,
+     "scriptParseCompile": 0.9710000000000001
+    },
+    {
+     "url": "http://localhost:8001/",
+     "total": 208.03399999999993,
+     "scripting": 1.1610000000000003,
+     "scriptParseCompile": 0.468
+    }
+   ]
+  },
+  "mainthread-work-breakdown": {
+   "score": 0,
+   "displayValue": "3.5 s",
+   "numericValue": 3539.3230000003714,
+   "details": [
+    {
+     "group": "scriptEvaluation",
+     "groupLabel": "Script Evaluation",
+     "duration": 3224.1050000003715
+    },
+    {
+     "group": "styleLayout",
+     "groupLabel": "Style & Layout",
+     "duration": 156.31999999999994
+    },
+    {
+     "group": "other",
+     "groupLabel": "Other",
+     "duration": 92.69500000000008
+    },
+    {
+     "group": "scriptParseCompile",
+     "groupLabel": "Script Parsing & Compilation",
+     "duration": 37.911
+    },
+    {
+     "group": "paintCompositeRender",
+     "groupLabel": "Rendering",
+     "duration": 12.594999999999995
+    },
+    {
+     "group": "garbageCollection",
+     "groupLabel": "Garbage Collection",
+     "duration": 11.729000000000003
+    },
+    {
+     "group": "parseHTML",
+     "groupLabel": "Parse HTML & CSS",
+     "duration": 3.968
+    }
+   ]
+  },
+  "network-requests": {
+   "score": 1,
+   "details": [
+    {
+     "url": "http://localhost:8001/",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 0,
+     "networkRequestTime": 3.10999999998603,
+     "networkEndTime": 12.503000000026077,
+     "finished": true,
+     "transferSize": 5393,
+     "resourceSize": 16741,
+     "statusCode": 200,
+     "mimeType": "text/html",
+     "resourceType": "Document",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 19.469000000040978,
+     "networkRequestTime": 22.930999999982305,
+     "networkEndTime": 39.38600000005681,
+     "finished": true,
+     "transferSize": 723,
+     "resourceSize": 2068,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 20.23899999994319,
+     "networkRequestTime": 23.162000000011176,
+     "networkEndTime": 46.66299999994226,
+     "finished": true,
+     "transferSize": 12530,
+     "resourceSize": 51756,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 20.648000000044703,
+     "networkRequestTime": 28.915000000037253,
+     "networkEndTime": 53.71200000005774,
+     "finished": true,
+     "transferSize": 1018,
+     "resourceSize": 1480,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/vendor/three.min.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 20.768000000040047,
+     "networkRequestTime": 29.822999999974854,
+     "networkEndTime": 91.8739999999525,
+     "finished": true,
+     "transferSize": 148579,
+     "resourceSize": 603445,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/graph-data.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 20.847999999998137,
+     "networkRequestTime": 30.043999999994412,
+     "networkEndTime": 87.09299999999348,
+     "finished": true,
+     "transferSize": 112360,
+     "resourceSize": 289556,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/config.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 20.92200000002049,
+     "networkRequestTime": 30.240000000107102,
+     "networkEndTime": 58.853000000002794,
+     "finished": true,
+     "transferSize": 697,
+     "resourceSize": 374,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/map3d.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 20.996999999973923,
+     "networkRequestTime": 39.74800000002142,
+     "networkEndTime": 61.51399999996647,
+     "finished": true,
+     "transferSize": 10537,
+     "resourceSize": 25919,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/beta.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 21.070000000065193,
+     "networkRequestTime": 47.055999999982305,
+     "networkEndTime": 68.4330000000773,
+     "finished": true,
+     "transferSize": 1686,
+     "resourceSize": 3230,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-400.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 55.52700000000186,
+     "networkRequestTime": 200.9670000000624,
+     "networkEndTime": 223.56200000003446,
+     "finished": true,
+     "transferSize": 22478,
+     "resourceSize": 22196,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' str…",
+     "sessionTargetType": "page",
+     "protocol": "data",
+     "rendererStartTime": 92.53000000002794,
+     "networkRequestTime": 92.53000000002794,
+     "networkEndTime": 92.65900000010151,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 263,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Image",
+     "priority": "Low",
+     "experimentalFromMainFrame": true
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 92.88300000003073,
+     "networkRequestTime": 201.24300000001676,
+     "networkEndTime": 222.98600000003353,
+     "finished": true,
+     "transferSize": 23054,
+     "resourceSize": 22772,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 93.20799999998417,
+     "networkRequestTime": 201.41200000001118,
+     "networkEndTime": 223.32600000011735,
+     "finished": true,
+     "transferSize": 35729,
+     "resourceSize": 35436,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-500.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 93.54599999997299,
+     "networkRequestTime": 201.5100000000093,
+     "networkEndTime": 223.9210000000894,
+     "finished": true,
+     "transferSize": 22290,
+     "resourceSize": 22008,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 93.79100000008475,
+     "networkRequestTime": 201.60899999993853,
+     "networkEndTime": 223.7400000001071,
+     "finished": true,
+     "transferSize": 15909,
+     "resourceSize": 15620,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 94.07200000004377,
+     "networkRequestTime": 201.7029999999795,
+     "networkEndTime": 224.11800000001676,
+     "finished": true,
+     "transferSize": 15177,
+     "resourceSize": 14888,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/favicon.svg",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 2237.712999999989,
+     "networkRequestTime": 2240.6600000000326,
+     "networkEndTime": 2246.552000000025,
+     "finished": true,
+     "transferSize": 606,
+     "resourceSize": 305,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Other",
+     "priority": "High",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    }
+   ]
+  },
+  "layout-shifts": {
+   "score": 0,
+   "displayValue": "2 layout shifts found",
+   "details": [
+    {
+     "node": {
+      "type": "node",
+      "lhId": "page-4-DIV",
+      "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,0,DIV",
+      "selector": "section#home > div#hero > div.wrap > div.hero-copy",
+      "boundingRect": {
+       "top": 160,
+       "bottom": 734,
+       "left": 106,
+       "right": 706,
+       "width": 601,
+       "height": 574
+      },
+      "snippet": "<div class=\"hero-copy\">",
+      "nodeLabel": "SKI MAPS · NAVIGATORE GPS PER SCIATORI\nTUTTO IL GIRO.\nANCHE TRA I COMPRENSORI.\n…"
+     },
+     "score": 0.17720632806663797,
+     "subItems": {
+      "type": "subitems",
+      "items": [
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/barlow-400.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/barlow-600.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/barlow-500.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2"
+        },
+        "cause": "Web font loaded"
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "type": "node",
+      "lhId": "page-5-DIV",
+      "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV",
+      "selector": "section#home > div#hero > div.wrap > div.routecard",
+      "boundingRect": {
+       "top": 301,
+       "bottom": 764,
+       "left": 870,
+       "right": 1230,
+       "width": 360,
+       "height": 463
+      },
+      "snippet": "<div class=\"routecard\" aria-live=\"polite\">",
+      "nodeLabel": "DESTINAZIONE\nCOLFOSCO · COL PRADAT\nda Corvara (Boè) · 22 tratte · 2 impianti\nPr…"
+     },
+     "score": 0.014018660334634302
+    }
+   ]
+  },
+  "largest-contentful-paint-element": {
+   "score": 0,
+   "displayValue": "1,760 ms",
+   "details": [
+    {
+     "type": "table",
+     "headings": [
+      {
+       "key": "node",
+       "valueType": "node",
+       "label": "Element"
+      }
+     ],
+     "items": [
+      {
+       "node": {
+        "type": "node",
+        "lhId": "page-0-SPAN",
+        "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,0,DIV,1,H1,1,SPAN",
+        "selector": "div.wrap > div.hero-copy > h1#h-home > span.line",
+        "boundingRect": {
+         "top": 271,
+         "bottom": 410,
+         "left": 106,
+         "right": 706,
+         "width": 601,
+         "height": 139
+        },
+        "snippet": "<span class=\"line\">",
+        "nodeLabel": "ANCHE TRA I COMPRENSORI."
+       }
+      }
+     ]
+    },
+    {
+     "type": "table",
+     "headings": [
+      {
+       "key": "phase",
+       "valueType": "text",
+       "label": "Phase"
+      },
+      {
+       "key": "percent",
+       "valueType": "text",
+       "label": "% of LCP"
+      },
+      {
+       "key": "timing",
+       "valueType": "ms",
+       "label": "Timing"
+      }
+     ],
+     "items": [
+      {
+       "phase": "TTFB",
+       "timing": 135.3457,
+       "percent": "8%"
+      },
+      {
+       "phase": "Load Delay",
+       "timing": 0,
+       "percent": "0%"
+      },
+      {
+       "phase": "Load Time",
+       "timing": 0,
+       "percent": "0%"
+      },
+      {
+       "phase": "Render Delay",
+       "timing": 1621.3456999999999,
+       "percent": "92%"
+      }
+     ]
+    }
+   ]
+  },
+  "render-blocking-resources": {
+   "score": 0,
+   "displayValue": "Est savings of 230 ms",
+   "numericValue": 234,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "totalBytes": 12530,
+     "wastedMs": 95
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "totalBytes": 723,
+     "wastedMs": 55
+    }
+   ]
+  },
+  "unused-javascript": {
+   "score": 0,
+   "displayValue": "Est savings of 79 KiB",
+   "numericValue": 80,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/vendor/three.min.js",
+     "totalBytes": 148224,
+     "wastedBytes": 81021,
+     "wastedPercent": 54.66148530520595
+    }
+   ]
+  },
+  "uses-long-cache-ttl": {
+   "score": 0.5,
+   "displayValue": "14 resources found",
+   "numericValue": 422767,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/vendor/three.min.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 148579,
+     "wastedBytes": 148579
+    },
+    {
+     "url": "http://localhost:8001/assets/graph-data.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 112360,
+     "wastedBytes": 112360
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 35729,
+     "wastedBytes": 35729
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-600.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 23054,
+     "wastedBytes": 23054
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-400.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 22478,
+     "wastedBytes": 22478
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-500.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 22290,
+     "wastedBytes": 22290
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 15909,
+     "wastedBytes": 15909
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 15177,
+     "wastedBytes": 15177
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 12530,
+     "wastedBytes": 12530
+    },
+    {
+     "url": "http://localhost:8001/assets/map3d.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 10537,
+     "wastedBytes": 10537
+    },
+    {
+     "url": "http://localhost:8001/assets/beta.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 1686,
+     "wastedBytes": 1686
+    },
+    {
+     "url": "http://localhost:8001/assets/site.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 1018,
+     "wastedBytes": 1018
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 723,
+     "wastedBytes": 723
+    },
+    {
+     "url": "http://localhost:8001/assets/config.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 697,
+     "wastedBytes": 697
+    }
+   ]
+  },
+  "color-contrast": {
+   "score": 0,
+   "details": [
+    {
+     "node": {
+      "type": "node",
+      "lhId": "1-0-B",
+      "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV,1,DIV,0,DIV,1,DIV,0,B",
+      "selector": "div.levels > div#rc-beg > div.t > b",
+      "boundingRect": {
+       "top": 416,
+       "bottom": 438,
+       "left": 914,
+       "right": 1185,
+       "width": 272,
+       "height": 22
+      },
+      "snippet": "<b>",
+      "nodeLabel": "Principiante",
+      "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 4.49 (foreground color: #7a7f85, background color: #12161d, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     "subItems": {
+      "type": "subitems",
+      "items": [
+       {
+        "relatedNode": {
+         "type": "node",
+         "lhId": "1-1-DIV",
+         "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV,1,DIV,0,DIV",
+         "selector": "div.wrap > div.routecard > div.levels > div#rc-beg",
+         "boundingRect": {
+          "top": 407,
+          "bottom": 464,
+          "left": 886,
+          "right": 1214,
+          "width": 328,
+          "height": 57
+         },
+         "snippet": "<div class=\"lvl off\" id=\"rc-beg\">",
+         "nodeLabel": "Principiante\nPercorso non disponibile\n—"
+        }
+       },
+       {
+        "relatedNode": {
+         "type": "node",
+         "lhId": "1-2-DIV",
+         "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV",
+         "selector": "section#home > div#hero > div.wrap > div.routecard",
+         "boundingRect": {
+          "top": 301,
+          "bottom": 764,
+          "left": 870,
+          "right": 1230,
+          "width": 360,
+          "height": 463
+         },
+         "snippet": "<div class=\"routecard\" aria-live=\"polite\">",
+         "nodeLabel": "DESTINAZIONE\nCOLFOSCO · COL PRADAT\nda Corvara (Boè) · 22 tratte · 2 impianti\nPr…"
+        }
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "type": "node",
+      "lhId": "1-3-SMALL",
+      "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV,1,DIV,0,DIV,1,DIV,1,SMALL",
+      "selector": "div.levels > div#rc-beg > div.t > small#rc-beg-s",
+      "boundingRect": {
+       "top": 438,
+       "bottom": 455,
+       "left": 914,
+       "right": 1185,
+       "width": 272,
+       "height": 17
+      },
+      "snippet": "<small id=\"rc-beg-s\">",
+      "nodeLabel": "Percorso non disponibile",
+      "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.32 (foreground color: #4c535b, background color: #12161d, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     "subItems": {
+      "type": "subitems",
+      "items": [
+       {
+        "relatedNode": {
+         "type": "node",
+         "lhId": "1-1-DIV",
+         "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV,1,DIV,0,DIV",
+         "selector": "div.wrap > div.routecard > div.levels > div#rc-beg",
+         "boundingRect": {
+          "top": 407,
+          "bottom": 464,
+          "left": 886,
+          "right": 1214,
+          "width": 328,
+          "height": 57
+         },
+         "snippet": "<div class=\"lvl off\" id=\"rc-beg\">",
+         "nodeLabel": "Principiante\nPercorso non disponibile\n—"
+        }
+       },
+       {
+        "relatedNode": {
+         "type": "node",
+         "lhId": "1-2-DIV",
+         "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV",
+         "selector": "section#home > div#hero > div.wrap > div.routecard",
+         "boundingRect": {
+          "top": 301,
+          "bottom": 764,
+          "left": 870,
+          "right": 1230,
+          "width": 360,
+          "height": 463
+         },
+         "snippet": "<div class=\"routecard\" aria-live=\"polite\">",
+         "nodeLabel": "DESTINAZIONE\nCOLFOSCO · COL PRADAT\nda Corvara (Boè) · 22 tratte · 2 impianti\nPr…"
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "heading-order": {
+   "score": 1,
+   "details": []
+  }
+ }
+}

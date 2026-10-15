@@ -1,0 +1,756 @@
+{
+ "url": "http://localhost:8001/",
+ "fetchTime": "2026-10-15T13:03:09.785Z",
+ "lighthouseVersion": "12.8.2",
+ "formFactor": "mobile",
+ "throttling": {
+  "rttMs": 150,
+  "throughputKbps": 1638.4,
+  "requestLatencyMs": 562.5,
+  "downloadThroughputKbps": 1474.5600000000002,
+  "uploadThroughputKbps": 675,
+  "cpuSlowdownMultiplier": 4
+ },
+ "scores": {
+  "performance": 0.37,
+  "accessibility": 0.96,
+  "best-practices": 1,
+  "seo": 1
+ },
+ "audits": {
+  "first-contentful-paint": {
+   "score": 0.88,
+   "displayValue": "1.9 s",
+   "numericValue": 1863.8853000000001
+  },
+  "largest-contentful-paint": {
+   "score": 0.01,
+   "displayValue": "9.1 s",
+   "numericValue": 9127.5902
+  },
+  "total-blocking-time": {
+   "score": 0,
+   "displayValue": "16,150 ms",
+   "numericValue": 16150.4098
+  },
+  "cumulative-layout-shift": {
+   "score": 1,
+   "displayValue": "0",
+   "numericValue": 0,
+   "details": [
+    {
+     "cumulativeLayoutShiftMainFrame": 0,
+     "newEngineResult": {
+      "cumulativeLayoutShift": 0,
+      "cumulativeLayoutShiftMainFrame": 0
+     },
+     "newEngineResultDiffered": false
+    }
+   ]
+  },
+  "speed-index": {
+   "score": 0.32,
+   "displayValue": "7.0 s",
+   "numericValue": 7007.644509838594
+  },
+  "interactive": {
+   "score": 0.03,
+   "displayValue": "18.2 s",
+   "numericValue": 18221.4951
+  },
+  "bootup-time": {
+   "score": 0,
+   "displayValue": "8.6 s",
+   "numericValue": 8611.543999999934,
+   "details": [
+    {
+     "url": "Unattributable",
+     "total": 19018.431999999997,
+     "scripting": 16.351999999999997,
+     "scriptParseCompile": 0
+    },
+    {
+     "url": "http://localhost:8001/assets/map3d.js",
+     "total": 8469.887999999934,
+     "scripting": 8369.287999999935,
+     "scriptParseCompile": 4.472
+    },
+    {
+     "url": "http://localhost:8001/",
+     "total": 737.5600000000002,
+     "scripting": 13.12,
+     "scriptParseCompile": 2.4
+    },
+    {
+     "url": "http://localhost:8001/assets/vendor/three.min.js",
+     "total": 149.56,
+     "scripting": 32.812000000000005,
+     "scriptParseCompile": 116.74799999999999
+    },
+    {
+     "url": "http://localhost:8001/assets/graph-data.js",
+     "total": 56.352000000000004,
+     "scripting": 11.352,
+     "scriptParseCompile": 45.00000000000001
+    }
+   ]
+  },
+  "mainthread-work-breakdown": {
+   "score": 0,
+   "displayValue": "28.5 s",
+   "numericValue": 28464.71599999993,
+   "details": [
+    {
+     "group": "other",
+     "groupLabel": "Other",
+     "duration": 19130.971999999998
+    },
+    {
+     "group": "scriptEvaluation",
+     "groupLabel": "Script Evaluation",
+     "duration": 8456.363999999934
+    },
+    {
+     "group": "styleLayout",
+     "groupLabel": "Style & Layout",
+     "duration": 557.2600000000001
+    },
+    {
+     "group": "scriptParseCompile",
+     "groupLabel": "Script Parsing & Compilation",
+     "duration": 172.50799999999995
+    },
+    {
+     "group": "paintCompositeRender",
+     "groupLabel": "Rendering",
+     "duration": 80.62799999999999
+    },
+    {
+     "group": "garbageCollection",
+     "groupLabel": "Garbage Collection",
+     "duration": 51.847999999999985
+    },
+    {
+     "group": "parseHTML",
+     "groupLabel": "Parse HTML & CSS",
+     "duration": 15.136
+    }
+   ]
+  },
+  "network-requests": {
+   "score": 1,
+   "details": [
+    {
+     "url": "http://localhost:8001/",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 0,
+     "networkRequestTime": 3.0279999999329448,
+     "networkEndTime": 16.08399999991525,
+     "finished": true,
+     "transferSize": 5393,
+     "resourceSize": 16741,
+     "statusCode": 200,
+     "mimeType": "text/html",
+     "resourceType": "Document",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 34.34199999994598,
+     "networkRequestTime": 35.773999999975786,
+     "networkEndTime": 63.34400000004098,
+     "finished": true,
+     "transferSize": 723,
+     "resourceSize": 2068,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 34.855999999912456,
+     "networkRequestTime": 36.1589999999851,
+     "networkEndTime": 64.25799999991432,
+     "finished": true,
+     "transferSize": 12530,
+     "resourceSize": 51756,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 35.01699999999255,
+     "networkRequestTime": 40.029999999911524,
+     "networkEndTime": 68.0679999999702,
+     "finished": true,
+     "transferSize": 1018,
+     "resourceSize": 1480,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/vendor/three.min.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 35.22299999988172,
+     "networkRequestTime": 40.36999999999534,
+     "networkEndTime": 102.84899999992922,
+     "finished": true,
+     "transferSize": 148579,
+     "resourceSize": 603445,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/graph-data.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 35.34499999997206,
+     "networkRequestTime": 40.79799999995157,
+     "networkEndTime": 101.81899999990128,
+     "finished": true,
+     "transferSize": 112360,
+     "resourceSize": 289556,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/config.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 35.42599999997765,
+     "networkRequestTime": 41.04000000003725,
+     "networkEndTime": 71.62800000002608,
+     "finished": true,
+     "transferSize": 697,
+     "resourceSize": 374,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/map3d.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 35.52299999992829,
+     "networkRequestTime": 64.66099999996368,
+     "networkEndTime": 100.77599999995437,
+     "finished": true,
+     "transferSize": 10537,
+     "resourceSize": 25919,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/beta.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 35.68900000001304,
+     "networkRequestTime": 64.78000000002794,
+     "networkEndTime": 99.0329999999376,
+     "finished": true,
+     "transferSize": 1686,
+     "resourceSize": 3230,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-400.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 91.61600000003818,
+     "networkRequestTime": 223.7380000000121,
+     "networkEndTime": 238.99199999996927,
+     "finished": true,
+     "transferSize": 22478,
+     "resourceSize": 22196,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' str…",
+     "sessionTargetType": "page",
+     "protocol": "data",
+     "rendererStartTime": 103.94900000002235,
+     "networkRequestTime": 103.94900000002235,
+     "networkEndTime": 104.09699999995064,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 263,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Image",
+     "priority": "Low",
+     "experimentalFromMainFrame": true
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 104.33699999994133,
+     "networkRequestTime": 224.66800000006333,
+     "networkEndTime": 239.32600000000093,
+     "finished": true,
+     "transferSize": 23054,
+     "resourceSize": 22772,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 105.02500000002328,
+     "networkRequestTime": 224.99300000001676,
+     "networkEndTime": 239.59799999999814,
+     "finished": true,
+     "transferSize": 35729,
+     "resourceSize": 35436,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 105.34000000008382,
+     "networkRequestTime": 226.52599999995437,
+     "networkEndTime": 239.875,
+     "finished": true,
+     "transferSize": 15909,
+     "resourceSize": 15620,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 105.58199999993667,
+     "networkRequestTime": 226.8179999999702,
+     "networkEndTime": 240.17299999995157,
+     "finished": true,
+     "transferSize": 15177,
+     "resourceSize": 14888,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/favicon.svg",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 1702.9939999999478,
+     "networkRequestTime": 1705.0100000000093,
+     "networkEndTime": 1712.60699999996,
+     "finished": true,
+     "transferSize": 606,
+     "resourceSize": 305,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Other",
+     "priority": "High",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    }
+   ]
+  },
+  "layout-shifts": {
+   "score": null,
+   "details": []
+  },
+  "largest-contentful-paint-element": {
+   "score": 0,
+   "displayValue": "9,130 ms",
+   "details": [
+    {
+     "type": "table",
+     "headings": [
+      {
+       "key": "node",
+       "valueType": "node",
+       "label": "Element"
+      }
+     ],
+     "items": [
+      {
+       "node": {
+        "type": "node",
+        "lhId": "page-0-P",
+        "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,0,DIV,2,P",
+        "selector": "div#hero > div.wrap > div.hero-copy > p.lede",
+        "boundingRect": {
+         "top": 300,
+         "bottom": 404,
+         "left": 16,
+         "right": 396,
+         "width": 380,
+         "height": 104
+        },
+        "snippet": "<p class=\"lede measure\">",
+        "nodeLabel": "Ski Maps ti dice dove andare, pista per pista e impianto per impianto, dal punt…"
+       }
+      }
+     ]
+    },
+    {
+     "type": "table",
+     "headings": [
+      {
+       "key": "phase",
+       "valueType": "text",
+       "label": "Phase"
+      },
+      {
+       "key": "percent",
+       "valueType": "text",
+       "label": "% of LCP"
+      },
+      {
+       "key": "timing",
+       "valueType": "ms",
+       "label": "Timing"
+      }
+     ],
+     "items": [
+      {
+       "phase": "TTFB",
+       "timing": 471.2951,
+       "percent": "5%"
+      },
+      {
+       "phase": "Load Delay",
+       "timing": 0,
+       "percent": "0%"
+      },
+      {
+       "phase": "Load Time",
+       "timing": 0,
+       "percent": "0%"
+      },
+      {
+       "phase": "Render Delay",
+       "timing": 8656.295100000001,
+       "percent": "95%"
+      }
+     ]
+    }
+   ]
+  },
+  "render-blocking-resources": {
+   "score": 0,
+   "displayValue": "Est savings of 970 ms",
+   "numericValue": 967,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "totalBytes": 723,
+     "wastedMs": 171
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "totalBytes": 12530,
+     "wastedMs": 321
+    }
+   ]
+  },
+  "unused-javascript": {
+   "score": 0,
+   "displayValue": "Est savings of 79 KiB",
+   "numericValue": 450,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/vendor/three.min.js",
+     "totalBytes": 148224,
+     "wastedBytes": 81078,
+     "wastedPercent": 54.699931228198096
+    }
+   ]
+  },
+  "uses-long-cache-ttl": {
+   "score": 0.5,
+   "displayValue": "13 resources found",
+   "numericValue": 400477,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/vendor/three.min.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 148579,
+     "wastedBytes": 148579
+    },
+    {
+     "url": "http://localhost:8001/assets/graph-data.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 112360,
+     "wastedBytes": 112360
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 35729,
+     "wastedBytes": 35729
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-600.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 23054,
+     "wastedBytes": 23054
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-400.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 22478,
+     "wastedBytes": 22478
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 15909,
+     "wastedBytes": 15909
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 15177,
+     "wastedBytes": 15177
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 12530,
+     "wastedBytes": 12530
+    },
+    {
+     "url": "http://localhost:8001/assets/map3d.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 10537,
+     "wastedBytes": 10537
+    },
+    {
+     "url": "http://localhost:8001/assets/beta.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 1686,
+     "wastedBytes": 1686
+    },
+    {
+     "url": "http://localhost:8001/assets/site.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 1018,
+     "wastedBytes": 1018
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 723,
+     "wastedBytes": 723
+    },
+    {
+     "url": "http://localhost:8001/assets/config.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 697,
+     "wastedBytes": 697
+    }
+   ]
+  },
+  "color-contrast": {
+   "score": 0,
+   "details": [
+    {
+     "node": {
+      "type": "node",
+      "lhId": "1-0-B",
+      "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV,1,DIV,0,DIV,1,DIV,0,B",
+      "selector": "div.levels > div#rc-beg > div.t > b",
+      "boundingRect": {
+       "top": 836,
+       "bottom": 857,
+       "left": 60,
+       "right": 352,
+       "width": 292,
+       "height": 22
+      },
+      "snippet": "<b>",
+      "nodeLabel": "Principiante",
+      "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 4.49 (foreground color: #7a7f85, background color: #12161d, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     "subItems": {
+      "type": "subitems",
+      "items": [
+       {
+        "relatedNode": {
+         "type": "node",
+         "lhId": "1-1-DIV",
+         "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV,1,DIV,0,DIV",
+         "selector": "div.wrap > div.routecard > div.levels > div#rc-beg",
+         "boundingRect": {
+          "top": 827,
+          "bottom": 883,
+          "left": 32,
+          "right": 380,
+          "width": 348,
+          "height": 57
+         },
+         "snippet": "<div class=\"lvl off\" id=\"rc-beg\">",
+         "nodeLabel": "Principiante\nPercorso non disponibile\n—"
+        }
+       },
+       {
+        "relatedNode": {
+         "type": "node",
+         "lhId": "1-2-DIV",
+         "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV",
+         "selector": "section#home > div#hero > div.wrap > div.routecard",
+         "boundingRect": {
+          "top": 721,
+          "bottom": 1184,
+          "left": 16,
+          "right": 396,
+          "width": 380,
+          "height": 463
+         },
+         "snippet": "<div class=\"routecard\" aria-live=\"polite\">",
+         "nodeLabel": "DESTINAZIONE\nARABBA · BURZ\nda Corvara (Boè) · 13 tratte · 2 impianti\nPrincipian…"
+        }
+       }
+      ]
+     }
+    },
+    {
+     "node": {
+      "type": "node",
+      "lhId": "1-3-SMALL",
+      "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV,1,DIV,0,DIV,1,DIV,1,SMALL",
+      "selector": "div.levels > div#rc-beg > div.t > small#rc-beg-s",
+      "boundingRect": {
+       "top": 857,
+       "bottom": 874,
+       "left": 60,
+       "right": 352,
+       "width": 292,
+       "height": 17
+      },
+      "snippet": "<small id=\"rc-beg-s\">",
+      "nodeLabel": "Percorso non disponibile",
+      "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.32 (foreground color: #4c535b, background color: #12161d, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     "subItems": {
+      "type": "subitems",
+      "items": [
+       {
+        "relatedNode": {
+         "type": "node",
+         "lhId": "1-1-DIV",
+         "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV,1,DIV,0,DIV",
+         "selector": "div.wrap > div.routecard > div.levels > div#rc-beg",
+         "boundingRect": {
+          "top": 827,
+          "bottom": 883,
+          "left": 32,
+          "right": 380,
+          "width": 348,
+          "height": 57
+         },
+         "snippet": "<div class=\"lvl off\" id=\"rc-beg\">",
+         "nodeLabel": "Principiante\nPercorso non disponibile\n—"
+        }
+       },
+       {
+        "relatedNode": {
+         "type": "node",
+         "lhId": "1-2-DIV",
+         "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,3,DIV,1,DIV",
+         "selector": "section#home > div#hero > div.wrap > div.routecard",
+         "boundingRect": {
+          "top": 721,
+          "bottom": 1184,
+          "left": 16,
+          "right": 396,
+          "width": 380,
+          "height": 463
+         },
+         "snippet": "<div class=\"routecard\" aria-live=\"polite\">",
+         "nodeLabel": "DESTINAZIONE\nARABBA · BURZ\nda Corvara (Boè) · 13 tratte · 2 impianti\nPrincipian…"
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "heading-order": {
+   "score": 1,
+   "details": []
+  }
+ }
+}

@@ -1,0 +1,3461 @@
+[
+ {
+  "lang": "it",
+  "name": "home",
+  "url": "/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 1704,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 5591,
+  "screens": 6.6,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 288,
+   "visible": true
+  },
+  "avvisami": {
+   "top": 4612,
+   "bottom": 5241,
+   "visible": true
+  },
+  "emailInput": {
+   "top": 4961,
+   "bottom": 5017,
+   "visible": true
+  },
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 452
+   },
+   {
+    "text": "Avvisami",
+    "top": 5027
+   }
+  ],
+  "hs": [
+   "H1:Tutto il giro. Anche tra i comprensori.",
+   "H2(sr):Cosa fa Ski Maps",
+   "H3:Per il tuo livello",
+   "H3:Impianti e orari",
+   "H3:Telefono in tasca",
+   "H2(sr):Scopri Ski Maps",
+   "H3:Un percorso.Tutto il giro.",
+   "H3:Cinque areeal lancio.",
+   "H3:Domandee risposte.",
+   "H3:DietroSki Maps.",
+   "H2:La tua posizioneresta tua.",
+   "H3:GPS sul telefono",
+   "H3:Diagnostica solo con il consenso",
+   "H3:Account facoltativo",
+   "H3:Cancellazione dell’account",
+   "H2:Avvisami quando esce."
+  ],
+  "todos": 1,
+  "shotPh": 0,
+  "small": [
+   "Privacy 47x23",
+   "© OpenStreetMap contributors 174x16",
+   "come fare 67x19",
+   "Informativa privacy 107x16",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Ski Maps · Navigatore GPS per sciatori",
+  "desc": "Ski Maps, navigatore GPS per sciatori: ti dice dove andare, pista per pista e impianto per impianto, per tutto il giro, anche tra un comprensorio e l’altro con bus e treni. In arrivo su Google Play.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "n": 2,
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "targets": [
+     "#rc-beg > .t > b | Element has insufficient color contrast of 4.49 (foreground color: #7a7f85, background color: #12161d, font size: 10.5pt (14px), font weight",
+     "#rc-beg-s | Element has insufficient color contrast of 2.32 (foreground color: #4c535b, background color: #12161d, font size: 8.3pt (11px), font weight:"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "it",
+  "name": "home",
+  "url": "/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 457,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 4125,
+  "screens": 4,
+  "overflowX": 0,
+  "h1": {
+   "top": 152,
+   "bottom": 233,
+   "visible": true
+  },
+  "avvisami": {
+   "top": 3421,
+   "bottom": 3899,
+   "visible": true
+  },
+  "emailInput": {
+   "top": 3705,
+   "bottom": 3761,
+   "visible": true
+  },
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 372
+   },
+   {
+    "text": "Avvisami",
+    "top": 3705
+   }
+  ],
+  "hs": [
+   "H1:Tutto il giro. Anche tra i comprensori.",
+   "H2(sr):Cosa fa Ski Maps",
+   "H3:Per il tuo livello",
+   "H3:Impianti e orari",
+   "H3:Telefono in tasca",
+   "H2(sr):Scopri Ski Maps",
+   "H3:Un percorso.Tutto il giro.",
+   "H3:Cinque areeal lancio.",
+   "H3:Domandee risposte.",
+   "H3:DietroSki Maps.",
+   "H2:La tua posizioneresta tua.",
+   "H3:GPS sul telefono",
+   "H3:Diagnostica solo con il consenso",
+   "H3:Account facoltativo",
+   "H3:Cancellazione dell’account",
+   "H2:Avvisami quando esce."
+  ],
+  "todos": 1,
+  "shotPh": 0,
+  "small": [
+   "Privacy 47x23",
+   "© OpenStreetMap contributors 174x16",
+   "Informativa privacy 107x16",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Ski Maps · Navigatore GPS per sciatori",
+  "desc": "Ski Maps, navigatore GPS per sciatori: ti dice dove andare, pista per pista e impianto per impianto, per tutto il giro, anche tra un comprensorio e l’altro con bus e treni. In arrivo su Google Play.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "it",
+  "name": "home",
+  "url": "/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 690,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 2999,
+  "screens": 3.3,
+  "overflowX": 0,
+  "h1": {
+   "top": 176,
+   "bottom": 398,
+   "visible": true
+  },
+  "avvisami": {
+   "top": 2313,
+   "bottom": 2837,
+   "visible": true
+  },
+  "emailInput": {
+   "top": 2643,
+   "bottom": 2699,
+   "visible": true
+  },
+  "ctas": [
+   {
+    "text": "Avvisami",
+    "top": 14
+   },
+   {
+    "text": "Avvisami quando esce",
+    "top": 554
+   },
+   {
+    "text": "Avvisami",
+    "top": 2643
+   }
+  ],
+  "hs": [
+   "H1:Tutto il giro. Anche tra i comprensori.",
+   "H2(sr):Cosa fa Ski Maps",
+   "H3:Per il tuo livello",
+   "H3:Impianti e orari",
+   "H3:Telefono in tasca",
+   "H2(sr):Scopri Ski Maps",
+   "H3:Un percorso.Tutto il giro.",
+   "H3:Cinque areeal lancio.",
+   "H3:Domandee risposte.",
+   "H3:DietroSki Maps.",
+   "H2:La tua posizioneresta tua.",
+   "H3:GPS sul telefono",
+   "H3:Diagnostica solo con il consenso",
+   "H3:Account facoltativo",
+   "H3:Cancellazione dell’account",
+   "H2:Avvisami quando esce."
+  ],
+  "todos": 1,
+  "shotPh": 0,
+  "small": [
+   "Privacy 47x23",
+   "come fare 67x19",
+   "Informativa privacy 107x16",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Fonti e licenze 87x17"
+  ],
+  "title": "Ski Maps · Navigatore GPS per sciatori",
+  "desc": "Ski Maps, navigatore GPS per sciatori: ti dice dove andare, pista per pista e impianto per impianto, per tutto il giro, anche tra un comprensorio e l’altro con bus e treni. In arrivo su Google Play.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "n": 2,
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "targets": [
+     "#rc-beg > .t > b | Element has insufficient color contrast of 4.49 (foreground color: #7a7f85, background color: #12161d, font size: 10.5pt (14px), font weight",
+     "#rc-beg-s | Element has insufficient color contrast of 2.32 (foreground color: #4c535b, background color: #12161d, font size: 8.3pt (11px), font weight:"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "it",
+  "name": "come-funziona",
+  "url": "/come-funziona/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 103,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 7439,
+  "screens": 8.8,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 6996
+   }
+  ],
+  "hs": [
+   "H1:Un percorso.Tutto il giro.",
+   "H2(sr):Giri tra comprensori",
+   "H3:Bloccati a metà giro",
+   "H3:Sai sempre il prossimo passo",
+   "H3:Giri tra comprensori",
+   "H2:Tre passi.Poi si scia.",
+   "H3:Scegli dove vuoi arrivare",
+   "H3:Scegli il tuo livello",
+   "H3:Segui le indicazioni",
+   "H2:Quello che fa,sulla neve.",
+   "H3:Percorsi per livello",
+   "H3:Chiusure e orari degli impianti",
+   "H3:Guida vocale",
+   "H3:Telefono in tasca",
+   "H3:Funziona offline",
+   "H3:Nome e colore della pista",
+   "H3:In cinque lingue"
+  ],
+  "todos": 0,
+  "shotPh": 4,
+  "small": [
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Come funziona · Ski Maps",
+  "desc": "Come funziona Ski Maps: il giro tra comprensori con bus e treni, tre passi per partire e le funzioni già provate sul telefono.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "it",
+  "name": "come-funziona",
+  "url": "/come-funziona/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 109,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 6544,
+  "screens": 6.4,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 6226
+   }
+  ],
+  "hs": [
+   "H1:Un percorso.Tutto il giro.",
+   "H2(sr):Giri tra comprensori",
+   "H3:Bloccati a metà giro",
+   "H3:Sai sempre il prossimo passo",
+   "H3:Giri tra comprensori",
+   "H2:Tre passi.Poi si scia.",
+   "H3:Scegli dove vuoi arrivare",
+   "H3:Scegli il tuo livello",
+   "H3:Segui le indicazioni",
+   "H2:Quello che fa,sulla neve.",
+   "H3:Percorsi per livello",
+   "H3:Chiusure e orari degli impianti",
+   "H3:Guida vocale",
+   "H3:Telefono in tasca",
+   "H3:Funziona offline",
+   "H3:Nome e colore della pista",
+   "H3:In cinque lingue"
+  ],
+  "todos": 0,
+  "shotPh": 4,
+  "small": [
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Come funziona · Ski Maps",
+  "desc": "Come funziona Ski Maps: il giro tra comprensori con bus e treni, tre passi per partire e le funzioni già provate sul telefono.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "it",
+  "name": "come-funziona",
+  "url": "/come-funziona/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 131,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 3929,
+  "screens": 4.4,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami",
+    "top": 14
+   },
+   {
+    "text": "Avvisami quando esce",
+    "top": 3675
+   }
+  ],
+  "hs": [
+   "H1:Un percorso.Tutto il giro.",
+   "H2(sr):Giri tra comprensori",
+   "H3:Bloccati a metà giro",
+   "H3:Sai sempre il prossimo passo",
+   "H3:Giri tra comprensori",
+   "H2:Tre passi.Poi si scia.",
+   "H3:Scegli dove vuoi arrivare",
+   "H3:Scegli il tuo livello",
+   "H3:Segui le indicazioni",
+   "H2:Quello che fa,sulla neve.",
+   "H3:Percorsi per livello",
+   "H3:Chiusure e orari degli impianti",
+   "H3:Guida vocale",
+   "H3:Telefono in tasca",
+   "H3:Funziona offline",
+   "H3:Nome e colore della pista",
+   "H3:In cinque lingue"
+  ],
+  "todos": 0,
+  "shotPh": 4,
+  "small": [
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Fonti e licenze 87x17"
+  ],
+  "title": "Come funziona · Ski Maps",
+  "desc": "Come funziona Ski Maps: il giro tra comprensori con bus e treni, tre passi per partire e le funzioni già provate sul telefono.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "it",
+  "name": "aree",
+  "url": "/aree/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 106,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 2069,
+  "screens": 2.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 1627
+   }
+  ],
+  "hs": [
+   "H1:Cinque areeal lancio.",
+   "H2:Gestite impianti?"
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "© OpenStreetMap contributors 174x16",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Aree · Ski Maps",
+  "desc": "Dove funziona Ski Maps al lancio: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea con Bardonecchia e Livigno.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "it",
+  "name": "aree",
+  "url": "/aree/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 101,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 1796,
+  "screens": 1.8,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 1479
+   }
+  ],
+  "hs": [
+   "H1:Cinque areeal lancio.",
+   "H2:Gestite impianti?"
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "© OpenStreetMap contributors 174x16",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Aree · Ski Maps",
+  "desc": "Dove funziona Ski Maps al lancio: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea con Bardonecchia e Livigno.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "it",
+  "name": "aree",
+  "url": "/aree/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 106,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 1652,
+  "screens": 1.8,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami",
+    "top": 14
+   },
+   {
+    "text": "Avvisami quando esce",
+    "top": 1398
+   }
+  ],
+  "hs": [
+   "H1:Cinque areeal lancio.",
+   "H2:Gestite impianti?"
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "© OpenStreetMap contributors 174x16",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Fonti e licenze 87x17"
+  ],
+  "title": "Aree · Ski Maps",
+  "desc": "Dove funziona Ski Maps al lancio: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea con Bardonecchia e Livigno.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "it",
+  "name": "domande",
+  "url": "/domande/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 70,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 1651,
+  "screens": 2,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 1209
+   }
+  ],
+  "hs": [
+   "H1:Domandee risposte."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "Lascia la tua email 135x20",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Domande frequenti · Ski Maps",
+  "desc": "Domande frequenti su Ski Maps: quando esce, iPhone, uso senza rete, guida vocale, impianti chiusi, livelli, lingue e posizione.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "it",
+  "name": "domande",
+  "url": "/domande/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 71,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 1550,
+  "screens": 1.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 1232
+   }
+  ],
+  "hs": [
+   "H1:Domandee risposte."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "Lascia la tua email 135x20",
+   "informativa privacy 140x20",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Domande frequenti · Ski Maps",
+  "desc": "Domande frequenti su Ski Maps: quando esce, iPhone, uso senza rete, guida vocale, impianti chiusi, livelli, lingue e posizione.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "it",
+  "name": "domande",
+  "url": "/domande/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 94,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 1507,
+  "screens": 1.7,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami",
+    "top": 14
+   },
+   {
+    "text": "Avvisami quando esce",
+    "top": 1253
+   }
+  ],
+  "hs": [
+   "H1:Domandee risposte."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "Lascia la tua email 135x20",
+   "informativa privacy 140x20",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Fonti e licenze 87x17"
+  ],
+  "title": "Domande frequenti · Ski Maps",
+  "desc": "Domande frequenti su Ski Maps: quando esce, iPhone, uso senza rete, guida vocale, impianti chiusi, livelli, lingue e posizione.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "it",
+  "name": "chi-siamo",
+  "url": "/chi-siamo/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 97,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 1567,
+  "screens": 1.9,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 1125
+   }
+  ],
+  "hs": [
+   "H1:DietroSki Maps."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 240x19",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Chi siamo · Ski Maps",
+  "desc": "Chi c’è dietro Ski Maps: Christian, 22 anni, di Roma. Ingegneria energetica alle spalle, oggi la laurea magistrale in Strategic Management alla LUISS Guido Carli.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "it",
+  "name": "chi-siamo",
+  "url": "/chi-siamo/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 77,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 1370,
+  "screens": 1.3,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami quando esce",
+    "top": 1053
+   }
+  ],
+  "hs": [
+   "H1:DietroSki Maps."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 240x19",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Chi siamo · Ski Maps",
+  "desc": "Chi c’è dietro Ski Maps: Christian, 22 anni, di Roma. Ingegneria energetica alle spalle, oggi la laurea magistrale in Strategic Management alla LUISS Guido Carli.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "it",
+  "name": "chi-siamo",
+  "url": "/chi-siamo/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 93,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 1375,
+  "screens": 1.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami",
+    "top": 14
+   },
+   {
+    "text": "Avvisami quando esce",
+    "top": 1121
+   }
+  ],
+  "hs": [
+   "H1:DietroSki Maps."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 240x19",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Fonti e licenze 87x17"
+  ],
+  "title": "Chi siamo · Ski Maps",
+  "desc": "Chi c’è dietro Ski Maps: Christian, 22 anni, di Roma. Ingegneria energetica alle spalle, oggi la laurea magistrale in Strategic Management alla LUISS Guido Carli.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "it",
+  "name": "privacy",
+  "url": "/privacy.html",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 108,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 11407,
+  "screens": 13.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 288,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [],
+  "hs": [
+   "H1:Cosa resta sul telefono, cosa parte.",
+   "H3:Cosa cambia in questa versione",
+   "H3:In breve",
+   "H3:La tua posizione",
+   "H3:L’account",
+   "H3:Accesso con Google",
+   "H3:Eliminare l’account",
+   "H3:Diagnostica (facoltativa, spenta per default)",
+   "H3:Pseudonimo, non anonimo",
+   "H3:Segnalazioni di pista chiusa",
+   "H3:Quanto si aspetta agli impianti",
+   "H3:Quanto ci vuole per ogni tappa",
+   "H3:La guida vocale",
+   "H3:Col telefono in tasca",
+   "H3:Chi altro vede qualcosa",
+   "H3:Su quale base trattiamo i dati",
+   "H3:L’iscrizione alla lista d’attesa",
+   "H3:Questo sito",
+   "H3:Per quanto tempo",
+   "H3:I tuoi diritti",
+   "H3:Titolare e contatti",
+   "H3:Fonti dei dati e licenze"
+  ],
+  "todos": 21,
+  "shotPh": 0,
+  "small": [
+   "Garante per la protezione dei  314x20",
+   "come fare 74x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "ODbL 1.0 63x20",
+   "https://doi.org/10.13127/tinit 253x20",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Informativa privacy · Ski Maps",
+  "desc": "Informativa privacy di Ski Maps, versione 5: posizione, diagnostica, account, accesso con Google, cancellazione e fornitori.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "n": 1,
+    "help": "Heading levels should only increase by one",
+    "targets": [
+     ".changes > h3 | Heading order invalid"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "it",
+  "name": "privacy",
+  "url": "/privacy.html",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 100,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 7147,
+  "screens": 7,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 229,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [],
+  "hs": [
+   "H1:Cosa resta sul telefono, cosa parte.",
+   "H3:Cosa cambia in questa versione",
+   "H3:In breve",
+   "H3:La tua posizione",
+   "H3:L’account",
+   "H3:Accesso con Google",
+   "H3:Eliminare l’account",
+   "H3:Diagnostica (facoltativa, spenta per default)",
+   "H3:Pseudonimo, non anonimo",
+   "H3:Segnalazioni di pista chiusa",
+   "H3:Quanto si aspetta agli impianti",
+   "H3:Quanto ci vuole per ogni tappa",
+   "H3:La guida vocale",
+   "H3:Col telefono in tasca",
+   "H3:Chi altro vede qualcosa",
+   "H3:Su quale base trattiamo i dati",
+   "H3:L’iscrizione alla lista d’attesa",
+   "H3:Questo sito",
+   "H3:Per quanto tempo",
+   "H3:I tuoi diritti",
+   "H3:Titolare e contatti",
+   "H3:Fonti dei dati e licenze"
+  ],
+  "todos": 21,
+  "shotPh": 0,
+  "small": [
+   "propria informativa 141x20",
+   "Elimina il tuo account 158x20",
+   "Garante per la protezione dei  314x20",
+   "come fare 74x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "ODbL 1.0 63x20",
+   "https://doi.org/10.13127/tinit 253x20",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Informativa privacy · Ski Maps",
+  "desc": "Informativa privacy di Ski Maps, versione 5: posizione, diagnostica, account, accesso con Google, cancellazione e fornitori.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "it",
+  "name": "privacy",
+  "url": "/privacy.html",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 134,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 7219,
+  "screens": 8,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami",
+    "top": 14
+   }
+  ],
+  "hs": [
+   "H1:Cosa resta sul telefono, cosa parte.",
+   "H3:Cosa cambia in questa versione",
+   "H3:In breve",
+   "H3:La tua posizione",
+   "H3:L’account",
+   "H3:Accesso con Google",
+   "H3:Eliminare l’account",
+   "H3:Diagnostica (facoltativa, spenta per default)",
+   "H3:Pseudonimo, non anonimo",
+   "H3:Segnalazioni di pista chiusa",
+   "H3:Quanto si aspetta agli impianti",
+   "H3:Quanto ci vuole per ogni tappa",
+   "H3:La guida vocale",
+   "H3:Col telefono in tasca",
+   "H3:Chi altro vede qualcosa",
+   "H3:Su quale base trattiamo i dati",
+   "H3:L’iscrizione alla lista d’attesa",
+   "H3:Questo sito",
+   "H3:Per quanto tempo",
+   "H3:I tuoi diritti",
+   "H3:Titolare e contatti",
+   "H3:Fonti dei dati e licenze"
+  ],
+  "todos": 21,
+  "shotPh": 0,
+  "small": [
+   "propria informativa 141x20",
+   "Elimina il tuo account 158x20",
+   "Garante per la protezione dei  314x20",
+   "come fare 74x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "ODbL 1.0 63x20",
+   "https://doi.org/10.13127/tinit 253x20",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Informativa privacy · Ski Maps",
+  "desc": "Informativa privacy di Ski Maps, versione 5: posizione, diagnostica, account, accesso con Google, cancellazione e fornitori.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "n": 1,
+    "help": "Heading levels should only increase by one",
+    "targets": [
+     ".changes > h3 | Heading order invalid"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "it",
+  "name": "elimina-account",
+  "url": "/elimina-account.html",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 80,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 2769,
+  "screens": 3.3,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [],
+  "hs": [
+   "H1:Elimina il tuo account.",
+   "H3:Dall’app",
+   "H3:Se non hai più l’app",
+   "H3:Quanto ci vuole",
+   "H3:Che cosa viene cancellato",
+   "H3:Che cosa resta, e per quanto",
+   "H3:Il tuo account Google",
+   "H3:Domande"
+  ],
+  "todos": 7,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 255x20",
+   "Per quanto tempo 131x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "informativa privacy 140x20",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Elimina il tuo account · Ski Maps",
+  "desc": "Come eliminare l’account Ski Maps dall’app o per email, in quanto tempo e che cosa viene cancellato.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "n": 1,
+    "help": "Heading levels should only increase by one",
+    "targets": [
+     "#elimina-account | Heading order invalid"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "it",
+  "name": "elimina-account",
+  "url": "/elimina-account.html",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 103,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 2136,
+  "screens": 2.1,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 229,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [],
+  "hs": [
+   "H1:Elimina il tuo account.",
+   "H3:Dall’app",
+   "H3:Se non hai più l’app",
+   "H3:Quanto ci vuole",
+   "H3:Che cosa viene cancellato",
+   "H3:Che cosa resta, e per quanto",
+   "H3:Il tuo account Google",
+   "H3:Domande"
+  ],
+  "todos": 7,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 255x20",
+   "Per quanto tempo 131x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "informativa privacy 140x20",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17"
+  ],
+  "title": "Elimina il tuo account · Ski Maps",
+  "desc": "Come eliminare l’account Ski Maps dall’app o per email, in quanto tempo e che cosa viene cancellato.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "it",
+  "name": "elimina-account",
+  "url": "/elimina-account.html",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 83,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 2119,
+  "screens": 2.4,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 264,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Avvisami",
+    "top": 14
+   }
+  ],
+  "hs": [
+   "H1:Elimina il tuo account.",
+   "H3:Dall’app",
+   "H3:Se non hai più l’app",
+   "H3:Quanto ci vuole",
+   "H3:Che cosa viene cancellato",
+   "H3:Che cosa resta, e per quanto",
+   "H3:Il tuo account Google",
+   "H3:Domande"
+  ],
+  "todos": 7,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 255x20",
+   "Per quanto tempo 131x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "informativa privacy 140x20",
+   "Informativa privacy 116x22",
+   "Elimina account 97x22",
+   "Chi siamo 59x22",
+   "Per le società impianti 134x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Fonti e licenze 87x17"
+  ],
+  "title": "Elimina il tuo account · Ski Maps",
+  "desc": "Come eliminare l’account Ski Maps dall’app o per email, in quanto tempo e che cosa viene cancellato.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "n": 1,
+    "help": "Heading levels should only increase by one",
+    "targets": [
+     "#elimina-account | Heading order invalid"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "name": "home",
+  "url": "/en/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 277,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 5518,
+  "screens": 6.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 152,
+   "bottom": 274,
+   "visible": true
+  },
+  "avvisami": {
+   "top": 4539,
+   "bottom": 5168,
+   "visible": true
+  },
+  "emailInput": {
+   "top": 4888,
+   "bottom": 4944,
+   "visible": true
+  },
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 438
+   },
+   {
+    "text": "Notify me",
+    "top": 4954
+   }
+  ],
+  "hs": [
+   "H1:The whole tour. Across ski areas too.",
+   "H2(sr):What Ski Maps does",
+   "H3:For your level",
+   "H3:Lifts and hours",
+   "H3:Phone in your pocket",
+   "H2(sr):Explore Ski Maps",
+   "H3:One route.The whole tour.",
+   "H3:Five areasat launch.",
+   "H3:Questionsand answers.",
+   "H3:BehindSki Maps.",
+   "H2:Your locationstays yours.",
+   "H3:GPS on your phone",
+   "H3:Diagnostics only with consent",
+   "H3:Optional account",
+   "H3:Account deletion",
+   "H2:Notify me at launch."
+  ],
+  "todos": 1,
+  "shotPh": 0,
+  "small": [
+   "Privacy 47x23",
+   "© OpenStreetMap contributors 174x16",
+   "how 27x19",
+   "Privacy notice 79x16",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Ski Maps · GPS Navigator for Skiers",
+  "desc": "Ski Maps, the GPS navigator for skiers: it tells you where to go, piste by piste and lift by lift, for the whole tour, even between ski areas with buses and trains. Coming soon to Google Play.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "n": 2,
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "targets": [
+     "#rc-beg > .t > b | Element has insufficient color contrast of 4.49 (foreground color: #7a7f85, background color: #12161d, font size: 10.5pt (14px), font weight",
+     "#rc-beg-s | Element has insufficient color contrast of 2.32 (foreground color: #4c535b, background color: #12161d, font size: 8.3pt (11px), font weight:"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "name": "home",
+  "url": "/en/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 289,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 4103,
+  "screens": 4,
+  "overflowX": 0,
+  "h1": {
+   "top": 152,
+   "bottom": 233,
+   "visible": true
+  },
+  "avvisami": {
+   "top": 3399,
+   "bottom": 3877,
+   "visible": true
+  },
+  "emailInput": {
+   "top": 3683,
+   "bottom": 3739,
+   "visible": true
+  },
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 372
+   },
+   {
+    "text": "Notify me",
+    "top": 3683
+   }
+  ],
+  "hs": [
+   "H1:The whole tour. Across ski areas too.",
+   "H2(sr):What Ski Maps does",
+   "H3:For your level",
+   "H3:Lifts and hours",
+   "H3:Phone in your pocket",
+   "H2(sr):Explore Ski Maps",
+   "H3:One route.The whole tour.",
+   "H3:Five areasat launch.",
+   "H3:Questionsand answers.",
+   "H3:BehindSki Maps.",
+   "H2:Your locationstays yours.",
+   "H3:GPS on your phone",
+   "H3:Diagnostics only with consent",
+   "H3:Optional account",
+   "H3:Account deletion",
+   "H2:Notify me at launch."
+  ],
+  "todos": 1,
+  "shotPh": 0,
+  "small": [
+   "Privacy 47x23",
+   "© OpenStreetMap contributors 174x16",
+   "how 27x19",
+   "Privacy notice 79x16",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Ski Maps · GPS Navigator for Skiers",
+  "desc": "Ski Maps, the GPS navigator for skiers: it tells you where to go, piste by piste and lift by lift, for the whole tour, even between ski areas with buses and trains. Coming soon to Google Play.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "en",
+  "name": "home",
+  "url": "/en/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 452,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 2987,
+  "screens": 3.3,
+  "overflowX": 0,
+  "h1": {
+   "top": 176,
+   "bottom": 398,
+   "visible": true
+  },
+  "avvisami": {
+   "top": 2300,
+   "bottom": 2825,
+   "visible": true
+  },
+  "emailInput": {
+   "top": 2631,
+   "bottom": 2687,
+   "visible": true
+  },
+  "ctas": [
+   {
+    "text": "Notify me",
+    "top": 14
+   },
+   {
+    "text": "Notify me at launch",
+    "top": 554
+   },
+   {
+    "text": "Notify me",
+    "top": 2631
+   }
+  ],
+  "hs": [
+   "H1:The whole tour. Across ski areas too.",
+   "H2(sr):What Ski Maps does",
+   "H3:For your level",
+   "H3:Lifts and hours",
+   "H3:Phone in your pocket",
+   "H2(sr):Explore Ski Maps",
+   "H3:One route.The whole tour.",
+   "H3:Five areasat launch.",
+   "H3:Questionsand answers.",
+   "H3:BehindSki Maps.",
+   "H2:Your locationstays yours.",
+   "H3:GPS on your phone",
+   "H3:Diagnostics only with consent",
+   "H3:Optional account",
+   "H3:Account deletion",
+   "H2:Notify me at launch."
+  ],
+  "todos": 1,
+  "shotPh": 0,
+  "small": [
+   "Privacy 47x23",
+   "how 27x19",
+   "Privacy notice 79x16",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Ski Maps · GPS Navigator for Skiers",
+  "desc": "Ski Maps, the GPS navigator for skiers: it tells you where to go, piste by piste and lift by lift, for the whole tour, even between ski areas with buses and trains. Coming soon to Google Play.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "n": 2,
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "targets": [
+     "#rc-beg > .t > b | Element has insufficient color contrast of 4.49 (foreground color: #7a7f85, background color: #12161d, font size: 10.5pt (14px), font weight",
+     "#rc-beg-s | Element has insufficient color contrast of 2.32 (foreground color: #4c535b, background color: #12161d, font size: 8.3pt (11px), font weight:"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "name": "how-it-works",
+  "url": "/en/how-it-works/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 133,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 7393,
+  "screens": 8.8,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 6951
+   }
+  ],
+  "hs": [
+   "H1:One route.The whole tour.",
+   "H2(sr):Tours across ski areas",
+   "H3:Stuck halfway round",
+   "H3:You always know the next step",
+   "H3:Tours across ski areas",
+   "H2:Three steps.Then ski.",
+   "H3:Choose where you want to go",
+   "H3:Choose your level",
+   "H3:Follow the directions",
+   "H2:What it does,on the snow.",
+   "H3:Routes by level",
+   "H3:Lift closures and hours",
+   "H3:Voice guidance",
+   "H3:Phone in your pocket",
+   "H3:Works offline",
+   "H3:Piste name and colour",
+   "H3:In five languages"
+  ],
+  "todos": 0,
+  "shotPh": 4,
+  "small": [
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "How it works · Ski Maps",
+  "desc": "How Ski Maps works: tours across ski areas with buses and trains, three steps to get going, and the features already tested on the phone.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "en",
+  "name": "how-it-works",
+  "url": "/en/how-it-works/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 108,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 6504,
+  "screens": 6.4,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 6186
+   }
+  ],
+  "hs": [
+   "H1:One route.The whole tour.",
+   "H2(sr):Tours across ski areas",
+   "H3:Stuck halfway round",
+   "H3:You always know the next step",
+   "H3:Tours across ski areas",
+   "H2:Three steps.Then ski.",
+   "H3:Choose where you want to go",
+   "H3:Choose your level",
+   "H3:Follow the directions",
+   "H2:What it does,on the snow.",
+   "H3:Routes by level",
+   "H3:Lift closures and hours",
+   "H3:Voice guidance",
+   "H3:Phone in your pocket",
+   "H3:Works offline",
+   "H3:Piste name and colour",
+   "H3:In five languages"
+  ],
+  "todos": 0,
+  "shotPh": 4,
+  "small": [
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "How it works · Ski Maps",
+  "desc": "How Ski Maps works: tours across ski areas with buses and trains, three steps to get going, and the features already tested on the phone.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "en",
+  "name": "how-it-works",
+  "url": "/en/how-it-works/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 111,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 3936,
+  "screens": 4.4,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me",
+    "top": 14
+   },
+   {
+    "text": "Notify me at launch",
+    "top": 3680
+   }
+  ],
+  "hs": [
+   "H1:One route.The whole tour.",
+   "H2(sr):Tours across ski areas",
+   "H3:Stuck halfway round",
+   "H3:You always know the next step",
+   "H3:Tours across ski areas",
+   "H2:Three steps.Then ski.",
+   "H3:Choose where you want to go",
+   "H3:Choose your level",
+   "H3:Follow the directions",
+   "H2:What it does,on the snow.",
+   "H3:Routes by level",
+   "H3:Lift closures and hours",
+   "H3:Voice guidance",
+   "H3:Phone in your pocket",
+   "H3:Works offline",
+   "H3:Piste name and colour",
+   "H3:In five languages"
+  ],
+  "todos": 0,
+  "shotPh": 4,
+  "small": [
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "How it works · Ski Maps",
+  "desc": "How Ski Maps works: tours across ski areas with buses and trains, three steps to get going, and the features already tested on the phone.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "en",
+  "name": "areas",
+  "url": "/en/areas/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 106,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 2069,
+  "screens": 2.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 1627
+   }
+  ],
+  "hs": [
+   "H1:Five areasat launch.",
+   "H2:Do you run lifts?"
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "© OpenStreetMap contributors 174x16",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Areas · Ski Maps",
+  "desc": "Where Ski Maps works at launch: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea including Bardonecchia, and Livigno.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "en",
+  "name": "areas",
+  "url": "/en/areas/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 92,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 1826,
+  "screens": 1.8,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 1508
+   }
+  ],
+  "hs": [
+   "H1:Five areasat launch.",
+   "H2:Do you run lifts?"
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "© OpenStreetMap contributors 174x16",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Areas · Ski Maps",
+  "desc": "Where Ski Maps works at launch: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea including Bardonecchia, and Livigno.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "en",
+  "name": "areas",
+  "url": "/en/areas/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 95,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 1655,
+  "screens": 1.8,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me",
+    "top": 14
+   },
+   {
+    "text": "Notify me at launch",
+    "top": 1400
+   }
+  ],
+  "hs": [
+   "H1:Five areasat launch.",
+   "H2:Do you run lifts?"
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "© OpenStreetMap contributors 174x16",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Areas · Ski Maps",
+  "desc": "Where Ski Maps works at launch: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea including Bardonecchia, and Livigno.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "en",
+  "name": "faq",
+  "url": "/en/faq/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 70,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 1651,
+  "screens": 2,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 1209
+   }
+  ],
+  "hs": [
+   "H1:Questionsand answers."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "FAQ · Ski Maps",
+  "desc": "Ski Maps FAQ: launch, iPhone, using it without a signal, voice guidance, closed lifts, levels, languages and your location.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "en",
+  "name": "faq",
+  "url": "/en/faq/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 78,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 1579,
+  "screens": 1.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 1262
+   }
+  ],
+  "hs": [
+   "H1:Questionsand answers."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "Leave your email 123x20",
+   "privacy notice 103x20",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "FAQ · Ski Maps",
+  "desc": "Ski Maps FAQ: launch, iPhone, using it without a signal, voice guidance, closed lifts, levels, languages and your location.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "en",
+  "name": "faq",
+  "url": "/en/faq/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 97,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 1509,
+  "screens": 1.7,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me",
+    "top": 14
+   },
+   {
+    "text": "Notify me at launch",
+    "top": 1254
+   }
+  ],
+  "hs": [
+   "H1:Questionsand answers."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "Leave your email 123x20",
+   "privacy notice 103x20",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "FAQ · Ski Maps",
+  "desc": "Ski Maps FAQ: launch, iPhone, using it without a signal, voice guidance, closed lifts, levels, languages and your location.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "en",
+  "name": "about",
+  "url": "/en/about/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 81,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 1592,
+  "screens": 1.9,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 1150
+   }
+  ],
+  "hs": [
+   "H1:BehindSki Maps."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 240x19",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "About · Ski Maps",
+  "desc": "Who is behind Ski Maps: Christian, 22, from Rome. A background in energy engineering, now a master’s in Strategic Management at LUISS Guido Carli.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "en",
+  "name": "about",
+  "url": "/en/about/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 73,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 1400,
+  "screens": 1.4,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me at launch",
+    "top": 1082
+   }
+  ],
+  "hs": [
+   "H1:BehindSki Maps."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 240x19",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "About · Ski Maps",
+  "desc": "Who is behind Ski Maps: Christian, 22, from Rome. A background in energy engineering, now a master’s in Strategic Management at LUISS Guido Carli.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "en",
+  "name": "about",
+  "url": "/en/about/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 97,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 1378,
+  "screens": 1.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me",
+    "top": 14
+   },
+   {
+    "text": "Notify me at launch",
+    "top": 1122
+   }
+  ],
+  "hs": [
+   "H1:BehindSki Maps."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 240x19",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "About · Ski Maps",
+  "desc": "Who is behind Ski Maps: Christian, 22, from Rome. A background in energy engineering, now a master’s in Strategic Management at LUISS Guido Carli.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "en",
+  "name": "privacy",
+  "url": "/en/privacy.html",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 93,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 11381,
+  "screens": 13.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 288,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [],
+  "hs": [
+   "H1:What stays on your phone, what leaves it.",
+   "H3:What changes in this version",
+   "H3:In brief",
+   "H3:Your location",
+   "H3:The account",
+   "H3:Sign in with Google",
+   "H3:Deleting the account",
+   "H3:Diagnostics (optional, off by default)",
+   "H3:Pseudonymous, not anonymous",
+   "H3:Closed-piste reports",
+   "H3:How long you wait at lifts",
+   "H3:How long each leg takes",
+   "H3:Voice guidance",
+   "H3:With the phone in your pocket",
+   "H3:Who else sees something",
+   "H3:On what basis we process data",
+   "H3:The waiting list sign-up",
+   "H3:This website",
+   "H3:How long data is kept",
+   "H3:Your rights",
+   "H3:Controller and contacts",
+   "H3:Data sources and licences"
+  ],
+  "todos": 21,
+  "shotPh": 0,
+  "small": [
+   "its own privacy policy 155x20",
+   "Delete your account 146x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "ODbL 1.0 63x20",
+   "https://doi.org/10.13127/tinit 253x20",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Privacy notice · Ski Maps",
+  "desc": "Ski Maps privacy notice, version 5: location, diagnostics, account, Google sign-in, deletion and providers.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "n": 1,
+    "help": "Heading levels should only increase by one",
+    "targets": [
+     ".changes > h3 | Heading order invalid"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "name": "privacy",
+  "url": "/en/privacy.html",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 125,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 7161,
+  "screens": 7,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [],
+  "hs": [
+   "H1:What stays on your phone, what leaves it.",
+   "H3:What changes in this version",
+   "H3:In brief",
+   "H3:Your location",
+   "H3:The account",
+   "H3:Sign in with Google",
+   "H3:Deleting the account",
+   "H3:Diagnostics (optional, off by default)",
+   "H3:Pseudonymous, not anonymous",
+   "H3:Closed-piste reports",
+   "H3:How long you wait at lifts",
+   "H3:How long each leg takes",
+   "H3:Voice guidance",
+   "H3:With the phone in your pocket",
+   "H3:Who else sees something",
+   "H3:On what basis we process data",
+   "H3:The waiting list sign-up",
+   "H3:This website",
+   "H3:How long data is kept",
+   "H3:Your rights",
+   "H3:Controller and contacts",
+   "H3:Data sources and licences"
+  ],
+  "todos": 21,
+  "shotPh": 0,
+  "small": [
+   "its own privacy policy 155x20",
+   "Delete your account 146x20",
+   "how to do it 85x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "ODbL 1.0 63x20",
+   "https://doi.org/10.13127/tinit 253x20",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Privacy notice · Ski Maps",
+  "desc": "Ski Maps privacy notice, version 5: location, diagnostics, account, Google sign-in, deletion and providers.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "en",
+  "name": "privacy",
+  "url": "/en/privacy.html",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 123,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 7191,
+  "screens": 8,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me",
+    "top": 14
+   }
+  ],
+  "hs": [
+   "H1:What stays on your phone, what leaves it.",
+   "H3:What changes in this version",
+   "H3:In brief",
+   "H3:Your location",
+   "H3:The account",
+   "H3:Sign in with Google",
+   "H3:Deleting the account",
+   "H3:Diagnostics (optional, off by default)",
+   "H3:Pseudonymous, not anonymous",
+   "H3:Closed-piste reports",
+   "H3:How long you wait at lifts",
+   "H3:How long each leg takes",
+   "H3:Voice guidance",
+   "H3:With the phone in your pocket",
+   "H3:Who else sees something",
+   "H3:On what basis we process data",
+   "H3:The waiting list sign-up",
+   "H3:This website",
+   "H3:How long data is kept",
+   "H3:Your rights",
+   "H3:Controller and contacts",
+   "H3:Data sources and licences"
+  ],
+  "todos": 21,
+  "shotPh": 0,
+  "small": [
+   "its own privacy policy 155x20",
+   "Delete your account 146x20",
+   "how to do it 85x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "ODbL 1.0 63x20",
+   "https://doi.org/10.13127/tinit 253x20",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Privacy notice · Ski Maps",
+  "desc": "Ski Maps privacy notice, version 5: location, diagnostics, account, Google sign-in, deletion and providers.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "n": 1,
+    "help": "Heading levels should only increase by one",
+    "targets": [
+     ".changes > h3 | Heading order invalid"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "name": "delete-account",
+  "url": "/en/delete-account.html",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 75,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 2715,
+  "screens": 3.2,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [],
+  "hs": [
+   "H1:Delete your account.",
+   "H3:From the app",
+   "H3:If you no longer have the app",
+   "H3:How long it takes",
+   "H3:What is deleted",
+   "H3:What stays, and for how long",
+   "H3:Your Google account",
+   "H3:Questions"
+  ],
+  "todos": 7,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 255x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "privacy notice 103x20",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Delete your account · Ski Maps",
+  "desc": "How to delete your Ski Maps account from the app or by email, how long it takes and what is deleted.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "n": 1,
+    "help": "Heading levels should only increase by one",
+    "targets": [
+     "#delete-account | Heading order invalid"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "en",
+  "name": "delete-account",
+  "url": "/en/delete-account.html",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 90,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 2080,
+  "screens": 2,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 229,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [],
+  "hs": [
+   "H1:Delete your account.",
+   "H3:From the app",
+   "H3:If you no longer have the app",
+   "H3:How long it takes",
+   "H3:What is deleted",
+   "H3:What stays, and for how long",
+   "H3:Your Google account",
+   "H3:Questions"
+  ],
+  "todos": 7,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 255x20",
+   "How long data is kept 155x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "privacy notice 103x20",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Delete your account · Ski Maps",
+  "desc": "How to delete your Ski Maps account from the app or by email, how long it takes and what is deleted.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "en",
+  "name": "delete-account",
+  "url": "/en/delete-account.html",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 90,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 2063,
+  "screens": 2.3,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 264,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Notify me",
+    "top": 14
+   }
+  ],
+  "hs": [
+   "H1:Delete your account.",
+   "H3:From the app",
+   "H3:If you no longer have the app",
+   "H3:How long it takes",
+   "H3:What is deleted",
+   "H3:What stays, and for how long",
+   "H3:Your Google account",
+   "H3:Questions"
+  ],
+  "todos": 7,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 255x20",
+   "How long data is kept 155x20",
+   "chris.business.skimap@gmail.co 255x20",
+   "privacy notice 103x20",
+   "Privacy notice 85x22",
+   "Delete account 91x22",
+   "About 36x22",
+   "For lift companies 109x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Sources and licences 128x17"
+  ],
+  "title": "Delete your account · Ski Maps",
+  "desc": "How to delete your Ski Maps account from the app or by email, how long it takes and what is deleted.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "n": 1,
+    "help": "Heading levels should only increase by one",
+    "targets": [
+     "#delete-account | Heading order invalid"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "de",
+  "name": "home",
+  "url": "/de/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 234,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 5620,
+  "screens": 6.7,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 288,
+   "visible": true
+  },
+  "avvisami": {
+   "top": 4641,
+   "bottom": 5270,
+   "visible": true
+  },
+  "emailInput": {
+   "top": 4990,
+   "bottom": 5046,
+   "visible": true
+  },
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 452
+   },
+   {
+    "text": "Benachrichtigen",
+    "top": 5056
+   }
+  ],
+  "hs": [
+   "H1:Die ganze Runde. Auch zwischen Skigebieten.",
+   "H2(sr):Was Ski Maps kann",
+   "H3:Für dein Niveau",
+   "H3:Lifte und Zeiten",
+   "H3:Handy in der Tasche",
+   "H2(sr):Ski Maps entdecken",
+   "H3:Eine Route.Die ganze Runde.",
+   "H3:Fünf Gebietezum Start.",
+   "H3:Fragenund Antworten.",
+   "H3:HinterSki Maps.",
+   "H2:Dein Standortbleibt deiner.",
+   "H3:GPS auf dem Handy",
+   "H3:Diagnose nur mit Zustimmung",
+   "H3:Konto freiwillig",
+   "H3:Konto löschen",
+   "H2:Beim Start benachrichtigen."
+  ],
+  "todos": 1,
+  "shotPh": 0,
+  "small": [
+   "Datenschutz 81x23",
+   "© OpenStreetMap contributors 174x16",
+   "so geht’s (Englisch) 127x19",
+   "Datenschutz (Englisch) 128x16",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Ski Maps · GPS-Navigator für Skifahrer",
+  "desc": "Ski Maps, der GPS-Navigator für Skifahrer: sagt dir, wohin es geht, Piste für Piste und Lift für Lift, die ganze Runde, auch zwischen Skigebieten mit Bus und Bahn. Kommt bald auf Google Play.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "n": 2,
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "targets": [
+     "#rc-beg > .t > b | Element has insufficient color contrast of 4.49 (foreground color: #7a7f85, background color: #12161d, font size: 10.5pt (14px), font weight",
+     "#rc-beg-s | Element has insufficient color contrast of 2.32 (foreground color: #4c535b, background color: #12161d, font size: 8.3pt (11px), font weight:"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "de",
+  "name": "home",
+  "url": "/de/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 291,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 4103,
+  "screens": 4,
+  "overflowX": 0,
+  "h1": {
+   "top": 152,
+   "bottom": 233,
+   "visible": true
+  },
+  "avvisami": {
+   "top": 3399,
+   "bottom": 3877,
+   "visible": true
+  },
+  "emailInput": {
+   "top": 3683,
+   "bottom": 3739,
+   "visible": true
+  },
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 372
+   },
+   {
+    "text": "Benachrichtigen",
+    "top": 3683
+   }
+  ],
+  "hs": [
+   "H1:Die ganze Runde. Auch zwischen Skigebieten.",
+   "H2(sr):Was Ski Maps kann",
+   "H3:Für dein Niveau",
+   "H3:Lifte und Zeiten",
+   "H3:Handy in der Tasche",
+   "H2(sr):Ski Maps entdecken",
+   "H3:Eine Route.Die ganze Runde.",
+   "H3:Fünf Gebietezum Start.",
+   "H3:Fragenund Antworten.",
+   "H3:HinterSki Maps.",
+   "H2:Dein Standortbleibt deiner.",
+   "H3:GPS auf dem Handy",
+   "H3:Diagnose nur mit Zustimmung",
+   "H3:Konto freiwillig",
+   "H3:Konto löschen",
+   "H2:Beim Start benachrichtigen."
+  ],
+  "todos": 1,
+  "shotPh": 0,
+  "small": [
+   "Datenschutz 81x23",
+   "© OpenStreetMap contributors 174x16",
+   "so geht’s (Englisch) 127x19",
+   "Datenschutz (Englisch) 128x16",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Ski Maps · GPS-Navigator für Skifahrer",
+  "desc": "Ski Maps, der GPS-Navigator für Skifahrer: sagt dir, wohin es geht, Piste für Piste und Lift für Lift, die ganze Runde, auch zwischen Skigebieten mit Bus und Bahn. Kommt bald auf Google Play.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "de",
+  "name": "home",
+  "url": "/de/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 534,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 3010,
+  "screens": 3.3,
+  "overflowX": 0,
+  "h1": {
+   "top": 176,
+   "bottom": 398,
+   "visible": true
+  },
+  "avvisami": {
+   "top": 2324,
+   "bottom": 2848,
+   "visible": true
+  },
+  "emailInput": {
+   "top": 2654,
+   "bottom": 2710,
+   "visible": true
+  },
+  "ctas": [
+   {
+    "text": "Benachrichtigen",
+    "top": 14
+   },
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 554
+   },
+   {
+    "text": "Benachrichtigen",
+    "top": 2654
+   }
+  ],
+  "hs": [
+   "H1:Die ganze Runde. Auch zwischen Skigebieten.",
+   "H2(sr):Was Ski Maps kann",
+   "H3:Für dein Niveau",
+   "H3:Lifte und Zeiten",
+   "H3:Handy in der Tasche",
+   "H2(sr):Ski Maps entdecken",
+   "H3:Eine Route.Die ganze Runde.",
+   "H3:Fünf Gebietezum Start.",
+   "H3:Fragenund Antworten.",
+   "H3:HinterSki Maps.",
+   "H2:Dein Standortbleibt deiner.",
+   "H3:GPS auf dem Handy",
+   "H3:Diagnose nur mit Zustimmung",
+   "H3:Konto freiwillig",
+   "H3:Konto löschen",
+   "H2:Beim Start benachrichtigen."
+  ],
+  "todos": 1,
+  "shotPh": 0,
+  "small": [
+   "Datenschutz 81x23",
+   "Datenschutz (Englisch) 128x16",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Ski Maps · GPS-Navigator für Skifahrer",
+  "desc": "Ski Maps, der GPS-Navigator für Skifahrer: sagt dir, wohin es geht, Piste für Piste und Lift für Lift, die ganze Runde, auch zwischen Skigebieten mit Bus und Bahn. Kommt bald auf Google Play.",
+  "jsonld": 0,
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "n": 2,
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "targets": [
+     "#rc-beg > .t > b | Element has insufficient color contrast of 4.49 (foreground color: #7a7f85, background color: #12161d, font size: 10.5pt (14px), font weight",
+     "#rc-beg-s | Element has insufficient color contrast of 2.32 (foreground color: #4c535b, background color: #12161d, font size: 8.3pt (11px), font weight:"
+    ]
+   }
+  ]
+ },
+ {
+  "lang": "de",
+  "name": "so-funktionierts",
+  "url": "/de/so-funktionierts/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 103,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 7559,
+  "screens": 9,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 7117
+   }
+  ],
+  "hs": [
+   "H1:Eine Route.Die ganze Runde.",
+   "H2(sr):Runden zwischen Skigebieten",
+   "H3:Mitten in der Runde festgefahren",
+   "H3:Du kennst immer den nächsten Schritt",
+   "H3:Runden zwischen Skigebieten",
+   "H2:Drei Schritte.Dann Ski fahren.",
+   "H3:Wähle dein Ziel",
+   "H3:Wähle dein Niveau",
+   "H3:Folge den Anweisungen",
+   "H2:Was sie kann,im Schnee.",
+   "H3:Routen nach Niveau",
+   "H3:Liftsperrungen und Betriebszeiten",
+   "H3:Sprachführung",
+   "H3:Handy in der Tasche",
+   "H3:Funktioniert offline",
+   "H3:Name und Farbe der Piste",
+   "H3:In fünf Sprachen"
+  ],
+  "todos": 0,
+  "shotPh": 4,
+  "small": [
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "So funktioniert’s · Ski Maps",
+  "desc": "So funktioniert Ski Maps: Runden zwischen Skigebieten mit Bus und Bahn, drei Schritte zum Start und die bereits auf dem Handy getesteten Funktionen.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "de",
+  "name": "so-funktionierts",
+  "url": "/de/so-funktionierts/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 78,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 6626,
+  "screens": 6.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 6308
+   }
+  ],
+  "hs": [
+   "H1:Eine Route.Die ganze Runde.",
+   "H2(sr):Runden zwischen Skigebieten",
+   "H3:Mitten in der Runde festgefahren",
+   "H3:Du kennst immer den nächsten Schritt",
+   "H3:Runden zwischen Skigebieten",
+   "H2:Drei Schritte.Dann Ski fahren.",
+   "H3:Wähle dein Ziel",
+   "H3:Wähle dein Niveau",
+   "H3:Folge den Anweisungen",
+   "H2:Was sie kann,im Schnee.",
+   "H3:Routen nach Niveau",
+   "H3:Liftsperrungen und Betriebszeiten",
+   "H3:Sprachführung",
+   "H3:Handy in der Tasche",
+   "H3:Funktioniert offline",
+   "H3:Name und Farbe der Piste",
+   "H3:In fünf Sprachen"
+  ],
+  "todos": 0,
+  "shotPh": 4,
+  "small": [
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "So funktioniert’s · Ski Maps",
+  "desc": "So funktioniert Ski Maps: Runden zwischen Skigebieten mit Bus und Bahn, drei Schritte zum Start und die bereits auf dem Handy getesteten Funktionen.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "de",
+  "name": "so-funktionierts",
+  "url": "/de/so-funktionierts/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 117,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 3968,
+  "screens": 4.4,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Benachrichtigen",
+    "top": 14
+   },
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 3712
+   }
+  ],
+  "hs": [
+   "H1:Eine Route.Die ganze Runde.",
+   "H2(sr):Runden zwischen Skigebieten",
+   "H3:Mitten in der Runde festgefahren",
+   "H3:Du kennst immer den nächsten Schritt",
+   "H3:Runden zwischen Skigebieten",
+   "H2:Drei Schritte.Dann Ski fahren.",
+   "H3:Wähle dein Ziel",
+   "H3:Wähle dein Niveau",
+   "H3:Folge den Anweisungen",
+   "H2:Was sie kann,im Schnee.",
+   "H3:Routen nach Niveau",
+   "H3:Liftsperrungen und Betriebszeiten",
+   "H3:Sprachführung",
+   "H3:Handy in der Tasche",
+   "H3:Funktioniert offline",
+   "H3:Name und Farbe der Piste",
+   "H3:In fünf Sprachen"
+  ],
+  "todos": 0,
+  "shotPh": 4,
+  "small": [
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "So funktioniert’s · Ski Maps",
+  "desc": "So funktioniert Ski Maps: Runden zwischen Skigebieten mit Bus und Bahn, drei Schritte zum Start und die bereits auf dem Handy getesteten Funktionen.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "de",
+  "name": "skigebiete",
+  "url": "/de/skigebiete/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 76,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 2069,
+  "screens": 2.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 1627
+   }
+  ],
+  "hs": [
+   "H1:Fünf Gebietezum Start.",
+   "H2:Betreiben Sie Lifte?"
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "© OpenStreetMap contributors 174x16",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Skigebiete · Ski Maps",
+  "desc": "Wo Ski Maps zum Start funktioniert: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea mit Bardonecchia und Livigno.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "de",
+  "name": "skigebiete",
+  "url": "/de/skigebiete/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 87,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 1826,
+  "screens": 1.8,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 1508
+   }
+  ],
+  "hs": [
+   "H1:Fünf Gebietezum Start.",
+   "H2:Betreiben Sie Lifte?"
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "© OpenStreetMap contributors 174x16",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Skigebiete · Ski Maps",
+  "desc": "Wo Ski Maps zum Start funktioniert: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea mit Bardonecchia und Livigno.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "de",
+  "name": "skigebiete",
+  "url": "/de/skigebiete/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 102,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 1655,
+  "screens": 1.8,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Benachrichtigen",
+    "top": 14
+   },
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 1400
+   }
+  ],
+  "hs": [
+   "H1:Fünf Gebietezum Start.",
+   "H2:Betreiben Sie Lifte?"
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "© OpenStreetMap contributors 174x16",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Skigebiete · Ski Maps",
+  "desc": "Wo Ski Maps zum Start funktioniert: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea mit Bardonecchia und Livigno.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "de",
+  "name": "fragen",
+  "url": "/de/fragen/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 79,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 1706,
+  "screens": 2,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 1264
+   }
+  ],
+  "hs": [
+   "H1:Fragenund Antworten."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "Datenschutzerklärung (Englisch 237x20",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Fragen · Ski Maps",
+  "desc": "Häufige Fragen zu Ski Maps: Start, iPhone, Nutzung ohne Empfang, Sprachführung, gesperrte Lifte, Niveaus, Sprachen und Standort.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "de",
+  "name": "fragen",
+  "url": "/de/fragen/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 78,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 1579,
+  "screens": 1.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 1262
+   }
+  ],
+  "hs": [
+   "H1:Fragenund Antworten."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "Hinterlass deine E-Mail 168x20",
+   "Datenschutzerklärung (Englisch 237x20",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Fragen · Ski Maps",
+  "desc": "Häufige Fragen zu Ski Maps: Start, iPhone, Nutzung ohne Empfang, Sprachführung, gesperrte Lifte, Niveaus, Sprachen und Standort.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "de",
+  "name": "fragen",
+  "url": "/de/fragen/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 107,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 1509,
+  "screens": 1.7,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Benachrichtigen",
+    "top": 14
+   },
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 1254
+   }
+  ],
+  "hs": [
+   "H1:Fragenund Antworten."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "Hinterlass deine E-Mail 168x20",
+   "Datenschutzerklärung (Englisch 237x20",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Fragen · Ski Maps",
+  "desc": "Häufige Fragen zu Ski Maps: Start, iPhone, Nutzung ohne Empfang, Sprachführung, gesperrte Lifte, Niveaus, Sprachen und Standort.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "de",
+  "name": "ueber-uns",
+  "url": "/de/ueber-uns/",
+  "sz": "phone",
+  "w": 390,
+  "h": 844,
+  "loadMs": 79,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 844,
+  "docH": 1623,
+  "screens": 1.9,
+  "overflowX": 0,
+  "h1": {
+   "top": 166,
+   "bottom": 247,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 1181
+   }
+  ],
+  "hs": [
+   "H1:HinterSki Maps."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 240x19",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Über uns · Ski Maps",
+  "desc": "Wer hinter Ski Maps steckt: Christian, 22 Jahre, aus Rom. Hintergrund in Energietechnik, heute Master in Strategic Management an der LUISS Guido Carli.",
+  "jsonld": 0,
+  "axe": []
+ },
+ {
+  "lang": "de",
+  "name": "ueber-uns",
+  "url": "/de/ueber-uns/",
+  "sz": "tablet",
+  "w": 768,
+  "h": 1024,
+  "loadMs": 93,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 1024,
+  "docH": 1400,
+  "screens": 1.4,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 271,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 1082
+   }
+  ],
+  "hs": [
+   "H1:HinterSki Maps."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 240x19",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Über uns · Ski Maps",
+  "desc": "Wer hinter Ski Maps steckt: Christian, 22 Jahre, aus Rom. Hintergrund in Energietechnik, heute Master in Strategic Management an der LUISS Guido Carli.",
+  "jsonld": 0,
+  "axe": null
+ },
+ {
+  "lang": "de",
+  "name": "ueber-uns",
+  "url": "/de/ueber-uns/",
+  "sz": "desktop",
+  "w": 1440,
+  "h": 900,
+  "loadMs": 98,
+  "ext": [],
+  "errors": [],
+  "failed": [],
+  "vh": 900,
+  "docH": 1378,
+  "screens": 1.5,
+  "overflowX": 0,
+  "h1": {
+   "top": 186,
+   "bottom": 341,
+   "visible": true
+  },
+  "avvisami": null,
+  "emailInput": null,
+  "ctas": [
+   {
+    "text": "Benachrichtigen",
+    "top": 14
+   },
+   {
+    "text": "Beim Start benachrichtigen",
+    "top": 1122
+   }
+  ],
+  "hs": [
+   "H1:HinterSki Maps."
+  ],
+  "todos": 0,
+  "shotPh": 0,
+  "small": [
+   "chris.business.skimap@gmail.co 240x19",
+   "Datenschutz (Englisch) 138x22",
+   "Konto löschen (Englisch) 148x22",
+   "Über uns 54x22",
+   "Für Liftbetreiber 101x22",
+   "chris.business.skimap@gmail.co 210x17",
+   "Quellen und Lizenzen 127x17"
+  ],
+  "title": "Über uns · Ski Maps",
+  "desc": "Wer hinter Ski Maps steckt: Christian, 22 Jahre, aus Rom. Hintergrund in Energietechnik, heute Master in Strategic Management an der LUISS Guido Carli.",
+  "jsonld": 0,
+  "axe": []
+ }
+]

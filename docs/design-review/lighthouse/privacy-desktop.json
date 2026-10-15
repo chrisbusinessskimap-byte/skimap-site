@@ -1,0 +1,698 @@
+{
+ "url": "http://localhost:8001/privacy",
+ "fetchTime": "2026-10-15T13:04:32.252Z",
+ "lighthouseVersion": "12.8.2",
+ "formFactor": "desktop",
+ "throttling": {
+  "rttMs": 40,
+  "throughputKbps": 10240,
+  "requestLatencyMs": 0,
+  "downloadThroughputKbps": 0,
+  "uploadThroughputKbps": 0,
+  "cpuSlowdownMultiplier": 1
+ },
+ "scores": {
+  "performance": 1,
+  "accessibility": 0.98,
+  "best-practices": 1,
+  "seo": 1
+ },
+ "audits": {
+  "first-contentful-paint": {
+   "score": 1,
+   "displayValue": "0.4 s",
+   "numericValue": 449.90419999999995
+  },
+  "largest-contentful-paint": {
+   "score": 1,
+   "displayValue": "0.5 s",
+   "numericValue": 489.90419999999995
+  },
+  "total-blocking-time": {
+   "score": 1,
+   "displayValue": "0 ms",
+   "numericValue": 0
+  },
+  "cumulative-layout-shift": {
+   "score": 1,
+   "displayValue": "0.015",
+   "numericValue": 0.01470269423075029,
+   "details": [
+    {
+     "cumulativeLayoutShiftMainFrame": 0.01470269423075029,
+     "newEngineResult": {
+      "cumulativeLayoutShift": 0.01470269423075029,
+      "cumulativeLayoutShiftMainFrame": 0.01470269423075029
+     },
+     "newEngineResultDiffered": false
+    }
+   ]
+  },
+  "speed-index": {
+   "score": 0.99,
+   "displayValue": "0.8 s",
+   "numericValue": 815.0615470832992
+  },
+  "interactive": {
+   "score": 1,
+   "displayValue": "0.5 s",
+   "numericValue": 489.9042
+  },
+  "bootup-time": {
+   "score": 1,
+   "displayValue": "0.0 s",
+   "numericValue": 2.823,
+   "details": [
+    {
+     "url": "http://localhost:8001/privacy",
+     "total": 111.60800000000003,
+     "scripting": 1.076,
+     "scriptParseCompile": 0.165
+    },
+    {
+     "url": "Unattributable",
+     "total": 52.64000000000001,
+     "scripting": 1.5819999999999999,
+     "scriptParseCompile": 0
+    }
+   ]
+  },
+  "mainthread-work-breakdown": {
+   "score": 1,
+   "displayValue": "0.2 s",
+   "numericValue": 171.794,
+   "details": [
+    {
+     "group": "styleLayout",
+     "groupLabel": "Style & Layout",
+     "duration": 85.91000000000001
+    },
+    {
+     "group": "other",
+     "groupLabel": "Other",
+     "duration": 66.60700000000001
+    },
+    {
+     "group": "paintCompositeRender",
+     "groupLabel": "Rendering",
+     "duration": 9.290999999999999
+    },
+    {
+     "group": "scriptEvaluation",
+     "groupLabel": "Script Evaluation",
+     "duration": 4.552
+    },
+    {
+     "group": "parseHTML",
+     "groupLabel": "Parse HTML & CSS",
+     "duration": 4.484
+    },
+    {
+     "group": "scriptParseCompile",
+     "groupLabel": "Script Parsing & Compilation",
+     "duration": 0.9500000000000001
+    }
+   ]
+  },
+  "network-requests": {
+   "score": 1,
+   "details": [
+    {
+     "url": "http://localhost:8001/privacy.html",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 0,
+     "networkRequestTime": 3.3769999999785796,
+     "networkEndTime": 10.930000000051223,
+     "finished": true,
+     "transferSize": 166,
+     "resourceSize": 0,
+     "statusCode": 301,
+     "mimeType": "",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/privacy",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 10.930000000051223,
+     "networkRequestTime": 13.720000000088476,
+     "networkEndTime": 18.820999999996275,
+     "finished": true,
+     "transferSize": 8201,
+     "resourceSize": 23798,
+     "statusCode": 200,
+     "mimeType": "text/html",
+     "resourceType": "Document",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 30.64599999994971,
+     "networkRequestTime": 32.32300000009127,
+     "networkEndTime": 45.45499999995809,
+     "finished": true,
+     "transferSize": 723,
+     "resourceSize": 2068,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 31.400999999954365,
+     "networkRequestTime": 33.06099999998696,
+     "networkEndTime": 57.59600000001956,
+     "finished": true,
+     "transferSize": 12530,
+     "resourceSize": 51756,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/config.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 31.54799999995157,
+     "networkRequestTime": 33.319000000017695,
+     "networkEndTime": 45.23599999991711,
+     "finished": true,
+     "transferSize": 697,
+     "resourceSize": 374,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "High",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/privacy.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 31.645000000018626,
+     "networkRequestTime": 33.506999999983236,
+     "networkEndTime": 54.93400000000838,
+     "finished": true,
+     "transferSize": 913,
+     "resourceSize": 589,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "High",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 31.86399999994319,
+     "networkRequestTime": 38.802000000025146,
+     "networkEndTime": 58.1579999999376,
+     "finished": true,
+     "transferSize": 1018,
+     "resourceSize": 1480,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspe…",
+     "sessionTargetType": "page",
+     "protocol": "data",
+     "rendererStartTime": 67.48800000001211,
+     "networkRequestTime": 67.48800000001211,
+     "networkEndTime": 67.63199999998324,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 280,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Image",
+     "priority": "Low",
+     "experimentalFromMainFrame": true
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-400.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 70.46200000005774,
+     "networkRequestTime": 150.920999999973,
+     "networkEndTime": 162.4780000000028,
+     "finished": true,
+     "transferSize": 22478,
+     "resourceSize": 22196,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspe…",
+     "sessionTargetType": "page",
+     "protocol": "data",
+     "rendererStartTime": 76.20400000002701,
+     "networkRequestTime": 76.20400000002701,
+     "networkEndTime": 76.57299999997485,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 6977,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Image",
+     "priority": "Low",
+     "experimentalFromMainFrame": true
+    },
+    {
+     "url": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' str…",
+     "sessionTargetType": "page",
+     "protocol": "data",
+     "rendererStartTime": 80.20299999997951,
+     "networkRequestTime": 80.20299999997951,
+     "networkEndTime": 80.29899999999907,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 263,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Image",
+     "priority": "Low",
+     "experimentalFromMainFrame": true
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 80.44899999990594,
+     "networkRequestTime": 151.52800000004936,
+     "networkEndTime": 163.45900000003166,
+     "finished": true,
+     "transferSize": 23054,
+     "resourceSize": 22772,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 80.63099999993574,
+     "networkRequestTime": 151.71999999997206,
+     "networkEndTime": 163.74499999999534,
+     "finished": true,
+     "transferSize": 35729,
+     "resourceSize": 35436,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-500.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 80.73400000005495,
+     "networkRequestTime": 151.85600000002887,
+     "networkEndTime": 169.40300000004936,
+     "finished": true,
+     "transferSize": 22290,
+     "resourceSize": 22008,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 80.86999999999534,
+     "networkRequestTime": 152.01600000006147,
+     "networkEndTime": 171.43299999996088,
+     "finished": true,
+     "transferSize": 15909,
+     "resourceSize": 15620,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 134.8969999999972,
+     "networkRequestTime": 152.21699999994598,
+     "networkEndTime": 171.64600000006612,
+     "finished": true,
+     "transferSize": 15177,
+     "resourceSize": 14888,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/favicon.svg",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 193.75900000007823,
+     "networkRequestTime": 194.49300000001676,
+     "networkEndTime": 199.1600000000326,
+     "finished": true,
+     "transferSize": 606,
+     "resourceSize": 305,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Other",
+     "priority": "High",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    }
+   ]
+  },
+  "layout-shifts": {
+   "score": 1,
+   "displayValue": "1 layout shift found",
+   "details": [
+    {
+     "node": {
+      "type": "node",
+      "lhId": "page-0-H1",
+      "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,0,DIV,1,H1",
+      "selector": "section.view > div.view-head > div.wrap > h1.pagetitle",
+      "boundingRect": {
+       "top": 186,
+       "bottom": 335,
+       "left": 106,
+       "right": 1230,
+       "width": 1124,
+       "height": 149
+      },
+      "snippet": "<h1 class=\"pagetitle\">",
+      "nodeLabel": "COSA RESTA SUL TELEFONO, COSA PARTE."
+     },
+     "score": 0.01470269423075029,
+     "subItems": {
+      "type": "subitems",
+      "items": [
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/barlow-400.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/barlow-600.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/barlow-500.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2"
+        },
+        "cause": "Web font loaded"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "largest-contentful-paint-element": {
+   "score": 1,
+   "displayValue": "490 ms",
+   "details": [
+    {
+     "type": "table",
+     "headings": [
+      {
+       "key": "node",
+       "valueType": "node",
+       "label": "Element"
+      }
+     ],
+     "items": [
+      {
+       "node": {
+        "type": "node",
+        "lhId": "page-0-H1",
+        "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,0,DIV,0,DIV,1,H1",
+        "selector": "section.view > div.view-head > div.wrap > h1.pagetitle",
+        "boundingRect": {
+         "top": 186,
+         "bottom": 335,
+         "left": 106,
+         "right": 1230,
+         "width": 1124,
+         "height": 149
+        },
+        "snippet": "<h1 class=\"pagetitle\">",
+        "nodeLabel": "COSA RESTA SUL TELEFONO, COSA PARTE."
+       }
+      }
+     ]
+    },
+    {
+     "type": "table",
+     "headings": [
+      {
+       "key": "phase",
+       "valueType": "text",
+       "label": "Phase"
+      },
+      {
+       "key": "percent",
+       "valueType": "text",
+       "label": "% of LCP"
+      },
+      {
+       "key": "timing",
+       "valueType": "ms",
+       "label": "Timing"
+      }
+     ],
+     "items": [
+      {
+       "phase": "TTFB",
+       "timing": 122.47605,
+       "percent": "25%"
+      },
+      {
+       "phase": "Load Delay",
+       "timing": 0,
+       "percent": "0%"
+      },
+      {
+       "phase": "Load Time",
+       "timing": 0,
+       "percent": "0%"
+      },
+      {
+       "phase": "Render Delay",
+       "timing": 367.42814999999996,
+       "percent": "75%"
+      }
+     ]
+    }
+   ]
+  },
+  "render-blocking-resources": {
+   "score": 0,
+   "displayValue": "Est savings of 190 ms",
+   "numericValue": 188,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "totalBytes": 12530,
+     "wastedMs": 82
+    },
+    {
+     "url": "http://localhost:8001/assets/privacy.js",
+     "totalBytes": 913,
+     "wastedMs": 82
+    },
+    {
+     "url": "http://localhost:8001/assets/config.js",
+     "totalBytes": 697,
+     "wastedMs": 82
+    }
+   ]
+  },
+  "unused-javascript": {
+   "score": 1,
+   "displayValue": "",
+   "numericValue": 0,
+   "details": []
+  },
+  "uses-long-cache-ttl": {
+   "score": 0.5,
+   "displayValue": "11 resources found",
+   "numericValue": 150518,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 35729,
+     "wastedBytes": 35729
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-600.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 23054,
+     "wastedBytes": 23054
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-400.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 22478,
+     "wastedBytes": 22478
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-500.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 22290,
+     "wastedBytes": 22290
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 15909,
+     "wastedBytes": 15909
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 15177,
+     "wastedBytes": 15177
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 12530,
+     "wastedBytes": 12530
+    },
+    {
+     "url": "http://localhost:8001/assets/site.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 1018,
+     "wastedBytes": 1018
+    },
+    {
+     "url": "http://localhost:8001/assets/privacy.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 913,
+     "wastedBytes": 913
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 723,
+     "wastedBytes": 723
+    },
+    {
+     "url": "http://localhost:8001/assets/config.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 697,
+     "wastedBytes": 697
+    }
+   ]
+  },
+  "color-contrast": {
+   "score": 1,
+   "details": []
+  },
+  "heading-order": {
+   "score": 0,
+   "details": [
+    {
+     "node": {
+      "type": "node",
+      "lhId": "1-0-H3",
+      "path": "1,HTML,1,BODY,2,MAIN,0,SECTION,1,DIV,0,DIV,0,DIV,0,DIV,0,H3",
+      "selector": "div.wrap > div.legal > div.changes > h3",
+      "boundingRect": {
+       "top": 680,
+       "bottom": 698,
+       "left": 128,
+       "right": 775,
+       "width": 648,
+       "height": 18
+      },
+      "snippet": "<h3>",
+      "nodeLabel": "COSA CAMBIA IN QUESTA VERSIONE",
+      "explanation": "Fix any of the following:\n  Heading order invalid"
+     }
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,588 @@
+{
+ "url": "http://localhost:8001/aree/",
+ "fetchTime": "2026-10-15T13:04:58.917Z",
+ "lighthouseVersion": "12.8.2",
+ "formFactor": "desktop",
+ "throttling": {
+  "rttMs": 40,
+  "throughputKbps": 10240,
+  "requestLatencyMs": 0,
+  "downloadThroughputKbps": 0,
+  "uploadThroughputKbps": 0,
+  "cpuSlowdownMultiplier": 1
+ },
+ "scores": {
+  "performance": 1,
+  "accessibility": 1,
+  "best-practices": 1,
+  "seo": 1
+ },
+ "audits": {
+  "first-contentful-paint": {
+   "score": 1,
+   "displayValue": "0.5 s",
+   "numericValue": 456.75845000000004
+  },
+  "largest-contentful-paint": {
+   "score": 1,
+   "displayValue": "0.5 s",
+   "numericValue": 456.75845000000004
+  },
+  "total-blocking-time": {
+   "score": 1,
+   "displayValue": "0 ms",
+   "numericValue": 0
+  },
+  "cumulative-layout-shift": {
+   "score": 1,
+   "displayValue": "0.009",
+   "numericValue": 0.00896052936906801,
+   "details": [
+    {
+     "cumulativeLayoutShiftMainFrame": 0.00896052936906801,
+     "newEngineResult": {
+      "cumulativeLayoutShift": 0.00896052936906801,
+      "cumulativeLayoutShiftMainFrame": 0.00896052936906801
+     },
+     "newEngineResultDiffered": false
+    }
+   ]
+  },
+  "speed-index": {
+   "score": 0.99,
+   "displayValue": "0.8 s",
+   "numericValue": 842.7423405833359
+  },
+  "interactive": {
+   "score": 1,
+   "displayValue": "0.5 s",
+   "numericValue": 456.75845000000004
+  },
+  "bootup-time": {
+   "score": 1,
+   "displayValue": "0.0 s",
+   "numericValue": 3.2720000000000002,
+   "details": [
+    {
+     "url": "http://localhost:8001/aree/",
+     "total": 81.733,
+     "scripting": 1.058,
+     "scriptParseCompile": 0.41200000000000003
+    },
+    {
+     "url": "Unattributable",
+     "total": 54.503000000000014,
+     "scripting": 1.802,
+     "scriptParseCompile": 0
+    }
+   ]
+  },
+  "mainthread-work-breakdown": {
+   "score": 1,
+   "displayValue": "0.1 s",
+   "numericValue": 141.18200000000007,
+   "details": [
+    {
+     "group": "other",
+     "groupLabel": "Other",
+     "duration": 64.31400000000008
+    },
+    {
+     "group": "styleLayout",
+     "groupLabel": "Style & Layout",
+     "duration": 60.518
+    },
+    {
+     "group": "paintCompositeRender",
+     "groupLabel": "Rendering",
+     "duration": 6.731999999999998
+    },
+    {
+     "group": "parseHTML",
+     "groupLabel": "Parse HTML & CSS",
+     "duration": 4.568
+    },
+    {
+     "group": "scriptEvaluation",
+     "groupLabel": "Script Evaluation",
+     "duration": 4.438000000000001
+    },
+    {
+     "group": "scriptParseCompile",
+     "groupLabel": "Script Parsing & Compilation",
+     "duration": 0.612
+    }
+   ]
+  },
+  "network-requests": {
+   "score": 1,
+   "details": [
+    {
+     "url": "http://localhost:8001/aree/",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 0,
+     "networkRequestTime": 3.459000000031665,
+     "networkEndTime": 9.175000000046566,
+     "finished": true,
+     "transferSize": 2599,
+     "resourceSize": 6894,
+     "statusCode": 200,
+     "mimeType": "text/html",
+     "resourceType": "Document",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 17.03500000014901,
+     "networkRequestTime": 19.232000000192784,
+     "networkEndTime": 29.10700000007637,
+     "finished": true,
+     "transferSize": 723,
+     "resourceSize": 2068,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 17.51100000005681,
+     "networkRequestTime": 19.41500000015367,
+     "networkEndTime": 32.08600000012666,
+     "finished": true,
+     "transferSize": 12530,
+     "resourceSize": 51756,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 17.695999999996275,
+     "networkRequestTime": 40.68000000005122,
+     "networkEndTime": 45.96100000012666,
+     "finished": true,
+     "transferSize": 1018,
+     "resourceSize": 1480,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspe…",
+     "sessionTargetType": "page",
+     "protocol": "data",
+     "rendererStartTime": 49.48400000005495,
+     "networkRequestTime": 49.48400000005495,
+     "networkEndTime": 49.63000000012107,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 280,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Image",
+     "priority": "Low",
+     "experimentalFromMainFrame": true
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-400.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 52.14199999999255,
+     "networkRequestTime": 102.7750000001397,
+     "networkEndTime": 126.94900000013877,
+     "finished": true,
+     "transferSize": 22478,
+     "resourceSize": 22196,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspe…",
+     "sessionTargetType": "page",
+     "protocol": "data",
+     "rendererStartTime": 56.12000000011176,
+     "networkRequestTime": 56.12000000011176,
+     "networkEndTime": 56.40400000009686,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 6977,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Image",
+     "priority": "Low",
+     "experimentalFromMainFrame": true
+    },
+    {
+     "url": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' str…",
+     "sessionTargetType": "page",
+     "protocol": "data",
+     "rendererStartTime": 61.7400000001071,
+     "networkRequestTime": 61.7400000001071,
+     "networkEndTime": 61.85400000005029,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 263,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Image",
+     "priority": "Low",
+     "experimentalFromMainFrame": true
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 61.99200000008568,
+     "networkRequestTime": 107.13000000012107,
+     "networkEndTime": 127.75,
+     "finished": true,
+     "transferSize": 23054,
+     "resourceSize": 22772,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 62.15200000011828,
+     "networkRequestTime": 108.08500000007916,
+     "networkEndTime": 128.00500000012107,
+     "finished": true,
+     "transferSize": 35729,
+     "resourceSize": 35436,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-500.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 62.218000000109896,
+     "networkRequestTime": 108.68500000005588,
+     "networkEndTime": 128.23400000005495,
+     "finished": true,
+     "transferSize": 22290,
+     "resourceSize": 22008,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 62.28100000019185,
+     "networkRequestTime": 108.99800000013784,
+     "networkEndTime": 128.39700000011362,
+     "finished": true,
+     "transferSize": 15909,
+     "resourceSize": 15620,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 62.44300000008661,
+     "networkRequestTime": 109.29000000015367,
+     "networkEndTime": 128.58300000010058,
+     "finished": true,
+     "transferSize": 15177,
+     "resourceSize": 14888,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/favicon.svg",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 151.9309999999823,
+     "networkRequestTime": 152.89000000013039,
+     "networkEndTime": 158.71100000012666,
+     "finished": true,
+     "transferSize": 606,
+     "resourceSize": 305,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Other",
+     "priority": "High",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    }
+   ]
+  },
+  "layout-shifts": {
+   "score": 1,
+   "displayValue": "2 layout shifts found",
+   "details": [
+    {
+     "node": {
+      "type": "node",
+      "lhId": "page-4-H1",
+      "path": "1,HTML,1,BODY,2,MAIN,0,DIV,0,DIV,1,H1",
+      "selector": "main#main > div.view-head > div.wrap > h1.pagetitle",
+      "boundingRect": {
+       "top": 186,
+       "bottom": 335,
+       "left": 106,
+       "right": 1230,
+       "width": 1124,
+       "height": 149
+      },
+      "snippet": "<h1 class=\"pagetitle\">",
+      "nodeLabel": "CINQUE AREE\nAL LANCIO."
+     },
+     "score": 0.008785343774501334
+    },
+    {
+     "node": {
+      "type": "node",
+      "lhId": "page-1-P",
+      "path": "1,HTML,1,BODY,2,MAIN,1,SECTION,0,DIV,1,P",
+      "selector": "main#main > section#elenco > div.wrap > p.mapcredit",
+      "boundingRect": {
+       "top": 863,
+       "bottom": 903,
+       "left": 106,
+       "right": 1230,
+       "width": 1124,
+       "height": 40
+      },
+      "snippet": "<p class=\"mapcredit\">",
+      "nodeLabel": "Dati mappa: © OpenStreetMap contributors (ODbL)"
+     },
+     "score": 0.0001751855945666769,
+     "subItems": {
+      "type": "subitems",
+      "items": [
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/barlow-400.woff2"
+        },
+        "cause": "Web font loaded"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "largest-contentful-paint-element": {
+   "score": 1,
+   "displayValue": "460 ms",
+   "details": [
+    {
+     "type": "table",
+     "headings": [
+      {
+       "key": "node",
+       "valueType": "node",
+       "label": "Element"
+      }
+     ],
+     "items": [
+      {
+       "node": {
+        "type": "node",
+        "lhId": "page-0-DIV",
+        "path": "1,HTML,1,BODY,2,MAIN,0,DIV",
+        "selector": "body.site > main#main > div.view-head",
+        "boundingRect": {
+         "top": 73,
+         "bottom": 531,
+         "left": 0,
+         "right": 1335,
+         "width": 1335,
+         "height": 458
+        },
+        "snippet": "<div class=\"view-head\">",
+        "nodeLabel": "AREE\nCINQUE AREE\nAL LANCIO.\n\nAl lancio Ski Maps funziona in Dolomiti Superski, …"
+       }
+      }
+     ]
+    },
+    {
+     "type": "table",
+     "headings": [
+      {
+       "key": "phase",
+       "valueType": "text",
+       "label": "Phase"
+      },
+      {
+       "key": "percent",
+       "valueType": "text",
+       "label": "% of LCP"
+      },
+      {
+       "key": "timing",
+       "valueType": "ms",
+       "label": "Timing"
+      }
+     ],
+     "items": [
+      {
+       "phase": "TTFB",
+       "timing": 125.58615,
+       "percent": "27%"
+      },
+      {
+       "phase": "Load Delay",
+       "timing": 0,
+       "percent": "0%"
+      },
+      {
+       "phase": "Load Time",
+       "timing": 0,
+       "percent": "0%"
+      },
+      {
+       "phase": "Render Delay",
+       "timing": 331.17230000000006,
+       "percent": "73%"
+      }
+     ]
+    }
+   ]
+  },
+  "render-blocking-resources": {
+   "score": 0,
+   "displayValue": "Est savings of 260 ms",
+   "numericValue": 260,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "totalBytes": 12530,
+     "wastedMs": 86
+    }
+   ]
+  },
+  "unused-javascript": {
+   "score": 1,
+   "displayValue": "",
+   "numericValue": 0,
+   "details": []
+  },
+  "uses-long-cache-ttl": {
+   "score": 0.5,
+   "displayValue": "9 resources found",
+   "numericValue": 148908,
+   "details": [
+    {
+     "url": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 35729,
+     "wastedBytes": 35729
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-600.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 23054,
+     "wastedBytes": 23054
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-400.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 22478,
+     "wastedBytes": 22478
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-500.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 22290,
+     "wastedBytes": 22290
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 15909,
+     "wastedBytes": 15909
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 15177,
+     "wastedBytes": 15177
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 12530,
+     "wastedBytes": 12530
+    },
+    {
+     "url": "http://localhost:8001/assets/site.js",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 1018,
+     "wastedBytes": 1018
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "cacheLifetimeMs": 0,
+     "cacheHitProbability": 0,
+     "totalBytes": 723,
+     "wastedBytes": 723
+    }
+   ]
+  },
+  "color-contrast": {
+   "score": 1,
+   "details": []
+  },
+  "heading-order": {
+   "score": 1,
+   "details": []
+  }
+ }
+}

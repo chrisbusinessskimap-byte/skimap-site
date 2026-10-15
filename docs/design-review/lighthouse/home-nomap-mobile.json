@@ -1,0 +1,379 @@
+{
+ "note": "Misura con three.min.js, graph-data.js e map3d.js bloccati (stima del dopo)",
+ "url": "http://localhost:8001/",
+ "fetchTime": "2026-10-15T13:09:27.752Z",
+ "lighthouseVersion": "12.8.2",
+ "formFactor": "mobile",
+ "scores": {
+  "performance": 0.99
+ },
+ "audits": {
+  "first-contentful-paint": {
+   "score": 0.93,
+   "displayValue": "1.7 s"
+  },
+  "largest-contentful-paint": {
+   "score": 0.97,
+   "displayValue": "2.0 s"
+  },
+  "total-blocking-time": {
+   "score": 1,
+   "displayValue": "0 ms"
+  },
+  "cumulative-layout-shift": {
+   "score": 1,
+   "displayValue": "0.001",
+   "details": [
+    {
+     "cumulativeLayoutShiftMainFrame": 0.0005385928754353174,
+     "newEngineResultDiffered": false
+    }
+   ]
+  },
+  "speed-index": {
+   "score": 1,
+   "displayValue": "1.7 s"
+  },
+  "layout-shifts": {
+   "score": 1,
+   "displayValue": "1 layout shift found",
+   "details": [
+    {
+     "node": {
+      "type": "node",
+      "lhId": "page-1-BUTTON",
+      "path": "1,HTML,1,BODY,1,HEADER,0,DIV,4,BUTTON",
+      "selector": "body.site > header#nav > div.wrap > button#menu-btn",
+      "boundingRect": {
+       "top": 14,
+       "bottom": 58,
+       "left": 320,
+       "right": 396,
+       "width": 76,
+       "height": 44
+      },
+      "snippet": "<button class=\"menu-btn\" type=\"button\" aria-expanded=\"false\" aria-controls=\"mobile-menu\" id=\"menu-btn\">",
+      "nodeLabel": "Menu"
+     },
+     "score": 0.0005385928754353174,
+     "subItems": {
+      "type": "subitems",
+      "items": [
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/barlow-400.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/barlow-600.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2"
+        },
+        "cause": "Web font loaded"
+       },
+       {
+        "extra": {
+         "type": "url",
+         "value": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2"
+        },
+        "cause": "Web font loaded"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "network-requests": {
+   "score": 1,
+   "details": [
+    {
+     "url": "http://localhost:8001/",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 0,
+     "networkRequestTime": 2.7720000001136214,
+     "networkEndTime": 8.42699999990873,
+     "finished": true,
+     "transferSize": 5393,
+     "resourceSize": 16741,
+     "statusCode": 200,
+     "mimeType": "text/html",
+     "resourceType": "Document",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 24.17700000014156,
+     "networkRequestTime": 25.381000000052154,
+     "networkEndTime": 37.462999999988824,
+     "finished": true,
+     "transferSize": 723,
+     "resourceSize": 2068,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.css",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 24.787000000011176,
+     "networkRequestTime": 25.889999999897555,
+     "networkEndTime": 38.442000000039116,
+     "finished": true,
+     "transferSize": 12530,
+     "resourceSize": 51756,
+     "statusCode": 200,
+     "mimeType": "text/css",
+     "resourceType": "Stylesheet",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/site.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 25.442999999970198,
+     "networkRequestTime": 33.47900000005029,
+     "networkEndTime": 45.22900000005029,
+     "finished": true,
+     "transferSize": 1018,
+     "resourceSize": 1480,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/config.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 25.76799999992363,
+     "networkRequestTime": 33.94499999983236,
+     "networkEndTime": 44.730000000214204,
+     "finished": true,
+     "transferSize": 697,
+     "resourceSize": 374,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/beta.js",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 26.173999999882653,
+     "networkRequestTime": 34.32000000006519,
+     "networkEndTime": 46.157999999821186,
+     "finished": true,
+     "transferSize": 1686,
+     "resourceSize": 3230,
+     "statusCode": 200,
+     "mimeType": "application/javascript",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/vendor/three.min.js",
+     "sessionTargetType": "page",
+     "protocol": "",
+     "rendererStartTime": 43.967000000178814,
+     "networkRequestTime": 43.967000000178814,
+     "networkEndTime": 43.97500000009313,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 0,
+     "statusCode": -1,
+     "mimeType": "",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/graph-data.js",
+     "sessionTargetType": "page",
+     "protocol": "",
+     "rendererStartTime": 44.079999999841675,
+     "networkRequestTime": 44.079999999841675,
+     "networkEndTime": 44.08999999985099,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 0,
+     "statusCode": -1,
+     "mimeType": "",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/map3d.js",
+     "sessionTargetType": "page",
+     "protocol": "",
+     "rendererStartTime": 44.162000000011176,
+     "networkRequestTime": 44.162000000011176,
+     "networkEndTime": 44.169999999925494,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 0,
+     "statusCode": -1,
+     "mimeType": "",
+     "resourceType": "Script",
+     "priority": "Low",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-400.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 60.592000000178814,
+     "networkRequestTime": 137.74500000011176,
+     "networkEndTime": 150.97299999999814,
+     "finished": true,
+     "transferSize": 22478,
+     "resourceSize": 22196,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' str…",
+     "sessionTargetType": "page",
+     "protocol": "data",
+     "rendererStartTime": 68.08400000003166,
+     "networkRequestTime": 68.08400000003166,
+     "networkEndTime": 68.25,
+     "finished": true,
+     "transferSize": 0,
+     "resourceSize": 263,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Image",
+     "priority": "Low",
+     "experimentalFromMainFrame": true
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/barlow-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 68.4320000000298,
+     "networkRequestTime": 138.00699999998324,
+     "networkEndTime": 152.24300000001676,
+     "finished": true,
+     "transferSize": 23054,
+     "resourceSize": 22772,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/big-shoulders-display.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 68.74199999985285,
+     "networkRequestTime": 138.11799999978393,
+     "networkEndTime": 152.50599999981932,
+     "finished": true,
+     "transferSize": 35729,
+     "resourceSize": 35436,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-600.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 68.98800000012852,
+     "networkRequestTime": 138.24200000008568,
+     "networkEndTime": 152.68700000015087,
+     "finished": true,
+     "transferSize": 15909,
+     "resourceSize": 15620,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/fonts/ibm-plex-mono-500.woff2",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 69.27000000001863,
+     "networkRequestTime": 138.3649999999907,
+     "networkEndTime": 152.85599999991246,
+     "finished": true,
+     "transferSize": 15177,
+     "resourceSize": 14888,
+     "statusCode": 200,
+     "mimeType": "font/woff2",
+     "resourceType": "Font",
+     "priority": "VeryHigh",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    },
+    {
+     "url": "http://localhost:8001/assets/favicon.svg",
+     "sessionTargetType": "page",
+     "protocol": "http/1.1",
+     "rendererStartTime": 170.5319999998901,
+     "networkRequestTime": 171.46699999994598,
+     "networkEndTime": 180.62599999993108,
+     "finished": true,
+     "transferSize": 606,
+     "resourceSize": 305,
+     "statusCode": 200,
+     "mimeType": "image/svg+xml",
+     "resourceType": "Other",
+     "priority": "High",
+     "experimentalFromMainFrame": true,
+     "entity": "localhost"
+    }
+   ]
+  }
+ }
+}
