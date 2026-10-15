@@ -133,7 +133,7 @@ export default {
     ],
     photoAlt: 'Photo of Christian, who is building Ski Maps',
     write: 'Want to write to him?',
-    door: ['About', 'Behind<br>Ski Maps.', 'Christian, 22, from Rome: energy engineering and Strategic Management at LUISS.'],
+    band: { h: 'Who is behind it', p: 'Ski Maps is the project of <strong>Christian</strong>, 22, from Rome: a background in energy engineering, now a master’s in Strategic Management at LUISS. He is building it to give every skier a navigator that takes them where they want to go, piste by piste and lift by lift.', more: 'The full story', mail: 'Write to him' },
   },
 
   js: {

@@ -65,7 +65,7 @@ function langSwitch(cls, current, urls, c) {
 }
 
 function header(l, current, urls, { solid = true } = {}) {
-  const c = C[l], P = LANGS[l].pages, links = [['how', P.how], ['areas', P.areas], ['faq', P.faq], ['privacy', LANGS[l].legal.privacy]];
+  const c = C[l], P = LANGS[l].pages, links = [['how', P.how], ['areas', P.areas], ['faq', P.faq], ['about', P.about], ['privacy', LANGS[l].legal.privacy]];
   const a = (k, href) => `<a href="${href}"${k === current ? ' aria-current="page"' : ''}>${c.nav[k]}</a>`;
   return `<header class="nav${solid ? ' solid' : ''}" id="nav">
   <div class="wrap">
@@ -192,6 +192,8 @@ const ctaBand = (l) => `<section class="ctaband" aria-label="${attr(C[l].ui.cta)
 </div></section>`;
 
 /* ---------------- home ---------------- */
+/* la foto di Christian (home e chi siamo) compare solo se il file esiste (720 × 900 px, JPEG ottimizzato) */
+const PHOTO = existsSync(join(root, 'assets/team/christian.jpg')) ? '/assets/team/christian.jpg' : '';
 /* immagine della mappa 3D per telefono e tablet (una per lingua: le etichette sono tradotte) */
 const poster = (l) => existsSync(join(root, `assets/hero-poster-${l}.webp`)) ? `/assets/hero-poster-${l}.webp` : '';
 function home(l) {
@@ -262,8 +264,8 @@ ${h.points.map(([k, t, p]) => `      <li class="feat"><span class="ico">${icon(k
 <section class="doors" id="scopri" aria-labelledby="h-doors">
   <h2 id="h-doors" class="sr-only">${h.doorsTitle}</h2>
   <div class="wrap">
-${[['how', 'map'], ['areas', 'level'], ['faq', 'ask'], ['about', 'person']].map(([k, ic]) => {
-    const [ey, t, p] = k === 'about' ? c.about.door : h.doors[k];
+${[['how', 'map'], ['areas', 'level'], ['faq', 'ask']].map(([k, ic]) => {
+    const [ey, t, p] = h.doors[k];
     return `    <a class="door" href="${P[k]}">
       <span class="ico">${icon(ic)}</span>
       <div class="eyebrow">${ey}</div>
@@ -282,6 +284,20 @@ ${[['how', 'map'], ['areas', 'level'], ['faq', 'ask'], ['about', 'person']].map(
 ${h.trustBox.items.map(([t, p]) => `      <li class="col"><h3>${t}</h3><p>${fill(p, l)}</p></li>`).join('\n')}
     </ul>
     <p class="more"><a class="btn ghost" href="${G.privacy}">${h.trustBox.link}</a></p>
+  </div>
+</section>
+
+<section class="sec founder" id="chi-siamo" aria-labelledby="h-founder">
+  <div class="wrap">
+    <div class="founder-card">
+      ${PHOTO ? `<img class="founder-photo" src="${PHOTO}" alt="${attr(c.about.photoAlt)}" width="720" height="900" loading="lazy" decoding="async">` : `<span class="founder-photo initial" aria-hidden="true">C</span>`}
+      <div class="founder-text">
+        <div class="eyebrow"><span class="disc"></span>${c.about.eyebrow}</div>
+        <h2 id="h-founder">${c.about.band.h}</h2>
+        <p>${c.about.band.p}</p>
+        <p class="founder-links"><a class="btn ghost" href="${P.about}">${c.about.band.more}</a><a href="mailto:${MAIL}?subject=${enc('Ski Maps')}">${c.about.band.mail}</a></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -439,8 +455,6 @@ ${ctaBand(l)}
 }
 
 /* ---------------- chi siamo ---------------- */
-/* la foto compare solo se il file esiste (720 × 900 px, JPEG ottimizzato) */
-const PHOTO = existsSync(join(root, 'assets/team/christian.jpg')) ? '/assets/team/christian.jpg' : '';
 function about(l) {
   const c = C[l], a = c.about;
   const main = `

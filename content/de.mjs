@@ -134,7 +134,7 @@ export default {
     ],
     photoAlt: 'Foto von Christian, der Ski Maps entwickelt',
     write: 'Möchtest du ihm schreiben?',
-    door: ['Über uns', 'Hinter<br>Ski Maps.', 'Christian, 22 Jahre, aus Rom: Energietechnik und Strategic Management an der LUISS.'],
+    band: { h: 'Wer dahintersteckt', p: 'Ski Maps ist das Projekt von <strong>Christian</strong>, 22 Jahre, aus Rom: Hintergrund in Energietechnik, heute Master in Strategic Management an der LUISS. Er entwickelt es, damit alle, die Ski fahren, einen Navigator haben, der sie dorthin bringt, wo sie hinwollen, Piste für Piste und Lift für Lift.', more: 'Die ganze Geschichte', mail: 'Schreib ihm' },
   },
 
   js: {

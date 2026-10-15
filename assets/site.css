@@ -571,8 +571,8 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .about p.lead{font-size:clamp(22px,2.2vw,28px); line-height:1.4; color:var(--ink)}
 .about p.write{margin-top:30px; font-size:16px}
 .about a{color:var(--ink); text-underline-offset:3px}
-@media (min-width:1101px){ .site .doors .wrap{grid-template-columns:repeat(4,1fr)} .site .door h3{font-size:clamp(30px,2.6vw,38px)} }
-@media (min-width:561px) and (max-width:1100px){ .site .doors .wrap{grid-template-columns:1fr 1fr} }
+@media (min-width:1101px){ .site .doors .wrap{grid-template-columns:repeat(3,1fr)} }
+@media (min-width:561px) and (max-width:1100px){ .site .doors .wrap{grid-template-columns:repeat(3,1fr)} .site .door{padding:26px 22px 28px} .site .door h3{font-size:clamp(28px,3.6vw,38px)} }
 .about.with-photo{max-width:none; display:grid; grid-template-columns:minmax(0,62ch) minmax(220px,360px); gap:56px; align-items:start}
 .about-photo{margin:0}
 .about-photo img{display:block; width:100%; height:auto; border-radius:22px; box-shadow:var(--shadow)}
@@ -593,3 +593,16 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
   .hero:not(.live) .routecard, .hero:not(.live) .hint, .hero:not(.live) > canvas{display:none}
 }
 @media (min-width:561px) and (max-width:900px){ .mapbox{aspect-ratio:16/10} }
+
+/* ---------- home: chi c'è dietro, subito prima del modulo «Avvisami» ---------- */
+/* prima del lancio niente recensioni né numeri (README): la persona che lo sviluppa è il segnale di fiducia */
+.site .sec.founder{padding:16px 0 72px}
+.founder-card{display:grid; grid-template-columns:160px minmax(0,1fr); gap:32px; align-items:center; max-width:880px; padding:28px; background:var(--card); border-radius:22px; box-shadow:var(--shadow-sm)}
+.founder-photo{display:block; width:160px; height:auto; aspect-ratio:4/5; object-fit:cover; border-radius:14px; outline:1px solid rgba(0,0,0,.1); outline-offset:-1px}
+.founder-photo.initial{display:grid; place-items:center; background:var(--ink); color:var(--accent); font-family:"Big Shoulders Display",sans-serif; font-weight:900; font-size:76px; line-height:1}
+.founder h2{font-size:clamp(32px,4vw,48px); margin-bottom:12px}
+.founder-text p{color:var(--ink-2); max-width:60ch}
+.founder-text p strong{color:var(--ink)}
+.founder-links{display:flex; flex-wrap:wrap; align-items:center; gap:12px 24px; margin-top:22px}
+.founder-links a:not(.btn){color:var(--ink); font-weight:600; text-underline-offset:3px; padding:12px 0}
+@media (max-width:560px){ .founder-card{grid-template-columns:1fr; gap:20px; padding:22px} .founder-photo{width:120px} .founder-photo.initial{font-size:60px} }
