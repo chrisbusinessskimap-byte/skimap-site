@@ -496,7 +496,7 @@ ${AREAS.regions[r].map((id) => card(id, r)).join('\n')}
   const main = `
 ${pageHead(a.eyebrow, a.h1, a.lede)}
 
-<section class="sec tint" id="elenco" aria-label="${attr(a.eyebrow)}">
+<section class="sec" id="elenco" aria-label="${attr(a.eyebrow)}">
   <div class="wrap">
     <div class="it-x">
       <div class="it-map">
