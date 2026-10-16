@@ -411,26 +411,38 @@ ${ctaBand(l)}
 }
 
 /* ---------------- aree ---------------- */
-/* numeri da tools/areas.mjs (grafi dell'app): qui si leggono soltanto */
-const AREA_IDS = ['superski', 'ovindoli', 'campofelice', 'vialattea', 'livigno'];
-const AREA_STATS = JSON.parse(readFileSync(join(root, 'content/areas.json'), 'utf8'));
+/* numeri e cartina da tools/areas.mjs (grafi dell'app, confini ISTAT): qui si leggono soltanto */
+const AREAS = JSON.parse(readFileSync(join(root, 'content/areas.json'), 'utf8'));
+const ITALY = JSON.parse(readFileSync(join(root, 'content/italy.json'), 'utf8'));
+/* da ovest a est e da nord a sud, come si legge la cartina */
+const REGION_IDS = ['piemonte', 'lombardia', 'trentino-alto-adige', 'veneto', 'abruzzo'];
+if (REGION_IDS.join() !== [...REGION_IDS].filter((r) => AREAS.regions[r]).join() || Object.keys(AREAS.regions).length !== REGION_IDS.length) throw new Error('le regioni di content/areas.json non sono quelle di REGION_IDS');
 function areas(l) {
   const c = C[l], a = c.areas, L = a.l, n = (x) => x.toLocaleString(c.locale.replace('_', '-'));
-  const tab = (id, i) => {
-    const [name, where] = a.items[id], st = AREA_STATS[id];
-    return `      <button class="area-tab" type="button" role="tab" id="tab-${id}" aria-controls="${id}" aria-selected="${i === 0}"${i ? ' tabindex="-1"' : ''}>
-        <b>${name}</b><span>${where}</span><small>${n(st.pisteKm)} ${L.km} · ${n(st.lifts)} ${L.lifts}</small>
-      </button>`;
-  };
-  const panel = (id) => {
-    const [name, where, desc] = a.items[id], st = AREA_STATS[id];
+  const rname = (r) => a.regionNames[r];
+  const areaName = (id) => a.items[id][0];
+  /* i numeri di un'area in una regione: tutta l'area, o la sua parte se l'area sta in più regioni */
+  const statsIn = (id, r) => (AREAS.areas[id].parts || {})[r] || AREAS.areas[id];
+  const regionTotal = (r) => AREAS.regions[r].reduce((t, id) => ({ km: t.km + statsIn(id, r).pisteKm, lifts: t.lifts + statsIn(id, r).lifts }), { km: 0, lifts: 0 });
+  const allKm = Object.values(AREAS.areas).reduce((t, x) => t + x.pisteKm, 0), allLifts = Object.values(AREAS.areas).reduce((t, x) => t + x.lifts, 0);
+  const pretty = (name) => name.replace(/\//g, ' / ');
+
+  const card = (id, r) => {
+    const area = AREAS.areas[id], st = statsIn(id, r), split = !!area.parts;
+    const [name, where, desc] = a.items[id];
+    /* l'id della scheda tiene vivi i vecchi indirizzi (/aree/#livigno); un'area divisa lo dà alla sua parte più grande */
+    const cardId = !split || area.regions[0] === r ? id : `${id}-${r}`;
     const total = st.byDiff.easy + st.byDiff.intermediate + st.byDiff.advanced;
     const lifts = ['cabin', 'chair', 'surface'].filter((k) => st.liftGroups[k]).map((k) => `<li><b>${n(st.liftGroups[k])}</b> ${L[k]}</li>`).join('');
-    const extra = [st.subAreas ? L.sub(st.subAreas) : '', st.train ? L.busTrain : (st.bus ? L.bus : '')].filter(Boolean);
-    return `      <article class="area-panel" id="${id}" role="tabpanel" aria-labelledby="tab-${id}" tabindex="0">
+    const extra = [area.subAreas && !split ? L.sub(area.subAreas) : '', area.train ? L.busTrain : (area.bus ? L.bus : '')].filter(Boolean);
+    const rows = split ? `
+          <p class="area-k">${a.comprensori}</p>
+          <ul class="area-rows">${[...st.comprensori.map(([cn, km]) => [pretty(cn), km]), ...(st.border ? [[a.border, st.border]] : [])].map(([cn, km]) => `<li><span>${cn}</span><i style="--w:${(km / st.comprensori[0][1] * 100).toFixed(0)}%"></i><b>${n(km)} km</b></li>`).join('')}</ul>` : '';
+    const elsewhere = split ? area.regions.filter((o) => o !== r).map((o) => `<a href="#${o}" data-region="${o}">${a.continues(name, rname(o), n(area.parts[o].pisteKm))}</a>`).join(' ') : '';
+    return `        <article class="area-panel" id="${cardId}">
         <div class="area-body">
-          <h2>${name}</h2>
-          <p class="area-where">${where}${desc ? ` · ${desc}` : ''}</p>
+          <h3>${name}</h3>
+          <p class="area-where">${split ? a.part(rname(r)) : `${where}${desc ? ` · ${desc}` : ''}`}</p>
           <dl class="area-stats">
             <div><dt>${L.km}</dt><dd>${n(st.pisteKm)}</dd></div>
             <div><dt>${L.lifts}</dt><dd>${n(st.lifts)}</dd></div>
@@ -439,25 +451,63 @@ function areas(l) {
           <p class="area-k">${L.colors}</p>
           <div class="area-bar" aria-hidden="true">${['easy', 'intermediate', 'advanced'].map((d) => `<i class="${d}" style="flex-grow:${st.byDiff[d]}"></i>`).join('')}</div>
           <ul class="area-legend">${['easy', 'intermediate', 'advanced'].map((d) => `<li class="${d}"><b>${n(st.byDiff[d])} km</b> ${L[d]} · ${Math.round(st.byDiff[d] / total * 100)}%</li>`).join('')}</ul>
-          <ul class="area-lifts">${lifts}</ul>${extra.length ? `
-          <p class="area-extra">${extra.join(' · ')}</p>` : ''}
+          <ul class="area-lifts">${lifts}</ul>${rows}${extra.length ? `
+          <p class="area-extra">${extra.join(' · ')}</p>` : ''}${elsewhere ? `
+          <p class="area-extra">${elsewhere}</p>` : ''}
         </div>
       </article>`;
   };
+  const regionPanel = (r) => {
+    const t = regionTotal(r);
+    return `      <article class="it-region" id="${r}" aria-labelledby="h-${r}">
+        <a class="it-back" href="#elenco">← ${a.back}</a>
+        <div class="it-head"><h2 id="h-${r}">${rname(r)}</h2><p>${n(t.km)} ${L.km} · ${n(t.lifts)} ${L.lifts}</p></div>
+        <div class="it-cards">
+${AREAS.regions[r].map((id) => card(id, r)).join('\n')}
+        </div>
+      </article>`;
+  };
+  const svg = () => {
+    const regs = ITALY.regions.map(({ id, d }) => AREAS.regions[id]
+      ? `<a class="it-reg" href="#${id}" data-region="${id}" aria-label="${attr(`${rname(id)}: ${AREAS.regions[id].map(areaName).join(', ')}`)}"><path d="${d}"/></a>`
+      : `<path d="${d}"/>`).join('');
+    const pins = ITALY.pins.map(({ region, x, y }) => `<g class="it-pin" data-region="${region}" transform="translate(${x} ${y})"><circle class="it-pulse" r="5"/><circle r="5"/></g>`).join('');
+    const labels = REGION_IDS.map((r) => {
+      const { x, y, anchor } = ITALY.labels[r];
+      return `<text x="${x}" y="${y}" text-anchor="${anchor}">${rname(r)}<tspan x="${x}" dy="16">${AREAS.regions[r].map(areaName).join(' · ')}</tspan></text>`;
+    }).join('');
+    return `<svg class="italy" viewBox="0 0 ${ITALY.width} ${ITALY.height}" role="group" aria-label="${attr(a.mapLabel)}">
+          <defs><linearGradient id="it-ski" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc94a"/><stop offset="1" stop-color="#ff9a1f"/></linearGradient></defs>
+          <g class="it-regs">${regs}</g><g class="it-pins" aria-hidden="true">${pins}</g><g class="it-labels" aria-hidden="true">${labels}</g>
+        </svg>`;
+  };
+  const list = REGION_IDS.map((r) => `<li><a href="#${r}" data-region="${r}"><b>${rname(r)}</b><span>${AREAS.regions[r].map(areaName).join(' · ')}</span><small>${n(regionTotal(r).km)} km</small></a></li>`).join('\n          ');
   const main = `
 ${pageHead(a.eyebrow, a.h1, a.lede)}
 
 <section class="sec tint" id="elenco" aria-label="${attr(a.eyebrow)}">
   <div class="wrap">
-    <div class="areas-x">
-    <div class="area-tabs" role="tablist" aria-label="${attr(a.tabs)}">
-${AREA_IDS.map(tab).join('\n')}
+    <div class="it-x">
+      <div class="it-map">
+        ${svg()}
+        <div class="it-side">
+          <h2 class="it-h">${a.pick}</h2>
+          <p class="it-hint">${a.hint}</p>
+          <ul class="it-list">
+          ${list}
+          </ul>
+          <dl class="it-tot">
+            <div><dd>${n(allKm)}</dd><dt>${L.km}</dt></div>
+            <div><dd>${n(allLifts)}</dd><dt>${L.lifts}</dt></div>
+            <div><dd>${REGION_IDS.length}</dd><dt>${a.regionsWord}</dt></div>
+          </dl>
+        </div>
+      </div>
+      <div class="it-panels">
+${REGION_IDS.map(regionPanel).join('\n')}
+      </div>
     </div>
-    <div class="area-panels">
-${AREA_IDS.map(panel).join('\n')}
-    </div>
-    </div>
-    <p class="area-note">${a.note} ${c.ui.mapdata} <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL)</p>
+    <p class="area-note">${a.note} ${c.ui.mapdata} <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL). <a href="https://github.com/openpolis/geojson-italy">${a.istat}</a></p>
   </div>
 </section>
 

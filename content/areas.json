@@ -1,92 +1,210 @@
 {
- "superski": {
-  "pisteKm": 795,
-  "byDiff": {
-   "easy": 345,
-   "intermediate": 359,
-   "advanced": 92
+ "areas": {
+  "superski": {
+   "pisteKm": 795,
+   "byDiff": {
+    "easy": 345,
+    "intermediate": 359,
+    "advanced": 92
+   },
+   "lifts": 350,
+   "liftGroups": {
+    "cabin": 99,
+    "chair": 153,
+    "surface": 98
+   },
+   "topFloor": 3100,
+   "bus": true,
+   "train": true,
+   "subAreas": 12,
+   "regions": [
+    "trentino-alto-adige",
+    "veneto"
+   ],
+   "parts": {
+    "trentino-alto-adige": {
+     "pisteKm": 584,
+     "byDiff": {
+      "easy": 251,
+      "intermediate": 263,
+      "advanced": 70
+     },
+     "lifts": 265,
+     "liftGroups": {
+      "cabin": 80,
+      "chair": 107,
+      "surface": 78
+     },
+     "topFloor": 3100,
+     "comprensori": [
+      [
+       "Val Gardena",
+       117
+      ],
+      [
+       "Val di Fassa/Carezza",
+       102
+      ],
+      [
+       "Alta Badia",
+       95
+      ],
+      [
+       "Kronplatz",
+       76
+      ],
+      [
+       "3 Cime",
+       62
+      ],
+      [
+       "Alpe di Siusi",
+       48
+      ],
+      [
+       "Val di Fiemme/Obereggen",
+       31
+      ],
+      [
+       "Rio Pusteria",
+       22
+      ]
+     ],
+     "border": 31
+    },
+    "veneto": {
+     "pisteKm": 211,
+     "byDiff": {
+      "easy": 93,
+      "intermediate": 97,
+      "advanced": 21
+     },
+     "lifts": 85,
+     "liftGroups": {
+      "cabin": 19,
+      "chair": 46,
+      "surface": 20
+     },
+     "topFloor": 3000,
+     "comprensori": [
+      [
+       "Cortina",
+       78
+      ],
+      [
+       "Civetta",
+       53
+      ],
+      [
+       "Arabba/Marmolada",
+       47
+      ]
+     ],
+     "border": 33
+    }
+   }
   },
-  "lifts": 350,
-  "liftGroups": {
-   "cabin": 99,
-   "chair": 153,
-   "surface": 98
+  "ovindoli": {
+   "pisteKm": 18,
+   "byDiff": {
+    "easy": 4,
+    "intermediate": 8,
+    "advanced": 6
+   },
+   "lifts": 10,
+   "liftGroups": {
+    "cabin": 1,
+    "chair": 6,
+    "surface": 3
+   },
+   "topFloor": 2000,
+   "bus": false,
+   "train": false,
+   "subAreas": null,
+   "regions": [
+    "abruzzo"
+   ]
   },
-  "topFloor": 3100,
-  "bus": true,
-  "train": true,
-  "subAreas": 12
+  "campofelice": {
+   "pisteKm": 21,
+   "byDiff": {
+    "easy": 7,
+    "intermediate": 9,
+    "advanced": 5
+   },
+   "lifts": 14,
+   "liftGroups": {
+    "cabin": 0,
+    "chair": 9,
+    "surface": 5
+   },
+   "topFloor": 2000,
+   "bus": false,
+   "train": false,
+   "subAreas": null,
+   "regions": [
+    "abruzzo"
+   ]
+  },
+  "vialattea": {
+   "pisteKm": 328,
+   "byDiff": {
+    "easy": 125,
+    "intermediate": 170,
+    "advanced": 32
+   },
+   "lifts": 100,
+   "liftGroups": {
+    "cabin": 10,
+    "chair": 49,
+    "surface": 41
+   },
+   "topFloor": 2700,
+   "bus": true,
+   "train": false,
+   "subAreas": null,
+   "regions": [
+    "piemonte"
+   ]
+  },
+  "livigno": {
+   "pisteKm": 81,
+   "byDiff": {
+    "easy": 24,
+    "intermediate": 47,
+    "advanced": 9
+   },
+   "lifts": 32,
+   "liftGroups": {
+    "cabin": 6,
+    "chair": 14,
+    "surface": 12
+   },
+   "topFloor": 2700,
+   "bus": true,
+   "train": false,
+   "subAreas": null,
+   "regions": [
+    "lombardia"
+   ]
+  }
  },
- "ovindoli": {
-  "pisteKm": 18,
-  "byDiff": {
-   "easy": 4,
-   "intermediate": 8,
-   "advanced": 6
-  },
-  "lifts": 10,
-  "liftGroups": {
-   "cabin": 1,
-   "chair": 6,
-   "surface": 3
-  },
-  "topFloor": 2000,
-  "bus": false,
-  "train": false,
-  "subAreas": null
- },
- "campofelice": {
-  "pisteKm": 21,
-  "byDiff": {
-   "easy": 7,
-   "intermediate": 9,
-   "advanced": 5
-  },
-  "lifts": 14,
-  "liftGroups": {
-   "cabin": 0,
-   "chair": 9,
-   "surface": 5
-  },
-  "topFloor": 2000,
-  "bus": false,
-  "train": false,
-  "subAreas": null
- },
- "vialattea": {
-  "pisteKm": 328,
-  "byDiff": {
-   "easy": 125,
-   "intermediate": 170,
-   "advanced": 32
-  },
-  "lifts": 100,
-  "liftGroups": {
-   "cabin": 10,
-   "chair": 49,
-   "surface": 41
-  },
-  "topFloor": 2700,
-  "bus": true,
-  "train": false,
-  "subAreas": null
- },
- "livigno": {
-  "pisteKm": 81,
-  "byDiff": {
-   "easy": 24,
-   "intermediate": 47,
-   "advanced": 9
-  },
-  "lifts": 32,
-  "liftGroups": {
-   "cabin": 6,
-   "chair": 14,
-   "surface": 12
-  },
-  "topFloor": 2700,
-  "bus": true,
-  "train": false,
-  "subAreas": null
+ "regions": {
+  "trentino-alto-adige": [
+   "superski"
+  ],
+  "veneto": [
+   "superski"
+  ],
+  "abruzzo": [
+   "ovindoli",
+   "campofelice"
+  ],
+  "piemonte": [
+   "vialattea"
+  ],
+  "lombardia": [
+   "livigno"
+  ]
  }
 }
