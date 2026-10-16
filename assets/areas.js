@@ -32,15 +32,26 @@
     if (row && row.scrollWidth > row.clientWidth) row.scrollLeft = cur.parentNode.offsetLeft - 12;
   }
 
-  /* la cartina che si stringe è una transizione di vista, dove il browser la sa fare */
+  /* La cartina che si stringe è una transizione di vista, dove il browser la sa fare: si muovono solo la
+     cartina e le schede della regione (html.vt-areas lo dice al CSS), il resto della pagina sta fermo.
+     Lo scorrimento parte a transizione finita, e solo se serve: due movimenti insieme sembrano un salto. */
   function show(t, scroll){
-    var run = function(){ apply(t); };
-    if (document.startViewTransition && !reduce.matches) document.startViewTransition(run); else run();
-    if (!scroll) return;
+    var run = function(){ apply(t); }, html = document.documentElement, vt = null;
+    if (document.startViewTransition && !reduce.matches) {
+      html.classList.add('vt-areas');
+      vt = document.startViewTransition(run);
+      vt.finished.then(done, done);
+    } else run();
+    function done(){ html.classList.remove('vt-areas'); if (scroll) bring(t); }
+    if (!vt && scroll) requestAnimationFrame(function(){ bring(t); });
+  }
+  function bring(t){
     var to = t.card || (t.region ? document.getElementById(t.region) : root);
-    /* al telefono la regione sta sotto la miniatura: si porta in vista il titolo; a computer la cima del blocco */
+    /* a computer la regione sta accanto alla cartina: basta che la cima del blocco sia in vista */
     if (!t.card && t.region && window.matchMedia('(min-width: 901px)').matches) to = root;
-    requestAnimationFrame(function(){ to.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' }); });
+    var top = to.getBoundingClientRect().top;
+    if (top >= 0 && top < window.innerHeight * 0.4) return;
+    to.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' });
   }
 
   root.addEventListener('click', function(e){

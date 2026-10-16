@@ -147,6 +147,7 @@ ${altLoc}
 <meta name="twitter:title" content="${attr(title)}">
 <meta name="twitter:description" content="${attr(desc)}">
 <meta name="twitter:image" content="${ORIGIN}/assets/og-image.png">
+<style>@view-transition{navigation:auto}</style>
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="stylesheet" href="/assets/site.css">
 <noscript><style>.menu-btn,.mobile-menu{display:none}.hero canvas,.hero .hint,.routecard,.try3d{display:none}</style></noscript>

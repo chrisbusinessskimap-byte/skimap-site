@@ -21,12 +21,16 @@
   --shadow-lg:0 40px 80px -30px rgba(16,20,24,.38);
   --shadow:0 22px 44px -22px rgba(16,20,24,.28), 0 2px 6px rgba(16,20,24,.06);
   --shadow-sm:0 8px 20px -12px rgba(16,20,24,.22), 0 1px 2px rgba(16,20,24,.05);
+  /* movimento: una curva sola (parte svelta, arriva morbida) e due durate, per tutto il sito */
+  --ease:cubic-bezier(.22,1,.36,1);
+  --t-fast:.18s;
+  --t:.34s;
   color-scheme:light;
 }
 
 /* ---------- base ---------- */
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; interpolate-size:allow-keywords}
 @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
 body{
   margin:0; background:var(--bg); color:var(--ink);
@@ -59,8 +63,9 @@ a{color:inherit}
 .disc.globe{background:conic-gradient(var(--blue) 0 33%, var(--red) 0 66%, var(--accent) 0)}
 .mark{background:linear-gradient(transparent 58%, var(--accent) 58%, var(--accent) 94%, transparent 94%); padding:0 .04em}
 
-.btn{display:inline-flex; align-items:center; gap:10px; min-height:56px; padding:0 26px; border-radius:999px; border:2px solid var(--ink); background:var(--ink); color:var(--bg); font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:22px; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; cursor:pointer; box-shadow:var(--shadow-sm); transition:transform .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease}
+.btn{display:inline-flex; align-items:center; gap:10px; min-height:56px; padding:0 26px; border-radius:999px; border:2px solid var(--ink); background:var(--ink); color:var(--bg); font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:22px; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; cursor:pointer; box-shadow:var(--shadow-sm); transition:transform var(--t-fast) var(--ease), background-color var(--t-fast) ease, border-color var(--t-fast) ease, color var(--t-fast) ease, box-shadow var(--t) var(--ease)}
 .btn:hover{transform:translateY(-2px); box-shadow:var(--shadow)}
+.btn:active{transform:scale(.97); box-shadow:var(--shadow-sm)}
 .btn:focus-visible, a:focus-visible, input:focus-visible, button:focus-visible{outline:3px solid var(--accent-2); outline-offset:3px}
 .btn.primary{background:var(--accent); border-color:var(--accent); color:var(--ink)}
 .btn.primary:hover{background:var(--accent-2); border-color:var(--accent-2)}
@@ -80,8 +85,10 @@ a{color:inherit}
 .nav .btn{min-height:44px; font-size:19px; padding:0 18px}
 .menu-btn{display:none; min-height:44px; padding:0 16px; border-radius:999px; border:2px solid var(--ink); background:var(--card); color:var(--ink); font:inherit; font-weight:600; cursor:pointer}
 .menu-btn .mb-ico{display:none; width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round}
-.mobile-menu{display:none; border-top:1px solid var(--line); background:var(--card); box-shadow:var(--shadow)}
-.mobile-menu.open{display:block}
+/* il menu del telefono scende sopra la pagina (non la spinge giù) e compare sfumando */
+.mobile-menu{display:none; position:absolute; left:0; right:0; top:100%; max-height:calc(100dvh - 72px); overflow-y:auto; border-top:1px solid var(--line); background:var(--card); box-shadow:var(--shadow); opacity:0; transform:translateY(-10px); transition:opacity var(--t-fast) ease, transform var(--t) var(--ease), display var(--t) allow-discrete}
+.mobile-menu.open{display:block; opacity:1; transform:none}
+@starting-style{ .mobile-menu.open{opacity:0; transform:translateY(-10px)} }
 .mobile-menu a{display:block; padding:16px 28px; text-decoration:none; font-family:"Big Shoulders Display",sans-serif; font-size:30px; font-weight:800; text-transform:uppercase; border-bottom:1px solid var(--line)}
 .mobile-menu a.active{box-shadow:inset 6px 0 0 var(--accent)}
 @media (max-width:860px){ .nav-links{display:none} .menu-btn{display:inline-flex; align-items:center} }
@@ -101,7 +108,7 @@ a{color:inherit}
 
 /* ---------- views ---------- */
 .view{display:none}
-.view.active{display:block; animation:fade .35s ease}
+.view.active{display:block; animation:fade var(--t) var(--ease)}
 @keyframes fade{from{opacity:.001; transform:translateY(8px)} to{opacity:1; transform:none}}
 .view-head{padding:72px 0 48px; background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'><path d='M0 200 L0 150 L120 90 L200 130 L300 60 L380 110 L470 40 L560 120 L640 80 L740 140 L820 70 L920 120 L1000 50 L1100 110 L1200 80 L1200 200 Z' fill='%23101418' fill-opacity='.06'/></svg>") bottom/100% 170px no-repeat, linear-gradient(180deg, var(--sky), var(--bg) 85%); border-bottom:1px solid var(--line)}
 .view-head .lede{margin-top:22px}
@@ -191,14 +198,14 @@ a{color:inherit}
 /* le quattro porte: carte su fondo tinto */
 .doors{background:var(--bg-2); padding:72px 0 88px; box-shadow:inset 0 1px 0 var(--line)}
 .doors .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
-.door{display:flex; flex-direction:column; gap:14px; padding:30px 28px 32px; background:var(--card); border-radius:22px; box-shadow:var(--shadow); text-decoration:none; color:inherit; position:relative; min-height:320px; transition:background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease; overflow:hidden}
+.door{display:flex; flex-direction:column; gap:14px; padding:30px 28px 32px; background:var(--card); border-radius:22px; box-shadow:var(--shadow); text-decoration:none; color:inherit; position:relative; min-height:320px; transition:background-color var(--t) var(--ease), color var(--t) var(--ease), transform var(--t) var(--ease), box-shadow var(--t) var(--ease); overflow:hidden}
 .door .eyebrow{margin:0}
 .door h3{font-size:clamp(34px,3vw,44px); font-weight:900; line-height:.92; margin-top:auto}
 .door p{color:var(--ink-2); font-size:15px; max-width:30ch; transition:color .2s}
 .door .go{font-family:"Big Shoulders Display",sans-serif; font-weight:800; font-size:20px; letter-spacing:.08em; text-transform:uppercase; display:inline-flex; gap:8px; align-items:center; margin-top:8px}
-.door .go:after{content:"→"; transition:transform .15s ease}
+.door .go:after{content:"→"; transition:transform var(--t) var(--ease)}
 .door > *{position:relative; z-index:1}
-.door .slash{position:absolute; right:22px; top:22px; width:72px; height:72px; opacity:.95; z-index:0; transition:transform .3s ease}
+.door .slash{position:absolute; right:22px; top:22px; width:72px; height:72px; opacity:.95; z-index:0; transition:transform var(--t) var(--ease)}
 .door:hover .slash *{stroke:var(--bg)}
 .door:hover .slash .fillme{fill:var(--bg)}
 .door:hover{background:var(--ink); color:var(--bg); transform:translateY(-4px); box-shadow:var(--shadow-lg)}
@@ -497,10 +504,15 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .faq summary{cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px 4px; min-height:44px; font-family:"Big Shoulders Display",sans-serif; font-size:26px; font-weight:800; text-transform:uppercase; line-height:1.05}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary:after{content:"+"; font-family:"IBM Plex Mono",monospace; font-size:24px; color:var(--accent-2); flex:none}
-.faq details[open] summary:after{content:"–"}
 .faq summary:hover{color:#a84300}
 .faq summary:focus-visible{outline:3px solid var(--accent-2); outline-offset:2px}
 .faq details p{margin:0 4px 20px; color:var(--ink-2); max-width:64ch}
+/* la risposta si apre scorrendo, dove il browser sa animare fino all'altezza del contenuto; altrove si apre e basta */
+.faq details::details-content{height:0; overflow:clip; transition:height var(--t) var(--ease), content-visibility var(--t) allow-discrete}
+.faq details[open]::details-content{height:auto}
+.faq summary:after{transition:transform var(--t) var(--ease)}
+.faq details[open] summary:after{transform:rotate(45deg)}
+.faq summary{transition:color var(--t-fast) ease}
 .faq details a{color:var(--ink); text-underline-offset:3px}
 
 /* lista d'attesa e società impianti */
@@ -584,7 +596,11 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
    e finché non la tocchi è un'immagine: il 3D si carica solo a richiesta */
 .mapbox{display:none}
 .hero .wrap .mapbox{pointer-events:auto}
-.hero:not(.ready) .routecard{visibility:hidden}
+/* la mappa 3D compare sfumando a scena costruita, la scheda del percorso quando il primo percorso è pronto */
+.hero canvas{opacity:0; transition:opacity .7s ease}
+.hero.drawn canvas{opacity:1}
+.hero .routecard{transition:opacity var(--t) ease .15s, transform var(--t) var(--ease) .15s}
+.hero:not(.ready) .routecard{visibility:hidden; opacity:0; transform:translateY(10px)}
 @media (max-width:900px){
   .site .hero .veil{display:none}
   .mapbox{display:block; position:relative; aspect-ratio:1/1; max-height:72vh; border-radius:22px; overflow:hidden; background:linear-gradient(180deg, #d5e2f0, var(--sky)); box-shadow:var(--shadow)}
@@ -623,7 +639,7 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .it-outline use{fill:none; stroke:var(--it-line); stroke-width:2.6; stroke-linejoin:round}
 .it-regs use{fill:#fff; stroke:rgba(19,50,92,.5); stroke-width:.8; stroke-linejoin:round}
 .it-reg{cursor:pointer; outline:none}
-.it-reg use{fill:url(#it-ski); stroke:var(--it-line); stroke-width:1.2; transition:filter .2s ease, fill .2s ease}
+.it-reg use{fill:url(#it-ski); stroke:var(--it-line); stroke-width:1.2; transition:filter var(--t-fast) ease, fill var(--t) var(--ease)}
 .it-reg:hover use, .it-reg:focus-visible use{filter:drop-shadow(0 2px 8px rgba(255,122,0,.45)) brightness(1.05)}
 .it-reg:focus-visible use{stroke:var(--ink); stroke-width:2.5}
 .it-reg.on use{fill:var(--accent-2)}
@@ -636,7 +652,7 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .it-h{font-size:clamp(34px,3.4vw,46px)}
 .it-hint{margin:10px 0 18px; color:var(--ink-2)}
 .it-list{list-style:none; display:flex; flex-direction:column; gap:8px; margin:0; padding:0}
-.it-list a{display:grid; grid-template-columns:1fr auto; gap:2px 12px; align-items:center; min-height:44px; padding:11px 14px; color:var(--ink); text-decoration:none; background:var(--card); border:2px solid var(--line); border-radius:14px; transition:background-color .15s ease, border-color .15s ease, transform .15s ease}
+.it-list a{display:grid; grid-template-columns:1fr auto; gap:2px 12px; align-items:center; min-height:44px; padding:11px 14px; color:var(--ink); text-decoration:none; background:var(--card); border:2px solid var(--line); border-radius:14px; transition:background-color var(--t-fast) ease, border-color var(--t-fast) ease, color var(--t-fast) ease, transform var(--t-fast) var(--ease)}
 .it-list a:hover{border-color:var(--ink-3)}
 .it-list a:active{transform:scale(.98)}
 .it-list a:focus-visible{outline:3px solid var(--accent-2); outline-offset:2px}
@@ -690,7 +706,7 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 
 /* con JavaScript: una regione per volta, e la cartina si stringe */
 .it-x.js .it-region{display:none}
-.it-x.js .it-region.on{display:block; animation:it-in .35s ease both}
+.it-x.js .it-region.on{display:block; animation:it-in var(--t) var(--ease) both}
 @keyframes it-in{from{opacity:0; transform:translateY(10px)}}
 .it-x.js:not(.sel) .it-panels{display:none}
 .it-x.sel{grid-template-columns:340px minmax(0,1fr)}
@@ -699,7 +715,12 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
 .it-x.sel .it-labels, .it-x.sel .it-near-names, .it-x.sel .it-h, .it-x.sel .it-hint, .it-x.sel .it-tot{display:none}
 .it-x.sel .it-list a{padding:8px 12px; min-height:44px}
 .it-x.sel .it-list span{display:none}
-::view-transition-group(it-map){animation-duration:.4s}
+/* nella pagina Aree si muovono solo la cartina (che si stringe) e le schede (che salgono sfumando) */
+.it-panels{view-transition-name:it-panels}
+html.vt-areas::view-transition-old(root), html.vt-areas::view-transition-new(root){animation:none}
+::view-transition-group(it-map), ::view-transition-old(it-map), ::view-transition-new(it-map){animation-duration:.45s; animation-timing-function:var(--ease)}
+::view-transition-old(it-panels){animation:vt-out var(--t-fast) ease both}
+::view-transition-new(it-panels){animation:vt-in var(--t) var(--ease) .1s both}
 
 @media (max-width:900px){
   .it-map{grid-template-columns:1fr; gap:24px}
@@ -720,3 +741,18 @@ ol.steps, ul.features, ul.cols4{list-style:none; margin:0; padding:0}
   .area-rows li{grid-template-columns:minmax(0,1fr) 70px auto; font-size:14px}
 }
 @media (max-width:420px){ .it-tot dd{font-size:28px} }
+
+
+/* ---------- movimento fra le pagine ---------- */
+/* Cambiando pagina il browser sfuma dall'una all'altra invece di ripartire da bianco, e la barra in alto
+   resta ferma. Dove non lo sa fare (Firefox, browser vecchi) la pagina si carica come sempre.
+   L'adesione (@view-transition) sta in uno <style> in testa a ogni pagina, prima dei fogli di stile:
+   dichiarata solo qui, Chromium a volte decideva prima di averla letta e la transizione saltava. */
+.nav{view-transition-name:site-nav}
+/* durante una transizione la barra resta davanti a tutto, come fuori: le schede della pagina Aree non le passano sopra */
+::view-transition-group(site-nav){z-index:100}
+::view-transition-old(root){animation:vt-out var(--t-fast) ease both}
+::view-transition-new(root){animation:vt-in var(--t) var(--ease) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0; transform:translateY(8px)}}
+@media (prefers-reduced-motion: reduce){ ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*){animation:none!important} }

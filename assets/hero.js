@@ -16,7 +16,9 @@
     /* al telefono la mappa prende il posto dell'immagine, nel suo riquadro */
     if (box && !wide.matches) box.appendChild(document.getElementById('net'));
     hero.classList.add('live');
-    SCRIPTS.reduce(function(p, src){ return p.then(function(){ return add(src); }); }, Promise.resolve());
+    /* a scena costruita la mappa compare sfumando (vedi .hero.drawn nel CSS), invece di saltar fuori */
+    SCRIPTS.reduce(function(p, src){ return p.then(function(){ return add(src); }); }, Promise.resolve())
+      .then(function(){ requestAnimationFrame(function(){ requestAnimationFrame(function(){ hero.classList.add('drawn'); }); }); });
   }
   function whenIdle(){ (window.requestIdleCallback || function(f){ setTimeout(f, 200); })(start, { timeout: 2000 }); }
 
