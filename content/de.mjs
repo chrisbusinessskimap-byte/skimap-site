@@ -116,6 +116,7 @@ export default {
     part: (r) => `Der Teil in ${r}`,
     comprensori: 'Skigebiete',
     border: 'Weitere, grenzübergreifend',
+    notYet: (c) => `${c}: noch nicht auf der Karte von Ski Maps.`,
     continues: (a, r, km) => `${a} geht in ${r} weiter: weitere ${km} km Pisten.`,
     istat: 'Regionsgrenzen: ISTAT, über openpolis (CC BY 4.0).',
     l: { km: 'km Pisten', lifts: 'Lifte', top: 'höchster Punkt', colors: 'Pisten nach Farbe', easy: 'blau', intermediate: 'rot', advanced: 'schwarz',

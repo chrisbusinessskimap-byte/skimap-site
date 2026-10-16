@@ -115,6 +115,7 @@ export default {
     part: (r) => `The part in ${r}`,
     comprensori: 'Ski areas',
     border: 'Other, across the border',
+    notYet: (c) => `${c}: not on the Ski Maps map yet.`,
     continues: (a, r, km) => `${a} continues in ${r}: ${km} more km of pistes.`,
     istat: 'Region boundaries: ISTAT, via openpolis (CC BY 4.0).',
     l: { km: 'km of pistes', lifts: 'lifts', top: 'highest point', colors: 'Pistes by colour', easy: 'blue', intermediate: 'red', advanced: 'black',

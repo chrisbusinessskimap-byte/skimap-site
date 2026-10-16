@@ -65,8 +65,34 @@ function stats(id, edges, nodes) {
 }
 const median = (a) => { const s = [...a].sort((u, v) => u - v); return s[s.length >> 1]; };
 
-const refs = JSON.parse(readFileSync(join(DATA, 'comprensori_ref.json'), 'utf8')).ref;
-/* il comprensorio del Superski di un punto è quello del punto di riferimento più vicino, come nell'app */
+/* I 12 comprensori ufficiali del Dolomiti Superski. L'app ha i suoi punti di riferimento (comprensori_ref.json),
+   pensati per dire «dove sei», e li raggruppa a modo suo: Alpe di Siusi a parte, Alpe Lusia / San Pellegrino
+   dentro Fiemme. Qui si parte da quei punti, si rinominano coi nomi ufficiali e si correggono dove sbagliano;
+   ogni correzione è stata controllata impianto per impianto (numero e nome dei cartelli). */
+const OFFICIAL = {
+  'Val Gardena': 'Val Gardena / Alpe di Siusi', 'Alpe di Siusi': 'Val Gardena / Alpe di Siusi', 'Alta Badia': 'Alta Badia',
+  'Arabba/Marmolada': 'Arabba / Marmolada', 'Val di Fassa/Carezza': 'Val di Fassa / Carezza', 'Val di Fiemme/Obereggen': 'Val di Fiemme / Obereggen',
+  'San Martino': 'San Martino di Castrozza / Passo Rolle', Cortina: 'Cortina d’Ampezzo', Kronplatz: 'Plan de Corones',
+  'Rio Pusteria': 'Valle Isarco', '3 Cime': '3 Cime Dolomiti', Civetta: 'Civetta',
+};
+const EXTRA_REFS = [
+  /* Alpe Lusia / San Pellegrino: Passo San Pellegrino, Col Margherita, Falcade, Lusia da Moena e da Bellamonte */
+  [46.38, 11.79, 'Alpe Lusia / San Pellegrino'], [46.37, 11.80, 'Alpe Lusia / San Pellegrino'], [46.357, 11.87, 'Alpe Lusia / San Pellegrino'],
+  [46.35, 11.66, 'Alpe Lusia / San Pellegrino'], [46.32, 11.67, 'Alpe Lusia / San Pellegrino'],
+  /* Passo Pordoi: il lato trentino (Belvedere, Sass Pordoi) è della Val di Fassa, quello veneto (Lezuo, Fodom) di Arabba */
+  [46.483, 11.800, 'Val di Fassa / Carezza'], [46.500, 11.808, 'Val di Fassa / Carezza'],
+  /* Passo Campolongo: Vallon e Cherz sono dell'Alta Badia, Bec de Roces di Arabba */
+  [46.527, 11.852, 'Alta Badia'], [46.518, 11.882, 'Alta Badia'], [46.513, 11.868, 'Arabba / Marmolada'],
+];
+/* un punto «di Fiemme» che cade fra San Pellegrino e Passo Rolle: lo sostituiscono i punti qui sopra */
+const DROP_REFS = ['46.31,11.78'];
+const appRefs = JSON.parse(readFileSync(join(DATA, 'comprensori_ref.json'), 'utf8')).ref;
+const refs = appRefs.filter(([la, lo]) => !DROP_REFS.includes(`${la},${lo}`)).map(([la, lo, n]) => {
+  if (!OFFICIAL[n]) throw new Error(`comprensorio dell'app senza nome ufficiale: ${n}`);
+  return [la, lo, OFFICIAL[n]];
+}).concat(EXTRA_REFS);
+if (new Set(refs.map((r) => r[2])).size !== 12) throw new Error('i comprensori del Superski non sono 12');
+/* il comprensorio di un punto è quello del punto di riferimento più vicino */
 const comprensorioOf = ([lon, lat]) => {
   let best = null, bd = Infinity;
   for (const [rl, rn, name] of refs) { const d = (rl - lat) ** 2 + ((rn - lon) * 0.7) ** 2; if (d < bd) { bd = d; best = name; } }
@@ -105,7 +131,9 @@ for (const id of IDS) {
         .map(([c, by]) => [c, Math.round(by[r] / 1000)]).sort((x, y) => y[1] - x[1]);
       /* le piste dei comprensori che stanno per lo più nella regione accanto: una riga sola, così le righe fanno il totale */
       const border = part.pisteKm - mine.reduce((s, [, km]) => s + km, 0);
-      return [r, { ...part, comprensori: mine, border: border > 0 ? border : 0 }];
+      /* i comprensori ufficiali che nella mappa dell'app non ci sono ancora: la pagina li nomina nella loro regione */
+      const missing = [...new Set(refs.map((x) => x[2]))].filter((c) => !home.has(c) && regionOf([refs.find((x) => x[2] === c)[1], refs.find((x) => x[2] === c)[0]]) === r);
+      return [r, { ...part, comprensori: mine, border: border > 0 ? border : 0, missing }];
     }));
   }
   for (const [r, list] of regions) {

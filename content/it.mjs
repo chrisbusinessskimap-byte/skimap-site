@@ -117,6 +117,7 @@ export default {
     part: (r) => `La parte in ${r}`,
     comprensori: 'Comprensori',
     border: 'Altro, a cavallo del confine',
+    notYet: (c) => `${c}: non ancora sulla mappa di Ski Maps.`,
     continues: (a, r, km) => `${a} continua in ${r}: altri ${km} km di piste.`,
     istat: 'Confini delle regioni: ISTAT, via openpolis (CC BY 4.0).',
     l: { km: 'km di piste', lifts: 'impianti', top: 'quota massima', colors: 'Piste per colore', easy: 'blu', intermediate: 'rosse', advanced: 'nere',

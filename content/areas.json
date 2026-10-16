@@ -38,39 +38,42 @@
      "topFloor": 3100,
      "comprensori": [
       [
-       "Val Gardena",
-       117
+       "Val Gardena / Alpe di Siusi",
+       164
       ],
       [
-       "Val di Fassa/Carezza",
-       102
+       "Val di Fassa / Carezza",
+       96
       ],
       [
        "Alta Badia",
        95
       ],
       [
-       "Kronplatz",
+       "Plan de Corones",
        76
       ],
       [
-       "3 Cime",
+       "3 Cime Dolomiti",
        62
       ],
       [
-       "Alpe di Siusi",
-       48
+       "Alpe Lusia / San Pellegrino",
+       35
       ],
       [
-       "Val di Fiemme/Obereggen",
-       31
-      ],
-      [
-       "Rio Pusteria",
+       "Valle Isarco",
        22
+      ],
+      [
+       "Val di Fiemme / Obereggen",
+       20
       ]
      ],
-     "border": 31
+     "border": 14,
+     "missing": [
+      "San Martino di Castrozza / Passo Rolle"
+     ]
     },
     "veneto": {
      "pisteKm": 211,
@@ -88,7 +91,7 @@
      "topFloor": 3000,
      "comprensori": [
       [
-       "Cortina",
+       "Cortina d’Ampezzo",
        78
       ],
       [
@@ -96,11 +99,12 @@
        53
       ],
       [
-       "Arabba/Marmolada",
-       47
+       "Arabba / Marmolada",
+       46
       ]
      ],
-     "border": 33
+     "border": 34,
+     "missing": []
     }
    }
   },

@@ -425,7 +425,6 @@ function areas(l) {
   const statsIn = (id, r) => (AREAS.areas[id].parts || {})[r] || AREAS.areas[id];
   const regionTotal = (r) => AREAS.regions[r].reduce((t, id) => ({ km: t.km + statsIn(id, r).pisteKm, lifts: t.lifts + statsIn(id, r).lifts }), { km: 0, lifts: 0 });
   const allKm = Object.values(AREAS.areas).reduce((t, x) => t + x.pisteKm, 0), allLifts = Object.values(AREAS.areas).reduce((t, x) => t + x.lifts, 0);
-  const pretty = (name) => name.replace(/\//g, ' / ');
 
   const card = (id, r) => {
     const area = AREAS.areas[id], st = statsIn(id, r), split = !!area.parts;
@@ -437,7 +436,8 @@ function areas(l) {
     const extra = [area.subAreas && !split ? L.sub(area.subAreas) : '', area.train ? L.busTrain : (area.bus ? L.bus : '')].filter(Boolean);
     const rows = split ? `
           <p class="area-k">${a.comprensori}</p>
-          <ul class="area-rows">${[...st.comprensori.map(([cn, km]) => [pretty(cn), km]), ...(st.border ? [[a.border, st.border]] : [])].map(([cn, km]) => `<li><span>${cn}</span><i style="--w:${(km / st.comprensori[0][1] * 100).toFixed(0)}%"></i><b>${n(km)} km</b></li>`).join('')}</ul>` : '';
+          <ul class="area-rows">${[...st.comprensori, ...(st.border ? [[a.border, st.border]] : [])].map(([cn, km]) => `<li><span>${cn}</span><i style="--w:${(km / st.comprensori[0][1] * 100).toFixed(0)}%"></i><b>${n(km)} km</b></li>`).join('')}</ul>${st.missing.length ? `
+          <p class="area-missing">${a.notYet(st.missing.join(', '))}</p>` : ''}` : '';
     const elsewhere = split ? area.regions.filter((o) => o !== r).map((o) => `<a href="#${o}" data-region="${o}">${a.continues(name, rname(o), n(area.parts[o].pisteKm))}</a>`).join(' ') : '';
     return `        <article class="area-panel" id="${cardId}">
         <div class="area-body">
