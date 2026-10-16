@@ -1,14 +1,18 @@
 #!/usr/bin/env node
 /* Numeri e cartina della pagina Aree, dai grafi pubblicati dell'app e dai confini ISTAT delle regioni.
-     node tools/areas.mjs --geo=limits_IT_regions.geojson [--data=../skimap-data]
+     node tools/areas.mjs --geo=limits_IT_regions.geojson --countries=ne_10m_admin_0_countries.geojson [--data=../skimap-data]
    --geo: i confini delle regioni ISTAT, da https://github.com/openpolis/geojson-italy
-   (geojson/limits_IT_regions.geojson, CC BY 4.0: la pagina lo cita). Non sta nel repo: serve solo qui.
+   (geojson/limits_IT_regions.geojson, CC BY 4.0: la pagina lo cita).
+   --countries: i confini dei paesi di Natural Earth (dominio pubblico), da
+   https://github.com/nvkelso/natural-earth-vector (geojson/ne_10m_admin_0_countries.geojson): servono
+   per disegnare, sbiaditi, i paesi che confinano con l'Italia. I due file non stanno nel repo.
    Legge data/<id>_core.json e data/comprensori_ref.json del repo skimap-data e scrive:
    - content/areas.json: per ogni area km di piste per colore, impianti per tipo, quota massima,
      collegamenti; le regioni in cui sta; e, per un'area divisa fra più regioni (il Superski), gli
      stessi numeri per la parte in ogni regione, coi suoi comprensori;
-   - content/italy.json: la cartina dell'Italia per regioni, già proiettata e semplificata, e i
-     punti delle aree, che la pagina disegna dentro di sé (nessuna richiesta ad altri server).
+   - content/italy.json: la cartina dell'Italia per regioni e dei paesi confinanti (solo il pezzo vicino
+     al confine), già proiettata e semplificata, e i punti delle aree, che la pagina disegna dentro di
+     sé (nessuna richiesta ad altri server).
    Una pista o un impianto stanno nella regione in cui cade il punto a metà della loro linea.
    Il sito non dipende da skimap-data né dai confini: i due file sono nel repo, e si rigenerano
    quando cambia un grafo.
@@ -23,6 +27,8 @@ const opt = (k) => { const a = process.argv.find((x) => x.startsWith(`--${k}=`))
 const DATA = resolve(root, opt('data') || '../skimap-data', 'data');
 if (!opt('geo')) throw new Error('manca --geo=<confini delle regioni ISTAT in GeoJSON>');
 const GEO = JSON.parse(readFileSync(resolve(process.cwd(), opt('geo')), 'utf8'));
+if (!opt('countries')) throw new Error('manca --countries=<confini dei paesi di Natural Earth in GeoJSON>');
+const COUNTRIES = JSON.parse(readFileSync(resolve(process.cwd(), opt('countries')), 'utf8'));
 const IDS = ['superski', 'ovindoli', 'campofelice', 'vialattea', 'livigno'];
 
 /* tipi OSM → le tre famiglie che la pagina conta */
@@ -146,8 +152,10 @@ for (const id of IDS) {
 writeFileSync(join(root, 'content/areas.json'), JSON.stringify(out, null, 1) + '\n');
 
 /* ---------- cartina ---------- */
-/* equirettangolare alla latitudine media dell'Italia: a questa scala non si distingue da una conica */
-const [gx0, gy0, gx1, gy1] = GEO.bbox, K = Math.cos(42 * Math.PI / 180), MAP_W = 520;
+/* equirettangolare alla latitudine media dell'Italia: a questa scala non si distingue da una conica.
+   Il riquadro è l'Italia più un margine, così dei paesi confinanti si vede il pezzo vicino al confine:
+   a ovest c'è più spazio, perché i comprensori di confine (la Vialattea con Montgenèvre) stanno lì */
+const [gx0, gy0, gx1, gy1] = [5.0, 35.3, 18.9, 47.8], K = Math.cos(42 * Math.PI / 180), MAP_W = 560;
 const S = MAP_W / ((gx1 - gx0) * K), MAP_H = Math.round((gy1 - gy0) * S);
 const proj = ([lon, lat]) => [(lon - gx0) * K * S, (gy1 - lat) * S];
 /* Douglas-Peucker; un anello chiuso si divide in due, perché primo e ultimo punto coincidono */
@@ -163,8 +171,24 @@ function simplify(pts, tol) {
   if (far <= tol) return [pts[0], pts[pts.length - 1]];
   return [...simplify(pts.slice(0, idx + 1), tol).slice(0, -1), ...simplify(pts.slice(idx), tol)];
 }
-const ring = (r) => {
-  const q = r.map(proj), m = q.length >> 1;
+/* Sutherland-Hodgman: taglia un anello già proiettato sul riquadro (più un filo, perché il bordo non si veda) */
+function clip(pts) {
+  const edges = [[(p) => p[0] >= -2, (a, b) => cut(a, b, 0, -2)], [(p) => p[0] <= MAP_W + 2, (a, b) => cut(a, b, 0, MAP_W + 2)],
+    [(p) => p[1] >= -2, (a, b) => cut(a, b, 1, -2)], [(p) => p[1] <= MAP_H + 2, (a, b) => cut(a, b, 1, MAP_H + 2)]];
+  function cut(a, b, axis, v) { const t = (v - a[axis]) / (b[axis] - a[axis]); return [a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])]; }
+  let out = pts;
+  for (const [inside, at] of edges) {
+    const src = out; out = [];
+    for (let i = 0; i < src.length; i++) {
+      const cur = src[i], prev = src[(i + src.length - 1) % src.length];
+      if (inside(cur)) { if (!inside(prev)) out.push(at(prev, cur)); out.push(cur); } else if (inside(prev)) out.push(at(prev, cur));
+    }
+    if (!out.length) return out;
+  }
+  return out;
+}
+const ring = (r, cut = false) => {
+  const q = cut ? clip(r.map(proj)) : r.map(proj), m = q.length >> 1;
   const p = [...simplify(q.slice(0, m + 1), 0.55).slice(0, -1), ...simplify(q.slice(m), 0.55)];
   return p.length < 4 ? '' : 'M' + p.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join('L') + 'Z';
 };
@@ -173,8 +197,19 @@ const LABEL_AT = {
   'trentino-alto-adige': [12.2, 46.86, 'start'], veneto: [12.75, 45.5, 'start'], lombardia: [9.25, 46.6, 'end'],
   piemonte: [7.75, 44.12, 'start'], abruzzo: [14.25, 42.0, 'start'],
 };
+/* i paesi che confinano con l'Italia (e i piccoli stati dentro e accanto), sbiaditi; il nome solo ai quattro grandi */
+const NEIGHBORS = ['FRA', 'CHE', 'AUT', 'SVN', 'LIE', 'MCO', 'SMR', 'VAT'];
+const COUNTRY_LABEL_AT = { FRA: [5.4, 43.75, 'start'], CHE: [7.9, 47.4, 'middle'], AUT: [12.9, 47.45, 'middle'], SVN: [14.75, 46.2, 'middle'] };
+const neighbors = NEIGHBORS.map((iso) => {
+  const f = COUNTRIES.features.find((x) => x.properties.ADM0_A3 === iso);
+  if (!f) throw new Error(`paese assente nei confini: ${iso}`);
+  const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
+  return { id: iso, d: polys.map((p) => ring(p[0], true)).join('') };
+}).filter((c) => c.d);
 const italy = {
   width: MAP_W, height: MAP_H,
+  neighbors,
+  countryLabels: Object.fromEntries(Object.entries(COUNTRY_LABEL_AT).map(([iso, [lon, lat, anchor]]) => { const [x, y] = proj([lon, lat]); return [iso, { x: +x.toFixed(1), y: +y.toFixed(1), anchor }]; })),
   regions: REGIONS.map((r) => ({ id: r.id, d: r.polys.map((p) => ring(p[0])).join('') })),
   labels: Object.fromEntries(Object.keys(out.regions).map((r) => {
     if (!LABEL_AT[r]) throw new Error(`regione senza posto per il nome: ${r}`);

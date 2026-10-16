@@ -468,17 +468,28 @@ ${AREAS.regions[r].map((id) => card(id, r)).join('\n')}
       </article>`;
   };
   const svg = () => {
-    const regs = ITALY.regions.map(({ id, d }) => AREAS.regions[id]
-      ? `<a class="it-reg" href="#${id}" data-region="${id}" aria-label="${attr(`${rname(id)}: ${AREAS.regions[id].map(areaName).join(', ')}`)}"><path d="${d}"/></a>`
-      : `<path d="${d}"/>`).join('');
+    /* le regioni sono definite una volta e disegnate due: sotto con un tratto spesso (che fuori resta come
+       contorno marcato dell'Italia), sopra col riempimento e il tratto sottile dei confini fra regioni */
+    const defs = ITALY.regions.map(({ id, d }) => `<path id="it-${id}" d="${d}"/>`).join('');
+    const outline = ITALY.regions.map(({ id }) => `<use href="#it-${id}"/>`).join('');
+    const regs = ITALY.regions.map(({ id }) => AREAS.regions[id]
+      ? `<a class="it-reg" href="#${id}" data-region="${id}" aria-label="${attr(`${rname(id)}: ${AREAS.regions[id].map(areaName).join(', ')}`)}"><use href="#it-${id}"/></a>`
+      : `<use href="#it-${id}"/>`).join('');
+    const near = ITALY.neighbors.map(({ d }) => `<path d="${d}"/>`).join('');
+    const nearNames = Object.entries(ITALY.countryLabels).map(([iso, { x, y, anchor }]) => `<text x="${x}" y="${y}" text-anchor="${anchor}">${a.countries[iso]}</text>`).join('');
     const pins = ITALY.pins.map(({ region, x, y }) => `<g class="it-pin" data-region="${region}" transform="translate(${x} ${y})"><circle class="it-pulse" r="5"/><circle r="5"/></g>`).join('');
     const labels = REGION_IDS.map((r) => {
       const { x, y, anchor } = ITALY.labels[r];
       return `<text x="${x}" y="${y}" text-anchor="${anchor}">${rname(r)}<tspan x="${x}" dy="16">${AREAS.regions[r].map(areaName).join(' · ')}</tspan></text>`;
     }).join('');
     return `<svg class="italy" viewBox="0 0 ${ITALY.width} ${ITALY.height}" role="group" aria-label="${attr(a.mapLabel)}">
-          <defs><linearGradient id="it-ski" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc94a"/><stop offset="1" stop-color="#ff9a1f"/></linearGradient></defs>
-          <g class="it-regs">${regs}</g><g class="it-pins" aria-hidden="true">${pins}</g><g class="it-labels" aria-hidden="true">${labels}</g>
+          <defs><linearGradient id="it-ski" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc94a"/><stop offset="1" stop-color="#ff9a1f"/></linearGradient>
+            <radialGradient id="it-fade-g" cx=".52" cy=".26" r=".46"><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+            <mask id="it-fade"><rect width="${ITALY.width}" height="${ITALY.height}" fill="url(#it-fade-g)"/></mask>
+            <linearGradient id="it-edge-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset=".08" stop-color="#fff"/></linearGradient>
+            <mask id="it-edge"><rect width="${ITALY.width}" height="${ITALY.height}" fill="url(#it-edge-g)"/></mask>${defs}</defs>
+          <g aria-hidden="true" mask="url(#it-edge)"><g class="it-near" mask="url(#it-fade)">${near}</g></g><g class="it-near-names" aria-hidden="true">${nearNames}</g>
+          <g class="it-outline" aria-hidden="true">${outline}</g><g class="it-regs">${regs}</g><g class="it-pins" aria-hidden="true">${pins}</g><g class="it-labels" aria-hidden="true">${labels}</g>
         </svg>`;
   };
   const list = REGION_IDS.map((r) => `<li><a href="#${r}" data-region="${r}"><b>${rname(r)}</b><span>${AREAS.regions[r].map(areaName).join(' · ')}</span><small>${n(regionTotal(r).km)} km</small></a></li>`).join('\n          ');
@@ -507,7 +518,7 @@ ${pageHead(a.eyebrow, a.h1, a.lede)}
 ${REGION_IDS.map(regionPanel).join('\n')}
       </div>
     </div>
-    <p class="area-note">${a.note} ${c.ui.mapdata} <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL). <a href="https://github.com/openpolis/geojson-italy">${a.istat}</a></p>
+    <p class="area-note">${a.note} ${c.ui.mapdata} <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL). <a href="https://github.com/openpolis/geojson-italy">${a.istat}</a> ${a.ne}</p>
   </div>
 </section>
 
