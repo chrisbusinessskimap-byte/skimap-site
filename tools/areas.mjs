@@ -21,8 +21,9 @@
    per difetto alle centinaia («3.100+ m»), così resta vera. */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = resolve(dirname(new URL(import.meta.url).pathname), '..');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const opt = (k) => { const a = process.argv.find((x) => x.startsWith(`--${k}=`)); return a && a.slice(k.length + 3); };
 const DATA = resolve(root, opt('data') || '../skimap-data', 'data');
 if (!opt('geo')) throw new Error('manca --geo=<confini delle regioni ISTAT in GeoJSON>');

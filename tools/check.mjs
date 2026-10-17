@@ -7,9 +7,10 @@
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, resolve, relative } from 'node:path';
 import { execSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { ALL_FILES, LANGS, LANG_ORDER, PAGE_KEYS, LEGAL, fileOf } from './site.mjs';
 
-const root = resolve(dirname(new URL(import.meta.url).pathname), '..');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const RELEASE = process.argv.includes('--release'), LIST = process.argv.includes('--list');
 const errors = [], warns = [];
 const err = (m) => errors.push(m), warn = (m) => warns.push(m);

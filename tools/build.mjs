@@ -7,11 +7,12 @@
    Le pagine generate non vanno modificate a mano: si cambiano i testi in content/ e si rilancia. */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { ORIGIN, MAIL, LANGS, LANG_ORDER, PAGE_KEYS, LEGAL, fileOf } from './site.mjs';
 
-const root = resolve(dirname(new URL(import.meta.url).pathname), '..');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const C = {};
-for (const l of LANG_ORDER) C[l] = (await import(join(root, 'content', `${l}.mjs`))).default;
+for (const l of LANG_ORDER) C[l] = (await import(pathToFileURL(join(root, 'content', `${l}.mjs`)).href)).default;
 
 const GENERATED = '<!-- Pagina generata da tools/build.mjs: per cambiare i testi modifica content/*.mjs e rilancia il comando. -->';
 /* l'icona dell'app (skimap-mobile/src/assets/brand/skimap-logo.png), la stessa del telefono e del Play Store */
