@@ -30,7 +30,7 @@ if (!opt('geo')) throw new Error('manca --geo=<confini delle regioni ISTAT in Ge
 const GEO = JSON.parse(readFileSync(resolve(process.cwd(), opt('geo')), 'utf8'));
 if (!opt('countries')) throw new Error('manca --countries=<confini dei paesi di Natural Earth in GeoJSON>');
 const COUNTRIES = JSON.parse(readFileSync(resolve(process.cwd(), opt('countries')), 'utf8'));
-const IDS = ['superski', 'ovindoli', 'campofelice', 'vialattea', 'livigno'];
+const IDS = ['superski', 'ovindoli', 'campofelice', 'vialattea', 'livigno', 'altosangro', 'skirama'];
 
 /* tipi OSM → le tre famiglie che la pagina conta */
 const LIFT_GROUP = {
@@ -99,10 +99,25 @@ const refs = appRefs.filter(([la, lo]) => !DROP_REFS.includes(`${la},${lo}`)).ma
   return [la, lo, OFFICIAL[n]];
 }).concat(EXTRA_REFS);
 if (new Set(refs.map((r) => r[2])).size !== 12) throw new Error('i comprensori del Superski non sono 12');
+/* Skirama (R11): le 8 località dello skipass Superskirama. I punti vengono dalla regione dell'app
+   (data/regions/skirama.json, uno per base e arrivo di impianto, col comprensorio dell'app); l'app tiene
+   Ponte di Legno, Tonale e Presena separati e Folgaria e Lavarone separati, lo skipass no. */
+const SKIRAMA_OFFICIAL = {
+  'Madonna di Campiglio': 'Madonna di Campiglio', Pinzolo: 'Pinzolo', 'Folgarida-Marilleva': 'Folgarida-Marilleva', Pejo: 'Pejo',
+  'Ponte di Legno': 'Pontedilegno-Tonale', Tonale: 'Pontedilegno-Tonale', Presena: 'Pontedilegno-Tonale',
+  Paganella: 'Paganella', 'Monte Bondone': 'Monte Bondone', Folgaria: 'Alpe Cimbra', Lavarone: 'Alpe Cimbra',
+};
+const skiramaRefs = JSON.parse(readFileSync(join(DATA, 'regions', 'skirama.json'), 'utf8')).areas.map(([la, lo, n]) => {
+  if (!SKIRAMA_OFFICIAL[n]) throw new Error(`comprensorio di Skirama senza nome ufficiale: ${n}`);
+  return [la, lo, SKIRAMA_OFFICIAL[n]];
+});
+if (new Set(skiramaRefs.map((r) => r[2])).size !== 8) throw new Error('le località di Skirama non sono 8');
+/* i punti di riferimento delle aree divise fra più regioni */
+const REFS = { superski: refs, skirama: skiramaRefs };
 /* il comprensorio di un punto è quello del punto di riferimento più vicino */
-const comprensorioOf = ([lon, lat]) => {
+const comprensorioOf = (id, [lon, lat]) => {
   let best = null, bd = Infinity;
-  for (const [rl, rn, name] of refs) { const d = (rl - lat) ** 2 + ((rn - lon) * 0.7) ** 2; if (d < bd) { bd = d; best = name; } }
+  for (const [rl, rn, name] of REFS[id]) { const d = (rl - lat) ** 2 + ((rn - lon) * 0.7) ** 2; if (d < bd) { bd = d; best = name; } }
   return best;
 };
 const out = { areas: {}, regions: {} }, pins = [];
@@ -128,7 +143,7 @@ for (const id of IDS) {
   if (regions.length > 1) {
     const home = new Map(); /* comprensorio → { regione → km } */
     for (const [r, list] of regions) for (const e of list) if (routed(e)) {
-      const c = comprensorioOf(mid(e));
+      const c = comprensorioOf(id, mid(e));
       if (!home.has(c)) home.set(c, {});
       home.get(c)[r] = (home.get(c)[r] || 0) + e.length;
     }
@@ -139,7 +154,8 @@ for (const id of IDS) {
       /* le piste dei comprensori che stanno per lo più nella regione accanto: una riga sola, così le righe fanno il totale */
       const border = part.pisteKm - mine.reduce((s, [, km]) => s + km, 0);
       /* i comprensori ufficiali che nella mappa dell'app non ci sono ancora: la pagina li nomina nella loro regione */
-      const missing = [...new Set(refs.map((x) => x[2]))].filter((c) => !home.has(c) && regionOf([refs.find((x) => x[2] === c)[1], refs.find((x) => x[2] === c)[0]]) === r);
+      const rr = REFS[id];
+      const missing = [...new Set(rr.map((x) => x[2]))].filter((c) => !home.has(c) && regionOf([rr.find((x) => x[2] === c)[1], rr.find((x) => x[2] === c)[0]]) === r);
       return [r, { ...part, comprensori: mine, border: border > 0 ? border : 0, missing }];
     }));
   }

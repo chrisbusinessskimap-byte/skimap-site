@@ -157,11 +157,11 @@
     "intermediate": 170,
     "advanced": 32
    },
-   "lifts": 100,
+   "lifts": 101,
    "liftGroups": {
     "cabin": 10,
     "chair": 49,
-    "surface": 41
+    "surface": 42
    },
    "topFloor": 2700,
    "bus": true,
@@ -191,24 +191,142 @@
    "regions": [
     "lombardia"
    ]
+  },
+  "altosangro": {
+   "pisteKm": 66,
+   "byDiff": {
+    "easy": 32,
+    "intermediate": 21,
+    "advanced": 13
+   },
+   "lifts": 26,
+   "liftGroups": {
+    "cabin": 6,
+    "chair": 10,
+    "surface": 10
+   },
+   "topFloor": 2100,
+   "bus": false,
+   "train": false,
+   "subAreas": null,
+   "regions": [
+    "abruzzo"
+   ]
+  },
+  "skirama": {
+   "pisteKm": 297,
+   "byDiff": {
+    "easy": 123,
+    "intermediate": 136,
+    "advanced": 38
+   },
+   "lifts": 161,
+   "liftGroups": {
+    "cabin": 33,
+    "chair": 91,
+    "surface": 37
+   },
+   "topFloor": 3000,
+   "bus": true,
+   "train": false,
+   "subAreas": null,
+   "regions": [
+    "trentino-alto-adige",
+    "lombardia"
+   ],
+   "parts": {
+    "trentino-alto-adige": {
+     "pisteKm": 248,
+     "byDiff": {
+      "easy": 114,
+      "intermediate": 105,
+      "advanced": 29
+     },
+     "lifts": 135,
+     "liftGroups": {
+      "cabin": 30,
+      "chair": 74,
+      "surface": 31
+     },
+     "topFloor": 3000,
+     "comprensori": [
+      [
+       "Madonna di Campiglio",
+       57
+      ],
+      [
+       "Alpe Cimbra",
+       50
+      ],
+      [
+       "Folgarida-Marilleva",
+       40
+      ],
+      [
+       "Paganella",
+       35
+      ],
+      [
+       "Pinzolo",
+       21
+      ],
+      [
+       "Pejo",
+       17
+      ],
+      [
+       "Monte Bondone",
+       13
+      ]
+     ],
+     "border": 15,
+     "missing": []
+    },
+    "lombardia": {
+     "pisteKm": 41,
+     "byDiff": {
+      "easy": 7,
+      "intermediate": 26,
+      "advanced": 8
+     },
+     "lifts": 21,
+     "liftGroups": {
+      "cabin": 3,
+      "chair": 14,
+      "surface": 4
+     },
+     "topFloor": 2500,
+     "comprensori": [
+      [
+       "Pontedilegno-Tonale",
+       41
+      ]
+     ],
+     "border": 0,
+     "missing": []
+    }
+   }
   }
  },
  "regions": {
   "trentino-alto-adige": [
-   "superski"
+   "superski",
+   "skirama"
   ],
   "veneto": [
    "superski"
   ],
   "abruzzo": [
    "ovindoli",
-   "campofelice"
+   "campofelice",
+   "altosangro"
   ],
   "piemonte": [
    "vialattea"
   ],
   "lombardia": [
-   "livigno"
+   "livigno",
+   "skirama"
   ]
  }
 }

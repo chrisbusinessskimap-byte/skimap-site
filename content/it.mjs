@@ -43,7 +43,7 @@ export default {
     open: 'Apri',
     doors: {
       how: ['Come funziona', 'Un percorso.<br>Tutto il giro.', 'Il giro tra comprensori, i tre passi e tutte le funzioni.'],
-      areas: ['Aree', 'Cinque aree<br>al lancio.', 'Dolomiti Superski, Ovindoli, Campo Felice, Vialattea e Livigno.'],
+      areas: ['Aree', 'Sette aree<br>al lancio.', 'Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno e Skirama.'],
       faq: ['Domande', 'Domande<br>e risposte.', 'Quando esce, iPhone, rete, lingue, posizione.'],
     },
     trustBox: {
@@ -98,15 +98,17 @@ export default {
 
   areas: {
     title: 'Aree · Ski Maps',
-    desc: 'Dove funziona Ski Maps al lancio: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea con Bardonecchia e Livigno.',
-    eyebrow: 'Aree', h1: 'Cinque aree<br><em>al lancio.</em>',
-    lede: 'Al lancio Ski Maps funziona in Dolomiti Superski, Ovindoli, Campo Felice, Vialattea e Livigno.',
+    desc: 'Dove funziona Ski Maps al lancio: Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea con Bardonecchia, Livigno e Skirama Dolomiti Adamello Brenta.',
+    eyebrow: 'Aree', h1: 'Sette aree<br><em>al lancio.</em>',
+    lede: 'Al lancio Ski Maps funziona in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno e Skirama.',
     items: {
       superski: ['Dolomiti Superski', 'Alto Adige, Trentino e Veneto', 'Compresi Sellaronda, Cortina – Alta Badia e Fassa – Fiemme.'],
       ovindoli: ['Ovindoli', 'Abruzzo', 'Sul Monte Magnola.'],
       campofelice: ['Campo Felice', 'Abruzzo', ''],
       vialattea: ['Vialattea', 'Piemonte e Francia', 'Con Bardonecchia, Sestriere, Sauze d’Oulx, Sansicario, Cesana, Claviere, Pragelato e Montgenèvre.'],
       livigno: ['Livigno', 'Lombardia', 'Mottolino, Carosello 3000 e Tagliede, uniti dallo Skilink.'],
+      altosangro: ['Alto Sangro', 'Abruzzo', 'Roccaraso e Rivisondoli, con i settori Aremogna, Monte Pratello e Pizzalto.'],
+      skirama: ['Skirama Dolomiti Adamello Brenta', 'Trentino e Lombardia', 'Madonna di Campiglio, Pinzolo, Folgarida-Marilleva, Pejo, Pontedilegno-Tonale, Paganella, Monte Bondone e Alpe Cimbra.'],
     },
     regionNames: { 'trentino-alto-adige': 'Trentino-Alto Adige', veneto: 'Veneto', lombardia: 'Lombardia', piemonte: 'Piemonte', abruzzo: 'Abruzzo' },
     countries: { FRA: 'Francia', CHE: 'Svizzera', AUT: 'Austria', SVN: 'Slovenia' },
@@ -136,7 +138,7 @@ export default {
     items: [
       ['Quando esce?', 'È in arrivo su Google Play. <a href="{home}#avvisami">Lascia la tua email</a> e ti avvisiamo quando esce.'],
       ['C’è anche per iPhone?', 'La versione per iOS arriverà in seguito.'],
-      ['Dove funziona?', 'Al lancio in Dolomiti Superski, Ovindoli, Campo Felice, Vialattea (con Bardonecchia) e Livigno.'],
+      ['Dove funziona?', 'Al lancio in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea (con Bardonecchia), Livigno e Skirama.'],
       ['Funziona senza rete?', 'Sì. Mappe e percorsi si scaricano prima e funzionano anche offline.'],
       ['Devo guardare il telefono mentre scio?', 'No. Con la guida vocale le indicazioni arrivano a voce, e la navigazione continua con il telefono in tasca.'],
       ['E se un impianto chiude?', 'Ski Maps conosce chiusure e orari degli impianti e ti avvisa se riesci a tornare in tempo.'],
@@ -154,7 +156,7 @@ export default {
       'Ski Maps è il progetto di <strong>Christian</strong>, 22 anni, di Roma.',
       'Viene dall’ingegneria energetica e oggi frequenta la laurea magistrale in Strategic Management alla LUISS Guido Carli: competenze tecniche e visione di prodotto, messe al servizio di chi scia.',
       'Lo sviluppa con un obiettivo chiaro: dare a chi scia un navigatore che lo porti dove vuole arrivare, pista dopo pista e impianto dopo impianto, ovunque si trovi.',
-      'Si parte dalle cinque aree del lancio. Il traguardo sono le piste di tutto il mondo.',
+      'Si parte dalle sette aree del lancio. Il traguardo sono le piste di tutto il mondo.',
     ],
     photoAlt: 'Foto di Christian, che sviluppa Ski Maps',
     write: 'Vuoi scrivergli?',

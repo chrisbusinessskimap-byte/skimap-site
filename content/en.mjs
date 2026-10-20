@@ -41,7 +41,7 @@ export default {
     open: 'Open',
     doors: {
       how: ['How it works', 'One route.<br>The whole tour.', 'Tours across ski areas, the three steps and all the features.'],
-      areas: ['Areas', 'Five areas<br>at launch.', 'Dolomiti Superski, Ovindoli, Campo Felice, Vialattea and Livigno.'],
+      areas: ['Areas', 'Seven areas<br>at launch.', 'Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno and Skirama.'],
       faq: ['FAQ', 'Questions<br>and answers.', 'Launch, iPhone, signal, languages, location.'],
     },
     trustBox: {
@@ -96,15 +96,17 @@ export default {
 
   areas: {
     title: 'Areas · Ski Maps',
-    desc: 'Where Ski Maps works at launch: Dolomiti Superski, Ovindoli, Campo Felice, Vialattea including Bardonecchia, and Livigno.',
-    eyebrow: 'Areas', h1: 'Five areas<br><em>at launch.</em>',
-    lede: 'At launch Ski Maps works in Dolomiti Superski, Ovindoli, Campo Felice, Vialattea and Livigno.',
+    desc: 'Where Ski Maps works at launch: Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea including Bardonecchia, Livigno and Skirama Dolomiti Adamello Brenta.',
+    eyebrow: 'Areas', h1: 'Seven areas<br><em>at launch.</em>',
+    lede: 'At launch Ski Maps works in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno and Skirama.',
     items: {
       superski: ['Dolomiti Superski', 'South Tyrol, Trentino and Veneto', 'Including Sellaronda, Cortina – Alta Badia and Fassa – Fiemme.'],
       ovindoli: ['Ovindoli', 'Abruzzo', 'On Monte Magnola.'],
       campofelice: ['Campo Felice', 'Abruzzo', ''],
       vialattea: ['Vialattea', 'Piedmont and France', 'Including Bardonecchia, Sestriere, Sauze d’Oulx, Sansicario, Cesana, Claviere, Pragelato and Montgenèvre.'],
       livigno: ['Livigno', 'Lombardy', 'Mottolino, Carosello 3000 and Tagliede, linked by the Skilink.'],
+      altosangro: ['Alto Sangro', 'Abruzzo', 'Roccaraso and Rivisondoli, with the Aremogna, Monte Pratello and Pizzalto sectors.'],
+      skirama: ['Skirama Dolomiti Adamello Brenta', 'Trentino and Lombardy', 'Madonna di Campiglio, Pinzolo, Folgarida-Marilleva, Pejo, Pontedilegno-Tonale, Paganella, Monte Bondone and Alpe Cimbra.'],
     },
     regionNames: { 'trentino-alto-adige': 'Trentino-South Tyrol', veneto: 'Veneto', lombardia: 'Lombardy', piemonte: 'Piedmont', abruzzo: 'Abruzzo' },
     countries: { FRA: 'France', CHE: 'Switzerland', AUT: 'Austria', SVN: 'Slovenia' },
@@ -134,7 +136,7 @@ export default {
     items: [
       ['When is it out?', 'It is coming soon to Google Play. <a href="{home}#avvisami">Leave your email</a> and we will let you know when it is out.'],
       ['Is there an iPhone version?', 'The iOS version will follow later.'],
-      ['Where does it work?', 'At launch in Dolomiti Superski, Ovindoli, Campo Felice, Vialattea (including Bardonecchia) and Livigno.'],
+      ['Where does it work?', 'At launch in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea (including Bardonecchia), Livigno and Skirama.'],
       ['Does it work without a signal?', 'Yes. Maps and routes are downloaded in advance and also work offline.'],
       ['Do I have to look at my phone while skiing?', 'No. With voice guidance the directions are spoken, and navigation keeps going with your phone in your pocket.'],
       ['What if a lift closes?', 'Ski Maps knows lift closures and opening hours and tells you whether you can get back in time.'],
@@ -152,7 +154,7 @@ export default {
       'Ski Maps is the project of <strong>Christian</strong>, 22, from Rome.',
       'He comes from energy engineering and is now studying for a master’s in Strategic Management at LUISS Guido Carli: technical skills and product vision, put to work for skiers.',
       'He is building it with one clear goal: to give every skier a navigator that takes them where they want to go, piste by piste and lift by lift, wherever they ski.',
-      'It starts with the five launch areas. The finish line is every piste in the world.',
+      'It starts with the seven launch areas. The finish line is every piste in the world.',
     ],
     photoAlt: 'Photo of Christian, who is building Ski Maps',
     write: 'Want to write to him?',

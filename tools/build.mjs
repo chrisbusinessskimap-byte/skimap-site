@@ -419,6 +419,7 @@ const ITALY = JSON.parse(readFileSync(join(root, 'content/italy.json'), 'utf8'))
 /* da ovest a est e da nord a sud, come si legge la cartina */
 const REGION_IDS = ['piemonte', 'lombardia', 'trentino-alto-adige', 'veneto', 'abruzzo'];
 if (REGION_IDS.join() !== [...REGION_IDS].filter((r) => AREAS.regions[r]).join() || Object.keys(AREAS.regions).length !== REGION_IDS.length) throw new Error('le regioni di content/areas.json non sono quelle di REGION_IDS');
+const MAP_NAME = { skirama: 'Skirama' };
 function areas(l) {
   const c = C[l], a = c.areas, L = a.l, n = (x) => x.toLocaleString(c.locale.replace('_', '-'));
   const rname = (r) => a.regionNames[r];
@@ -482,7 +483,8 @@ ${AREAS.regions[r].map((id) => card(id, r)).join('\n')}
     const pins = ITALY.pins.map(({ region, x, y }) => `<g class="it-pin" data-region="${region}" transform="translate(${x} ${y})"><circle class="it-pulse" r="5"/><circle r="5"/></g>`).join('');
     const labels = REGION_IDS.map((r) => {
       const { x, y, anchor } = ITALY.labels[r];
-      return `<text x="${x}" y="${y}" text-anchor="${anchor}">${rname(r)}<tspan x="${x}" dy="16">${AREAS.regions[r].map(areaName).join(' · ')}</tspan></text>`;
+      /* un'area per riga, e sulla cartina il nome corto di Skirama: i nomi lunghi uscirebbero dal riquadro */
+      return `<text x="${x}" y="${y}" text-anchor="${anchor}">${rname(r)}${AREAS.regions[r].map((id) => `<tspan x="${x}" dy="16">${MAP_NAME[id] || areaName(id)}</tspan>`).join('')}</text>`;
     }).join('');
     return `<svg class="italy" viewBox="0 0 ${ITALY.width} ${ITALY.height}" role="group" aria-label="${attr(a.mapLabel)}">
           <defs><linearGradient id="it-ski" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc94a"/><stop offset="1" stop-color="#ff9a1f"/></linearGradient>
