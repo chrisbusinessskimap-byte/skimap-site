@@ -42,7 +42,7 @@ export default {
     open: 'Öffnen',
     doors: {
       how: ['So funktioniert’s', 'Eine Route.<br>Die ganze Runde.', 'Die Runde zwischen Skigebieten, die drei Schritte und alle Funktionen.'],
-      areas: ['Skigebiete', 'Sieben Gebiete<br>zum Start.', 'Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno und Skirama.'],
+      areas: ['Skigebiete', 'Acht Gebiete<br>zum Start.', 'Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno, Skirama und Monterosa Ski.'],
       faq: ['Fragen', 'Fragen<br>und Antworten.', 'Start, iPhone, Empfang, Sprachen, Standort.'],
     },
     trustBox: {
@@ -97,9 +97,9 @@ export default {
 
   areas: {
     title: 'Skigebiete · Ski Maps',
-    desc: 'Wo Ski Maps zum Start funktioniert: Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea mit Bardonecchia, Livigno und Skirama Dolomiti Adamello Brenta.',
-    eyebrow: 'Skigebiete', h1: 'Sieben Gebiete<br><em>zum Start.</em>',
-    lede: 'Zum Start funktioniert Ski Maps in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno und Skirama.',
+    desc: 'Wo Ski Maps zum Start funktioniert: Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea mit Bardonecchia, Livigno, Skirama Dolomiti Adamello Brenta und Monterosa Ski.',
+    eyebrow: 'Skigebiete', h1: 'Acht Gebiete<br><em>zum Start.</em>',
+    lede: 'Zum Start funktioniert Ski Maps in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno, Skirama und Monterosa Ski.',
     items: {
       superski: ['Dolomiti Superski', 'Südtirol, Trentino und Venetien', 'Mit Sellaronda, Cortina – Alta Badia und Fassa – Fiemme.'],
       ovindoli: ['Ovindoli', 'Abruzzen', 'Am Monte Magnola.'],
@@ -108,8 +108,9 @@ export default {
       livigno: ['Livigno', 'Lombardei', 'Mottolino, Carosello 3000 und Tagliede, verbunden durch den Skilink.'],
       altosangro: ['Alto Sangro', 'Abruzzen', 'Roccaraso und Rivisondoli, mit den Sektoren Aremogna, Monte Pratello und Pizzalto.'],
       skirama: ['Skirama Dolomiti Adamello Brenta', 'Trentino und Lombardei', 'Madonna di Campiglio, Pinzolo, Folgarida-Marilleva, Pejo, Pontedilegno-Tonale, Paganella, Monte Bondone und Alpe Cimbra.'],
+      monterosa: ['Monterosa Ski', 'Aostatal und Piemont', 'Champoluc, Antagnod, Brusson, Gressoney, Alagna, Alpe di Mera und Champorcher, die drei Täler am Colle Bettaforca und am Passo dei Salati verbunden.'],
     },
-    regionNames: { 'trentino-alto-adige': 'Trentino-Südtirol', veneto: 'Venetien', lombardia: 'Lombardei', piemonte: 'Piemont', abruzzo: 'Abruzzen' },
+    regionNames: { 'trentino-alto-adige': 'Trentino-Südtirol', veneto: 'Venetien', lombardia: 'Lombardei', piemonte: 'Piemont', 'valle-d-aosta': 'Aostatal', abruzzo: 'Abruzzen' },
     countries: { FRA: 'Frankreich', CHE: 'Schweiz', AUT: 'Österreich', SVN: 'Slowenien' },
     pick: 'Wähle eine Region',
     hint: 'Tippe auf eine Region auf der Karte oder wähle sie hier aus.',
@@ -137,7 +138,7 @@ export default {
     items: [
       ['Wann kommt die App?', 'Sie kommt bald auf Google Play. <a href="{home}#avvisami">Hinterlass deine E-Mail</a> und wir sagen dir Bescheid, sobald sie da ist.'],
       ['Gibt es sie auch fürs iPhone?', 'Die iOS-Version folgt später.'],
-      ['Wo funktioniert sie?', 'Zum Start in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea (mit Bardonecchia), Livigno und Skirama.'],
+      ['Wo funktioniert sie?', 'Zum Start in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea (mit Bardonecchia), Livigno, Skirama und Monterosa Ski.'],
       ['Funktioniert sie ohne Empfang?', 'Ja. Karten und Routen werden vorher heruntergeladen und funktionieren auch offline.'],
       ['Muss ich beim Fahren aufs Handy schauen?', 'Nein. Mit der Sprachführung kommen die Anweisungen per Sprache, und die Navigation läuft mit dem Handy in der Tasche weiter.'],
       ['Und wenn ein Lift schließt?', 'Ski Maps kennt Liftsperrungen und Betriebszeiten und sagt dir, ob du es rechtzeitig zurück schaffst.'],
@@ -155,7 +156,7 @@ export default {
       'Ski Maps ist das Projekt von <strong>Christian</strong>, 22 Jahre, aus Rom.',
       'Er kommt aus der Energietechnik und studiert heute im Master Strategic Management an der LUISS Guido Carli: technisches Know-how und Produktvision, im Dienst aller, die Ski fahren.',
       'Er entwickelt es mit einem klaren Ziel: allen, die Ski fahren, einen Navigator zu geben, der sie dorthin bringt, wo sie hinwollen, Piste für Piste und Lift für Lift, wo auch immer sie fahren.',
-      'Los geht es mit den sieben Startgebieten. Das Ziel sind die Pisten der ganzen Welt.',
+      'Los geht es mit den acht Startgebieten. Das Ziel sind die Pisten der ganzen Welt.',
     ],
     photoAlt: 'Foto von Christian, der Ski Maps entwickelt',
     write: 'Möchtest du ihm schreiben?',

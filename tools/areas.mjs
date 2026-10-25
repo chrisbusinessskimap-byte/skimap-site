@@ -30,7 +30,7 @@ if (!opt('geo')) throw new Error('manca --geo=<confini delle regioni ISTAT in Ge
 const GEO = JSON.parse(readFileSync(resolve(process.cwd(), opt('geo')), 'utf8'));
 if (!opt('countries')) throw new Error('manca --countries=<confini dei paesi di Natural Earth in GeoJSON>');
 const COUNTRIES = JSON.parse(readFileSync(resolve(process.cwd(), opt('countries')), 'utf8'));
-const IDS = ['superski', 'ovindoli', 'campofelice', 'vialattea', 'livigno', 'altosangro', 'skirama'];
+const IDS = ['superski', 'ovindoli', 'campofelice', 'vialattea', 'livigno', 'altosangro', 'skirama', 'monterosa'];
 
 /* tipi OSM → le tre famiglie che la pagina conta */
 const LIFT_GROUP = {
@@ -112,8 +112,17 @@ const skiramaRefs = JSON.parse(readFileSync(join(DATA, 'regions', 'skirama.json'
   return [la, lo, SKIRAMA_OFFICIAL[n]];
 });
 if (new Set(skiramaRefs.map((r) => r[2])).size !== 8) throw new Error('le località di Skirama non sono 8');
+/* Monterosa Ski (R11, 24-10): le 8 località dello skipass, in Valle d'Aosta (Champoluc-Frachey, Antagnod, Brusson,
+   Gressoney, Champorcher) e in Piemonte (Alagna Valsesia, Alpe di Mera). I punti vengono dalla regione dell'app
+   (data/regions/monterosa.json, uno per base e arrivo di impianto): i nomi sono già quelli dello skipass. */
+const MONTEROSA_NAMES = ['Champoluc-Frachey', 'Antagnod', 'Brusson', 'Gressoney-La-Trinité', 'Gressoney-Saint-Jean', 'Alagna Valsesia', 'Alpe di Mera', 'Champorcher'];
+const monterosaRefs = JSON.parse(readFileSync(join(DATA, 'regions', 'monterosa.json'), 'utf8')).areas.map(([la, lo, n]) => {
+  if (!MONTEROSA_NAMES.includes(n)) throw new Error(`località di Monterosa senza nome ufficiale: ${n}`);
+  return [la, lo, n];
+});
+if (new Set(monterosaRefs.map((r) => r[2])).size !== 8) throw new Error('le località di Monterosa non sono 8');
 /* i punti di riferimento delle aree divise fra più regioni */
-const REFS = { superski: refs, skirama: skiramaRefs };
+const REFS = { superski: refs, skirama: skiramaRefs, monterosa: monterosaRefs };
 /* il comprensorio di un punto è quello del punto di riferimento più vicino */
 const comprensorioOf = (id, [lon, lat]) => {
   let best = null, bd = Infinity;
@@ -212,7 +221,7 @@ const ring = (r, cut = false) => {
 /* dove scrivere il nome delle regioni con aree, e da che parte: a mano, perché il posto libero lo decide la forma */
 const LABEL_AT = {
   'trentino-alto-adige': [12.2, 46.86, 'start'], veneto: [12.75, 45.5, 'start'], lombardia: [9.25, 46.6, 'end'],
-  piemonte: [7.75, 44.12, 'start'], abruzzo: [14.25, 42.0, 'start'],
+  piemonte: [7.75, 44.12, 'start'], 'valle-d-aosta': [5.0, 45.55, 'start'], abruzzo:[14.25, 42.0, 'start'],
 };
 /* i paesi che confinano con l'Italia (e i piccoli stati dentro e accanto), sbiaditi; il nome solo ai quattro grandi */
 const NEIGHBORS = ['FRA', 'CHE', 'AUT', 'SVN', 'LIE', 'MCO', 'SMR', 'VAT'];

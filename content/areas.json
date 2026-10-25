@@ -151,11 +151,11 @@
    ]
   },
   "vialattea": {
-   "pisteKm": 328,
+   "pisteKm": 302,
    "byDiff": {
-    "easy": 125,
-    "intermediate": 170,
-    "advanced": 32
+    "easy": 121,
+    "intermediate": 157,
+    "advanced": 24
    },
    "lifts": 101,
    "liftGroups": {
@@ -214,11 +214,11 @@
    ]
   },
   "skirama": {
-   "pisteKm": 297,
+   "pisteKm": 296,
    "byDiff": {
     "easy": 123,
     "intermediate": 136,
-    "advanced": 38
+    "advanced": 37
    },
    "lifts": 161,
    "liftGroups": {
@@ -236,11 +236,11 @@
    ],
    "parts": {
     "trentino-alto-adige": {
-     "pisteKm": 248,
+     "pisteKm": 247,
      "byDiff": {
       "easy": 114,
       "intermediate": 105,
-      "advanced": 29
+      "advanced": 28
      },
      "lifts": 135,
      "liftGroups": {
@@ -276,7 +276,7 @@
       ],
       [
        "Monte Bondone",
-       13
+       12
       ]
      ],
      "border": 15,
@@ -306,6 +306,100 @@
      "missing": []
     }
    }
+  },
+  "monterosa": {
+   "pisteKm": 130,
+   "byDiff": {
+    "easy": 29,
+    "intermediate": 78,
+    "advanced": 23
+   },
+   "lifts": 52,
+   "liftGroups": {
+    "cabin": 10,
+    "chair": 23,
+    "surface": 19
+   },
+   "topFloor": 3000,
+   "bus": true,
+   "train": false,
+   "subAreas": null,
+   "regions": [
+    "valle-d-aosta",
+    "piemonte"
+   ],
+   "parts": {
+    "valle-d-aosta": {
+     "pisteKm": 100,
+     "byDiff": {
+      "easy": 23,
+      "intermediate": 65,
+      "advanced": 13
+     },
+     "lifts": 39,
+     "liftGroups": {
+      "cabin": 7,
+      "chair": 18,
+      "surface": 14
+     },
+     "topFloor": 2900,
+     "comprensori": [
+      [
+       "Gressoney-La-Trinité",
+       30
+      ],
+      [
+       "Champoluc-Frachey",
+       27
+      ],
+      [
+       "Champorcher",
+       15
+      ],
+      [
+       "Antagnod",
+       11
+      ],
+      [
+       "Brusson",
+       10
+      ],
+      [
+       "Gressoney-Saint-Jean",
+       8
+      ]
+     ],
+     "border": 0,
+     "missing": []
+    },
+    "piemonte": {
+     "pisteKm": 30,
+     "byDiff": {
+      "easy": 7,
+      "intermediate": 13,
+      "advanced": 9
+     },
+     "lifts": 13,
+     "liftGroups": {
+      "cabin": 3,
+      "chair": 5,
+      "surface": 5
+     },
+     "topFloor": 3000,
+     "comprensori": [
+      [
+       "Alpe di Mera",
+       15
+      ],
+      [
+       "Alagna Valsesia",
+       14
+      ]
+     ],
+     "border": 1,
+     "missing": []
+    }
+   }
   }
  },
  "regions": {
@@ -322,11 +416,15 @@
    "altosangro"
   ],
   "piemonte": [
-   "vialattea"
+   "vialattea",
+   "monterosa"
   ],
   "lombardia": [
    "livigno",
    "skirama"
+  ],
+  "valle-d-aosta": [
+   "monterosa"
   ]
  }
 }

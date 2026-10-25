@@ -417,7 +417,7 @@ ${ctaBand(l)}
 const AREAS = JSON.parse(readFileSync(join(root, 'content/areas.json'), 'utf8'));
 const ITALY = JSON.parse(readFileSync(join(root, 'content/italy.json'), 'utf8'));
 /* da ovest a est e da nord a sud, come si legge la cartina */
-const REGION_IDS = ['piemonte', 'lombardia', 'trentino-alto-adige', 'veneto', 'abruzzo'];
+const REGION_IDS = ['valle-d-aosta', 'piemonte', 'lombardia', 'trentino-alto-adige', 'veneto', 'abruzzo'];
 if (REGION_IDS.join() !== [...REGION_IDS].filter((r) => AREAS.regions[r]).join() || Object.keys(AREAS.regions).length !== REGION_IDS.length) throw new Error('le regioni di content/areas.json non sono quelle di REGION_IDS');
 const MAP_NAME = { skirama: 'Skirama' };
 function areas(l) {

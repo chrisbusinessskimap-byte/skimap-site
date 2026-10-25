@@ -43,7 +43,7 @@ export default {
     open: 'Apri',
     doors: {
       how: ['Come funziona', 'Un percorso.<br>Tutto il giro.', 'Il giro tra comprensori, i tre passi e tutte le funzioni.'],
-      areas: ['Aree', 'Sette aree<br>al lancio.', 'Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno e Skirama.'],
+      areas: ['Aree', 'Otto aree<br>al lancio.', 'Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno, Skirama e Monterosa Ski.'],
       faq: ['Domande', 'Domande<br>e risposte.', 'Quando esce, iPhone, rete, lingue, posizione.'],
     },
     trustBox: {
@@ -98,9 +98,9 @@ export default {
 
   areas: {
     title: 'Aree · Ski Maps',
-    desc: 'Dove funziona Ski Maps al lancio: Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea con Bardonecchia, Livigno e Skirama Dolomiti Adamello Brenta.',
-    eyebrow: 'Aree', h1: 'Sette aree<br><em>al lancio.</em>',
-    lede: 'Al lancio Ski Maps funziona in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno e Skirama.',
+    desc: 'Dove funziona Ski Maps al lancio: Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea con Bardonecchia, Livigno, Skirama Dolomiti Adamello Brenta e Monterosa Ski.',
+    eyebrow: 'Aree', h1: 'Otto aree<br><em>al lancio.</em>',
+    lede: 'Al lancio Ski Maps funziona in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea, Livigno, Skirama e Monterosa Ski.',
     items: {
       superski: ['Dolomiti Superski', 'Alto Adige, Trentino e Veneto', 'Compresi Sellaronda, Cortina – Alta Badia e Fassa – Fiemme.'],
       ovindoli: ['Ovindoli', 'Abruzzo', 'Sul Monte Magnola.'],
@@ -109,8 +109,9 @@ export default {
       livigno: ['Livigno', 'Lombardia', 'Mottolino, Carosello 3000 e Tagliede, uniti dallo Skilink.'],
       altosangro: ['Alto Sangro', 'Abruzzo', 'Roccaraso e Rivisondoli, con i settori Aremogna, Monte Pratello e Pizzalto.'],
       skirama: ['Skirama Dolomiti Adamello Brenta', 'Trentino e Lombardia', 'Madonna di Campiglio, Pinzolo, Folgarida-Marilleva, Pejo, Pontedilegno-Tonale, Paganella, Monte Bondone e Alpe Cimbra.'],
+      monterosa: ['Monterosa Ski', 'Valle d’Aosta e Piemonte', 'Champoluc, Antagnod, Brusson, Gressoney, Alagna, Alpe di Mera e Champorcher, con le tre valli unite al Colle Bettaforca e al Passo dei Salati.'],
     },
-    regionNames: { 'trentino-alto-adige': 'Trentino-Alto Adige', veneto: 'Veneto', lombardia: 'Lombardia', piemonte: 'Piemonte', abruzzo: 'Abruzzo' },
+    regionNames: { 'trentino-alto-adige': 'Trentino-Alto Adige', veneto: 'Veneto', lombardia: 'Lombardia', piemonte: 'Piemonte', 'valle-d-aosta': 'Valle d’Aosta', abruzzo: 'Abruzzo' },
     countries: { FRA: 'Francia', CHE: 'Svizzera', AUT: 'Austria', SVN: 'Slovenia' },
     pick: 'Scegli una regione',
     hint: 'Tocca una regione sulla cartina, o sceglila qui sotto.',
@@ -138,7 +139,7 @@ export default {
     items: [
       ['Quando esce?', 'È in arrivo su Google Play. <a href="{home}#avvisami">Lascia la tua email</a> e ti avvisiamo quando esce.'],
       ['C’è anche per iPhone?', 'La versione per iOS arriverà in seguito.'],
-      ['Dove funziona?', 'Al lancio in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea (con Bardonecchia), Livigno e Skirama.'],
+      ['Dove funziona?', 'Al lancio in Dolomiti Superski, Ovindoli, Campo Felice, Alto Sangro, Vialattea (con Bardonecchia), Livigno, Skirama e Monterosa Ski.'],
       ['Funziona senza rete?', 'Sì. Mappe e percorsi si scaricano prima e funzionano anche offline.'],
       ['Devo guardare il telefono mentre scio?', 'No. Con la guida vocale le indicazioni arrivano a voce, e la navigazione continua con il telefono in tasca.'],
       ['E se un impianto chiude?', 'Ski Maps conosce chiusure e orari degli impianti e ti avvisa se riesci a tornare in tempo.'],
@@ -156,7 +157,7 @@ export default {
       'Ski Maps è il progetto di <strong>Christian</strong>, 22 anni, di Roma.',
       'Viene dall’ingegneria energetica e oggi frequenta la laurea magistrale in Strategic Management alla LUISS Guido Carli: competenze tecniche e visione di prodotto, messe al servizio di chi scia.',
       'Lo sviluppa con un obiettivo chiaro: dare a chi scia un navigatore che lo porti dove vuole arrivare, pista dopo pista e impianto dopo impianto, ovunque si trovi.',
-      'Si parte dalle sette aree del lancio. Il traguardo sono le piste di tutto il mondo.',
+      'Si parte dalle otto aree del lancio. Il traguardo sono le piste di tutto il mondo.',
     ],
     photoAlt: 'Foto di Christian, che sviluppa Ski Maps',
     write: 'Vuoi scrivergli?',
