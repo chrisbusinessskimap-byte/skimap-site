@@ -209,8 +209,8 @@ var L10N = window.SKIMAP_T || {};
     var w=Math.ceil(g.measureText(text).width)+34, h=fs+22; c.width=w*2; c.height=h*2; g.scale(2,2);
     g.font=(strong?'700 ':'600 ')+fs+'px Barlow, sans-serif';
     g.shadowColor='rgba(16,20,24,.3)'; g.shadowBlur=10; g.shadowOffsetY=3;
-    g.fillStyle = strong ? '#101418' : 'rgba(255,255,255,.97)'; g.beginPath(); if (g.roundRect) g.roundRect(4,4,w-8,h-8,10); else g.rect(4,4,w-8,h-8); g.fill();
-    g.shadowColor='transparent'; g.fillStyle = strong ? '#ffb300' : '#101418'; g.textBaseline='middle'; g.fillText(text, 17, h/2+1);
+    g.fillStyle = strong ? '#0b1430' : 'rgba(255,255,255,.97)'; g.beginPath(); if (g.roundRect) g.roundRect(4,4,w-8,h-8,10); else g.rect(4,4,w-8,h-8); g.fill();
+    g.shadowColor='transparent'; g.fillStyle = strong ? '#6fd6ff' : '#0b1430'; g.textBaseline='middle'; g.fillText(text, 17, h/2+1);
     var tex=new T.CanvasTexture(c); tex.minFilter=T.LinearFilter;
     var sp=new T.Sprite(new T.SpriteMaterial({ map:tex, transparent:true, depthTest:false }));
     var kmH = small ? .3 : .36; sp.scale.set(kmH*w/h, kmH, 1); sp.center.set(0, .5); sp.renderOrder=10;
@@ -238,8 +238,8 @@ var L10N = window.SKIMAP_T || {};
       var sp=makeLabel(HUBS[n.name]||n.name, false, true); sp.position.copy(toWorld(n.lat,n.lon,60)).add(new T.Vector3(.1,.16,0)); scene.add(sp); labelSprites.push(sp); }
     for (var k=0;k<PEAKS.length;k++){ var P=PEAKS[k]; var ps=makeLabel('▲ '+P[2]+' · '+fmtN(P[3])+' m', true, true); ps.position.copy(toWorld(P[0],P[1],120)).add(new T.Vector3(.1,.2,0)); scene.add(ps); }
     /* destinazione */
-    targetMesh=new T.Mesh(new T.SphereGeometry(.11,18,14), new T.MeshBasicMaterial({color:0xffb300})); scene.add(targetMesh);
-    targetRing=new T.Mesh(new T.RingGeometry(.22,.3,40), new T.MeshBasicMaterial({color:0xff7a00, transparent:true, opacity:.7, side:T.DoubleSide, depthTest:false})); targetRing.rotation.x=-Math.PI/2; scene.add(targetRing);
+    targetMesh=new T.Mesh(new T.SphereGeometry(.11,18,14), new T.MeshBasicMaterial({color:0xff6b4a})); scene.add(targetMesh);
+    targetRing=new T.Mesh(new T.RingGeometry(.22,.3,40), new T.MeshBasicMaterial({color:0xff6b4a, transparent:true, opacity:.7, side:T.DoubleSide, depthTest:false})); targetRing.rotation.x=-Math.PI/2; scene.add(targetRing);
     hoverSprite=null;
     layout(); pickTarget(false);
     cv.addEventListener('pointerdown', onDown); cv.addEventListener('pointermove', onMove); cv.addEventListener('pointerleave', function(){ setHover(-1); });
@@ -269,7 +269,7 @@ var L10N = window.SKIMAP_T || {};
     if (pts.length<2) return;
     var curve=new T.CatmullRomCurve3(pts, false, 'catmullrom', .0); var segs=Math.min(1200, Math.max(60, pts.length*2));
     var geo=new T.TubeGeometry(curve, segs, .038, 7, false);
-    routeMesh=new T.Mesh(geo, new T.MeshBasicMaterial({ color:0xffb300 })); routeMesh.renderOrder=5; scene.add(routeMesh);
+    routeMesh=new T.Mesh(geo, new T.MeshBasicMaterial({ color:0x6fd6ff })); routeMesh.renderOrder=5; scene.add(routeMesh);
     routeTotal=geo.index.count; routeShown = reduce ? routeTotal : 0; geo.setDrawRange(0, routeShown);
   }
   function pickTarget(user, forced){

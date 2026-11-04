@@ -2,5 +2,6 @@ Font inclusi nel sito, tutti con licenza SIL Open Font License 1.1 (https://open
 - Big Shoulders Display
 - Barlow
 - IBM Plex Mono
+- Space Grotesk (solo il nome nel logo, peso 700, sottoinsieme latino)
 Sottoinsieme "latin" scaricato da Google Fonts (https://fonts.google.com).
 Il testo completo della licenza è disponibile all'indirizzo qui sopra.

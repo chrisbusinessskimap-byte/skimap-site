@@ -128,7 +128,7 @@ function head(l, key, { title, desc, ogAlt }) {
 ${GENERATED}
 <title>${title}</title>
 <meta name="description" content="${attr(desc)}">
-<meta name="theme-color" content="#101418">
+<meta name="theme-color" content="#0b1430">
 <link rel="canonical" href="${url}">
 ${alts}
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
