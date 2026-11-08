@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy notice · Ski Maps</title>
-<meta name="description" content="Ski Maps privacy notice, version 6: your position stays on the phone, what can leave it (diagnostics, reports, times), who else sees something, for how long, and your rights.">
+<meta name="description" content="Ski Maps privacy notice, version 7: your position stays on the phone, what can leave it (diagnostics, reports, times), who else sees something, for how long, and your rights.">
 <meta name="theme-color" content="#101418">
 <link rel="canonical" href="https://skimaps.cc/en/privacy.html">
 <link rel="alternate" hreflang="it" href="https://skimaps.cc/privacy.html">
@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Ski Maps">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Privacy notice · Ski Maps">
-<meta property="og:description" content="Ski Maps privacy notice, version 6: your position stays on the phone, what can leave it (diagnostics, reports, times), who else sees something, for how long, and your rights.">
+<meta property="og:description" content="Ski Maps privacy notice, version 7: your position stays on the phone, what can leave it (diagnostics, reports, times), who else sees something, for how long, and your rights.">
 <meta property="og:url" content="https://skimaps.cc/en/privacy.html">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="it_IT">
@@ -25,7 +25,7 @@
 <meta property="og:image:alt" content="Ski Maps logo with the words “GPS Navigator for Skiers · Navigatore GPS per sciatori”">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Privacy notice · Ski Maps">
-<meta name="twitter:description" content="Ski Maps privacy notice, version 6: your position stays on the phone, what can leave it (diagnostics, reports, times), who else sees something, for how long, and your rights.">
+<meta name="twitter:description" content="Ski Maps privacy notice, version 7: your position stays on the phone, what can leave it (diagnostics, reports, times), who else sees something, for how long, and your rights.">
 <meta name="twitter:image" content="https://skimaps.cc/assets/og-image.png">
 <style>@view-transition{navigation:auto}</style>
 <link rel="stylesheet" href="../assets/fonts.css">
@@ -65,7 +65,7 @@
   <div class="view-head"><div class="wrap">
     <div class="eyebrow"><span class="disc amber"></span>Privacy</div>
     <h1 class="pagetitle">What stays on your phone, what leaves it.</h1>
-    <p class="lede measure">The same notice you find in the app, under Settings → Privacy notice. Updated 17 October 2026 · version 6.</p>
+    <p class="lede measure">The same notice you find in the app, under Settings → Privacy notice. Updated 8 November 2026 · version 7.</p>
   </div></div>
 
   <div class="view-body"><div class="wrap">
@@ -107,6 +107,9 @@
       <h2 id="step-times">How long each leg takes</h2>
       <p>During navigation the app compares, leg by leg, the time it had estimated with the time you actually took, and sends the server: the kind of leg (the difficulty of the run or the type of lift), the length rounded to 10 metres, the level you chose, the estimated and the real minutes, and the hour of the day the leg started. Not your position, not the names or codes of the runs, not the exact time, not the route. It makes the times the app gives everyone more accurate. Legs with a long stop, a GPS gap or a time out of scale are thrown away on the phone and never leave it. They are sent together at the end of navigation, with the pseudonym of the day, like reports, and are switched off by the same switch as waiting times, “Automatic contributions” in Settings.</p>
 
+      <h2 id="views">The place cards you open</h2>
+      <p>When you open the card of a place in Explore — a hut, a rental shop, a viewpoint — the app sends the server two things: the resort and which place. Only once a day per place, without your position and without the time: the server adds the day. Next to it there is the pseudonym of the day, as for lift waiting times. It is used to show the places «trending today», together with the tracks of those who said yes: a place appears only when at least 5 people have opened it, and nobody sees who. It falls under «Automatic contributions»: off, nothing is sent. «Delete my data» removes from the phone those not yet sent and asks the server to delete today’s. The app reads the Explore content (events, opening hours, tours) without sending anything about you.</p>
+
       <h2 id="traces">Piste tracks (only if you say yes)</h2>
       <p>This is the only case in which coordinates leave the phone, and it happens only if you said yes to the question on the first screen, or in You. When you navigate, when you record your day and when you keep the map open, the app snaps your position to pistes and lifts and sends the server: the pistes and lifts you rode, in what order, with the seconds of entry and exit, stops and the queue before each lift; and the GPS points (latitude, longitude, accuracy, speed, altitude, time) recorded ON pistes and lifts, with the map version and the chosen level. Points away from the pistes — the town, the hotel, the car park, the bus — are not sent, nor are the first and last 2 minutes of each recording. They carry the day’s pseudonym and a random key that is new every day, which links the recordings of the same day but not two days together: not your account, not the diagnostics code. They are used to work out how long each piste really takes and how long you wait at each lift, to say how crowded the pistes are hour by hour and to understand how people move around the ski area. The figures derived from them may be shared with lift companies, only in aggregate form and never below 5 people. A track with times is still personal data, even if pseudonymous: that is why your yes is needed, and why you can turn it off in You whenever you like. The legal basis is consent (art. 6.1.a GDPR).</p>
       <p>“Record your day”, in Contribute, keeps GPS on even in your pocket and at the end shows runs, km, vertical, lifts and minutes queuing: these statistics stay on the phone. It stops with “Stop”, after 8 hours, when you change region or after an hour away from the pistes. It also works without a yes to tracks: then the day is not sent.</p>
@@ -126,7 +129,7 @@
       <h2 id="third-parties">Who else sees something</h2>
       <p>As with any app that uses the network, the services that are contacted see your IP address:</p>
       <ul>
-        <li><strong>Supabase</strong> (database): receives diagnostic events, votes, waiting times, leg times and, if you said yes, piste tracks; and, if you create an account, your email address and synced preferences</li>
+        <li><strong>Supabase</strong> (database): receives diagnostic events, votes, waiting times, leg times, the place cards you opened and, if you said yes, piste tracks; and, if you create an account, your email address and synced preferences</li>
         <li><strong>Cloudflare R2</strong>: this is where the app downloads the route map and the ski-area status and, if you turn on the satellite, the winter photo: in that case it sees which areas you look at</li>
         <li><strong>MapTiler</strong>: serves the background maps, so it sees which areas you look at and which you download for offline use. If its map is unavailable, the app falls back to OpenStreetMap maps, with the same effect</li>
         <li><strong>Brevo</strong>: sends the email with the code to sign in to your account, so it receives your email address</li>
@@ -135,7 +138,7 @@
       <p>These steps do not depend on diagnostics: they are what makes the map and, if you create one, the account work. No data is sold, or used for profiling or advertising. Supabase, Cloudflare, MapTiler and Brevo process this data on behalf of the controller: they are data processors and do not decide what happens to it.</p>
 
       <h2 id="retention">For how long</h2>
-      <p>Nothing stays on the server for ever: every night whatever has expired is deleted automatically. Diagnostic events are kept 12 months, covering a whole season and the summer in which the map is fixed. Piste votes are shown in the app for 12 hours and stay on the phone for the same time; on the server they are deleted after 30 days, waiting times after 60, leg times after 12 months. Of tracks, GPS points are deleted after 12 months and piste passages after 24, because they are used to compare two seasons; the figures derived from them (times and crowding per piste, never below 5 people) no longer concern anyone and are kept. The anonymous user is deleted after 12 months without use; the account, if you create one, stays until you delete it and is deleted automatically after 24 months without use, together with synced preferences. The key that acts as the pseudonym for votes, times and tracks is deleted every night, as soon as the day ends.</p>
+      <p>Nothing stays on the server for ever: every night whatever has expired is deleted automatically. Diagnostic events are kept 12 months, covering a whole season and the summer in which the map is fixed. Piste votes are shown in the app for 12 hours and stay on the phone for the same time; on the server they are deleted after 30 days, waiting times after 60, leg times after 12 months. Of tracks, GPS points are deleted after 12 months and piste passages after 24, because they are used to compare two seasons; the figures derived from them (times and crowding per piste, never below 5 people) no longer concern anyone and are kept. The anonymous user is deleted after 12 months without use; the account, if you create one, stays until you delete it and is deleted automatically after 24 months without use, together with synced preferences. The key that acts as the pseudonym for votes, times and tracks is deleted every night, as soon as the day ends. The place cards you opened are deleted after 30 days.</p>
 
       <h2 id="rights">Your rights</h2>
       <p>You can withdraw consent any time in You: to diagnostics and to tracks with their switches, and with “Automatic contributions” you can object to the measurements the app makes by itself. With “Delete my data” the app removes from the phone the random code, the events still waiting to be sent, saved votes, times and tracks not yet sent, the pending navigation and the offline route maps, and turns tracks off; it asks the server to delete ALL tracks sent from this phone, including those of earlier days (the phone knows their keys); and, if you have no account, it asks the server (as soon as there is a connection) to delete the anonymous user and the votes, waiting times and leg times sent today — those of earlier days can no longer be linked to you. If you have an account, you are signed out: the account stays, and “Delete account” (in You → Account) deletes it from the server straight away together with synced preferences and today’s contributions. On restart you are asked again what you prefer. The rest of what has already reached the server stays there until it expires. For a copy of your account data write to <a href="mailto:chris.business.skimap@gmail.com?subject=Privacy%20Ski%20Maps">chris.business.skimap@gmail.com</a> from the account’s address. To find out which diagnostic events exist, or to have them deleted earlier, write to <a href="mailto:chris.business.skimap@gmail.com?subject=Privacy%20Ski%20Maps">chris.business.skimap@gmail.com</a>: you will get an answer within a month. To find them the random code is needed, which you find in Settings: note it down before deleting it. Reports, waiting times and leg times, instead, are not linked to that code nor, from the next day, to any user: we have no way to know which are yours, and they are deleted automatically when they expire. You can also lodge a complaint with the Italian data protection authority (<a href="https://www.garanteprivacy.it">garanteprivacy.it</a>) or the supervisory authority of the country where you live.</p>
