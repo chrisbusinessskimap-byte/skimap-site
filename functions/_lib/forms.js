@@ -23,10 +23,10 @@ export function wantsJson(request) {
 
 const NO_STORE = { 'Cache-Control': 'no-store' };
 
-/* code: 'ok' | 'invalid' | 'fail' */
-export function reply(request, { code, back, id }) {
+/* code: 'ok' | 'invalid' | 'fail'. `reason` (solo nel JSON, solo per 'fail'): perché Brevo o la configurazione hanno detto no. Mai l'email, mai la chiave. */
+export function reply(request, { code, back, id, reason }) {
   const status = code === 'ok' ? 200 : code === 'invalid' ? 400 : 502;
-  if (wantsJson(request)) return new Response(JSON.stringify({ ok: code === 'ok', code }), { status, headers: { 'Content-Type': 'application/json', ...NO_STORE } });
+  if (wantsJson(request)) return new Response(JSON.stringify(code === 'fail' && reason ? { ok: false, code, reason } : { ok: code === 'ok', code }), { status, headers: { 'Content-Type': 'application/json', ...NO_STORE } });
   return new Response(null, { status: 303, headers: { Location: `${back}#${id}-${code}`, ...NO_STORE } });
 }
 
@@ -41,6 +41,9 @@ export async function brevo(env, path, body, fetchImpl = fetch) {
   try { json = await res.json(); } catch { /* 204: nessun corpo */ }
   return { status: res.status, json };
 }
+
+/* la causa di un rifiuto di Brevo, senza dati personali: «brevo-401-unauthorized», «brevo-400-invalid_parameter» */
+export const why = (r) => `brevo-${r.status}${r.json?.code ? '-' + String(r.json.code).replace(/[^a-z0-9_]/gi, '').slice(0, 40) : ''}`;
 
 /* Cloudflare Turnstile, solo se il progetto ha il segreto: senza segreto il controllo è spento (anteprime e prove) */
 export async function turnstileOk(env, token, ip, fetchImpl = fetch) {

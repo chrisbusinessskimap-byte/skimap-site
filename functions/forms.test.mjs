@@ -93,3 +93,15 @@ test('territorio: con il segreto di Turnstile serve la prova, senza no', async (
   assert.equal((await territorio({ request: req({ ...GOOD, 'cf-turnstile-response': 'buono' }), env }, stub)).headers.get('Location'), '/it/territorio/#territorio-ok');
   assert.ok(calls.some((u) => String(u).includes('smtp/email')));
 });
+
+test('il rifiuto dice perché, senza email né chiave (solo JSON)', async () => {
+  const json = { Accept: 'application/json' };
+  const run = async (env, stub) => (await avvisami({ request: req({ email: 'segreta@example.it' }, json), env }, stub)).json();
+  assert.deepEqual(await run({}, brevoStub(201)), { ok: false, code: 'fail', reason: 'no-secrets' });
+  assert.deepEqual(await run(ENV, brevoStub(401, { code: 'unauthorized', message: 'Key not found' })), { ok: false, code: 'fail', reason: 'brevo-401-unauthorized' });
+  assert.deepEqual(await run(ENV, brevoStub(400, { code: 'invalid_parameter' })), { ok: false, code: 'fail', reason: 'brevo-400-invalid_parameter' });
+  assert.deepEqual(await run(ENV, async () => { throw new Error('rete'); }), { ok: false, code: 'fail', reason: 'network' });
+  const t = await territorio({ request: req({ name: 'A', org: 'B', email: 'a@b.it', msg: 'm', consent: 'on' }, json), env: ENV }, brevoStub(403, { code: 'permission_denied' }));
+  assert.deepEqual(await t.json(), { ok: false, code: 'fail', reason: 'brevo-403-permission_denied' });
+  assert.ok(!JSON.stringify(await (await avvisami({ request: req({ email: 'segreta@example.it' }, json), env: ENV }, brevoStub(500, { message: 'segreta@example.it k' })) ).json()).includes('segreta'));
+});

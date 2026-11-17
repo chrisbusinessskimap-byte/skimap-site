@@ -1,7 +1,7 @@
 /* POST /api/territorio: il modulo «Per il territorio». Manda un messaggio alla casella di Christian (TERRITORY_TO, di partenza la stessa del sito),
    con la risposta indirizzata a chi ha scritto. Brevo è solo il mezzo di invio (posta transazionale), non tiene una lista.
    Segreti del progetto Pages: BREVO_API_KEY, MAIL_FROM (un mittente verificato su skimaps.cc); facoltativi: TERRITORY_TO, TURNSTILE_SECRET. */
-import { LANGS, DEFAULT_TO, isEmail, clean, safeBack, safeId, reply, brevo, turnstileOk } from '../_lib/forms.js';
+import { LANGS, DEFAULT_TO, isEmail, clean, safeBack, safeId, reply, brevo, turnstileOk, why } from '../_lib/forms.js';
 
 export async function handle({ request, env }, fetchImpl = fetch) {
   let form;
@@ -9,7 +9,7 @@ export async function handle({ request, env }, fetchImpl = fetch) {
   const lang = LANGS.includes(form.get('lang')) ? form.get('lang') : 'en';
   const back = safeBack(form.get('back'), `/${lang}/`);
   const id = safeId(form.get('id'));
-  const done = (code) => reply(request, { code, back, id });
+  const done = (code, reason) => reply(request, { code, back, id, reason });
 
   if (clean(form.get('website'), 100)) return done('ok');
   const name = clean(form.get('name'), 120);
@@ -20,7 +20,7 @@ export async function handle({ request, env }, fetchImpl = fetch) {
   if (!name || !org || !isEmail(email) || !msg || form.get('consent') !== 'on') return done('invalid');
   const human = await turnstileOk(env, form.get('cf-turnstile-response'), request.headers.get('CF-Connecting-IP'), fetchImpl).catch(() => false);
   if (!human) return done('invalid');
-  if (!env.BREVO_API_KEY || !env.MAIL_FROM) return done('fail');
+  if (!env.BREVO_API_KEY || !env.MAIL_FROM) return done('fail', 'no-secrets');
 
   const text = [`Nome: ${name}`, `Ente: ${org}`, `Email: ${email}`, `Comprensorio: ${area || '—'}`, `Lingua della pagina: ${lang}`, '', msg].join('\n');
   try {
@@ -31,9 +31,9 @@ export async function handle({ request, env }, fetchImpl = fetch) {
       subject: `Per il territorio: ${org}`.slice(0, 200),
       textContent: text,
     }, fetchImpl);
-    return done(r.status === 201 ? 'ok' : 'fail');
+    return r.status === 201 ? done('ok') : done('fail', why(r));
   } catch {
-    return done('fail');
+    return done('fail', 'network');
   }
 }
 
