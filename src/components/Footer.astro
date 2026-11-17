@@ -2,7 +2,7 @@
 /* «Sito/Piede» (Figma 216:7161): colonne, riga di fondo con il marchio, le lingue e i crediti. Qui stanno anche la riga fissa
    «sito indipendente, non affiliato» (A14) e il credito del rilievo (A13). */
 import { LANGS, type Lang } from '../i18n/langs';
-import { PAGES, path, areaPath } from '../i18n/routes';
+import { path, areaPath } from '../i18n/routes';
 import { AREAS } from '../data/areas';
 import { t } from '../content';
 
@@ -13,7 +13,7 @@ const f = c.ui.footer;
 const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
 const how = path(lang, 'how');
 ---
-<footer class="foot">
+<footer class="foot cv">
   <div class="wrap">
     <div class="cols">
       <div>

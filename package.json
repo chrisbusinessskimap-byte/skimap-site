@@ -12,7 +12,10 @@
     "tokens:check": "node scripts/figma-tokens.mjs --check",
     "manifest": "node scripts/sync-manifest.mjs",
     "relief": "node scripts/relief-images.mjs",
+    "test": "node --test functions/",
+    "typecheck": "astro check",
     "check": "node scripts/check/index.mjs",
+    "check:release": "node scripts/check/index.mjs --release",
     "check:browser": "node scripts/check/browser.mjs",
     "lighthouse": "node scripts/check/lighthouse.mjs"
   },
@@ -31,5 +34,8 @@
     "@types/qrcode": "^1.5.6",
     "playwright-core": "^1.65.1",
     "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

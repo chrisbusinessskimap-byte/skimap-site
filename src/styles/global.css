@@ -69,3 +69,6 @@ a[data-claim], span[data-claim] { text-decoration: none; }
   .ts-display-m { font-size: 32px; }
   .ts-titolo { font-size: 28px; }
 }
+
+/* le sezioni sotto la piega si disegnano quando servono: meno lavoro di stile e layout all'apertura (A9) */
+.cv { content-visibility: auto; contain-intrinsic-size: auto 900px; }

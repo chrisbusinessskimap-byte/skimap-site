@@ -3,7 +3,7 @@
    Sorgenti: skimap-data/docs/brand/v2/rilievo/rilievo_<ora>.jpg (2880 px, Dolomiti 11,35–12,45 E, 46,33–46,80 N, DEM Terrain Tiles z12,
    rigenerabili con relief.py + imhof.py). Crediti: pagina «Fonti e licenze» e piede (A13): nessuna immagine online senza.
      node scripts/relief-images.mjs --src=../skimap-data/docs/brand/v2/rilievo */
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import sharp from 'sharp';
@@ -13,12 +13,13 @@ const arg = (k, d) => (process.argv.find((a) => a.startsWith(`--${k}=`)) || '').
 const SRC = resolve(root, arg('src', '../skimap-data/docs/brand/v2/rilievo'));
 const OUT = join(root, 'public/relief');
 const HOURS = ['alba', 'mezzogiorno', 'tramonto', 'notte'];
-const WIDTHS = [640, 1200, 1800, 2400];
+const WIDTHS = [640, 960, 1200, 1800, 2400];
 
 mkdirSync(OUT, { recursive: true });
 let bytes = 0;
 for (const h of HOURS) {
   for (const w of WIDTHS) {
+    if (existsSync(join(OUT, `${h}-${w}.avif`)) && existsSync(join(OUT, `${h}-${w}.webp`))) continue; /* già fatti */
     const img = sharp(join(SRC, `rilievo_${h}.jpg`)).resize({ width: w, withoutEnlargement: true });
     const a = await img.clone().avif({ quality: 52, effort: 5 }).toFile(join(OUT, `${h}-${w}.avif`));
     const b = await img.clone().webp({ quality: 66 }).toFile(join(OUT, `${h}-${w}.webp`));

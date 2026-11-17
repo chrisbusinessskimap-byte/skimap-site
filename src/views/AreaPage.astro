@@ -27,7 +27,7 @@ const subnav = [
 ---
 <Layout lang={lang} page="areas" area={slug} title={fill(a.metaTitle, vars)} description={fill(a.metaDescription, vars)}>
   <section class="hero" aria-labelledby="h-area">
-    <img class="bg" src={`${p.file}-l.webp`} srcset={`${p.file}-s.webp 640w, ${p.file}-l.webp 1600w`} sizes="100vw" width="1600" height={Math.round(1600 * p.height / p.width)} alt="" fetchpriority="high" decoding="async" />
+    <img class="bg" src={`${p.file}-m.webp`} srcset={`${p.file}-s.webp 480w, ${p.file}-m.webp 960w, ${p.file}-l.webp 1440w`} sizes="(max-width: 700px) 480px, 100vw" width="1440" height={Math.round(1440 * p.height / p.width)} alt="" fetchpriority="high" decoding="async" />
     <div class="veil" aria-hidden="true"></div>
     <div class="wrap copy">
       <p class="eyebrow ts-occhiello">{c.areas.where[area.where]}</p>

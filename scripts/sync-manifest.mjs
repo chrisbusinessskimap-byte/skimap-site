@@ -42,8 +42,8 @@ for (const r of manifest.resorts) {
     const res = await fetch(CDN + r.photo.url);
     if (!res.ok) throw new Error(`foto di ${r.id}: ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
-    for (const [w, tag] of [[640, 's'], [1600, 'l']]) {
-      await sharp(buf).resize({ width: w, withoutEnlargement: true }).webp({ quality: 72 }).toFile(join(root, `public/areas/${r.id}-${tag}.webp`));
+    for (const [w, tag] of [[480, 's'], [960, 'm'], [1440, 'l']]) {
+      await sharp(buf).resize({ width: w, withoutEnlargement: true }).webp({ quality: 62 }).toFile(join(root, `public/areas/${r.id}-${tag}.webp`));
     }
     const meta = await sharp(buf).metadata();
     entry.photo = {

@@ -4,8 +4,8 @@
 import type { Lang } from '../i18n/langs';
 import { t } from '../content';
 
-interface Props { lang: Lang; campaign: string; kind?: 'android' | 'ios'; dark?: boolean }
-const { lang, campaign, kind = 'android', dark = false } = Astro.props;
+interface Props { lang: Lang; campaign: string; kind?: 'android' | 'ios' }
+const { lang, campaign, kind = 'android' } = Astro.props;
 const c = t(lang);
 const state = (import.meta.env.STORE_STATE ?? 'soon') as 'soon' | 'play';
 const PACKAGE = 'com.skimap';

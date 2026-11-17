@@ -7,15 +7,15 @@ import guida from '../assets/phones/guida.webp';
 import rientro from '../assets/phones/rientro.webp';
 import type { Screen } from '../content/types';
 
-interface Props { screen: Screen; alt: string; width?: number; loading?: 'eager' | 'lazy'; class?: string }
-const { screen, alt, width = 270, loading = 'lazy', class: cls } = Astro.props;
+interface Props { screen: Screen; alt: string; width?: number; loading?: 'eager' | 'lazy'; priority?: boolean; class?: string }
+const { screen, alt, width = 270, loading = 'lazy', priority = false, class: cls } = Astro.props;
 const img = { percorsi, guida, rientro }[screen];
 ---
 <figure class:list={['phone', cls]} data-claim="esempi-dichiarati" style={`--w:${width}px`}>
-  <Image src={img} alt={alt} width={406} height={860} loading={loading} decoding="async" widths={[270, 406]} sizes={`${width}px`} />
+  <Image src={img} alt={alt} width={406} height={860} loading={loading} fetchpriority={priority ? 'high' : undefined} decoding="async" widths={[270, 406]} quality={62} sizes={`${width}px`} />
 </figure>
 
 <style>
-  .phone { width: var(--w); max-width: 100%; filter: drop-shadow(0 24px 40px rgb(8 18 34 / 0.28)); }
+  .phone { width: var(--w); max-width: 100%; }
   .phone :global(img) { width: 100%; height: auto; }
 </style>

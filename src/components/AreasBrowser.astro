@@ -3,13 +3,11 @@
    senza JavaScript le chip non compaiono e si vedono tutti e otto. */
 import type { Lang } from '../i18n/langs';
 import { AREA_VIEWS, GROUPS } from '../data/areas';
-import { t } from '../content';
 import AreaCard from './AreaCard.astro';
 import SchematicMap from './SchematicMap.astro';
 
 interface Props { lang: Lang; filterLabel: string; all: string; groups: Record<string, string>; mapAria: string }
 const { lang, filterLabel, all, groups, mapAria } = Astro.props;
-void t;
 ---
 <div class="browser">
   <div class="chips" role="group" aria-label={filterLabel} data-chips hidden>
@@ -19,7 +17,7 @@ void t;
   <div class="body">
     <div class="mapcol"><div class="mappanel"><SchematicMap lang={lang} label={mapAria} /></div></div>
     <div class="cards" data-cards>
-      {AREA_VIEWS.map((a, i) => <AreaCard lang={lang} area={a} loading={i < 2 ? 'eager' : 'lazy'} />)}
+      {AREA_VIEWS.map((a) => <AreaCard lang={lang} area={a} />)}
     </div>
   </div>
 </div>

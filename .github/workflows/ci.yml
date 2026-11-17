@@ -1,0 +1,46 @@
+# La CI che blocca l'unione (P30, punto 4 del prompt). Il sito si pubblica da Cloudflare Pages (collegato al repo: ogni ramo ha la sua anteprima,
+# `main` è il dominio vero): qui non si pubblica niente, si controlla.
+#  - su ogni push e su ogni richiesta di unione: build, tipi, token del Figma, prova della funzione di `/`,
+#    controlli statici (hreflang, parità delle 5 lingue, registro delle frasi, indirizzi di oggi, legali sigillati, link),
+#    controllo nel browser (nessun cookie, nessuna richiesta esterna, axe, scorrimento orizzontale);
+#  - sulle richieste di unione verso `main`: i controlli «--release» (una frase «falsa» o «da verificare» ferma l'unione) e Lighthouse.
+# Il merge in `main` equivale a pubblicare: lo fa Christian, non questa CI.
+name: Controlli del sito
+on:
+  push:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Token del Figma (coincidono con l'istantanea)
+        run: npm run tokens:check
+      - name: Tipi
+        run: npm run typecheck
+      - name: Funzione di «/» (lingua del browser)
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Controlli statici
+        if: github.event_name != 'pull_request'
+        run: npm run check
+      - name: Controlli statici, modalità unione (le frasi «falsa» e «da verificare» fermano)
+        if: github.event_name == 'pull_request'
+        run: npm run check:release
+      - name: Browser (cookie, richieste esterne, axe, scorrimento orizzontale)
+        run: npm run check:browser
+      - name: Lighthouse (telefono, mediana di 3 prove, quattro categorie ≥ 95; la categoria SEO si misura sul dominio vero)
+        if: github.event_name == 'pull_request'
+        run: npm run lighthouse -- --runs=3 --preview

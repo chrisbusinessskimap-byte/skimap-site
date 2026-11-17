@@ -6,14 +6,14 @@ import { areaPath } from '../i18n/routes';
 import { type AreaView } from '../data/areas';
 import { t } from '../content';
 
-interface Props { lang: Lang; area: AreaView; loading?: 'eager' | 'lazy' }
-const { lang, area, loading = 'lazy' } = Astro.props;
+interface Props { lang: Lang; area: AreaView }
+const { lang, area } = Astro.props;
 const c = t(lang);
 const p = area.photo;
 ---
 <article class="card" data-group={area.group}>
   <a class="link" href={areaPath(lang, area.slug)}>
-    <img src={`${p.file}-s.webp`} srcset={`${p.file}-s.webp 640w, ${p.file}-l.webp 1600w`} sizes="(max-width: 640px) 90vw, 310px" width="640" height={Math.round(640 * p.height / p.width)} alt="" loading={loading} decoding="async" />
+    <img src={`${p.file}-m.webp`} srcset={`${p.file}-s.webp 480w, ${p.file}-m.webp 960w`} sizes="(max-width: 640px) 90vw, 310px" width="480" height={Math.round(480 * p.height / p.width)} alt="" loading="lazy" decoding="async" />
     <span class="veil" aria-hidden="true"></span>
     <span class="text">
       <span class="ts-sottotitolo name">{area.name}</span>

@@ -11,7 +11,7 @@ interface Props { lang: Lang; alt: string }
 const { lang, alt } = Astro.props;
 const c = t(lang);
 const HOURS: Hour[] = ['alba', 'mezzogiorno', 'tramonto', 'notte'];
-const WIDTHS = [640, 1200, 1800, 2400];
+const WIDTHS = [640, 960, 1200, 1800, 2400];
 const srcset = (h: Hour, ext: 'avif' | 'webp') => WIDTHS.map((w) => `/relief/${h}-${w}.${ext} ${w}w`).join(', ');
 const first: Hour = 'mezzogiorno';
 const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcset(h, 'avif'), webp: srcset(h, 'webp'), src: `/relief/${h}-1200.webp`, alt: c.ui.hours[h].alt }));
@@ -21,7 +21,7 @@ const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcse
     <picture class="layer on" data-layer={first}>
       <source type="image/avif" srcset={srcset(first, 'avif')} sizes="100vw" />
       <source type="image/webp" srcset={srcset(first, 'webp')} sizes="100vw" />
-      <img src={`/relief/${first}-1200.webp`} width="2400" height="1600" alt={c.ui.hours[first].alt} fetchpriority="high" decoding="async" />
+      <img src={`/relief/${first}-1200.webp`} width="1200" height="754" alt={c.ui.hours[first].alt} fetchpriority="low" decoding="async" />
     </picture>
   </div>
   <div class="veil" aria-hidden="true"></div>
@@ -53,27 +53,30 @@ const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcse
       const pic = document.createElement('picture');
       pic.className = 'layer';
       pic.dataset.layer = r.hour;
-      pic.innerHTML = `<source type="image/avif" srcset="${r.avif}" sizes="100vw"><source type="image/webp" srcset="${r.webp}" sizes="100vw"><img src="${r.src}" width="2400" height="1600" alt="${r.alt.replace(/"/g, '&quot;')}" decoding="async">`;
+      pic.innerHTML = `<source type="image/avif" srcset="${r.avif}" sizes="100vw"><source type="image/webp" srcset="${r.webp}" sizes="100vw"><img src="${r.src}" width="1200" height="754" alt="${r.alt.replace(/"/g, '&quot;')}" decoding="async">`;
       layers.appendChild(pic);
     };
     const show = (hour: string) => {
       const r = rest.find((x) => x.hour === hour);
       if (r) add(r);
-      hero.dataset.hour = hour;
-      hero.querySelectorAll('.layer').forEach((l) => l.classList.toggle('on', (l as HTMLElement).dataset.layer === hour));
-      picker.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.hour === hour)));
+      const apply = () => {
+        hero.dataset.hour = hour;
+        hero.querySelectorAll('.layer').forEach((l) => l.classList.toggle('on', (l as HTMLElement).dataset.layer === hour));
+        picker.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.hour === hour)));
+      };
+      /* la dissolvenza parte quando l'immagine è arrivata: mai un lampo vuoto */
+      const img = hero.querySelector<HTMLImageElement>(`[data-layer="${hour}"] img`);
+      if (img && !img.complete) img.addEventListener('load', apply, { once: true }); else apply();
     };
     picker.hidden = false;
     picker.addEventListener('click', (e) => {
       const b = (e.target as HTMLElement).closest('button');
       if (b && b.dataset.hour) show(b.dataset.hour);
     });
-    /* le altre tre immagini a pagina caricata e browser libero, a meno che l'utente chieda di risparmiare dati */
+    /* le altre tre immagini non si scaricano all'apertura (A9): arrivano quando il dito o il cursore si avvicinano al selettore, o al primo clic */
+    const warm = () => rest.forEach(add);
     const conn = (navigator as unknown as { connection?: { saveData?: boolean } }).connection;
-    if (!conn?.saveData) {
-      const idle = (window as unknown as { requestIdleCallback?: (cb: () => void) => void }).requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 2500));
-      window.addEventListener('load', () => idle(() => rest.forEach(add)), { once: true });
-    }
+    if (!conn?.saveData) (['pointerenter', 'focusin', 'touchstart'] as const).forEach((e) => picker.addEventListener(e, warm, { once: true, passive: true }));
   }
 </script>
 
@@ -92,7 +95,7 @@ const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcse
   }
   .content { position: relative; flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; padding-top: 120px; padding-bottom: 140px; }
   .picker-wrap { position: absolute; left: 0; right: 0; bottom: 40px; }
-  .picker { display: inline-flex; gap: 8px; padding: 8px; border-radius: var(--radius-pill); background: rgb(11 20 48 / 0.62); border: 1px solid rgb(255 255 255 / 0.16); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .picker { display: inline-flex; gap: 8px; padding: 8px; border-radius: var(--radius-pill); background: rgb(11 20 48 / 0.78); border: 1px solid rgb(255 255 255 / 0.16); }
   .pill { display: grid; justify-items: center; gap: 2px; min-width: 104px; padding: 10px 18px; border: 0; border-radius: var(--radius-pill); background: transparent; color: #fff; }
   .pill:hover { background: rgb(255 255 255 / 0.1); }
   .pill[aria-pressed='true'] { background: var(--brand-ghiaccio); color: var(--brand-abisso); }

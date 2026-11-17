@@ -27,12 +27,12 @@ const h = c.home;
       </div>
     </div>
     <div class="herophone">
-      <Phone screen="guida" alt={h.phoneAlt} width={300} loading="eager" />
+      <Phone screen="guida" alt={h.phoneAlt} width={300} loading="eager" priority />
       <p class="ts-credito example">{c.ui.example}</p>
     </div>
   </Hero>
 
-  <section class="moments" id="come-funziona" aria-labelledby="h-moments">
+  <section class="moments cv" id="come-funziona" aria-labelledby="h-moments">
     <div class="wrap">
       <p class="eyebrow ts-occhiello">{h.moments.eyebrow}</p>
       <h2 id="h-moments" class="ts-display-m">{h.moments.h}</h2>
@@ -51,7 +51,7 @@ const h = c.home;
     </div>
   </section>
 
-  <section class="areas" id="comprensori" aria-labelledby="h-areas">
+  <section class="areas cv" id="comprensori" aria-labelledby="h-areas">
     <div class="wrap">
       <p class="eyebrow ts-occhiello">{h.areas.eyebrow}</p>
       <h2 id="h-areas" class="ts-display-m">{h.areas.h}</h2>
@@ -61,7 +61,7 @@ const h = c.home;
     </div>
   </section>
 
-  <section class="band" aria-labelledby="h-cta">
+  <section class="band cv" aria-labelledby="h-cta">
     <div class="wrap">
       <h2 id="h-cta" class="ts-titolo">{h.cta.h}</h2>
       <p class="ts-lead" set:html={h.cta.p} />
