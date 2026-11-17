@@ -18,7 +18,7 @@ export const PAGES: Record<PageId, { live: boolean; slugs: Record<Lang, string> 
   privacy: { live: true, slugs: { it: 'privacy', en: 'privacy', de: 'privacy', fr: 'privacy', es: 'privacy' } },
   delete: { live: true, slugs: { it: 'elimina-account', en: 'delete-account', de: 'delete-account', fr: 'delete-account', es: 'delete-account' } },
   tours: { live: false, slugs: { it: 'giri', en: 'tours', de: 'touren', fr: 'circuits', es: 'rutas' } },
-  territory: { live: false, slugs: { it: 'territorio', en: 'for-resorts', de: 'fuer-skigebiete', fr: 'pour-les-domaines', es: 'para-las-zonas' } },
+  territory: { live: true, slugs: { it: 'territorio', en: 'for-resorts', de: 'fuer-skigebiete', fr: 'pour-les-domaines', es: 'para-las-zonas' } },
 };
 
 export const LEGAL_LANGS: Lang[] = ['it', 'en'];

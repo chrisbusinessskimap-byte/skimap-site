@@ -1,0 +1,27 @@
+---
+/* «Sito/Fascia gestori» (Figma 244:6395): in fondo all'indice e a ogni pagina di comprensorio, porta a «Per il territorio», dove sta il modulo
+   per farsi ricontattare da impianti, consorzi, scuole sci, rifugi e noleggi. */
+import { t } from '../content';
+import { path } from '../i18n/routes';
+import type { Lang } from '../i18n/langs';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const o = t(lang).areas.operators;
+---
+<aside class="band" aria-labelledby="h-ops">
+  <div class="text">
+    <h2 id="h-ops" class="ts-sottotitolo">{o.h}</h2>
+    <p class="ts-testo">{o.p}</p>
+  </div>
+  <a class="go" href={path(lang, 'territory')}>{o.cta}</a>
+</aside>
+
+<style>
+  .band { display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 32px 40px; border-radius: 32px; background: var(--color-soft); }
+  .text { display: grid; gap: 8px; min-width: 0; }
+  .text p { color: color-mix(in srgb, var(--color-ink) 80%, transparent); max-width: 60ch; margin: 0; }
+  .go { flex: none; padding: 16px 28px; border-radius: var(--radius-pill); background: var(--color-route); color: var(--brand-neve); font-family: var(--font-body); font-weight: 700; font-size: 17px; line-height: 1.2; text-decoration: none; }
+  .go:hover { background: color-mix(in srgb, var(--color-route) 88%, var(--brand-abisso)); }
+  @media (max-width: 767px) { .band { flex-direction: column; align-items: flex-start; padding: 28px 24px; gap: 20px; } }
+</style>

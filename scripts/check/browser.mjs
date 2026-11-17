@@ -20,6 +20,9 @@ const PAGES = [
   '/it/chi-siamo/', '/it/aiuto/', '/it/fonti-e-licenze/', '/it/privacy/', '/it/elimina-account/', '/en/privacy/',
   '/en/how-it-works/', '/de/so-funktionierts/', '/fr/comment-ca-marche/', '/es/como-funciona/',
   '/scarica/', '/download/superski/', '/404.html',
+  '/it/territorio/', '/en/for-resorts/', '/de/fuer-skigebiete/', '/fr/pour-les-domaines/', '/es/para-las-zonas/',
+  /* l'esito dei moduli: ritorno alla pagina con l'àncora, mostrata con :target (nessun JavaScript) */
+  '/it/#avvisami-hero-ok', '/it/#avvisami-hero-invalid', '/it/#avvisami-hero-fail', '/it/territorio/#territorio-ok', '/it/territorio/#territorio-invalid', '/it/territorio/#territorio-fail',
 ];
 const VIEWPORTS = [{ name: 'telefono', width: 390, height: 844 }, { name: 'computer', width: 1440, height: 900 }];
 

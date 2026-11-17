@@ -1,0 +1,20 @@
+---
+/* Dove prima c'erano i pulsanti dello store: con STORE_STATE=play il pulsante di Google Play (e «iPhone: in arrivo»); finché Play non ha il
+   collegamento (`soon`), il modulo «avvisami quando esce» (A15: il pulsante dice «in arrivo» finché Play non ha dato la produzione). */
+import type { Lang } from '../i18n/langs';
+import StoreButton from './StoreButton.astro';
+import Waitlist from './Waitlist.astro';
+
+interface Props { lang: Lang; campaign: string; id: string; back: string; dark?: boolean }
+const { lang, campaign, id, back, dark = false } = Astro.props;
+const state = (import.meta.env.STORE_STATE ?? 'soon') as 'soon' | 'play';
+---
+{state === 'play' ? (
+  <div class="buttons"><StoreButton lang={lang} campaign={campaign} /><StoreButton lang={lang} campaign={campaign} kind="ios" /></div>
+) : (
+  <Waitlist lang={lang} id={id} back={back} dark={dark} />
+)}
+
+<style>
+  .buttons { display: flex; flex-wrap: wrap; gap: 14px; }
+</style>

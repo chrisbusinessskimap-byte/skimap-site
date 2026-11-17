@@ -34,14 +34,22 @@ npm run relief         # le immagini del rilievo dalle sorgenti di skimap-data
 - `functions/index.js` — `/` per lingua del browser (Pages Function); senza `Accept-Language` resta la pagina di scelta della lingua.
 - `scripts/check/` — i controlli. `.github/workflows/ci.yml` li esegue; sulle richieste di unione verso `main` anche `--release` e Lighthouse.
 
+## I due moduli (nessun JavaScript)
+
+- **«Avvisami quando esce su Google Play»** (`src/components/Waitlist.astro`, Figma 243:6395 · 243:6402): al posto del pulsante dello store finché `STORE_STATE` non è `play` (home, fascia finale, `/scarica`, `/download/<id>`). POST a `/api/avvisami`: aggiunge l'indirizzo alla lista d'attesa di Brevo.
+- **«Per il territorio»** (`src/views/TerritoryPage.astro`, Figma 227:6617): modulo per farsi ricontattare da impianti, consorzi, scuole sci, rifugi e noleggi; fascia di rimando in fondo all'indice e alle pagine dei comprensori (Figma 244:6395). POST a `/api/territorio`: manda un messaggio alla casella di Christian.
+- Le due funzioni stanno in `functions/api/` (Pages Functions, prove in `functions/forms.test.mjs`): il browser parla solo con skimaps.cc, Brevo si chiama dal server. La risposta torna alla pagina con `#<id>-ok|-invalid|-fail` e il CSS la mostra con `:target`. Niente cookie, niente archivio, l'email non va nei registri.
+- Segreti del progetto Pages (non nel repo): `BREVO_API_KEY` · `BREVO_WAITLIST_ID` (lista d'attesa) · `MAIL_FROM` (mittente verificato su skimaps.cc) · `TERRITORY_TO` (facoltativo, di partenza `chris.business.skimap@gmail.com`) · `TURNSTILE_SECRET` (facoltativo). Variabile di build `PUBLIC_TURNSTILE_SITEKEY`: se c'è, solo la pagina del modulo carica Cloudflare Turnstile (`_headers` le apre la politica dei contenuti, unico scostamento).
+- Senza i segreti i moduli rispondono «non siamo riusciti a registrare»: la pagina dice l'indirizzo di posta, mai un errore muto.
+
 ## Regole del sito
 - Nome: **Ski Maps**. Nessun dato dal vivo o proprietario: ogni schermata e ogni orario è un **esempio dichiarato**. Niente attese, accuratezza, classifiche, grafo aperto, né numeri di utenti.
-- Il sito **non usa cookie, archivio del browser né richieste ad altri domini** (unica eccezione scritta, dal 4-12: Turnstile sulla pagina del modulo). Nessuno strumento di statistica: da dove arriva chi scarica lo dice la Play Console, dai parametri sul collegamento allo store.
+- Il sito **non usa cookie, archivio del browser né richieste ad altri domini** (unica eccezione scritta: Turnstile sulla pagina del modulo «Per il territorio», solo con la chiave pubblica). Nessuno strumento di statistica: da dove arriva chi scarica lo dice la Play Console, dai parametri sul collegamento allo store.
 - Il tema è fisso: home scura, pagine di spiegazione chiare. Telefono e computer alla pari.
 - Una frase che promette qualcosa ha un id nel registro e nel contratto (`POSIZIONAMENTO_CONTRATTO.md` del repo `skimap-data`, §6). Una macchina controlla solo le frasi marcate: le altre le cerca chi rilegge.
 - Ogni testo nuovo va in tutte e cinque le lingue. I legali di tedesco, francese e spagnolo rimandano all'inglese (eccezione scritta nel controllo di parità).
 - Non toccare i testi legali, `CONSENT_VERSION`, chiavi, R2 (solo lettura del manifest). L'informativa del sito è quella dell'app (stessa versione e data): `LEGAL_VERSION` in `src/i18n/langs.ts`.
 - Nessun logo di terzi; riga fissa «sito indipendente, non affiliato ai gestori» nel piede e nei comprensori. I consigli dei maestri escono col nome solo con l'approvazione scritta di quel maestro.
-- Pagine sotto la linea di taglio (4-12, `live: false` in `src/i18n/routes.ts`): giri, «Per il territorio» e il modulo, ricerca nell'aiuto, video, transizioni fra pagine.
+- Pagine sotto la linea di taglio (4-12, `live: false` in `src/i18n/routes.ts`): giri, ricerca nell'aiuto, video, transizioni fra pagine. «Per il territorio» e il modulo sono usciti dalla linea il 17-11 (scelta di Christian).
 
 Contatti: chris.business.skimap@gmail.com

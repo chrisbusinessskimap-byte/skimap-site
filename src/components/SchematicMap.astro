@@ -1,38 +1,45 @@
 ---
-/* «Sito/Mappa schematica · Alpi e Appennino» (Figma 217:7163): mappa disegnata, non a tessere. Gli archi di Alpi e Appennino e gli otto comprensori.
-   Le posizioni sono schematiche, non geografiche: la pagina lo dice. I nomi portano alla pagina del comprensorio. */
+/* «Sito/Mappa Italia · comprensori» (Figma 238:9145, copia di 217:7163): l'Italia con le regioni, i paesi confinanti in sfumatura e gli otto comprensori.
+   Contorno, regioni e confinanti da Natural Earth (dominio pubblico, credito in «Fonti e licenze»); spilli sulle coordinate vere, con Campo Felice, Ovindoli
+   e Alto Sangro staccati di qualche pixel per leggersi e per avere bersagli da 24 px: la pagina dice «posizioni indicative». Mappa disegnata, non a tessere.
+   Misure del Figma in px su un riquadro 600 × 680; qui diventano percentuali e `cqw`, così la mappa scala per intero. */
 import type { Lang } from '../i18n/langs';
 import { areaPath } from '../i18n/routes';
 import { AREAS } from '../data/areas';
 
 interface Props { lang: Lang; label: string }
 const { lang, label } = Astro.props;
-const W = 499.2, H = 436.8;
-/* posizioni dal Figma (px nel riquadro 499,2 × 436,8): spillo, nome */
-const PINS: Record<string, { pin: [number, number]; label: [number, number] }> = {
-  vialattea: { pin: [67.08, 125.58], label: [66.3, 143.52] },
-  monterosa: { pin: [133.38, 77.22], label: [124.8, 57.72] },
-  livigno: { pin: [250.38, 41.34], label: [241.8, 21.84] },
-  skirama: { pin: [308.88, 64.74], label: [284.7, 85.8] },
-  superski: { pin: [386.88, 55.38], label: [354.9, 35.88] },
-  campofelice: { pin: [303.42, 308.1], label: [218.4, 308.88] },
-  ovindoli: { pin: [325.26, 326.82], label: [269.88, 344.76] },
-  altosangro: { pin: [359.58, 353.34], label: [379.08, 355.68] },
+const W = 600, H = 680, PIN = 18;
+/* pin: angolo in alto a sinistra dello spillo da 18 px; label: [x, y, ancora]. Ancora `l` = bordo sinistro, `r` = bordo destro, `c` = centro. */
+const PINS: Record<string, { pin: [number, number]; label: [number, number, 'l' | 'r' | 'c'] }> = {
+  vialattea: { pin: [71.7, 181.5], label: [74, 203, 'l'] },
+  monterosa: { pin: [104.5, 136.3], label: [64, 114, 'l'] },
+  livigno: { pin: [197.6, 99.3], label: [206.6, 76, 'c'] },
+  skirama: { pin: [224.3, 115.5], label: [246, 128, 'l'] },
+  superski: { pin: [264.9, 98.8], label: [286, 98.3, 'l'] },
+  campofelice: { pin: [309, 313], label: [302, 312.5, 'r'] },
+  ovindoli: { pin: [330, 331], label: [327, 352, 'r'] },
+  altosangro: { pin: [353, 343], label: [375, 342.5, 'l'] },
 };
 const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(2)}%`;
+const shift = { l: '0', r: '-100%', c: '-50%' } as const;
+const pinStyle = (p: [number, number]) => `left:${pct(p[0] + PIN / 2, W)};top:${pct(p[1] + PIN / 2, H)}`;
+const nameStyle = (l: [number, number, 'l' | 'r' | 'c']) => `left:${pct(l[0], W)};top:calc(${pct(l[1], H)} - 2.25px);transform:translateX(${shift[l[2]]})`;
 ---
 <figure class="fig">
 <div class="map" aria-hidden="true">
-  <img class="arc alps" src="/map/alpi.svg" alt="" aria-hidden="true" width="456" height="114" />
-  <img class="arc apen" src="/map/appennino.svg" alt="" aria-hidden="true" width="276" height="134" />
-  <span class="tag ts-credito" style={`left:${pct(195, W)};top:${pct(14.04, H)}`}>ALPI</span>
-  <span class="tag ts-credito" style={`left:${pct(195, W)};top:${pct(257.4, H)}`}>APPENNINO</span>
+  <div class="layer neigh"><img src="/map/confinanti.svg" alt="" aria-hidden="true" width="578" height="382" /></div>
+  <div class="fade"></div>
+  <div class="layer italy"><img src="/map/italia.svg" alt="" aria-hidden="true" width="462" height="544" /></div>
+  <div class="layer reg"><img src="/map/regioni.svg" alt="" aria-hidden="true" width="379" height="353" /></div>
   {AREAS.map((a) => {
     const p = PINS[a.id];
     return (
       <>
-        <a class="pin" href={areaPath(lang, a.slug)} tabindex="-1" style={`left:${pct(p.pin[0], W)};top:${pct(p.pin[1], H)}`}><span aria-hidden="true"></span></a>
-        <a class="name ts-link" href={areaPath(lang, a.slug)} tabindex="-1" style={`left:${pct(p.label[0], W)};top:${pct(p.label[1], H)}`}>{a.name}</a>
+        <a class="pin lk" href={areaPath(lang, a.slug)} tabindex="-1" style={pinStyle(p.pin)}><span aria-hidden="true"></span></a>
+        <span class="pin st" style={pinStyle(p.pin)}><span aria-hidden="true"></span></span>
+        <a class="name lk ts-link" href={areaPath(lang, a.slug)} tabindex="-1" style={nameStyle(p.label)}>{a.name}</a>
+        <span class="name st ts-link" style={nameStyle(p.label)}>{a.name}</span>
       </>
     );
   })}
@@ -43,15 +50,37 @@ const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(2)}%`;
 <style>
   .fig { margin: 0; }
   .cap { color: var(--color-mute); margin-top: 10px; }
-  .map { position: relative; width: 100%; max-width: 499px; aspect-ratio: 499.2 / 436.8; }
-  .arc { position: absolute; max-width: none; }
-  .alps { left: 9.38%; top: 10.53%; width: 86.71%; height: auto; }
-  .apen { left: 44.53%; top: 36.61%; width: 36.72%; height: auto; }
-  .tag { position: absolute; color: var(--color-mute); letter-spacing: 0.08em; font-size: 10px; }
-  .pin { position: absolute; width: 14px; height: 14px; }
-  .pin::after { content: ''; position: absolute; inset: -12px; }
-  .pin span { display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--brand-ghiaccio); box-shadow: 0 0 0 3px var(--brand-abisso); }
+  /* in altezza non oltre quello che sta sotto l'intestazione fissa: il pannello resta appiccicato, la mappa deve starci tutta */
+  .map { position: relative; overflow: hidden; container-type: inline-size; width: min(100%, max(300px, calc((100svh - 200px) * 0.8824))); aspect-ratio: 600 / 680; margin-inline: auto; }
+  /* quattro strati dal Figma (245:6396, 242:6397, 239:6396, 242:6399): confinanti, sfumatura verso il colore del pannello, Italia, confini regionali.
+     L'immagine esce di poco dal suo riquadro (il tratto). */
+  .layer { position: absolute; }
+  .layer img { position: absolute; max-width: none; }
+  .neigh { left: -0.67%; top: -0.59%; width: 96.1%; height: 56.09%; }
+  .neigh img { left: 0; top: -0.13%; width: 100%; height: 100.26%; }
+  /* la sfumatura del Figma: radiale dal centro dell'Italia e 56 px su ogni bordo verso il colore del pannello (color/soft), così il riquadro non ha un taglio netto */
+  .fade {
+    position: absolute; inset: 0;
+    --s: var(--color-soft); --t: color-mix(in srgb, var(--color-soft) 0%, transparent);
+    background:
+      linear-gradient(180deg, var(--t) 0%, var(--t) 91.765%, var(--s) 100%),
+      linear-gradient(180deg, var(--s) 0%, var(--t) 8.2353%, var(--t) 100%),
+      linear-gradient(90deg, var(--t) 0%, var(--t) 90.667%, var(--s) 100%),
+      linear-gradient(90deg, var(--s) 0%, var(--t) 9.3333%, var(--t) 100%),
+      radial-gradient(circle 66.67cqw at 50% 50%, var(--t) 55%, var(--s) 100%);
+  }
+  .italy { left: 11.67%; top: 11.76%; width: 76.72%; height: 79.72%; }
+  .italy img { left: -0.16%; top: -0.14%; width: 100.32%; height: 100.28%; }
+  .reg { left: 14.7%; top: 14.9%; width: 63.03%; height: 51.81%; }
+  .reg img { left: -0.11%; top: -0.11%; width: 100.22%; height: 100.22%; }
+  /* l'area tattile è di almeno 24 px, il disegno dello spillo resta da 18 (3cqw) al centro. Sul computer i nomi portano alla pagina (collegamenti);
+     sul telefono la mappa è solo da guardare (segni fissi): le schede sono lì sotto, e uno spillo da 11 px non è un bersaglio. */
+  .pin { position: absolute; display: grid; place-items: center; width: max(24px, 3cqw); height: max(24px, 3cqw); transform: translate(-50%, -50%); }
+  .pin span { display: block; box-sizing: border-box; width: 3cqw; height: 3cqw; min-width: 11px; min-height: 11px; border-radius: 50%; background: var(--brand-ghiaccio); border: max(2px, 0.5cqw) solid var(--brand-abisso); }
   .pin:hover span, .pin:focus-visible span { background: var(--color-glow); }
-  .name { position: absolute; font-size: 11.7px; white-space: nowrap; text-decoration: none; color: var(--color-ink); }
-  .name:hover { text-decoration: underline; }
+  .name { position: absolute; font-size: clamp(10.5px, 2.5cqw, 15px); line-height: 24px; min-height: 24px; white-space: nowrap; text-decoration: none; color: var(--color-ink); }
+  .name.lk:hover { text-decoration: underline; }
+  .st { pointer-events: none; }
+  @media (min-width: 1024px) { .st { display: none; } }
+  @media (max-width: 1023px) { .lk { display: none; } }
 </style>

@@ -15,7 +15,7 @@ const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
 <header class:list={['nav', { solid, dark }]} id="nav">
   <div class="inner">
     <a class="logo" href={path(lang, 'home')} aria-label={c.ui.homeAria}>
-      <img src={logo} width="121" height="34" alt="" />
+      <img src={logo} width="124" height="34" alt="" />
     </a>
     <nav class="links ts-link" aria-label={c.ui.mainNav}>
       {items.map((p) => <a href={path(lang, p)} aria-current={page === p ? 'page' : undefined}>{c.ui.nav[p]}</a>)}

@@ -1,0 +1,57 @@
+---
+/* «Sito/Modulo avvisami» (Figma 243:6395 giorno, 243:6402 notte, stati 243:6410 · 243:6412 · 243:6414): finché lo store non ha il collegamento,
+   al posto del pulsante c'è «lascia la tua email e ti avvisiamo». Funziona senza JavaScript: il modulo parte con POST a /api/avvisami
+   (funzione di Pages, Brevo dal lato server: dal browser nessuna richiesta ad altri domini) e torna alla stessa pagina con #<id>-ok / -invalid / -fail;
+   il CSS mostra lo stato con :target. Quando Play ha il collegamento (STORE_STATE=play) questo blocco non si costruisce più. */
+import { t } from '../content';
+import { path } from '../i18n/routes';
+import { MAIL, type Lang } from '../i18n/langs';
+
+interface Props { lang: Lang; id: string; back: string; dark?: boolean }
+const { lang, id, back, dark = false } = Astro.props;
+const w = t(lang).ui.wait;
+const inputId = `${id}-email`;
+---
+<div class:list={['wl', { dark }]} id={id}>
+  <form class="row" method="post" action="/api/avvisami">
+    <input type="hidden" name="lang" value={lang} />
+    <input type="hidden" name="back" value={back} />
+    <input type="hidden" name="id" value={id} />
+    <p class="trap" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+    <label class="sr" for={inputId}>{w.label}</label>
+    <input class="field ts-testo" id={inputId} type="email" name="email" inputmode="email" autocomplete="email" required maxlength="254" placeholder={w.ph} />
+    <button class="btn" type="submit">{w.send}</button>
+  </form>
+  <p class="note ts-credito"><span set:html={w.note} /> <a href={path(lang, 'privacy')}>{w.privacy}</a></p>
+  <p class="state ok ts-testo-piccolo" id={`${id}-ok`} role="status">{w.ok}</p>
+  <p class="state bad ts-testo-piccolo" id={`${id}-invalid`} role="alert">{w.invalid}</p>
+  <p class="state bad ts-testo-piccolo" id={`${id}-fail`} role="alert">{w.fail} <a href={`mailto:${MAIL}`}>{MAIL}</a></p>
+</div>
+
+<style>
+  .wl { display: grid; gap: 12px; max-width: 520px; width: 100%; }
+  .row { display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap; }
+  .field { flex: 1 1 220px; min-width: 0; height: 52px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--color-line); background: var(--color-paper); color: var(--color-ink); }
+  .field::placeholder { color: var(--color-mute); opacity: 1; }
+  .field:focus-visible { outline: 3px solid var(--color-route); outline-offset: 2px; }
+  .btn { flex: none; height: 52px; padding: 0 28px; border: 0; border-radius: var(--radius-pill); background: var(--color-route); color: var(--brand-neve); font-family: var(--font-body); font-weight: 700; font-size: 17px; line-height: 1.2; cursor: pointer; }
+  .btn:hover { background: color-mix(in srgb, var(--color-route) 88%, var(--brand-abisso)); }
+  .btn:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 2px; }
+  .note { color: var(--color-mute); margin: 0; }
+  .note a { color: inherit; text-decoration: underline; }
+  .dark .field { background: var(--brand-neve); color: var(--brand-abisso); border-color: transparent; }
+  .dark .field::placeholder { color: #55647e; }
+  .dark .btn { background: var(--brand-ghiaccio); color: var(--brand-abisso); }
+  .dark .btn:hover { background: color-mix(in srgb, var(--brand-ghiaccio) 88%, white); }
+  .dark .btn:focus-visible { outline-color: var(--brand-neve); }
+  .dark .note { color: rgb(255 255 255 / 0.8); }
+  .dark .field:focus-visible { outline-color: var(--brand-ghiaccio); }
+  .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .state { display: none; margin: 0; padding: 14px 18px; border-radius: 14px; background: var(--color-ok-tint); color: var(--color-ink); }
+  .state.bad { background: var(--color-glow-tint); }
+  .state a { color: inherit; text-decoration: underline; }
+  .state:target { display: block; }
+  /* con l'esito in vista il modulo e la sua nota lasciano il posto (nessun JavaScript: :has) */
+  .wl:has(.ok:target) .row, .wl:has(.ok:target) .note { display: none; }
+</style>

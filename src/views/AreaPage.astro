@@ -2,6 +2,7 @@
 /* La pagina di un comprensorio, chiara (Figma 226:6389 computer, 228:6541 telefono): lo stesso modello per tutti e otto (A12).
    I casi sono scritti: senza zone («un comprensorio solo»), senza giri (i giri sono sotto la linea di taglio), senza rilievo (qui la foto, non il rilievo),
    senza «come arrivare» (c'è un testo verificato solo per il Superski). Nessun logo del gestore; i numeri vengono dal manifest e si arrotondano per difetto. */
+import OperatorsBand from '../components/OperatorsBand.astro';
 import Layout from '../layouts/Layout.astro';
 import Phone from '../components/Phone.astro';
 import { t, fill } from '../content';
@@ -27,7 +28,10 @@ const subnav = [
 ---
 <Layout lang={lang} page="areas" area={slug} title={fill(a.metaTitle, vars)} description={fill(a.metaDescription, vars)}>
   <section class="hero" aria-labelledby="h-area">
-    <img class="bg" src={`${p.file}-m.webp`} srcset={`${p.file}-s.webp 480w, ${p.file}-m.webp 960w, ${p.file}-l.webp 1440w`} sizes="(max-width: 700px) 480px, 100vw" width="1440" height={Math.round(1440 * p.height / p.width)} alt="" fetchpriority="high" decoding="async" />
+    <picture>
+      <source type="image/avif" srcset={[480, 640, 960, 1440].map((w) => `${p.file}-${w}.avif ${w}w`).join(", ")} sizes="(max-width: 700px) 70vw, 100vw" />
+      <img class="bg" src={`${p.file}-m.webp`} srcset={`${p.file}-s.webp 480w, ${p.file}-m.webp 960w, ${p.file}-l.webp 1440w`} sizes="(max-width: 700px) 70vw, 100vw" width="1440" height={Math.round(1440 * p.height / p.width)} alt="" fetchpriority="high" decoding="async" />
+    </picture>
     <div class="veil" aria-hidden="true"></div>
     <div class="wrap copy">
       <p class="eyebrow ts-occhiello">{c.areas.where[area.where]}</p>
@@ -82,9 +86,11 @@ const subnav = [
     )}
     <p class="ts-credito note"><span set:html={a.numbersNote} /> {a.notAffiliated}</p>
   </div>
+  <div class="wrap ops"><OperatorsBand lang={lang} /></div>
 </Layout>
 
 <style>
+  .ops { padding-bottom: 96px; }
   .hero { position: relative; min-height: 640px; display: flex; align-items: flex-end; overflow: hidden; background: var(--color-snow); }
   .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(246 249 253 / 0) 55%, rgb(246 249 253) 100%), linear-gradient(90deg, rgb(246 249 253 / 0.96) 0%, rgb(246 249 253 / 0.72) 55%, rgb(246 249 253 / 0.08) 100%); }

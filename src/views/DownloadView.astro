@@ -6,7 +6,7 @@
    Il pulsante apre l'app solo con la v2 e una build dell'11-11 o successiva; il testo dice che il download parte e quanto pesa, al massimo. */
 import QRCode from 'qrcode';
 import Layout from '../layouts/Layout.astro';
-import StoreButton from '../components/StoreButton.astro';
+import StoreCta from '../components/StoreCta.astro';
 import { LANGS, ORIGIN, FALLBACK } from '../i18n/langs';
 import { t, fill } from '../content';
 import { byId } from '../data/areas';
@@ -23,13 +23,10 @@ const title = t(FALLBACK).download.title + (area ? ` · ${area.name}` : '');
     const d = t(l).download;
     return (
       <section class="dl" lang={l} data-l={l} hidden={l !== FALLBACK} aria-labelledby={`h-${l}`}>
-        <img src="/brand/lockup.svg" width="157" height="44" alt="Ski Maps" />
+        <img src="/brand/lockup.svg" width="161" height="44" alt="Ski Maps" />
         <h1 id={`h-${l}`} class="ts-titolo-m">{area ? area.name : d.h1}</h1>
         <p class="ts-lead">{d.lede}</p>
-        <div class="buttons">
-          <StoreButton lang={l} campaign={area ? `download-${area.id}` : 'scarica'} />
-          <StoreButton lang={l} campaign={area ? `download-${area.id}` : 'scarica'} kind="ios" />
-        </div>
+        <StoreCta lang={l} campaign={area ? `download-${area.id}` : 'scarica'} id={`avvisami-${area ? area.id : 'scarica'}-${l}`} back={self} />
         {area && (
           <div class="open">
             <a class="btn btn-ghost" href={`skimap://download/${area.id}`} data-open>{d.openApp}</a>

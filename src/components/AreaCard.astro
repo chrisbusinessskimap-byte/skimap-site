@@ -13,7 +13,10 @@ const p = area.photo;
 ---
 <article class="card" data-group={area.group}>
   <a class="link" href={areaPath(lang, area.slug)}>
-    <img src={`${p.file}-m.webp`} srcset={`${p.file}-s.webp 480w, ${p.file}-m.webp 960w`} sizes="(max-width: 640px) 90vw, 310px" width="480" height={Math.round(480 * p.height / p.width)} alt="" loading="lazy" decoding="async" />
+    <picture>
+      <source type="image/avif" srcset={[480, 640, 960].map((w) => `${p.file}-${w}.avif ${w}w`).join(", ")} sizes="(max-width: 640px) 90vw, 310px" />
+      <img src={`${p.file}-m.webp`} srcset={`${p.file}-s.webp 480w, ${p.file}-m.webp 960w`} sizes="(max-width: 640px) 90vw, 310px" width="480" height={Math.round(480 * p.height / p.width)} alt="" loading="lazy" decoding="async" />
+    </picture>
     <span class="veil" aria-hidden="true"></span>
     <span class="text">
       <span class="ts-sottotitolo name">{area.name}</span>

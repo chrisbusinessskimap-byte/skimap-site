@@ -18,6 +18,7 @@ export interface Content {
     download: string;
     nav: { how: string; areas: string; tours: string; territory: string; about: string; help: string };
     store: { play: string; soon: string; ios: string };
+    wait: { label: string; ph: string; send: string; note: string; privacy: string; ok: string; invalid: string; fail: string };
     example: string;
     hours: Record<Hour, { name: string; time: string; alt: string }>;
     pickerLabel: string;
@@ -42,7 +43,7 @@ export interface Content {
     privacyList: string[]; privacyMore: string;
   };
   areas: {
-    meta: Meta; eyebrow: string; h1: string; lede: string; filterLabel: string;
+    meta: Meta; eyebrow: string; h1: string; lede: string; filterLabel: string; operators: { h: string; p: string; cta: string };
     where: Record<Where, string>; statKm: string; statLifts: string; statTop: string; statZones: string;
     note: string;
   };
@@ -60,6 +61,14 @@ export interface Content {
     meta: Meta; eyebrow: string; h1: string; lede: string;
     osmTitle: string; osm: string; reliefTitle: string; relief: string;
     fontsTitle: string; fonts: string; photosTitle: string; photos: string; appTitle: string; app: string; todo: string;
+  };
+  territory: {
+    meta: Meta; eyebrow: string; h1: string; lede: string;
+    blocks: { h: string; p: string }[];
+    form: {
+      title: string; name: string; namePh: string; org: string; orgPh: string; mail: string; mailPh: string; area: string; areaPh: string; msg: string; msgPh: string;
+      consent: string; send: string; note: string; turnstile: string; ok: string; invalid: string; fail: string;
+    };
   };
   legal: { privacy: Meta; delete: Meta; other: string };
   download: {

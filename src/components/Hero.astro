@@ -13,14 +13,17 @@ const c = t(lang);
 const HOURS: Hour[] = ['alba', 'mezzogiorno', 'tramonto', 'notte'];
 const WIDTHS = [640, 960, 1200, 1800, 2400];
 const srcset = (h: Hour, ext: 'avif' | 'webp') => WIDTHS.map((w) => `/relief/${h}-${w}.${ext} ${w}w`).join(', ');
+/* l'immagine riempie l'apertura (alta 780-900 px) con object-fit: cover: su telefono se ne vede solo un terzo centrale, già ingrandito, sotto un velo scuro.
+   Dire al browser che pesa il 60% dello schermo gli fa scegliere i 640 px (29 KB) invece dei 960 (53 KB): a vedersi non cambia, a scaricare sì. */
+const SIZES = '(max-width: 700px) 60vw, 100vw';
 const first: Hour = 'mezzogiorno';
-const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcset(h, 'avif'), webp: srcset(h, 'webp'), src: `/relief/${h}-1200.webp`, alt: c.ui.hours[h].alt }));
+const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcset(h, 'avif'), webp: srcset(h, 'webp'), src: `/relief/${h}-1200.webp`, alt: c.ui.hours[h].alt, sizes: SIZES }));
 ---
 <section class="hero" data-hero data-hour={first} aria-label={alt}>
   <div class="layers" aria-hidden="false">
     <picture class="layer on" data-layer={first}>
-      <source type="image/avif" srcset={srcset(first, 'avif')} sizes="100vw" />
-      <source type="image/webp" srcset={srcset(first, 'webp')} sizes="100vw" />
+      <source type="image/avif" srcset={srcset(first, 'avif')} sizes={SIZES} />
+      <source type="image/webp" srcset={srcset(first, 'webp')} sizes={SIZES} />
       <img src={`/relief/${first}-1200.webp`} width="1200" height="754" alt={c.ui.hours[first].alt} fetchpriority="low" decoding="async" />
     </picture>
   </div>
@@ -45,7 +48,7 @@ const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcse
   if (hero) {
     const picker = hero.querySelector<HTMLElement>('[data-picker]')!;
     const layers = hero.querySelector<HTMLElement>('.layers')!;
-    const rest = JSON.parse(hero.querySelector('[data-rest]')!.textContent || '[]') as { hour: string; avif: string; webp: string; src: string; alt: string }[];
+    const rest = JSON.parse(hero.querySelector('[data-rest]')!.textContent || '[]') as { hour: string; avif: string; webp: string; src: string; alt: string; sizes: string }[];
     const loaded = new Set<string>(['mezzogiorno']);
     const add = (r: (typeof rest)[number]) => {
       if (loaded.has(r.hour)) return;
@@ -53,7 +56,7 @@ const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcse
       const pic = document.createElement('picture');
       pic.className = 'layer';
       pic.dataset.layer = r.hour;
-      pic.innerHTML = `<source type="image/avif" srcset="${r.avif}" sizes="100vw"><source type="image/webp" srcset="${r.webp}" sizes="100vw"><img src="${r.src}" width="1200" height="754" alt="${r.alt.replace(/"/g, '&quot;')}" decoding="async">`;
+      pic.innerHTML = `<source type="image/avif" srcset="${r.avif}" sizes="${r.sizes}"><source type="image/webp" srcset="${r.webp}" sizes="${r.sizes}"><img src="${r.src}" width="1200" height="754" alt="${r.alt.replace(/"/g, '&quot;')}" decoding="async">`;
       layers.appendChild(pic);
     };
     const show = (hour: string) => {

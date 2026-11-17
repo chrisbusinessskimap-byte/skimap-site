@@ -10,15 +10,20 @@ const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 
 
 const escapeRe = (s) => s.split('').map((ch) => ('.+?^${}()|[]\\'.includes(ch) ? '\\' + ch : ch)).join('');
 
-/* `_headers` come lo applica Pages: blocchi «percorso» seguiti da righe «Nome: valore»; `*` vale qualunque cosa */
+/* `_headers` come lo applica Pages: blocchi «percorso» seguiti da righe «Nome: valore» (o «! Nome», che toglie l'intestazione ereditata dalle regole di prima);
+   `*` vale qualunque cosa; le righe che cominciano con # sono commenti */
 function parseHeaders(text) {
   return text
     .split(/\n\s*\n/)
-    .map((block) => block.split('\n').map((l) => l.replace(/\s+$/, '')).filter(Boolean))
+    .map((block) => block.split('\n').map((l) => l.replace(/\s+$/, '')).filter((l) => l && !l.startsWith('#')))
     .filter((lines) => lines.length > 1)
     .map(([pattern, ...rest]) => ({
       re: new RegExp('^' + escapeRe(pattern.trim()).split('*').join('.*') + '$'),
-      headers: Object.fromEntries(rest.map((h) => { const i = h.indexOf(':'); return [h.slice(0, i).trim(), h.slice(i + 1).trim()]; })),
+      ops: rest.map((h) => {
+        if (h.trim().startsWith('!')) return { del: h.trim().slice(1).trim() };
+        const i = h.indexOf(':');
+        return { name: h.slice(0, i).trim(), value: h.slice(i + 1).trim() };
+      }),
     }));
 }
 
@@ -26,7 +31,11 @@ export function serve(port = 0) {
   const read = (name) => (existsSync(join(DIST, name)) ? readFileSync(join(DIST, name), 'utf8') : '');
   const rules = read('_redirects').split('\n').filter((l) => l && !l.startsWith('#')).map((l) => { const [from, to, status] = l.trim().split(/\s+/); return { from, to, status: +status }; });
   const headerRules = parseHeaders(read('_headers'));
-  const extra = (p) => Object.assign({}, ...headerRules.filter((r) => r.re.test(p)).map((r) => r.headers));
+  const extra = (p) => {
+    const out = {};
+    for (const r of headerRules) if (r.re.test(p)) for (const o of r.ops) { if (o.del) delete out[o.del]; else out[o.name] = o.value; }
+    return out;
+  };
   const resolveFile = (p) => {
     const f = join(DIST, decodeURIComponent(p));
     if (existsSync(f) && statSync(f).isFile()) return f;

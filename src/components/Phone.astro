@@ -1,7 +1,7 @@
 ---
 /* «Sito/Telefono» (Figma 219:7317): il telefono con una schermata d'esempio. Le tre schermate (percorsi, guida, rientro) sono quelle del
    Figma, dichiarate d'esempio: orari e tempi non sono dati dal vivo (claim `esempi-dichiarati`). */
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import percorsi from '../assets/phones/percorsi.webp';
 import guida from '../assets/phones/guida.webp';
 import rientro from '../assets/phones/rientro.webp';
@@ -12,7 +12,7 @@ const { screen, alt, width = 270, loading = 'lazy', priority = false, class: cls
 const img = { percorsi, guida, rientro }[screen];
 ---
 <figure class:list={['phone', cls]} data-claim="esempi-dichiarati" style={`--w:${width}px`}>
-  <Image src={img} alt={alt} width={406} height={860} loading={loading} fetchpriority={priority ? 'high' : undefined} decoding="async" widths={[270, 406]} quality={62} sizes={`${width}px`} />
+  <Picture src={img} alt={alt} width={406} height={860} loading={loading} fetchpriority={priority ? 'high' : undefined} decoding="async" widths={[270, 406]} formats={['avif', 'webp']} fallbackFormat="webp" quality={55} sizes={`${width}px`} />
 </figure>
 
 <style>

@@ -48,7 +48,7 @@ const how = path(lang, 'how');
       </div>
     </div>
     <div class="bottom">
-      <a href={path(lang, 'home')} aria-label={c.ui.homeAria}><img src={logo} width="107" height="30" alt="" /></a>
+      <a href={path(lang, 'home')} aria-label={c.ui.homeAria}><img src={logo} width="110" height="30" alt="" /></a>
       <nav class="langs ts-occhiello" aria-label={f.languages}>
         {LANGS.map((l, i) => <><a href={path(l, 'home')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{l.toUpperCase()}</a>{i < LANGS.length - 1 && <span aria-hidden="true"> · </span>}</>)}
       </nav>
