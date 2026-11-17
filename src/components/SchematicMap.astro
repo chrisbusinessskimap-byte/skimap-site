@@ -21,7 +21,8 @@ const PINS: Record<string, { pin: [number, number]; label: [number, number] }> =
 };
 const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(2)}%`;
 ---
-<div class="map" role="group" aria-label={label}>
+<figure class="fig">
+<div class="map" aria-hidden="true">
   <img class="arc alps" src="/map/alpi.svg" alt="" aria-hidden="true" width="456" height="114" />
   <img class="arc apen" src="/map/appennino.svg" alt="" aria-hidden="true" width="276" height="134" />
   <span class="tag ts-credito" style={`left:${pct(195, W)};top:${pct(14.04, H)}`}>ALPI</span>
@@ -30,14 +31,18 @@ const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(2)}%`;
     const p = PINS[a.id];
     return (
       <>
-        <a class="pin" href={areaPath(lang, a.slug)} aria-label={a.name} style={`left:${pct(p.pin[0], W)};top:${pct(p.pin[1], H)}`}><span aria-hidden="true"></span></a>
-        <a class="name ts-link" href={areaPath(lang, a.slug)} tabindex="-1" aria-hidden="true" style={`left:${pct(p.label[0], W)};top:${pct(p.label[1], H)}`}>{a.name}</a>
+        <a class="pin" href={areaPath(lang, a.slug)} tabindex="-1" style={`left:${pct(p.pin[0], W)};top:${pct(p.pin[1], H)}`}><span aria-hidden="true"></span></a>
+        <a class="name ts-link" href={areaPath(lang, a.slug)} tabindex="-1" style={`left:${pct(p.label[0], W)};top:${pct(p.label[1], H)}`}>{a.name}</a>
       </>
     );
   })}
 </div>
+<figcaption class="ts-credito cap">{label}</figcaption>
+</figure>
 
 <style>
+  .fig { margin: 0; }
+  .cap { color: var(--color-mute); margin-top: 10px; }
   .map { position: relative; width: 100%; max-width: 499px; aspect-ratio: 499.2 / 436.8; }
   .arc { position: absolute; max-width: none; }
   .alps { left: 9.38%; top: 10.53%; width: 86.71%; height: auto; }
