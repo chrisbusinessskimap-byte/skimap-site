@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Phone from '../components/Phone.astro';
 import StoreCta from '../components/StoreCta.astro';
-import AreasBrowser from '../components/AreasBrowser.astro';
+import AreasOverview from '../components/AreasOverview.astro';
 import { t } from '../content';
 import { path } from '../i18n/routes';
 import type { Lang } from '../i18n/langs';
@@ -53,8 +53,7 @@ const h = c.home;
       <p class="eyebrow ts-occhiello">{h.areas.eyebrow}</p>
       <h2 id="h-areas" class="ts-display-m">{h.areas.h}</h2>
       <p class="ts-lead lede" set:html={h.areas.lede} />
-      <AreasBrowser lang={lang} filterLabel={c.areas.filterLabel} all={h.areas.all} groups={h.areas.groups} mapAria={h.areas.mapAria} />
-      <p class="more"><a class="btn btn-ghost" href={path(lang, 'areas')}>{c.ui.seeAll}</a></p>
+      <AreasOverview lang={lang} />
     </div>
   </section>
 

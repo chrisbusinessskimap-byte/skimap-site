@@ -24,10 +24,12 @@ const PINS: Record<string, { pin: [number, number]; label: [number, number, 'l' 
 const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(2)}%`;
 const shift = { l: '0', r: '-100%', c: '-50%' } as const;
 const pinStyle = (p: [number, number]) => `left:${pct(p[0] + PIN / 2, W)};top:${pct(p[1] + PIN / 2, H)}`;
-const nameStyle = (l: [number, number, 'l' | 'r' | 'c']) => `left:${pct(l[0], W)};top:calc(${pct(l[1], H)} - 2.25px);transform:translateX(${shift[l[2]]})`;
+const origin = { l: '0%', r: '100%', c: '50%' } as const;
+const nameStyle = (l: [number, number, 'l' | 'r' | 'c']) => `left:${pct(l[0], W)};top:calc(${pct(l[1], H)} - 2.25px);--sx:${shift[l[2]]};--ox:${origin[l[2]]}`;
 ---
 <figure class="fig">
-<div class="map" aria-hidden="true">
+<div class="map" aria-hidden="true" data-map data-zone="all">
+ <div class="stage" data-stage>
   <div class="layer neigh"><img src="/map/confinanti.svg" alt="" aria-hidden="true" width="578" height="382" /></div>
   <div class="fade"></div>
   <div class="layer italy"><img src="/map/italia.svg" alt="" aria-hidden="true" width="462" height="544" /></div>
@@ -36,16 +38,35 @@ const nameStyle = (l: [number, number, 'l' | 'r' | 'c']) => `left:${pct(l[0], W)
     const p = PINS[a.id];
     return (
       <>
-        <a class="pin lk" href={areaPath(lang, a.slug)} tabindex="-1" style={pinStyle(p.pin)}><span aria-hidden="true"></span></a>
-        <span class="pin st" style={pinStyle(p.pin)}><span aria-hidden="true"></span></span>
-        <a class="name lk ts-link" href={areaPath(lang, a.slug)} tabindex="-1" style={nameStyle(p.label)}>{a.name}</a>
-        <span class="name st ts-link" style={nameStyle(p.label)}>{a.name}</span>
+        <a class="pin lk" data-group={a.group} href={areaPath(lang, a.slug)} tabindex="-1" style={pinStyle(p.pin)}><span aria-hidden="true"></span></a>
+        <span class="pin st" data-group={a.group} style={pinStyle(p.pin)}><span aria-hidden="true"></span></span>
+        <a class="name lk ts-link" data-group={a.group} href={areaPath(lang, a.slug)} tabindex="-1" style={nameStyle(p.label)}>{a.name}</a>
+        <span class="name st ts-link" data-group={a.group} style={nameStyle(p.label)}>{a.name}</span>
       </>
     );
   })}
+ </div>
+ <div class="edge"></div>
 </div>
 <figcaption class="ts-credito cap">{label}</figcaption>
 </figure>
+
+<script>
+  /* Lo zoom per zona (Figma 246:9167…246:9259): chi sceglie una zona (le chip dei comprensori, le righe della home) manda «skimap:zone» e la cartina si
+     ingrandisce su quella zona; «all» la riporta com'era. Centro e ingrandimento sono quelli del Figma, in px del riquadro 600 × 680. */
+  const ZONES: Record<string, [number, number, number]> = { all: [300, 340, 1], dolomiti: [290, 125, 2.6], 'western-alps': [120, 185, 2.4], lombardy: [215, 120, 2.6], apennines: [335, 335, 2.6] };
+  const map = document.querySelector<HTMLElement>('[data-map]');
+  const stage = map?.querySelector<HTMLElement>('[data-stage]');
+  const zoomTo = (zone: string) => {
+    if (!map || !stage) return;
+    const [cx, cy, s] = ZONES[zone] || ZONES.all;
+    const tx = Math.min(0, Math.max(600 - 600 * s, 300 - cx * s)), ty = Math.min(0, Math.max(680 - 680 * s, 340 - cy * s));
+    stage.style.transform = s === 1 ? 'none' : `translate(${(tx / 6).toFixed(3)}%, ${(ty / 6.8).toFixed(3)}%) scale(${s})`;
+    map.style.setProperty('--inv', String(1 / s));
+    map.dataset.zone = ZONES[zone] ? zone : 'all';
+  };
+  document.addEventListener('skimap:zone', (e) => zoomTo((e as CustomEvent<string>).detail));
+</script>
 
 <style>
   .fig { margin: 0; }
@@ -54,6 +75,8 @@ const nameStyle = (l: [number, number, 'l' | 'r' | 'c']) => `left:${pct(l[0], W)
   .map { position: relative; overflow: hidden; container-type: inline-size; width: min(100%, max(300px, calc((100svh - 200px) * 0.8824))); aspect-ratio: 600 / 680; margin-inline: auto; }
   /* quattro strati dal Figma (245:6396, 242:6397, 239:6396, 242:6399): confinanti, sfumatura verso il colore del pannello, Italia, confini regionali.
      L'immagine esce di poco dal suo riquadro (il tratto). */
+  .stage { position: absolute; inset: 0; transform-origin: 0 0; }
+  @media (prefers-reduced-motion: no-preference) { .stage, .pin, .name { transition: transform 0.6s cubic-bezier(0.3, 0.7, 0.2, 1), opacity 0.3s ease; } }
   .layer { position: absolute; }
   .layer img { position: absolute; max-width: none; }
   .neigh { left: -0.67%; top: -0.59%; width: 96.1%; height: 56.09%; }
@@ -69,17 +92,32 @@ const nameStyle = (l: [number, number, 'l' | 'r' | 'c']) => `left:${pct(l[0], W)
       linear-gradient(90deg, var(--s) 0%, var(--t) 9.3333%, var(--t) 100%),
       radial-gradient(circle 66.67cqw at 50% 50%, var(--t) 55%, var(--s) 100%);
   }
+  /* la sfumatura dei bordi sta ferma sul riquadro, anche con lo zoom: il taglio dell'immagine ingrandita non si vede mai */
+  .edge {
+    position: absolute; inset: 0; pointer-events: none;
+    --s: var(--color-soft); --t: color-mix(in srgb, var(--color-soft) 0%, transparent);
+    background:
+      linear-gradient(180deg, var(--t) 0%, var(--t) 91.765%, var(--s) 100%),
+      linear-gradient(180deg, var(--s) 0%, var(--t) 8.2353%, var(--t) 100%),
+      linear-gradient(90deg, var(--t) 0%, var(--t) 90.667%, var(--s) 100%),
+      linear-gradient(90deg, var(--s) 0%, var(--t) 9.3333%, var(--t) 100%);
+  }
   .italy { left: 11.67%; top: 11.76%; width: 76.72%; height: 79.72%; }
   .italy img { left: -0.16%; top: -0.14%; width: 100.32%; height: 100.28%; }
   .reg { left: 14.7%; top: 14.9%; width: 63.03%; height: 51.81%; }
   .reg img { left: -0.11%; top: -0.11%; width: 100.22%; height: 100.22%; }
   /* l'area tattile è di almeno 24 px, il disegno dello spillo resta da 18 (3cqw) al centro. Sul computer i nomi portano alla pagina (collegamenti);
      sul telefono la mappa è solo da guardare (segni fissi): le schede sono lì sotto, e uno spillo da 11 px non è un bersaglio. */
-  .pin { position: absolute; display: grid; place-items: center; width: max(24px, 3cqw); height: max(24px, 3cqw); transform: translate(-50%, -50%); }
+  .pin { position: absolute; display: grid; place-items: center; width: max(24px, 3cqw); height: max(24px, 3cqw); transform: translate(-50%, -50%) scale(var(--inv, 1)); }
   .pin span { display: block; box-sizing: border-box; width: 3cqw; height: 3cqw; min-width: 11px; min-height: 11px; border-radius: 50%; background: var(--brand-ghiaccio); border: max(2px, 0.5cqw) solid var(--brand-abisso); }
   .pin:hover span, .pin:focus-visible span { background: var(--color-glow); }
-  .name { position: absolute; font-size: clamp(10.5px, 2.5cqw, 15px); line-height: 24px; min-height: 24px; white-space: nowrap; text-decoration: none; color: var(--color-ink); }
+  .name { position: absolute; font-size: clamp(10.5px, 2.5cqw, 15px); line-height: 24px; min-height: 24px; white-space: nowrap; text-decoration: none; color: var(--color-ink); transform: translateX(var(--sx, 0%)) scale(var(--inv, 1)); transform-origin: var(--ox, 0%) 50%; }
   .name.lk:hover { text-decoration: underline; }
+  /* con una zona scelta gli spilli e i nomi delle altre si attenuano */
+  [data-zone='dolomiti'] :is(.pin, .name):not([data-group='dolomiti']),
+  [data-zone='western-alps'] :is(.pin, .name):not([data-group='western-alps']),
+  [data-zone='lombardy'] :is(.pin, .name):not([data-group='lombardy']),
+  [data-zone='apennines'] :is(.pin, .name):not([data-group='apennines']) { opacity: 0.3; }
   .st { pointer-events: none; }
   @media (min-width: 1024px) { .st { display: none; } }
   @media (max-width: 1023px) { .lk { display: none; } }

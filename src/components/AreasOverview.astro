@@ -1,0 +1,59 @@
+---
+/* La panoramica dei comprensori per la home (Figma 246:9282): la cartina e le quattro zone, un solo pulsante. Non ripete la pagina dei comprensori
+   (niente schede, niente filtri, niente foto): ogni zona porta alla pagina dedicata già sulla zona scelta (#dolomiti, …). Passando o mettendo a fuoco una
+   zona la cartina si ingrandisce su di lei, come con le chip della pagina. La cartina sta in un pannello chiaro anche nella home scura. */
+import { t } from '../content';
+import { path } from '../i18n/routes';
+import { AREAS, GROUPS } from '../data/areas';
+import SchematicMap from './SchematicMap.astro';
+import type { Lang } from '../i18n/langs';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = t(lang);
+const groups = c.home.areas.groups;
+const areasPath = path(lang, 'areas');
+---
+<div class="overview">
+  <div class="mappanel" data-theme="giorno"><SchematicMap lang={lang} label={c.home.areas.mapAria} /></div>
+  <div class="zones" data-zones>
+    {GROUPS.map((g) => (
+      <a class="zone" href={`${areasPath}#${g}`} data-zone={g}>
+        <span class="txt">
+          <span class="name ts-sottotitolo">{groups[g]}</span>
+          <span class="list ts-testo-piccolo">{AREAS.filter((a) => a.group === g).map((a) => a.name).join(' · ')}</span>
+        </span>
+        <span class="arrow ts-sottotitolo" aria-hidden="true">→</span>
+      </a>
+    ))}
+    <a class="btn btn-ghost all" href={areasPath}>{c.ui.seeAll}</a>
+  </div>
+</div>
+
+<script>
+  /* la zona sotto il dito o il cursore ingrandisce la cartina; fuori da tutte la cartina torna com'era */
+  const box = document.querySelector<HTMLElement>('[data-zones]');
+  if (box) {
+    const send = (z: string) => document.dispatchEvent(new CustomEvent('skimap:zone', { detail: z }));
+    box.querySelectorAll<HTMLElement>('[data-zone]').forEach((el) => {
+      el.addEventListener('pointerenter', () => send(el.dataset.zone!));
+      el.addEventListener('focus', () => send(el.dataset.zone!));
+    });
+    box.addEventListener('pointerleave', () => send('all'));
+    box.addEventListener('focusout', (e) => { if (!box.contains((e as FocusEvent).relatedTarget as Node | null)) send('all'); });
+  }
+</script>
+
+<style>
+  .overview { display: grid; grid-template-columns: minmax(300px, 560px) minmax(0, 1fr); gap: 64px; align-items: center; }
+  .mappanel { background: var(--color-soft); border-radius: 32px; padding: 20px; }
+  .zones { display: grid; gap: 16px; }
+  .zone { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 28px; border-radius: 24px; background: var(--color-soft); color: var(--color-ink); text-decoration: none; }
+  .txt { display: grid; gap: 6px; min-width: 0; }
+  .list { color: color-mix(in srgb, var(--color-ink) 72%, transparent); }
+  .arrow { color: var(--color-route); transition: transform 0.2s ease; }
+  .zone:hover .arrow, .zone:focus-visible .arrow { transform: translateX(4px); }
+  .zone:focus-visible { outline: 3px solid var(--color-route); outline-offset: 2px; }
+  .all { justify-self: start; margin-top: 8px; }
+  @media (max-width: 1023px) { .overview { grid-template-columns: minmax(0, 1fr); gap: 32px; } .mappanel { max-width: 560px; } }
+</style>

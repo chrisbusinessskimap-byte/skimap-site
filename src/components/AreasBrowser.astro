@@ -12,7 +12,7 @@ const { lang, filterLabel, all, groups, mapAria } = Astro.props;
 <div class="browser">
   <div class="chips" role="group" aria-label={filterLabel} data-chips hidden>
     <button type="button" class="chip" data-group="all" aria-pressed="true">{all}</button>
-    {GROUPS.map((g) => <button type="button" class="chip" data-group={g} aria-pressed="false">{groups[g]}</button>)}
+    {GROUPS.map((g) => <button type="button" class="chip" id={g} data-group={g} aria-pressed="false">{groups[g]}</button>)}
   </div>
   <div class="body">
     <div class="mapcol"><div class="mappanel"><SchematicMap lang={lang} label={mapAria} /></div></div>
@@ -29,10 +29,20 @@ const { lang, filterLabel, all, groups, mapAria } = Astro.props;
     root.addEventListener('click', (e) => {
       const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button');
       if (!b) return;
-      const g = b.dataset.group!;
+      pick(b.dataset.group!);
+    });
+    /* la zona scelta ingrandisce la cartina (evento «skimap:zone», vedi SchematicMap) e filtra le schede; l'indirizzo la ricorda (#dolomiti) e la home porta qui con lo stesso */
+    const pick = (g: string, remember = true) => {
+      const b = root.querySelector<HTMLButtonElement>(`button[data-group="${g}"]`);
+      if (!b) return;
       root.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
       document.querySelectorAll<HTMLElement>('[data-cards] .card').forEach((c) => { c.hidden = g !== 'all' && c.dataset.group !== g; });
-    });
+      document.dispatchEvent(new CustomEvent('skimap:zone', { detail: g }));
+      if (remember) history.replaceState(null, '', g === 'all' ? location.pathname : `#${g}`);
+    };
+    const fromHash = () => { const g = location.hash.slice(1); if (g) pick(g, false); };
+    setTimeout(fromHash, 0); // dopo lo script della cartina, che ascolta l’evento
+    addEventListener('hashchange', fromHash);
   }
 </script>
 
