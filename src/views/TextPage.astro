@@ -1,0 +1,91 @@
+---
+/* Pagine di testo chiare: chi siamo, aiuto, fonti e licenze (senza frame nel Figma: composte dai componenti v2, da guardare in anteprima).
+   «Chi siamo» e le domande vengono dai testi di `main` (A5); la foto di Christian non c'è nel repo e non si mette un segnaposto. */
+import Layout from '../layouts/Layout.astro';
+import { t, fill } from '../content';
+import { path } from '../i18n/routes';
+import { MAIL, type Lang } from '../i18n/langs';
+
+interface Props { lang: Lang; page: 'about' | 'help' | 'sources' }
+const { lang, page } = Astro.props;
+const c = t(lang);
+const vars = { privacy: path(lang, 'privacy'), delete: path(lang, 'delete') };
+---
+{page === 'about' && (
+  <Layout lang={lang} page="about" title={c.about.meta.title} description={c.about.meta.description}>
+    <div class="wrap page-head">
+      <p class="eyebrow ts-occhiello">{c.about.eyebrow}</p>
+      <h1 class="ts-display-m">{c.about.h1}</h1>
+    </div>
+    <div class="wrap">
+      <div class="col prose ts-lead">
+        {c.about.paras.map((p, i) => <p class={i === 0 ? 'first' : ''} set:html={p} />)}
+        <p class="write">{c.about.write} <a href={`mailto:${MAIL}?subject=Ski%20Maps`}>{MAIL}</a></p>
+      </div>
+    </div>
+  </Layout>
+)}
+{page === 'help' && (
+  <Layout lang={lang} page="help" title={c.help.meta.title} description={c.help.meta.description}>
+    <div class="wrap page-head">
+      <p class="eyebrow ts-occhiello">{c.help.eyebrow}</p>
+      <h1 class="ts-display-m">{c.help.h1}</h1>
+      <p class="ts-lead lede">{c.help.lede}</p>
+    </div>
+    <div class="wrap">
+      <div class="col faq">
+        {c.help.items.map((it) => (
+          <details>
+            <summary class="ts-sottotitolo">{it.q}</summary>
+            <p class="ts-testo" set:html={fill(it.a, vars)} />
+          </details>
+        ))}
+      </div>
+    </div>
+  </Layout>
+)}
+{page === 'sources' && (
+  <Layout lang={lang} page="sources" title={c.sources.meta.title} description={c.sources.meta.description}>
+    <div class="wrap page-head">
+      <p class="eyebrow ts-occhiello">{c.sources.eyebrow}</p>
+      <h1 class="ts-display-m">{c.sources.h1}</h1>
+      <p class="ts-lead lede" set:html={fill(c.sources.lede, vars)} />
+    </div>
+    <div class="wrap">
+      <div class="col prose ts-testo credits">
+        <section><h2 class="ts-sottotitolo">{c.sources.osmTitle}</h2><p>{c.sources.osm}</p></section>
+        <section><h2 class="ts-sottotitolo">{c.sources.reliefTitle}</h2><p set:html={c.sources.relief} /><p class="todo ts-credito">{c.sources.todo}</p></section>
+        <section><h2 class="ts-sottotitolo">{c.sources.photosTitle}</h2><p>{c.sources.photos}</p></section>
+        <section>
+          <h2 class="ts-sottotitolo">{c.sources.fontsTitle}</h2>
+          <p>{c.sources.fonts}</p>
+          <ul>
+            <li><a href="/fonts/LICENSE-Bricolage-Grotesque.txt">Bricolage Grotesque</a></li>
+            <li><a href="/fonts/LICENSE-Hanken-Grotesk.txt">Hanken Grotesk</a></li>
+            <li><a href="/fonts/LICENSE-IBM-Plex-Mono.txt">IBM Plex Mono</a></li>
+          </ul>
+        </section>
+        <section><h2 class="ts-sottotitolo">{c.sources.appTitle}</h2><p>{c.sources.app}</p></section>
+      </div>
+    </div>
+  </Layout>
+)}
+
+<style>
+  .col { max-width: 760px; padding-bottom: 120px; }
+  .prose :global(p) { max-width: 62ch; }
+  .first { font-weight: 600; }
+  .write { margin-top: 2em; }
+  .credits { display: grid; gap: 40px; }
+  .credits ul { margin-top: 8px; display: grid; gap: 6px; }
+  .credits a { color: var(--color-route); }
+  .todo { color: var(--color-warn-strong); margin-top: 10px; }
+  details { border-top: 1px solid var(--color-line); padding-block: 4px; }
+  details:last-child { border-bottom: 1px solid var(--color-line); }
+  summary { cursor: pointer; padding: 18px 40px 18px 0; position: relative; list-style: none; min-height: 44px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; position: absolute; right: 8px; top: 18px; font-size: 24px; color: var(--color-route); }
+  details[open] summary::after { content: '–'; }
+  details p { padding-bottom: 22px; max-width: 62ch; }
+  details :global(a) { color: var(--color-route); }
+</style>

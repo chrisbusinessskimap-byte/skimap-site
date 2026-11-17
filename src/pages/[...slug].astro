@@ -1,0 +1,21 @@
+---
+/* Tutte le pagine delle cinque lingue, da un solo file: la tabella delle rotte (src/i18n/routes.ts) dice quali e dove. */
+import { allEntries } from '../i18n/routes';
+import HomePage from '../views/HomePage.astro';
+import HowPage from '../views/HowPage.astro';
+import AreasPage from '../views/AreasPage.astro';
+import AreaPage from '../views/AreaPage.astro';
+import TextPage from '../views/TextPage.astro';
+import LegalPage from '../views/LegalPage.astro';
+
+export function getStaticPaths() {
+  return allEntries().map((e) => ({ params: { slug: e.url.replace(/^\/|\/$/g, '') }, props: e }));
+}
+const { lang, page, area } = Astro.props;
+---
+{page === 'home' && <HomePage lang={lang} />}
+{page === 'how' && <HowPage lang={lang} />}
+{page === 'areas' && !area && <AreasPage lang={lang} />}
+{page === 'areas' && area && <AreaPage lang={lang} slug={area} />}
+{(page === 'about' || page === 'help' || page === 'sources') && <TextPage lang={lang} page={page} />}
+{(page === 'privacy' || page === 'delete') && <LegalPage lang={lang} page={page} />}

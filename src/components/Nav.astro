@@ -1,0 +1,93 @@
+---
+/* «Sito/Navigazione» (Figma 216:7074). Computer: logo, voci, lingua, «Scarica l'app». Telefono: logo, lingua e «Menu», che apre il foglio.
+   Menu e lingua sono <details>: funzionano senza JavaScript. Le voci delle pagine sotto la linea di taglio (Giri, Per il territorio) non ci sono finché non escono. */
+import { LANGS, NAMES, type Lang } from '../i18n/langs';
+import { PAGES, path, alternates, type PageId } from '../i18n/routes';
+import { t } from '../content';
+
+interface Props { lang: Lang; page: PageId | 'other'; area?: string; dark: boolean; solid: boolean }
+const { lang, page, area, dark, solid } = Astro.props;
+const c = t(lang);
+const items = (['how', 'areas', 'tours', 'territory', 'help'] as const).filter((p) => PAGES[p].live);
+const alts = page === 'other' ? LANGS.map((l) => ({ lang: l, url: path(l, 'home') })) : alternates(page, area);
+const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
+---
+<header class:list={['nav', { solid, dark }]} id="nav">
+  <div class="inner">
+    <a class="logo" href={path(lang, 'home')} aria-label={c.ui.homeAria}>
+      <img src={logo} width="121" height="34" alt="" />
+    </a>
+    <nav class="links ts-link" aria-label={c.ui.mainNav}>
+      {items.map((p) => <a href={path(lang, p)} aria-current={page === p ? 'page' : undefined}>{c.ui.nav[p]}</a>)}
+    </nav>
+    <div class="actions">
+      <details class="lang">
+        <summary class="ts-link" aria-label={c.ui.language}>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.4 2.4 3.6 5.4 3.6 9s-1.2 6.6-3.6 9m0-18C9.6 5.4 8.4 8.4 8.4 12s1.2 6.6 3.6 9M3.6 9h16.8M3.6 15h16.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          {lang.toUpperCase()}
+        </summary>
+        <ul class="langlist">
+          {alts.map((a) => <li><a href={a.url} hreflang={a.lang} lang={a.lang} aria-current={a.lang === lang ? 'true' : undefined}>{NAMES[a.lang]}</a></li>)}
+        </ul>
+      </details>
+      <a class="btn btn-primary dl ts-link" href="/scarica">{c.ui.download}</a>
+      <details class="menu">
+        <summary class="ts-link"><span>{c.ui.menu}</span></summary>
+        <div class="sheet" role="dialog" aria-label={c.ui.menu}>
+          <nav aria-label={c.ui.mainNav}>
+            {items.map((p) => <a class="ts-titolo-m" href={path(lang, p)}>{c.ui.nav[p]}</a>)}
+            <a class="ts-titolo-m" href={path(lang, 'about')}>{c.ui.nav.about}</a>
+          </nav>
+          <a class="btn btn-primary" href="/scarica">{c.ui.download}</a>
+          <ul class="sheetlangs">
+            {alts.map((a) => <li><a href={a.url} hreflang={a.lang} lang={a.lang} aria-current={a.lang === lang ? 'true' : undefined}>{a.lang.toUpperCase()}</a></li>)}
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+<script is:inline>
+  /* la barra è trasparente sopra l'apertura e prende il fondo quando si scorre */
+  (function () {
+    var n = document.getElementById('nav');
+    if (!n || n.classList.contains('solid')) return;
+    var on = function () { n.classList.toggle('scrolled', window.scrollY > 24); };
+    on(); window.addEventListener('scroll', on, { passive: true });
+  })();
+</script>
+
+<style>
+  .nav { position: absolute; inset: 0 0 auto 0; z-index: 30; color: var(--color-ink); }
+  .nav.solid { position: sticky; top: 0; background: color-mix(in srgb, var(--color-snow) 92%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--color-line); }
+  .nav.scrolled { position: fixed; background: color-mix(in srgb, var(--color-snow) 92%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--color-line); }
+  .inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; max-width: 1440px; margin-inline: auto; padding: 22px 64px; }
+  .logo img { height: 34px; width: auto; }
+  .links { display: flex; gap: 36px; }
+  .links a { text-decoration: none; padding-block: 6px; border-bottom: 2px solid transparent; }
+  .links a:hover, .links a[aria-current] { border-bottom-color: currentColor; }
+  .actions { display: flex; align-items: center; gap: 20px; }
+  details > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+  details > summary::-webkit-details-marker { display: none; }
+  .lang { position: relative; }
+  .langlist { position: absolute; right: 0; top: 100%; min-width: 170px; background: var(--color-paper); color: var(--color-ink); border: 1px solid var(--color-line); border-radius: 14px; box-shadow: var(--shadow-float); padding: 8px; display: grid; }
+  .dark .langlist { background: var(--brand-abisso); }
+  .langlist a { display: block; padding: 10px 12px; border-radius: 8px; text-decoration: none; }
+  .langlist a:hover, .langlist a[aria-current] { background: var(--color-soft); }
+  .dl { padding: 11px 20px; min-height: 0; font-size: 15px; }
+  .menu { display: none; }
+  .menu summary { padding-inline: 14px; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); border-radius: var(--radius-pill); }
+  .sheet { position: fixed; inset: 0; z-index: 40; background: var(--color-snow); color: var(--color-ink); padding: 88px var(--space-gutter) 32px; display: flex; flex-direction: column; gap: 28px; overflow-y: auto; }
+  .menu[open] > summary { position: fixed; top: 22px; right: var(--space-gutter); z-index: 50; background: var(--color-snow); }
+  .sheet nav { display: grid; gap: 18px; }
+  .sheet nav a { text-decoration: none; }
+  .sheetlangs { display: flex; gap: 10px; flex-wrap: wrap; }
+  .sheetlangs a { display: inline-flex; min-width: 48px; min-height: 44px; align-items: center; justify-content: center; border: 1px solid var(--color-line); border-radius: var(--radius-pill); text-decoration: none; font-weight: 600; }
+  .sheetlangs a[aria-current] { background: var(--color-ink); color: var(--color-paper); }
+  @media (max-width: 1023px) {
+    .inner { padding: 14px 32px; }
+    .links, .dl, .lang { display: none; }
+    .menu { display: block; }
+  }
+  @media (max-width: 640px) { .inner { padding: 12px var(--space-gutter); } .logo img { height: 30px; } }
+</style>

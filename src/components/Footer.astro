@@ -1,0 +1,79 @@
+---
+/* «Sito/Piede» (Figma 216:7161): colonne, riga di fondo con il marchio, le lingue e i crediti. Qui stanno anche la riga fissa
+   «sito indipendente, non affiliato» (A14) e il credito del rilievo (A13). */
+import { LANGS, type Lang } from '../i18n/langs';
+import { PAGES, path, areaPath } from '../i18n/routes';
+import { AREAS } from '../data/areas';
+import { t } from '../content';
+
+interface Props { lang: Lang; dark: boolean }
+const { lang, dark } = Astro.props;
+const c = t(lang);
+const f = c.ui.footer;
+const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
+const how = path(lang, 'how');
+---
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <p class="ts-occhiello">{f.product}</p>
+        <ul class="ts-testo-piccolo">
+          <li><a href={how}>{c.ui.nav.how}</a></li>
+          {c.how.chapters.map((ch) => <li><a href={`${how}#${ch.id}`}>{ch.title}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="ts-occhiello">{f.areas}</p>
+        <ul class="ts-testo-piccolo">
+          {AREAS.map((a) => <li><a href={areaPath(lang, a.slug)}>{a.name}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="ts-occhiello">{f.app}</p>
+        <ul class="ts-testo-piccolo">
+          <li><a href={path(lang, 'about')}>{c.ui.nav.about}</a></li>
+          <li><a href={path(lang, 'help')}>{c.ui.nav.help}</a></li>
+          <li><a href="/scarica">{c.ui.download}</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="ts-occhiello">{f.legal}</p>
+        <ul class="ts-testo-piccolo">
+          <li><a href={path(lang, 'privacy')}>{f.privacy}</a></li>
+          <li><a href={path(lang, 'delete')}>{f.deleteAccount}</a></li>
+          <li><a href={path(lang, 'sources')}>{f.sources}</a></li>
+        </ul>
+        {f.legalNote && <p class="ts-credito note">{f.legalNote}</p>}
+      </div>
+    </div>
+    <div class="bottom">
+      <a href={path(lang, 'home')} aria-label={c.ui.homeAria}><img src={logo} width="107" height="30" alt="" /></a>
+      <nav class="langs ts-occhiello" aria-label={f.languages}>
+        {LANGS.map((l, i) => <><a href={path(l, 'home')} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{l.toUpperCase()}</a>{i < LANGS.length - 1 && <span aria-hidden="true"> · </span>}</>)}
+      </nav>
+      <div class="credits ts-credito">
+        <p>{f.notAffiliated}</p>
+        <p>{f.credits}</p>
+        <p>{f.reliefCredit} · {f.copyright}</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot { background: var(--color-snow); border-top: 1px solid var(--color-line); padding-block: 72px 48px; margin-top: auto; color: var(--color-ink); }
+  .cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; margin-bottom: 56px; }
+  .cols .ts-occhiello { color: var(--color-mute); margin-bottom: 12px; }
+  .cols li + li { margin-top: 8px; }
+  .cols a { text-decoration: none; }
+  .cols a:hover { text-decoration: underline; }
+  .note { color: var(--color-mute); margin-top: 12px; max-width: 28ch; }
+  .bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 40px; }
+  .bottom img { height: 30px; width: auto; }
+  .langs a { text-decoration: none; padding: 6px 2px; }
+  .langs a[aria-current] { color: var(--color-route); }
+  .credits { color: var(--color-mute); flex-basis: 100%; display: grid; gap: 4px; max-width: 920px; }
+  @media (max-width: 1023px) { .cols { grid-template-columns: repeat(2, 1fr); gap: 36px; } .foot { padding-block: 48px 32px; } }
+  @media (max-width: 480px) { .cols { grid-template-columns: 1fr; } }
+</style>

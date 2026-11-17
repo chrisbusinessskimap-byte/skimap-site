@@ -1,0 +1,111 @@
+---
+/* L'apertura della home: «la montagna all'ora giusta». Il rilievo vero dal DEM con la luce di alba, mezzogiorno, tramonto e notte,
+   e il selettore dell'ora («Sito/Selettore ora», Figma 220:6389) che fa dissolvenza fra le quattro immagini.
+   Si carica una sola immagine (mezzogiorno) con priorità; le altre tre arrivano quando il browser è libero o al primo uso del selettore.
+   Il credito del rilievo sta nella pagina «Fonti e licenze» e nel piede (A13). Il video dell'apertura (solo computer) è sotto la linea di taglio (4-12). */
+import type { Lang } from '../i18n/langs';
+import { t } from '../content';
+import type { Hour } from '../content/types';
+
+interface Props { lang: Lang; alt: string }
+const { lang, alt } = Astro.props;
+const c = t(lang);
+const HOURS: Hour[] = ['alba', 'mezzogiorno', 'tramonto', 'notte'];
+const WIDTHS = [640, 1200, 1800, 2400];
+const srcset = (h: Hour, ext: 'avif' | 'webp') => WIDTHS.map((w) => `/relief/${h}-${w}.${ext} ${w}w`).join(', ');
+const first: Hour = 'mezzogiorno';
+const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcset(h, 'avif'), webp: srcset(h, 'webp'), src: `/relief/${h}-1200.webp`, alt: c.ui.hours[h].alt }));
+---
+<section class="hero" data-hero data-hour={first} aria-label={alt}>
+  <div class="layers" aria-hidden="false">
+    <picture class="layer on" data-layer={first}>
+      <source type="image/avif" srcset={srcset(first, 'avif')} sizes="100vw" />
+      <source type="image/webp" srcset={srcset(first, 'webp')} sizes="100vw" />
+      <img src={`/relief/${first}-1200.webp`} width="2400" height="1600" alt={c.ui.hours[first].alt} fetchpriority="high" decoding="async" />
+    </picture>
+  </div>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="wrap content"><slot /></div>
+  <div class="wrap picker-wrap">
+    <div class="picker" role="group" aria-label={c.ui.pickerLabel} hidden data-picker>
+      {HOURS.map((h) => (
+        <button type="button" class="pill" data-hour={h} aria-pressed={h === first ? 'true' : 'false'}>
+          <span class="ts-ora-piccola">{c.ui.hours[h].time}</span>
+          <span class="ts-link">{c.ui.hours[h].name}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+  <script type="application/json" data-rest set:html={JSON.stringify(rest)}></script>
+</section>
+
+<script>
+  /* il selettore dell'ora: JavaScript solo qui. Senza, resta l'immagine di mezzogiorno e il selettore non compare. */
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  if (hero) {
+    const picker = hero.querySelector<HTMLElement>('[data-picker]')!;
+    const layers = hero.querySelector<HTMLElement>('.layers')!;
+    const rest = JSON.parse(hero.querySelector('[data-rest]')!.textContent || '[]') as { hour: string; avif: string; webp: string; src: string; alt: string }[];
+    const loaded = new Set<string>(['mezzogiorno']);
+    const add = (r: (typeof rest)[number]) => {
+      if (loaded.has(r.hour)) return;
+      loaded.add(r.hour);
+      const pic = document.createElement('picture');
+      pic.className = 'layer';
+      pic.dataset.layer = r.hour;
+      pic.innerHTML = `<source type="image/avif" srcset="${r.avif}" sizes="100vw"><source type="image/webp" srcset="${r.webp}" sizes="100vw"><img src="${r.src}" width="2400" height="1600" alt="${r.alt.replace(/"/g, '&quot;')}" decoding="async">`;
+      layers.appendChild(pic);
+    };
+    const show = (hour: string) => {
+      const r = rest.find((x) => x.hour === hour);
+      if (r) add(r);
+      hero.dataset.hour = hour;
+      hero.querySelectorAll('.layer').forEach((l) => l.classList.toggle('on', (l as HTMLElement).dataset.layer === hour));
+      picker.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.hour === hour)));
+    };
+    picker.hidden = false;
+    picker.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('button');
+      if (b && b.dataset.hour) show(b.dataset.hour);
+    });
+    /* le altre tre immagini a pagina caricata e browser libero, a meno che l'utente chieda di risparmiare dati */
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean } }).connection;
+    if (!conn?.saveData) {
+      const idle = (window as unknown as { requestIdleCallback?: (cb: () => void) => void }).requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 2500));
+      window.addEventListener('load', () => idle(() => rest.forEach(add)), { once: true });
+    }
+  }
+</script>
+
+<style>
+  .hero { position: relative; min-height: 900px; overflow: hidden; background: var(--brand-abisso); color: var(--color-ink); display: flex; flex-direction: column; }
+  .layers { position: absolute; inset: 0; }
+  .layer { position: absolute; inset: 0; opacity: 0; }
+  .layer.on { opacity: 1; }
+  .layer :global(img), .layer img { width: 100%; height: 100%; object-fit: cover; }
+  @media (prefers-reduced-motion: no-preference) { .layer { transition: opacity .7s ease; } }
+  .veil {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgb(11 20 48 / 0.35) 0%, rgb(11 20 48 / 0) 18%, rgb(11 20 48 / 0) 70%, var(--brand-abisso) 100%),
+      linear-gradient(90deg, rgb(11 20 48 / 0.85) 0%, rgb(11 20 48 / 0.35) 50%, rgb(11 20 48 / 0) 100%);
+  }
+  .content { position: relative; flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; padding-top: 120px; padding-bottom: 140px; }
+  .picker-wrap { position: absolute; left: 0; right: 0; bottom: 40px; }
+  .picker { display: inline-flex; gap: 8px; padding: 8px; border-radius: var(--radius-pill); background: rgb(11 20 48 / 0.62); border: 1px solid rgb(255 255 255 / 0.16); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .pill { display: grid; justify-items: center; gap: 2px; min-width: 104px; padding: 10px 18px; border: 0; border-radius: var(--radius-pill); background: transparent; color: #fff; }
+  .pill:hover { background: rgb(255 255 255 / 0.1); }
+  .pill[aria-pressed='true'] { background: var(--brand-ghiaccio); color: var(--brand-abisso); }
+  .pill :global(.ts-link) { font-size: 13px; }
+  @media (max-width: 1023px) {
+    .hero { min-height: 780px; }
+    .content { flex-direction: column; align-items: flex-start; justify-content: flex-start; padding-top: 104px; padding-bottom: 150px; gap: 28px; }
+    .picker-wrap { bottom: 24px; }
+  }
+  @media (max-width: 640px) {
+    .picker { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; border-radius: 22px; gap: 4px; padding: 6px; }
+    .pill { min-width: 0; padding: 8px 4px; border-radius: 16px; }
+    .pill :global(.ts-ora-piccola) { font-size: 15px; }
+    .pill :global(.ts-link) { font-size: 12px; }
+  }
+</style>

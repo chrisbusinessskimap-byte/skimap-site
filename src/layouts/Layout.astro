@@ -1,0 +1,77 @@
+---
+/* L'involucro di ogni pagina: testa (meta, hreflang, social), navigazione, contenuto, piede.
+   Il tema è fisso per pagina: «notte» (scuro) solo per la home, «giorno» (chiaro) per le altre. Nessun interruttore. */
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { ORIGIN, LOCALES, LANGS, type Lang } from '../i18n/langs';
+import { alternates, path, type PageId } from '../i18n/routes';
+import { OLD_HASHES } from '../i18n/redirects';
+import { t } from '../content';
+
+interface Props {
+  lang: Lang;
+  page: PageId | 'other';
+  area?: string;
+  theme?: 'notte' | 'giorno';
+  title: string;
+  description: string;
+  canonical?: string;
+  noindex?: boolean;
+  /* senza hreflang (pagine di servizio come /scarica) */
+  alts?: { lang: Lang; url: string }[];
+  legacyHashes?: boolean;
+  navSolid?: boolean;
+  /* pagine di servizio (/scarica, /download/<id>): senza barra e piè, leggere in seggiovia */
+  bare?: boolean;
+}
+const { lang, page, area, theme = 'giorno', title, description, canonical, noindex = false, alts, legacyHashes = false, navSolid, bare = false } = Astro.props;
+const c = t(lang);
+const self = canonical ?? (page === 'other' ? Astro.url.pathname : path(lang, page, area));
+const alternate = alts ?? (page === 'other' ? [] : alternates(page, area));
+const dark = theme === 'notte';
+const legacy = legacyHashes
+  ? JSON.stringify(Object.fromEntries(Object.entries(OLD_HASHES).map(([h, v]) => [h, path(lang, v.page) + (v.hash ? '#' + v.hash : '')])))
+  : '';
+---
+<!doctype html>
+<html lang={lang} data-theme={theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content={dark ? '#0b1430' : '#ffffff'} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={ORIGIN + self} />
+    {alternate.map((a) => <link rel="alternate" hreflang={a.lang} href={ORIGIN + a.url} />)}
+    {alternate.length > 0 && <link rel="alternate" hreflang="x-default" href={ORIGIN + '/'} />}
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:site_name" content="Ski Maps" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={ORIGIN + self} />
+    <meta property="og:locale" content={LOCALES[lang]} />
+    {alternate.filter((a) => a.lang !== lang).map((a) => <meta property="og:locale:alternate" content={LOCALES[a.lang]} />)}
+    <meta property="og:image" content={ORIGIN + '/og-image.png'} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ski Maps" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/hanken-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/hanken-grotesk-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">{c.ui.skip}</a>
+    {!bare && <Nav lang={lang} page={page} area={area} dark={dark} solid={navSolid ?? !dark} />}
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    {!bare && <Footer lang={lang} dark={dark} />}
+    {legacy && <script is:inline set:html={`(function(){var h=location.hash.slice(1),m=${legacy};if(h&&m[h])location.replace(m[h]);})();`}></script>}
+  </body>
+</html>

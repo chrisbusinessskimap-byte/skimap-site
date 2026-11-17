@@ -1,0 +1,52 @@
+---
+/* «Sito/Mappa schematica · Alpi e Appennino» (Figma 217:7163): mappa disegnata, non a tessere. Gli archi di Alpi e Appennino e gli otto comprensori.
+   Le posizioni sono schematiche, non geografiche: la pagina lo dice. I nomi portano alla pagina del comprensorio. */
+import type { Lang } from '../i18n/langs';
+import { areaPath } from '../i18n/routes';
+import { AREAS } from '../data/areas';
+import { t } from '../content';
+
+interface Props { lang: Lang; label: string }
+const { lang, label } = Astro.props;
+const W = 499.2, H = 436.8;
+/* posizioni dal Figma (px nel riquadro 499,2 × 436,8): spillo, nome */
+const PINS: Record<string, { pin: [number, number]; label: [number, number] }> = {
+  vialattea: { pin: [67.08, 125.58], label: [66.3, 143.52] },
+  monterosa: { pin: [133.38, 77.22], label: [124.8, 57.72] },
+  livigno: { pin: [250.38, 41.34], label: [241.8, 21.84] },
+  skirama: { pin: [308.88, 64.74], label: [284.7, 85.8] },
+  superski: { pin: [386.88, 55.38], label: [354.9, 35.88] },
+  campofelice: { pin: [303.42, 308.1], label: [218.4, 308.88] },
+  ovindoli: { pin: [325.26, 326.82], label: [269.88, 344.76] },
+  altosangro: { pin: [359.58, 353.34], label: [379.08, 355.68] },
+};
+const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(2)}%`;
+---
+<div class="map" role="group" aria-label={label}>
+  <img class="arc alps" src="/map/alpi.svg" alt="" aria-hidden="true" width="456" height="114" />
+  <img class="arc apen" src="/map/appennino.svg" alt="" aria-hidden="true" width="276" height="134" />
+  <span class="tag ts-credito" style={`left:${pct(195, W)};top:${pct(14.04, H)}`}>ALPI</span>
+  <span class="tag ts-credito" style={`left:${pct(195, W)};top:${pct(257.4, H)}`}>APPENNINO</span>
+  {AREAS.map((a) => {
+    const p = PINS[a.id];
+    return (
+      <>
+        <a class="pin" href={areaPath(lang, a.slug)} aria-label={a.name} style={`left:${pct(p.pin[0], W)};top:${pct(p.pin[1], H)}`}><span aria-hidden="true"></span></a>
+        <a class="name ts-link" href={areaPath(lang, a.slug)} tabindex="-1" aria-hidden="true" style={`left:${pct(p.label[0], W)};top:${pct(p.label[1], H)}`}>{a.name}</a>
+      </>
+    );
+  })}
+</div>
+
+<style>
+  .map { position: relative; width: 100%; max-width: 499px; aspect-ratio: 499.2 / 436.8; }
+  .arc { position: absolute; max-width: none; }
+  .alps { left: 9.38%; top: 10.53%; width: 86.71%; height: auto; }
+  .apen { left: 44.53%; top: 36.61%; width: 36.72%; height: auto; }
+  .tag { position: absolute; color: var(--color-mute); letter-spacing: 0.08em; font-size: 10px; }
+  .pin { position: absolute; width: 14px; height: 14px; transform: translate(-0%, -0%); }
+  .pin span { display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--brand-ghiaccio); box-shadow: 0 0 0 3px var(--brand-abisso); }
+  .pin:hover span, .pin:focus-visible span { background: var(--color-glow); }
+  .name { position: absolute; font-size: 11.7px; white-space: nowrap; text-decoration: none; color: var(--color-ink); }
+  .name:hover { text-decoration: underline; }
+</style>

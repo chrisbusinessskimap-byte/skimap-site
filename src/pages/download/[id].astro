@@ -1,0 +1,11 @@
+---
+/* `/download/<id>`: `<id>` è l'id del manifest (`superski`), non il nome della pagina (`dolomiti-superski`): una tabella sola in src/data/areas.ts. */
+import DownloadView from '../../views/DownloadView.astro';
+import { AREAS } from '../../data/areas';
+
+export function getStaticPaths() {
+  return AREAS.map((a) => ({ params: { id: a.id } }));
+}
+const { id } = Astro.params;
+---
+<DownloadView id={id} />

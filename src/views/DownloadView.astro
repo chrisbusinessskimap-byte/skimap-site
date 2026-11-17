@@ -1,0 +1,68 @@
+---
+/* Il ponte con l'app (A8, B10): `/scarica` e `/download/<id>`. Pagine di servizio, leggere (niente rilievo, niente video, niente barra e piè): si
+   aprono dal codice QR in pista, con poca rete. Dicono in tutte e cinque le lingue nello stesso HTML e uno script minuscolo sceglie quella del browser
+   (senza JavaScript si vede l'inglese).
+   `/download/<id>` è una PAGINA con un pulsante «Apri nell'app» che parte da un tocco: mai un reindirizzamento automatico verso `skimap://`.
+   Il pulsante apre l'app solo con la v2 e una build dell'11-11 o successiva; il testo dice che il download parte e quanto pesa, al massimo. */
+import QRCode from 'qrcode';
+import Layout from '../layouts/Layout.astro';
+import StoreButton from '../components/StoreButton.astro';
+import { LANGS, ORIGIN, FALLBACK } from '../i18n/langs';
+import { t, fill } from '../content';
+import { byId } from '../data/areas';
+
+interface Props { id?: string }
+const { id } = Astro.props;
+const area = id ? byId(id)! : undefined;
+const qr = area ? await QRCode.toString(`${ORIGIN}/download/${area.id}`, { type: 'svg', margin: 1, width: 168, color: { dark: '#0b1430', light: '#ffffff' } }) : '';
+const self = area ? `/download/${area.id}/` : '/scarica/';
+const title = t(FALLBACK).download.title + (area ? ` · ${area.name}` : '');
+---
+<Layout lang="en" page="other" bare noindex canonical={self} title={title} description={t(FALLBACK).download.lede}>
+  {LANGS.map((l) => {
+    const d = t(l).download;
+    return (
+      <section class="dl" lang={l} data-l={l} hidden={l !== FALLBACK} aria-labelledby={`h-${l}`}>
+        <img src="/brand/lockup.svg" width="157" height="44" alt="Ski Maps" />
+        <h1 id={`h-${l}`} class="ts-titolo-m">{area ? area.name : d.h1}</h1>
+        <p class="ts-lead">{d.lede}</p>
+        <div class="buttons">
+          <StoreButton lang={l} campaign={area ? `download-${area.id}` : 'scarica'} />
+          <StoreButton lang={l} campaign={area ? `download-${area.id}` : 'scarica'} kind="ios" />
+        </div>
+        {area && (
+          <div class="open">
+            <a class="btn btn-ghost" href={`skimap://download/${area.id}`} data-open>{d.openApp}</a>
+            <p class="ts-testo-piccolo">{fill(d.openAppNote, { name: area.name, mb: area.packMaxMB })}</p>
+            <p class="ts-testo-piccolo" set:html={fill(d.weightNote, { mb: area.packMaxMB })} />
+            <p class="ts-testo-piccolo">{d.needApp}</p>
+          </div>
+        )}
+        {area && <div class="qr" data-qr><p class="ts-testo-piccolo">{d.qr}</p><div set:html={qr} aria-hidden="true" /></div>}
+        <p><a class="ts-link" href={`/${l}/`}>{d.back}</a></p>
+      </section>
+    );
+  })}
+</Layout>
+
+<script>
+  /* sceglie la lingua del browser fra le cinque; senza, resta l'inglese */
+  const langs = ['it', 'en', 'de', 'fr', 'es'];
+  const prefs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]).map((x) => (x || '').slice(0, 2).toLowerCase());
+  const pick = prefs.find((p) => langs.includes(p)) || 'en';
+  document.querySelectorAll<HTMLElement>('[data-l]').forEach((s) => { s.hidden = s.dataset.l !== pick; });
+  document.documentElement.lang = pick;
+</script>
+
+<style>
+  .dl { max-width: 560px; margin: 0 auto; padding: 40px var(--space-gutter) 64px; display: grid; gap: 20px; justify-items: start; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+  .open { display: grid; gap: 12px; justify-items: start; }
+  .qr { display: none; }
+  .qr :global(svg) { width: 168px; height: 168px; border-radius: 12px; }
+  @media (hover: hover) and (pointer: fine) {
+    .qr { display: grid; gap: 8px; }
+    [data-open] { display: none; }
+  }
+  [hidden] { display: none !important; }
+</style>

@@ -1,0 +1,53 @@
+---
+/* `/`: la scelta della lingua. Chi ha `Accept-Language` viene mandato dalla funzione di Pages (functions/index.ts) alla sua lingua;
+   chi non lo manda (motori di ricerca, richieste senza intestazione) vede questa pagina, che è anche l'`x-default` dell'hreflang. */
+import '../styles/global.css';
+import { LANGS, NAMES, ORIGIN, LOCALES } from '../i18n/langs';
+import { path } from '../i18n/routes';
+import { OLD_HASHES } from '../i18n/redirects';
+import { t } from '../content';
+
+const c = t('it');
+const legacy = JSON.stringify(Object.fromEntries(Object.entries(OLD_HASHES).map(([h, v]) => [h, path('it', v.page) + (v.hash ? '#' + v.hash : '')])));
+---
+<!doctype html>
+<html lang="it" data-theme="notte">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{c.chooser.title}</title>
+    <meta name="description" content={c.chooser.description} />
+    <meta name="theme-color" content="#0b1430" />
+    <link rel="canonical" href={ORIGIN + '/'} />
+    {LANGS.map((l) => <link rel="alternate" hreflang={l} href={ORIGIN + path(l, 'home')} />)}
+    <link rel="alternate" hreflang="x-default" href={ORIGIN + '/'} />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:site_name" content="Ski Maps" />
+    <meta property="og:title" content={c.chooser.title} />
+    <meta property="og:description" content={c.chooser.description} />
+    <meta property="og:url" content={ORIGIN + '/'} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={LOCALES.it} />
+    <meta property="og:image" content={ORIGIN + '/og-image.png'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <main id="main" class="choose">
+      <img src="/brand/lockup-white.svg" width="181" height="51" alt="Ski Maps" />
+      <h1 class="ts-titolo-m">{c.chooser.pick}</h1>
+      <ul class="langs ts-sottotitolo">
+        {LANGS.map((l) => <li><a href={path(l, 'home')} hreflang={l} lang={l}>{NAMES[l]}</a></li>)}
+      </ul>
+    </main>
+    <script is:inline set:html={`(function(){var h=location.hash.slice(1),m=${legacy};if(h&&m[h])location.replace(m[h]);})();`}></script>
+  </body>
+</html>
+
+<style>
+  .choose { min-height: 100vh; display: grid; place-content: center; justify-items: center; gap: 28px; padding: 32px var(--space-gutter); text-align: center; }
+  .langs { display: grid; gap: 10px; min-width: 240px; }
+  .langs a { display: block; padding: 14px 24px; border-radius: var(--radius-pill); border: 1px solid rgb(255 255 255 / 0.28); text-decoration: none; }
+  .langs a:hover { background: var(--brand-ghiaccio); color: var(--brand-abisso); }
+</style>
