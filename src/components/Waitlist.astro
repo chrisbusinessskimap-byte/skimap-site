@@ -28,7 +28,19 @@ const inputId = `${id}-email`;
   <p class="state bad ts-testo-piccolo" id={`${id}-fail`} role="alert">{w.fail} <a href={`mailto:${MAIL}`}>{MAIL}</a></p>
 </div>
 
+<script>
+  /* «Scarica l'app» in alto porta qui (#avvisami-hero): la pagina scorre e il cursore va nel campo email */
+  const focusFromHash = () => {
+    const el = location.hash ? document.getElementById(location.hash.slice(1)) : null;
+    if (el && el.classList.contains('wl')) el.querySelector<HTMLInputElement>('input[type="email"]')?.focus({ preventScroll: true });
+  };
+  /* da un'altra pagina il browser sposta il fuoco dopo il caricamento: si aspetta un attimo */
+  if (document.readyState === 'complete') setTimeout(focusFromHash, 60); else addEventListener('load', () => setTimeout(focusFromHash, 60));
+  addEventListener('hashchange', focusFromHash);
+</script>
+
 <style>
+  .wl { scroll-margin-top: 120px; }
   .wl { display: grid; gap: 12px; max-width: 520px; width: 100%; }
   .row { display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap; }
   .field { flex: 1 1 220px; min-width: 0; height: 52px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--color-line); background: var(--color-paper); color: var(--color-ink); }

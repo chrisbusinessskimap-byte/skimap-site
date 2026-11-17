@@ -10,6 +10,9 @@ const { lang, page, area, dark, solid } = Astro.props;
 const c = t(lang);
 const items = (['how', 'areas', 'tours', 'territory', 'help'] as const).filter((p) => PAGES[p].live);
 const alts = page === 'other' ? LANGS.map((l) => ({ lang: l, url: path(l, 'home') })) : alternates(page, area);
+/* finché lo store non ha il collegamento (STORE_STATE=soon) «Scarica l'app» porta al campo email della home; con Play, alla pagina /scarica */
+const store = (import.meta.env.STORE_STATE ?? 'soon') as 'soon' | 'play';
+const downloadHref = store === 'play' ? '/scarica' : `${path(lang, 'home')}#avvisami-hero`;
 const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
 ---
 <header class:list={['nav', { solid, dark }]} id="nav">
@@ -30,7 +33,7 @@ const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
           {alts.map((a) => <li><a href={a.url} hreflang={a.lang} lang={a.lang} aria-current={a.lang === lang ? 'true' : undefined}>{NAMES[a.lang]}</a></li>)}
         </ul>
       </details>
-      <a class="btn btn-primary dl ts-link" href="/scarica">{c.ui.download}</a>
+      <a class="btn btn-primary dl ts-link" href={downloadHref}>{c.ui.download}</a>
       <details class="menu">
         <summary class="ts-link"><span>{c.ui.menu}</span></summary>
         <div class="sheet" role="dialog" aria-label={c.ui.menu}>
@@ -38,7 +41,7 @@ const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
             {items.map((p) => <a class="ts-titolo-m" href={path(lang, p)}>{c.ui.nav[p]}</a>)}
             <a class="ts-titolo-m" href={path(lang, 'about')}>{c.ui.nav.about}</a>
           </nav>
-          <a class="btn btn-primary" href="/scarica">{c.ui.download}</a>
+          <a class="btn btn-primary" href={downloadHref} data-dl>{c.ui.download}</a>
           <ul class="sheetlangs">
             {alts.map((a) => <li><a href={a.url} hreflang={a.lang} lang={a.lang} aria-current={a.lang === lang ? 'true' : undefined}>{a.lang.toUpperCase()}</a></li>)}
           </ul>
@@ -54,6 +57,10 @@ const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
     if (!n || n.classList.contains('solid')) return;
     var on = function () { n.classList.toggle('scrolled', window.scrollY > 24); };
     on(); window.addEventListener('scroll', on, { passive: true });
+    /* dal menu del telefono il foglio si chiude prima di andare al campo email */
+    var m = document.querySelector('.menu');
+    var a = m && m.querySelector('[data-dl]');
+    if (a) a.addEventListener('click', function () { m.removeAttribute('open'); });
   })();
 </script>
 
