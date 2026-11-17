@@ -12,7 +12,7 @@ const c = t(lang);
 const p = area.photo;
 ---
 <article class="card" data-group={area.group}>
-  <a class="link" href={areaPath(lang, area.slug)} aria-label={`${area.name}: ${c.ui.goToArea}`}>
+  <a class="link" href={areaPath(lang, area.slug)}>
     <img src={`${p.file}-s.webp`} srcset={`${p.file}-s.webp 640w, ${p.file}-l.webp 1600w`} sizes="(max-width: 640px) 90vw, 310px" width="640" height={Math.round(640 * p.height / p.width)} alt="" loading={loading} decoding="async" />
     <span class="veil" aria-hidden="true"></span>
     <span class="text">

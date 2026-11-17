@@ -38,11 +38,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* pulsanti: «Sito/Pulsante» e «Sito/Link» del Figma */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 24px;
-  border-radius: var(--radius-pill); border: 1px solid transparent; text-decoration: none; white-space: nowrap;
+  border-radius: var(--radius-pill); border: 1px solid transparent; text-decoration: none; text-align: center;
   font-family: var(--font-body); font-weight: 700; font-size: 17px; line-height: 1.2;
 }
 .btn svg { width: 20px; height: 20px; flex: none; }
-.btn-primary { background: var(--color-route); color: var(--color-snow); }
+.btn-primary { background: var(--color-route); color: var(--brand-neve); }
+[data-theme='notte'] .btn-primary { color: var(--brand-abisso); }
 .btn-ghost { background: transparent; color: var(--color-ink); border-color: color-mix(in srgb, var(--color-ink) 28%, transparent); }
 .btn-ghost:hover { border-color: var(--color-ink); }
 .btn[aria-disabled='true'] { cursor: default; }

@@ -22,7 +22,7 @@ const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
     </nav>
     <div class="actions">
       <details class="lang">
-        <summary class="ts-link" aria-label={c.ui.language}>
+        <summary class="ts-link" aria-label={`${c.ui.language}: ${lang.toUpperCase()}`}>
           <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.4 2.4 3.6 5.4 3.6 9s-1.2 6.6-3.6 9m0-18C9.6 5.4 8.4 8.4 8.4 12s1.2 6.6 3.6 9M3.6 9h16.8M3.6 15h16.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           {lang.toUpperCase()}
         </summary>
@@ -74,7 +74,7 @@ const logo = dark ? '/brand/lockup-white.svg' : '/brand/lockup.svg';
   .dark .langlist { background: var(--brand-abisso); }
   .langlist a { display: block; padding: 10px 12px; border-radius: 8px; text-decoration: none; }
   .langlist a:hover, .langlist a[aria-current] { background: var(--color-soft); }
-  .dl { padding: 11px 20px; min-height: 0; font-size: 15px; }
+  .dl { padding: 11px 20px; min-height: 0; font-size: 15px; white-space: nowrap; }
   .menu { display: none; }
   .menu summary { padding-inline: 14px; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); border-radius: var(--radius-pill); }
   .sheet { position: fixed; inset: 0; z-index: 40; background: var(--color-snow); color: var(--color-ink); padding: 88px var(--space-gutter) 32px; display: flex; flex-direction: column; gap: 28px; overflow-y: auto; }

@@ -50,7 +50,7 @@ export interface Content {
     metaTitle: string; metaDescription: string; /* {name} {km} {lifts} */
     km: string; lifts: string; top: string; zones: string;
     download: string; subnav: { zones: string; app: string; reach: string }; zonesTitle: string; zonesSingle: string;
-    appTitle: string; appPackZones: string; appPackSingle: string; appReturn: string;
+    appTitle: string; appPackZones: string; appPackSingle: string; appReturn: string; appBus: string;
     reachTitle: string; reach: { car: [string, string]; train: [string, string]; plane: [string, string] };
     numbersNote: string; notAffiliated: string;
   };

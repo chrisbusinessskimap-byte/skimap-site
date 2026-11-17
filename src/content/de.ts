@@ -1,4 +1,158 @@
 import type { Content } from './types';
-import it from './it';
-const c: Content = { ...it, lang: 'de' };
-export default c;
+
+/* Deutsch. Die Sätze mit data-claim sind wörtlich aus dem Italienischen übersetzt: gleiche id, gleiche Stärke. «Parziale» bleibt teilweise.
+   Von einer Muttersprachlerin oder einem Muttersprachler noch nicht gegengelesen (steht im DIARIO unter «Non verificato»). */
+const de: Content = {
+  lang: 'de',
+  ui: {
+    skip: 'Zum Inhalt springen', menu: 'Menü', close: 'Schließen', language: 'Sprache', homeAria: 'Ski Maps, Startseite', mainNav: 'Bereiche der Website',
+    download: 'App laden',
+    nav: { how: 'So funktioniert’s', areas: 'Skigebiete', tours: 'Touren', territory: 'Für Skigebiete', about: 'Über uns', help: 'Hilfe' },
+    store: { play: 'Bei Google Play laden', soon: 'Bald bei Google Play', ios: 'iPhone: bald' },
+    example: 'Beispiel, keine Live-Daten',
+    hours: {
+      alba: { name: 'Morgenrot', time: '07:12', alt: 'Das Relief der Dolomiten im Morgenrot' },
+      mezzogiorno: { name: 'Mittag', time: '12:30', alt: 'Das Relief der Dolomiten am Mittag' },
+      tramonto: { name: 'Sonnenuntergang', time: '16:48', alt: 'Das Relief der Dolomiten bei Sonnenuntergang' },
+      notte: { name: 'Nacht', time: '21:00', alt: 'Das Relief der Dolomiten bei Nacht' },
+    },
+    pickerLabel: 'Tageszeit wählen',
+    footer: {
+      product: 'Produkt', areas: 'Skigebiete', app: 'Ski Maps', legal: 'Rechtliches',
+      privacy: 'Datenschutz', deleteAccount: 'Konto löschen', sources: 'Quellen und Lizenzen', languages: 'Sprachen',
+      notAffiliated: 'Unabhängige Website, nicht mit den Liftbetreibern verbunden. Die Namen der Skigebiete gehören ihren jeweiligen Inhabern.',
+      credits: 'Karten © OpenStreetMap contributors · Fotos: Wikimedia Commons, Nachweise unter „Quellen und Lizenzen“',
+      reliefCredit: 'Relief: Terrain Tiles, Nachweise unter „Quellen und Lizenzen“', copyright: '© 2026 Ski Maps',
+      legalNote: 'Datenschutzerklärung und Kontolöschung gibt es auf Italienisch und Englisch; hier führen sie zur englischen Fassung.',
+    },
+    breadcrumbHome: 'Ski Maps', seeAll: 'Alle Skigebiete', goToArea: 'Zum Skigebiet', photoBy: 'Foto', photoCrop: 'zugeschnitten',
+  },
+  chooser: { title: 'Ski Maps · Italiano · English · Deutsch · Français · Español', description: 'Ski Maps, der Navigator für Skifahrer. Wähle die Sprache.', h1: 'Ski Maps', pick: 'Sprache wählen' },
+  home: {
+    meta: { title: 'Ski Maps · Der Berg zur richtigen Stunde', description: 'Ski Maps führt dich Piste für Piste und warnt dich, ob du rechtzeitig zurück bist. Acht Skigebiete in den Dolomiten, den Alpen und im Apennin.' },
+    eyebrow: 'Dolomiten · Alpen · Apennin — Winter 2026/27',
+    h1: 'Der Berg zur richtigen Stunde.',
+    lede: 'Ski Maps führt dich <span data-claim="percorso-pista-per-pista">Piste für Piste</span> und <span data-claim="rientro-in-tempo">warnt dich, ob du rechtzeitig zurück bist</span>. <span data-claim="offline-percorso">Die aktive Route bleibt auf dem Telefon und funktioniert auch ohne Netz.</span>',
+    phoneAlt: 'Beispiel-Bildschirm der App: die Route nach Arabba, mit den Zeiten je Niveau',
+    heroAlt: 'Das Relief der Dolomiten, wie Ski Maps es zeigt',
+    moments: {
+      eyebrow: 'So funktioniert’s', h: 'Ein Tag, drei Momente.',
+      lede: 'Vor dem Start wählst du die Tour für dein Niveau. Auf der Piste führt dich die Stimme. Am Nachmittag sagt sie dir, wann du zurückfahren musst.',
+      items: [
+        { time: '08:40', title: 'Vor dem Start', text: '<span data-claim="livello-tuo">Drei Routen zum selben Ziel: Anfänger, Fortgeschrittene, Experten.</span> Jede mit ihrer eigenen Zeit, <span data-claim="tempi-stimati">geschätzt und mit der Nutzung immer genauer</span>.', screen: 'percorsi', alt: 'Beispiel: drei Routen je Niveau von Corvara nach Arabba, mit Zeiten' },
+        { time: '11:22', title: 'Auf der Piste', text: '<span data-claim="voce-a-voce">Ansagen per Stimme, Abzweigung für Abzweigung.</span> <span data-claim="offline-percorso">Die aktive Route bleibt auf dem Telefon und funktioniert auch ohne Netz.</span>', screen: 'guida', alt: 'Beispiel: die Führung auf der Piste, mit nächster Abzweigung und Ankunftszeit' },
+        { time: '15:40', title: 'Die Rückfahrt', text: '<span data-claim="rientro-in-tempo">Du wirst gewarnt, wenn der letzte Lift schließt, bevor du im Tal ankommst,</span> wo die Betriebszeiten bekannt sind.', screen: 'rientro', alt: 'Beispiel: die Warnung vor dem letzten Lift während der Führung' },
+      ],
+    },
+    areas: {
+      eyebrow: 'Skigebiete', h: 'Acht Skigebiete, eines nach dem anderen.',
+      lede: '<span data-claim="pacchetto-comprensorio">Wähle, wohin du fährst: Die Karten dieses Skigebiets lädst du einmal herunter, zu Hause.</span>',
+      mapAria: 'Schematische Karte der Skigebiete: Alpen und Apennin. Die Positionen sind nicht geografisch.',
+      all: 'Alle', groups: { dolomiti: 'Dolomiten', 'western-alps': 'Westalpen', lombardy: 'Lombardei', apennines: 'Apennin' },
+    },
+    cta: { h: 'Lade die App und wähle dein erstes Skigebiet.', p: '<span data-claim="otto-comprensori">Acht Skigebiete zum Start.</span> <span data-claim="lingue-cinque">Auf Italienisch, Englisch, Deutsch, Französisch und Spanisch.</span>' },
+  },
+  how: {
+    meta: { title: 'So funktioniert’s · Ski Maps', description: 'Fünf Kapitel in der Reihenfolge eines Tages: das Wann, die Führung auf der Piste, dein Niveau, die Rückfahrt und der Datenschutz.' },
+    eyebrow: 'So funktioniert’s', h1: ['Wissen, wohin es geht,', 'ist die halbe Arbeit.', 'Die andere Hälfte ist zu wissen, wann.'],
+    lede: 'Fünf Kapitel, in der Reihenfolge eines Tages. Jeder Bildschirm ist die echte App, mit Beispieldaten.',
+    toc: 'Kapitel', exampleNote: 'Beispiel-Bildschirm: Zeiten und Wartezeiten sind keine Live-Daten.',
+    chapters: [
+      { id: 'il-quando', title: 'Das Wann', text: 'Wie lange eine Route dauert, hängt davon ab, wann du losfährst: <span data-claim="tempi-stimati">Die Wartezeiten an den Liften ändern sich im Lauf des Tages, und die Zeiten sind geschätzt und mit der Nutzung immer genauer.</span>', screen: 'percorsi', alt: 'Beispiel: drei Routen je Niveau von Corvara nach Arabba', example: 'Beispiel, keine Live-Daten' },
+      { id: 'in-pista', title: 'Auf der Piste', text: '<span data-claim="voce-a-voce">Ansagen per Stimme, Abzweigung für Abzweigung.</span> <span data-claim="offline-percorso">Die aktive Route bleibt auf dem Telefon und funktioniert auch ohne Netz.</span> <span data-claim="tasca-android">Auf Android läuft die Führung weiter, wenn das Telefon in der Tasche steckt.</span>', screen: 'guida', alt: 'Beispiel: die Führung auf der Piste' },
+      { id: 'livello', title: 'Für dein Niveau', text: '<span data-claim="livello-tuo">Anfänger, Fortgeschrittene, Experten: drei verschiedene Touren, nicht dieselbe Tour in drei Farben.</span> Nie eine Piste über deinem Niveau.' },
+      { id: 'rientro', title: 'Die Rückfahrt', text: '<span data-claim="rientro-in-tempo">Wenn ein Lift vor deiner Ankunft schließt, weißt du es rechtzeitig, um die Route zu ändern,</span> wo die Betriebszeiten bekannt sind.', screen: 'rientro', alt: 'Beispiel: die Warnung vor dem letzten Lift' },
+      { id: 'privacy', title: 'Datenschutz', text: 'Was auf dem Telefon bleibt, was bei uns ankommt und warum.' },
+    ],
+    privacyList: [
+      '<span data-claim="posizione-sul-telefono">Dein Standort bleibt auf dem Telefon, wenn du nicht selbst entscheidest, die Spuren zu senden.</span>',
+      '<span data-claim="diagnostica-consenso">Die Diagnose startet nur mit deiner Zustimmung.</span>',
+      '<span data-claim="account-facoltativo">Es funktioniert ohne Anmeldung: Das Konto ist freiwillig.</span>',
+      '<span data-claim="cancellare-dati">Deine Daten lassen sich mit einem Fingertipp vom Telefon löschen, vom Server auf Anfrage oder bei Ablauf.</span>',
+      '<span data-claim="no-cookie-sito">Diese Website verwendet keine Cookies und lädt nichts von anderen Websites.</span>',
+    ],
+    privacyMore: 'Die ganze Datenschutzerklärung lesen',
+  },
+  areas: {
+    meta: { title: 'Skigebiete · Ski Maps', description: 'Acht Skigebiete in den Dolomiten, den Alpen und im Apennin: Dolomiti Superski, Vialattea, Skirama, Monterosa Ski, Livigno, Alto Sangro, Campo Felice und Ovindoli.' },
+    eyebrow: 'Skigebiete', h1: 'Acht Skigebiete. Du lädst das, in das du fährst.',
+    lede: 'Jedes Skigebiet hat seine eigenen Karten und Betriebszeiten. Du lädst sie einmal herunter, zu Hause.',
+    filterLabel: 'Nach Region filtern',
+    where: { trentino: 'Trentino', piedmont: 'Piemont', 'aosta-piedmont': 'Aostatal · Piemont', lombardy: 'Lombardei', abruzzo: 'Abruzzen', 'veneto-trentino-southtyrol': 'Südtirol · Trentino · Venetien' },
+    statKm: 'km Pisten auf der Karte', statLifts: 'Lifte', statTop: 'höchster Punkt', statZones: 'Zonen',
+    note: '<span data-claim="numeri-calcolati">Zahlen, auf der Karte von Ski Maps berechnet; sie können von den offiziellen abweichen.</span> Die Höhe ist auf die Hunderter abgerundet.',
+  },
+  area: {
+    metaTitle: '{name} · Ski Maps', metaDescription: '{name} auf Ski Maps: {km} km Pisten auf der Karte und {lifts} Lifte. Lade das Skigebiet und navigiere Piste für Piste.',
+    km: 'Pisten auf der Karte', lifts: 'Lifte', top: 'höchster Punkt', zones: 'Zonen',
+    download: 'Dieses Skigebiet laden', subnav: { zones: 'Die Zonen', app: 'Was die App hier macht', reach: 'Anreise' },
+    zonesTitle: 'Die {n} Zonen', zonesSingle: 'Ein einziges Skigebiet, ohne getrennte Zonen.',
+    appTitle: 'Was die App hier macht',
+    appPackZones: '<span data-claim="pacchetto-comprensorio">Die Karten der {n} Zonen lädst du einmal herunter, zu Hause.</span>',
+    appPackSingle: '<span data-claim="pacchetto-comprensorio">Die Karten des Skigebiets lädst du einmal herunter, zu Hause.</span>',
+    appReturn: '<span data-claim="rientro-in-tempo">Sie warnt dich, ob du zurückkommst, anhand der Betriebszeiten der Lifte, wo sie bekannt sind.</span>',
+    appBus: '<span data-claim="bus-treni">Busse und Züge zwischen den Tälern, in derselben Route, wo sie erfasst sind.</span>',
+    reachTitle: 'Anreise',
+    reach: {
+      car: ['Mit dem Auto', 'A22 Brennerautobahn, Ausfahrten Bozen Nord, Klausen oder Brixen je nach Zone.'],
+      train: ['Mit dem Zug', 'Brennerlinie bis Bozen oder Brixen, dann Linienbus in die Täler.'],
+      plane: ['Mit dem Flugzeug', 'Nächste Flughäfen: Bozen, Innsbruck, Verona, Venedig.'],
+    },
+    numbersNote: '<span data-claim="numeri-calcolati">Zahlen, auf der Karte von Ski Maps berechnet; sie können von den offiziellen abweichen.</span> Kartendaten © OpenStreetMap contributors (ODbL).',
+    notAffiliated: 'Unabhängige Website, nicht mit den Betreibern verbunden. Der Name des Skigebiets gehört seinem Inhaber.',
+  },
+  about: {
+    meta: { title: 'Über uns · Ski Maps', description: 'Wer hinter Ski Maps steht: Christian, 22, aus Rom. Energietechnik im Rücken, heute Master in Strategic Management an der LUISS Guido Carli.' },
+    eyebrow: 'Über uns', h1: 'Hinter Ski Maps.',
+    paras: [
+      'Ski Maps ist das Projekt von <strong>Christian</strong>, 22, aus Rom.',
+      'Er kommt aus der Energietechnik und studiert heute den Master in Strategic Management an der LUISS Guido Carli: technisches Können und Produktvision, im Dienst von Skifahrern.',
+      'Er entwickelt es mit einem klaren Ziel: Skifahrern einen Navigator zu geben, der sie dorthin bringt, wohin sie wollen, Piste für Piste und Lift für Lift, wo immer sie fahren.',
+      'Es beginnt mit den acht Skigebieten zum Start. Das Ziel sind die Pisten der ganzen Welt.',
+    ],
+    photoAlt: 'Foto von Christian, der Ski Maps entwickelt', write: 'Möchtest du ihm schreiben?',
+  },
+  help: {
+    meta: { title: 'Hilfe · Ski Maps', description: 'Häufige Fragen zu Ski Maps: Start, iPhone, Nutzung ohne Netz, Sprachführung, geschlossene Lifte, Niveaus, Sprachen und Standort.' },
+    eyebrow: 'Hilfe', h1: 'Fragen und Antworten.', lede: 'Die häufigsten Antworten. Fehlt deine, schreib uns.',
+    items: [
+      { q: 'Wann erscheint sie?', a: '<span data-claim="store-in-arrivo">Sie kommt bald bei Google Play.</span> Der Knopf „App laden“ führt dich zum Eintrag, sobald er online ist.' },
+      { q: 'Gibt es sie auch für das iPhone?', a: '<span data-claim="store-in-arrivo">Die iPhone-Version folgt später.</span>' },
+      { q: 'Wo funktioniert sie?', a: '<span data-claim="otto-comprensori">Zum Start in acht Skigebieten: Dolomiti Superski, Vialattea, Skirama, Monterosa Ski, Livigno, Alto Sangro, Campo Felice und Ovindoli.</span>' },
+      { q: 'Funktioniert sie ohne Netz?', a: '<span data-claim="offline-percorso">Die aktive Route bleibt auf dem Telefon und funktioniert auch ohne Netz.</span>' },
+      { q: 'Muss ich beim Skifahren aufs Telefon schauen?', a: '<span data-claim="voce-a-voce">Nein: Die Ansagen kommen per Stimme.</span> <span data-claim="tasca-android">Auf Android läuft die Navigation weiter, wenn das Telefon in der Tasche steckt.</span>' },
+      { q: 'Und wenn ein Lift schließt?', a: '<span data-claim="rientro-in-tempo">Ski Maps warnt dich, ob du rechtzeitig zurück bist, anhand der Betriebszeiten der Lifte, wo sie bekannt sind.</span> Außerhalb der Saison schweigt sie.' },
+      { q: 'Ist sie auch für Anfänger geeignet?', a: '<span data-claim="livello-tuo">Ja. Wähle das Niveau Anfänger, und die Route richtet sich danach: nie eine Piste über deinem Niveau.</span>' },
+      { q: 'In welchen Sprachen gibt es sie?', a: '<span data-claim="lingue-cinque">Italienisch, Englisch, Deutsch, Französisch und Spanisch.</span>' },
+      { q: 'Wohin geht mein Standort?', a: '<span data-claim="posizione-sul-telefono">Dein Standort bleibt auf dem Telefon, wenn du nicht selbst entscheidest, die Spuren zu senden.</span> <span data-claim="diagnostica-consenso">Die Diagnose startet nur mit deiner Zustimmung.</span> Einzelheiten in der <a href="{privacy}">Datenschutzerklärung</a>.' },
+      { q: 'Brauche ich ein Konto?', a: '<span data-claim="account-facoltativo">Es funktioniert ohne Anmeldung: Das Konto ist freiwillig.</span>' },
+      { q: 'Wie lösche ich meine Daten?', a: '<span data-claim="cancellare-dati">Vom Telefon mit einem Fingertipp; vom Server auf Anfrage oder bei Ablauf.</span> Für das Konto gibt es die Seite <a href="{delete}">Konto löschen</a>.' },
+    ],
+  },
+  sources: {
+    meta: { title: 'Quellen und Lizenzen · Ski Maps', description: 'Woher die Karten, das Relief, die Fotos und die Schriften dieser Website stammen.' },
+    eyebrow: 'Quellen und Lizenzen', h1: 'Woher die Dinge stammen, die du hier siehst.',
+    lede: 'Diese Seite listet die Nachweise der Website auf. Die vollständige Liste der Datenquellen der App steht in der App (Einstellungen → Quellen und Lizenzen) und in der <a href="{privacy}">Datenschutzerklärung</a>.',
+    osmTitle: 'Karten und Zahlen', osm: 'Pisten und Lifte stammen aus OpenStreetMap (© OpenStreetMap contributors, Lizenz ODbL 1.0). Kilometer, Lifte und Höhen der Skigebiete sind auf der Karte von Ski Maps berechnet und können von den offiziellen abweichen.',
+    reliefTitle: 'Das Relief', relief: '<span data-claim="rilievo-crediti">Das Relief „zur richtigen Stunde“ zeichnet Ski Maps auf dem digitalen Geländemodell der Terrain Tiles (Mapzen und verbundene Quellen), Zoom 12, Gebiet der Dolomiten. Für Europa nennen die Terrain Tiles: „© offene Daten Österreichs – Digitales Geländemodell (DGM) Österreich“ und „produced using Copernicus data and information funded by the European Union - EU-DEM layers“. Die Daten wurden verändert; die Europäische Union unterstützt das Produkt nicht.</span>',
+    fontsTitle: 'Schriften', fonts: 'Bricolage Grotesque, Hanken Grotesk und IBM Plex Mono, alle unter der SIL Open Font License 1.1. Die Dateien sind lateinische Teilmengen, die von dieser Website ausgeliefert werden; die Lizenzen liegen neben den Dateien.',
+    photosTitle: 'Fotos der Skigebiete', photos: 'Die Fotos stammen von Wikimedia Commons: Urheber und Lizenz stehen unter jedem Foto, mit Link zur Quelle. Die Fotos sind zugeschnitten.',
+    appTitle: 'Weitere Quellen', app: 'Die von der App verwendeten Höhendaten, Grenzen und Betriebszeiten sind in der App und in der Datenschutzerklärung aufgeführt.',
+    todo: 'In Prüfung: Der Nachweis für das Relief muss noch verifiziert werden.',
+  },
+  legal: {
+    privacy: { title: 'Datenschutzerklärung · Ski Maps', description: 'Datenschutzerklärung von Ski Maps: was auf dem Telefon bleibt, was zu unseren Servern gelangt und warum.' },
+    delete: { title: 'Konto löschen · Ski Maps', description: 'So löschst du dein Ski-Maps-Konto, in der App oder ohne die App.' },
+    other: '',
+  },
+  download: {
+    title: 'Ski Maps laden', h1: 'Ski Maps laden', lede: 'Die App zum Skifahren, Piste für Piste.',
+    play: 'Bei Google Play laden', soon: 'Bald bei Google Play', ios: 'iPhone: bald',
+    openApp: 'In der App öffnen', openAppNote: 'Öffnet die App und startet den Download von {name}: bis zu {mb} MB, über dein Datenvolumen.',
+    weight: 'Größe des Pakets', weightNote: 'Bis zu {mb} MB. <span data-claim="peso-pacchetto">Ein Höchstwert, keine Messung.</span>',
+    needApp: 'Öffnet sie sich nicht, brauchst du die aktualisierte App: Installiere oder aktualisiere sie bei Google Play und versuche es erneut.', back: 'Zurück zur Website', qr: 'Vom Computer: Scanne den Code mit dem Telefon.',
+  },
+  notFound: { title: 'Seite nicht gefunden · Ski Maps', h1: 'Diese Seite gibt es nicht.', text: 'Vielleicht hat sich die Adresse geändert. Geh zurück zur Startseite oder wähle ein Skigebiet.', back: 'Startseite' },
+};
+
+export default de;

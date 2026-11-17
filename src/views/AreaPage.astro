@@ -17,6 +17,8 @@ const p = area.photo;
 const vars = { name: area.name, km: area.km, lifts: area.lifts, n: area.zoneCount };
 const hasZones = !!area.zones && area.zones.length > 1;
 const hasReach = area.id === 'superski';
+/* dove ci sono collegamenti di bus e treni scritti nei dati (contratto, riga «bus-treni») */
+const hasBus = ['superski', 'vialattea', 'livigno', 'skirama', 'monterosa'].includes(area.id);
 const subnav = [
   ...(hasZones ? [{ id: 'zone', label: a.subnav.zones }] : []),
   { id: 'app', label: a.subnav.app },
@@ -64,6 +66,7 @@ const subnav = [
         <ul class="ts-lead apps">
           <li set:html={hasZones ? fill(a.appPackZones, vars) : a.appPackSingle} />
           <li set:html={a.appReturn} />
+          {hasBus && <li set:html={a.appBus} />}
         </ul>
       </div>
       <Phone screen="percorsi" alt={c.home.moments.items[0].alt} width={244} />

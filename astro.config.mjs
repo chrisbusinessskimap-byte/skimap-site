@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { toRedirectsFile } from './src/i18n/redirects.ts';
+import { toRedirectsFile, OLD_URLS } from './src/i18n/redirects.ts';
 import { allEntries, alternates } from './src/i18n/routes.ts';
-import { LANGS, LOCALES, ORIGIN } from './src/i18n/langs.ts';
+import { ORIGIN } from './src/i18n/langs.ts';
 
 /* `_redirects` di Cloudflare Pages: lo scrive la tabella in src/i18n/redirects.ts, insieme alla build. */
 const redirectsFile = () => ({
@@ -11,6 +11,9 @@ const redirectsFile = () => ({
   hooks: {
     'astro:build:done': ({ dir }) => {
       writeFileSync(fileURLToPath(new URL('_redirects', dir)), toRedirectsFile());
+      /* la tabella degli indirizzi di oggi, per i controlli (non va nel sito): .astro/old-urls.json */
+      mkdirSync('.astro', { recursive: true });
+      writeFileSync('.astro/old-urls.json', JSON.stringify(OLD_URLS, null, 2));
     },
   },
 });
@@ -50,4 +53,3 @@ export default defineConfig({
   devToolbar: { enabled: false },
   integrations: [redirectsFile(), sitemap()],
 });
-void LANGS; void LOCALES;

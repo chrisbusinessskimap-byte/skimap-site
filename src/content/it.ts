@@ -91,6 +91,7 @@ const it: Content = {
     appPackZones: '<span data-claim="pacchetto-comprensorio">Scarichi le mappe delle {n} zone una volta, a casa.</span>',
     appPackSingle: '<span data-claim="pacchetto-comprensorio">Scarichi le mappe del comprensorio una volta, a casa.</span>',
     appReturn: '<span data-claim="rientro-in-tempo">Ti avvisa se riesci a rientrare, sugli orari degli impianti, dove sono annunciati.</span>',
+    appBus: '<span data-claim="bus-treni">Bus e treni fra le valli, nello stesso percorso, dove sono scritti.</span>',
     reachTitle: 'Come arrivare',
     reach: {
       car: ['In auto', 'A22 del Brennero, uscite Bolzano Nord, Chiusa o Bressanone a seconda della zona.'],
