@@ -1,6 +1,6 @@
 ---
 /* Pagine di testo chiare: chi siamo, aiuto, fonti e licenze (senza frame nel Figma: composte dai componenti v2, da guardare in anteprima).
-   «Chi siamo» e le domande vengono dai testi di `main` (A5); la foto di Christian non c'è nel repo e non si mette un segnaposto. */
+   «Chi siamo» e le domande vengono dai testi di `main` (A5). La foto di Christian (baita, ritaglio 5:4, Figma 253:9869) è fatta da `scripts/photo-christian.mjs`: senza dati nascosti, AVIF e WebP a tre larghezze. */
 import Layout from '../layouts/Layout.astro';
 import { t, fill } from '../content';
 import { path } from '../i18n/routes';
@@ -17,11 +17,16 @@ const vars = { privacy: path(lang, 'privacy'), delete: path(lang, 'delete') };
       <p class="eyebrow ts-occhiello">{c.about.eyebrow}</p>
       <h1 class="ts-display-m">{c.about.h1}</h1>
     </div>
-    <div class="wrap">
+    <div class="wrap about">
       <div class="col prose ts-lead">
         {c.about.paras.map((p, i) => <p class={i === 0 ? 'first' : ''} set:html={p} />)}
         <p class="write">{c.about.write} <a href={`mailto:${MAIL}?subject=Ski%20Maps`}>{MAIL}</a></p>
       </div>
+      <picture class="photo">
+        <source type="image/avif" srcset="/team/christian-480.avif 480w, /team/christian-720.avif 720w, /team/christian-960.avif 960w" sizes="(min-width: 1024px) 480px, 100vw" />
+        <source type="image/webp" srcset="/team/christian-480.webp 480w, /team/christian-720.webp 720w, /team/christian-960.webp 960w" sizes="(min-width: 1024px) 480px, 100vw" />
+        <img src="/team/christian-720.webp" width="960" height="768" alt={c.about.photoAlt} decoding="async" />
+      </picture>
     </div>
   </Layout>
 )}
@@ -73,6 +78,16 @@ const vars = { privacy: path(lang, 'privacy'), delete: path(lang, 'delete') };
 
 <style>
   .col { max-width: 760px; padding-bottom: 120px; }
+  /* chi siamo: testo a sinistra e foto 5:4 a destra (Figma 253:9869); sul telefono la foto sta sopra il testo */
+  .about { display: grid; gap: 40px; align-items: start; }
+  .about .col { max-width: none; padding-bottom: 0; }
+  .photo { order: -1; }
+  .photo img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; border-radius: 20px; }
+  @media (min-width: 1024px) {
+    .about { grid-template-columns: minmax(0, 640px) 480px; gap: 80px; justify-content: start; }
+    .about .col { padding-bottom: 120px; }
+    .photo { order: 0; padding-bottom: 0; }
+  }
   .prose :global(p) { max-width: 62ch; }
   .first { font-weight: 600; }
   .write { margin-top: 2em; }
