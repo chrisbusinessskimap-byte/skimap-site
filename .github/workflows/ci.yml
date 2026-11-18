@@ -41,7 +41,7 @@ jobs:
         run: npm run check:release
       - name: Browser (cookie, richieste esterne, axe, scorrimento orizzontale)
         run: npm run check:browser
-      - name: L'ora cambia lo scenario (alba, mezzogiorno, tramonto, notte si vedono diversi; sole a est e a ovest)
+      - name: L'ora cambia lo scenario (alba, mezzogiorno, tramonto, notte si vedono diversi, la notte è la più buia)
         run: npm run check:hours
       - name: Lighthouse (telefono, mediana di 3 prove, quattro categorie ≥ 95; la categoria SEO si misura sul dominio vero)
         if: github.event_name == 'pull_request'
