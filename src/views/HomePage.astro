@@ -69,6 +69,8 @@ const h = c.home;
 <style>
   .copy { max-width: 600px; display: grid; gap: 22px; }
   .eyebrow { color: var(--brand-ghiaccio); }
+  /* sul telefono la riga sopra il titolo va a capo (Plex Mono è più largo del carattere di riserva): lo spazio di due righe è riservato prima, così non sposta il resto quando il carattere arriva */
+  @media (max-width: 560px) { .copy .eyebrow { min-height: calc(2 * 1.3em); } }
   .lede { color: color-mix(in srgb, var(--color-ink) 88%, transparent); max-width: 52ch; }
   .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
   .herophone { display: grid; justify-items: center; gap: 10px; }
