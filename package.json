@@ -17,6 +17,7 @@
     "check": "node scripts/check/index.mjs",
     "check:release": "node scripts/check/index.mjs --release",
     "check:browser": "node scripts/check/browser.mjs",
+    "check:hours": "node scripts/check/hours.mjs",
     "lighthouse": "node scripts/check/lighthouse.mjs"
   },
   "dependencies": {
