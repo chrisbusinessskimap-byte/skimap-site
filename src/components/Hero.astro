@@ -28,6 +28,8 @@ const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcse
     </picture>
   </div>
   <div class="veil" aria-hidden="true"></div>
+  <div class="wash wash-alba" aria-hidden="true"></div>
+  <div class="wash wash-tramonto" aria-hidden="true"></div>
   <div class="night" aria-hidden="true"></div>
   <div class="wrap content"><slot /></div>
   <div class="wrap picker-wrap">
@@ -98,12 +100,20 @@ const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcse
   .night { background: #060b1e; }
   .hero[data-hour='notte'] .night { opacity: 0.55; }
   @media (prefers-reduced-motion: no-preference) { .night { transition: opacity .7s ease; } }
+  /* il velo è uniforme da sinistra a destra: se fosse più scuro a sinistra la luce sembrerebbe venire sempre da destra, anche al tramonto (18-11).
+     I testi si leggono con il velo e con un'ombra leggera (.copy in HomePage). */
   .veil {
     position: absolute; inset: 0; pointer-events: none;
     background:
-      linear-gradient(180deg, rgb(11 20 48 / 0.35) 0%, rgb(11 20 48 / 0) 18%, rgb(11 20 48 / 0) 70%, var(--brand-abisso) 100%),
-      linear-gradient(90deg, rgb(11 20 48 / 0.85) 0%, rgb(11 20 48 / 0.35) 50%, rgb(11 20 48 / 0) 100%);
+      linear-gradient(180deg, rgb(11 20 48 / 0.3) 0%, rgb(11 20 48 / 0) 18%, rgb(11 20 48 / 0) 70%, var(--brand-abisso) 100%),
+      linear-gradient(90deg, rgb(11 20 48 / 0.5) 0%, rgb(11 20 48 / 0.5) 100%);
   }
+  /* la luce calda che entra da est (destra) all'alba e da ovest (sinistra) al tramonto: una sfumatura, non un sole */
+  .wash { position: absolute; inset: 0; pointer-events: none; opacity: 0; }
+  .wash-alba { background: linear-gradient(270deg, rgb(255 205 170 / 0.3) 0%, rgb(255 205 170 / 0.12) 35%, rgb(255 205 170 / 0) 70%); }
+  .wash-tramonto { background: linear-gradient(90deg, rgb(255 150 100 / 0.34) 0%, rgb(255 150 100 / 0.14) 35%, rgb(255 150 100 / 0) 70%); }
+  .hero[data-hour='alba'] .wash-alba, .hero[data-hour='tramonto'] .wash-tramonto { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) { .wash { transition: opacity .7s ease; } }
   .content { position: relative; flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; padding-top: 120px; padding-bottom: 140px; }
   .picker-wrap { position: absolute; left: 0; right: 0; bottom: 40px; }
   .picker { display: inline-flex; gap: 8px; padding: 8px; border-radius: var(--radius-pill); background: rgb(11 20 48 / 0.78); border: 1px solid rgb(255 255 255 / 0.16); }

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* Il selettore dell'ora cambia DAVVERO lo scenario: per ogni ora (alba, mezzogiorno, tramonto, notte) una sola immagine è visibile, copre tutta l'apertura,
-   il colore medio dell'apertura è diverso dalle altre ore e la notte è la più buia. (Il sole non è disegnato: la luce si legge dalle ombre delle immagini.) Nata dal difetto del 18-11: le immagini aggiunte dallo script restavano senza stile e l'alba copriva sempre tutto.
+   il colore medio dell'apertura è diverso dalle altre ore e la notte è la più buia. La luce arriva da est all'alba (bordo destro più luminoso) e da ovest al tramonto (bordo sinistro). Il sole non è disegnato. Nata dal difetto del 18-11: le immagini aggiunte dallo script restavano senza stile e l'alba copriva sempre tutto.
    node scripts/check/hours.mjs [--base=https://…] [--shots=cartella] */
 import { chromium } from 'playwright-core';
 import sharp from 'sharp';
@@ -52,6 +52,9 @@ for (const [label, vp] of [['computer', { width: 1280, height: 800 }], ['telefon
     if (d < 12) { bad++; console.log(`ERRORE ${label}: ${HOURS[i]} e ${HOURS[j]} si assomigliano troppo (distanza colore ${d.toFixed(1)})`); }
   }
   const L = (h) => `${h}: sinistra ${side[h].left.toFixed(0)}, destra ${side[h].right.toFixed(0)}`;
+  /* la luce arriva da est all'alba (bordo destro più luminoso) e da ovest al tramonto (bordo sinistro): era quello che l'occhio vedeva sbagliato quando il velo era più scuro a sinistra in tutte le ore */
+  if (!(side.alba.right - side.alba.left > 8)) { bad++; console.log(`ERRORE ${label}: all'alba il bordo destro (est) non è più luminoso del sinistro (${side.alba.left.toFixed(0)} / ${side.alba.right.toFixed(0)})`); }
+  if (!(side.tramonto.left - side.tramonto.right > 8)) { bad++; console.log(`ERRORE ${label}: al tramonto il bordo sinistro (ovest) non è più luminoso del destro (${side.tramonto.left.toFixed(0)} / ${side.tramonto.right.toFixed(0)})`); }
   const avg = (h) => (side[h].left + side[h].right) / 2;
   if (!(avg('notte') < avg('mezzogiorno') - 25 && lum.notte < Math.min(lum.alba, lum.mezzogiorno, lum.tramonto))) { bad++; console.log(`ERRORE ${label}: la notte non è la più buia (bordi ${['alba', 'mezzogiorno', 'tramonto', 'notte'].map((h) => `${h} ${side[h].left.toFixed(0)}/${side[h].right.toFixed(0)}`).join(', ')}; luminosità ${Object.entries(lum).map(([k, v]) => k + ' ' + v.toFixed(0)).join(', ')})`); }
   console.log(label, L('alba'), '·', L('tramonto'), '·', L('notte'), '·', L('mezzogiorno'), '·', 'luminosità', Object.entries(lum).map(([k, v]) => k + ' ' + v.toFixed(0)).join(', '));
@@ -60,4 +63,4 @@ for (const [label, vp] of [['computer', { width: 1280, height: 800 }], ['telefon
 }
 await browser.close(); local?.server.close();
 if (bad) { console.log(`${bad} problemi`); process.exit(1); }
-console.log('OK: alba, mezzogiorno, tramonto e notte si vedono diversi e la notte è la più buia, su computer e su telefono.');
+console.log('OK: alba, mezzogiorno, tramonto e notte si vedono diversi, la luce arriva da est e da ovest e la notte è la più buia, su computer e su telefono.');

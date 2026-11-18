@@ -40,9 +40,9 @@ const es: Content = {
       eyebrow: 'Cómo funciona', h: 'Un día, tres momentos.',
       lede: 'Antes de salir eliges la ruta de tu nivel. En la pista te guía con la voz. Por la tarde te dice cuándo volver.',
       items: [
-        { time: '08:40', title: 'Antes de salir', text: '<span data-claim="livello-tuo">Tres rutas al mismo sitio: principiante, intermedio, experto.</span> Cada una con su tiempo, <span data-claim="tempi-stimati">estimado y cada vez más preciso con el uso</span>.', screen: 'percorsi', alt: 'Ejemplo: tres rutas por nivel de Corvara a Arabba, con los tiempos' },
-        { time: '11:22', title: 'En la pista', text: '<span data-claim="voce-a-voce">Indicaciones por voz, giro a giro.</span> <span data-claim="offline-percorso">La ruta activa se queda en el teléfono y funciona incluso sin cobertura.</span>', screen: 'guida', alt: 'Ejemplo: la guía en la pista, con el próximo giro y la hora de llegada' },
-        { time: '15:40', title: 'La vuelta', text: '<span data-claim="rientro-in-tempo">Te avisa si el último remonte cierra antes de tu llegada al valle,</span> donde el horario está anunciado.', screen: 'rientro', alt: 'Ejemplo: el aviso del último remonte durante la guía' },
+        { time: '10:42', title: 'Antes de salir', text: '<span data-claim="livello-tuo">Tres rutas al mismo sitio: principiante, intermedio, experto.</span> Cada una con su tiempo, <span data-claim="tempi-stimati">estimado y cada vez más preciso con el uso</span>.', screen: 'percorsi', alt: 'Ejemplo: tres rutas por nivel de Corvara a Arabba, con los tiempos' },
+        { time: '11:04', title: 'En la pista', text: '<span data-claim="voce-a-voce">Indicaciones por voz, giro a giro.</span> <span data-claim="offline-percorso">La ruta activa se queda en el teléfono y funciona incluso sin cobertura.</span>', screen: 'guida', alt: 'Ejemplo: la guía en la pista, con el próximo giro y la hora de llegada' },
+        { time: '15:40', title: 'La vuelta', text: '<span data-claim="rientro-in-tempo">Te avisa si el último remonte cierra antes de tu llegada al valle,</span> donde el horario está anunciado.', screen: 'rientro', alt: 'Ejemplo: la vuelta de Arabba a Corvara, salida a las 15:40, llegada a las 16:12 y último remonte a las 16:00 con 4 minutos de margen' },
       ],
     },
     areas: {
@@ -62,7 +62,7 @@ const es: Content = {
       { id: 'il-quando', title: 'El cuándo', text: 'Lo que tarda una ruta depende de la hora a la que sales: <span data-claim="tempi-stimati">las esperas en los remontes cambian a lo largo del día, y los tiempos son estimados y cada vez más precisos con el uso.</span>', screen: 'percorsi', alt: 'Ejemplo: tres rutas por nivel de Corvara a Arabba', example: 'Ejemplo, no son datos en vivo' },
       { id: 'in-pista', title: 'En la pista', text: '<span data-claim="voce-a-voce">Indicaciones por voz, giro a giro.</span> <span data-claim="offline-percorso">La ruta activa se queda en el teléfono y funciona incluso sin cobertura.</span> <span data-claim="tasca-android">En Android, la guía continúa con el teléfono en el bolsillo.</span>', screen: 'guida', alt: 'Ejemplo: la guía en la pista' },
       { id: 'livello', title: 'Para tu nivel', text: '<span data-claim="livello-tuo">Principiante, intermedio, experto: tres rutas distintas, no la misma ruta coloreada de tres maneras.</span> Nunca una pista por encima de tu nivel.' },
-      { id: 'rientro', title: 'La vuelta', text: '<span data-claim="rientro-in-tempo">Si un remonte cierra antes de tu llegada, lo sabes a tiempo para cambiar de camino,</span> donde el horario está anunciado.', screen: 'rientro', alt: 'Ejemplo: el aviso del último remonte' },
+      { id: 'rientro', title: 'La vuelta', text: '<span data-claim="rientro-in-tempo">Si un remonte cierra antes de tu llegada, lo sabes a tiempo para cambiar de camino,</span> donde el horario está anunciado.', screen: 'rientro', alt: 'Ejemplo: la vuelta de Arabba a Corvara, salida a las 15:40, llegada a las 16:12 y último remonte a las 16:00 con 4 minutos de margen' },
       { id: 'privacy', title: 'Privacidad', text: 'Qué se queda en el teléfono, qué nos llega y por qué.' },
     ],
     privacyList: [

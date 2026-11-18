@@ -40,9 +40,9 @@ const it: Content = {
       eyebrow: 'Come funziona', h: 'Una giornata, tre momenti.',
       lede: 'Prima di partire scegli il giro per il tuo livello. In pista ti guida a voce. Nel pomeriggio ti dice quando tornare.',
       items: [
-        { time: '08:40', title: 'Prima di partire', text: '<span data-claim="livello-tuo">Tre percorsi per lo stesso posto: principiante, intermedio, esperto.</span> Ognuno con il suo tempo, <span data-claim="tempi-stimati">stimato e sempre più preciso con l’uso</span>.', screen: 'percorsi', alt: 'Esempio: tre percorsi per livello da Corvara ad Arabba, con i tempi' },
-        { time: '11:22', title: 'In pista', text: '<span data-claim="voce-a-voce">Indicazioni a voce, svolta per svolta.</span> <span data-claim="offline-percorso">Il percorso attivo resta sul telefono e funziona anche senza rete.</span>', screen: 'guida', alt: 'Esempio: la guida in pista, con la prossima svolta e l’ora di arrivo' },
-        { time: '15:40', title: 'Il rientro', text: '<span data-claim="rientro-in-tempo">Ti avvisa se l’ultimo impianto chiude prima del tuo arrivo in valle,</span> dove l’orario è annunciato.', screen: 'rientro', alt: 'Esempio: l’avviso dell’ultimo impianto durante la guida' },
+        { time: '10:42', title: 'Prima di partire', text: '<span data-claim="livello-tuo">Tre percorsi per lo stesso posto: principiante, intermedio, esperto.</span> Ognuno con il suo tempo, <span data-claim="tempi-stimati">stimato e sempre più preciso con l’uso</span>.', screen: 'percorsi', alt: 'Esempio: tre percorsi per livello da Corvara ad Arabba, con i tempi' },
+        { time: '11:04', title: 'In pista', text: '<span data-claim="voce-a-voce">Indicazioni a voce, svolta per svolta.</span> <span data-claim="offline-percorso">Il percorso attivo resta sul telefono e funziona anche senza rete.</span>', screen: 'guida', alt: 'Esempio: la guida in pista, con la prossima svolta e l’ora di arrivo' },
+        { time: '15:40', title: 'Il rientro', text: '<span data-claim="rientro-in-tempo">Ti avvisa se l’ultimo impianto chiude prima del tuo arrivo in valle,</span> dove l’orario è annunciato.', screen: 'rientro', alt: 'Esempio: il rientro da Arabba a Corvara, partenza alle 15:40, arrivo alle 16:12 e ultimo impianto alle 16:00 con 4 minuti di margine' },
       ],
     },
     areas: {
@@ -62,7 +62,7 @@ const it: Content = {
       { id: 'il-quando', title: 'Il quando', text: 'Il tempo di un percorso dipende dall’ora in cui parti: <span data-claim="tempi-stimati">le attese agli impianti cambiano nella giornata, e i tempi sono stimati e sempre più precisi con l’uso.</span>', screen: 'percorsi', alt: 'Esempio: tre percorsi per livello da Corvara ad Arabba', example: 'Esempio dichiarato' },
       { id: 'in-pista', title: 'In pista', text: '<span data-claim="voce-a-voce">Indicazioni a voce, svolta per svolta.</span> <span data-claim="offline-percorso">Il percorso attivo resta sul telefono e funziona anche senza rete.</span> <span data-claim="tasca-android">Su Android la guida continua con il telefono in tasca.</span>', screen: 'guida', alt: 'Esempio: la guida in pista' },
       { id: 'livello', title: 'Per il tuo livello', text: '<span data-claim="livello-tuo">Principiante, intermedio, esperto: tre giri diversi, non lo stesso giro colorato in tre modi.</span> Mai una pista sopra il tuo livello.' },
-      { id: 'rientro', title: 'Il rientro', text: '<span data-claim="rientro-in-tempo">Se un impianto chiude prima del tuo arrivo, lo sai in tempo per cambiare strada,</span> dove l’orario è annunciato.', screen: 'rientro', alt: 'Esempio: l’avviso dell’ultimo impianto' },
+      { id: 'rientro', title: 'Il rientro', text: '<span data-claim="rientro-in-tempo">Se un impianto chiude prima del tuo arrivo, lo sai in tempo per cambiare strada,</span> dove l’orario è annunciato.', screen: 'rientro', alt: 'Esempio: il rientro da Arabba a Corvara, partenza alle 15:40, arrivo alle 16:12 e ultimo impianto alle 16:00 con 4 minuti di margine' },
       { id: 'privacy', title: 'Privacy', text: 'Cosa resta sul telefono, cosa arriva a noi e perché.' },
     ],
     privacyList: [

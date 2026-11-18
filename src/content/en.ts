@@ -38,9 +38,9 @@ const en: Content = {
       eyebrow: 'How it works', h: 'One day, three moments.',
       lede: 'Before you leave, pick the route for your level. On the slopes it guides you by voice. In the afternoon it tells you when to head back.',
       items: [
-        { time: '08:40', title: 'Before you leave', text: '<span data-claim="livello-tuo">Three routes to the same place: beginner, intermediate, expert.</span> Each with its own time, <span data-claim="tempi-stimati">estimated and more precise the more it is used</span>.', screen: 'percorsi', alt: 'Example: three routes by level from Corvara to Arabba, with times' },
-        { time: '11:22', title: 'On the slopes', text: '<span data-claim="voce-a-voce">Spoken directions, turn by turn.</span> <span data-claim="offline-percorso">Your active route stays on the phone and works even without a signal.</span>', screen: 'guida', alt: 'Example: guidance on the slopes, with the next turn and the arrival time' },
-        { time: '15:40', title: 'Heading back', text: '<span data-claim="rientro-in-tempo">It warns you if the last lift closes before you reach the valley,</span> where the hours are announced.', screen: 'rientro', alt: 'Example: the last-lift warning during guidance' },
+        { time: '10:42', title: 'Before you leave', text: '<span data-claim="livello-tuo">Three routes to the same place: beginner, intermediate, expert.</span> Each with its own time, <span data-claim="tempi-stimati">estimated and more precise the more it is used</span>.', screen: 'percorsi', alt: 'Example: three routes by level from Corvara to Arabba, with times' },
+        { time: '11:04', title: 'On the slopes', text: '<span data-claim="voce-a-voce">Spoken directions, turn by turn.</span> <span data-claim="offline-percorso">Your active route stays on the phone and works even without a signal.</span>', screen: 'guida', alt: 'Example: guidance on the slopes, with the next turn and the arrival time' },
+        { time: '15:40', title: 'Heading back', text: '<span data-claim="rientro-in-tempo">It warns you if the last lift closes before you reach the valley,</span> where the hours are announced.', screen: 'rientro', alt: 'Example: the way back from Arabba to Corvara, leaving at 15:40, arriving at 16:12, with the last lift at 16:00 and a 4-minute margin' },
       ],
     },
     areas: {
@@ -60,7 +60,7 @@ const en: Content = {
       { id: 'il-quando', title: 'The when', text: 'How long a route takes depends on when you set off: <span data-claim="tempi-stimati">waits at the lifts change through the day, and times are estimated and more precise the more it is used.</span>', screen: 'percorsi', alt: 'Example: three routes by level from Corvara to Arabba', example: 'Example, not live data' },
       { id: 'in-pista', title: 'On the slopes', text: '<span data-claim="voce-a-voce">Spoken directions, turn by turn.</span> <span data-claim="offline-percorso">Your active route stays on the phone and works even without a signal.</span> <span data-claim="tasca-android">On Android, guidance carries on with the phone in your pocket.</span>', screen: 'guida', alt: 'Example: guidance on the slopes' },
       { id: 'livello', title: 'For your level', text: '<span data-claim="livello-tuo">Beginner, intermediate, expert: three different tours, not the same tour coloured three ways.</span> Never a piste above your level.' },
-      { id: 'rientro', title: 'Heading back', text: '<span data-claim="rientro-in-tempo">If a lift closes before you arrive, you know in time to change route,</span> where the hours are announced.', screen: 'rientro', alt: 'Example: the last-lift warning' },
+      { id: 'rientro', title: 'Heading back', text: '<span data-claim="rientro-in-tempo">If a lift closes before you arrive, you know in time to change route,</span> where the hours are announced.', screen: 'rientro', alt: 'Example: the way back from Arabba to Corvara, leaving at 15:40, arriving at 16:12, with the last lift at 16:00 and a 4-minute margin' },
       { id: 'privacy', title: 'Privacy', text: 'What stays on the phone, what reaches us and why.' },
     ],
     privacyList: [
