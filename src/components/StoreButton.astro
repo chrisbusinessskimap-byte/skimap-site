@@ -1,0 +1,31 @@
+---
+/* I pulsanti dello store. Lo stato lo sceglie la build con STORE_STATE (A15): `soon` finché Play non ha dato la produzione,
+   `play` dopo. Il collegamento a Play porta il riferimento di provenienza (A7): nessuno strumento sul sito, lo legge la Play Console. */
+import type { Lang } from '../i18n/langs';
+import { t } from '../content';
+
+interface Props { lang: Lang; campaign: string; kind?: 'android' | 'ios' }
+const { lang, campaign, kind = 'android' } = Astro.props;
+const c = t(lang);
+const state = (import.meta.env.STORE_STATE ?? 'soon') as 'soon' | 'play';
+const PACKAGE = 'com.skimap';
+const href = `https://play.google.com/store/apps/details?id=${PACKAGE}&referrer=${encodeURIComponent(`utm_source=skimaps.cc&utm_medium=site&utm_campaign=${campaign}`)}`;
+---
+{kind === 'android' && state === 'play' && (
+  <a class="btn btn-primary" href={href} rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15L19.5 12 7 4.5Z" fill="currentColor"/></svg>
+    {c.ui.store.play}
+  </a>
+)}
+{kind === 'android' && state !== 'play' && (
+  <span class="btn btn-primary" aria-disabled="true" data-claim="store-in-arrivo">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15L19.5 12 7 4.5Z" fill="currentColor"/></svg>
+    {c.ui.store.soon}
+  </span>
+)}
+{kind === 'ios' && (
+  <span class="btn btn-soon" aria-disabled="true" data-claim="store-in-arrivo">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a5 5 0 0 0-5 5v3.5L5 15h14l-2-3.5V8a5 5 0 0 0-5-5Zm-2 14.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    {c.ui.store.ios}
+  </span>
+)}

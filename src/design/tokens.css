@@ -1,0 +1,204 @@
+/* GENERATO da scripts/figma-tokens.mjs dall'istantanea src/design/figma/snapshot.json (Figma Q8FgbX9lwI5MqrTNOqAig8, letta il 2026-11-17).
+   Non modificare a mano: cambia il Figma, rileggi l'istantanea e rilancia `npm run tokens`. */
+
+:root,
+[data-theme='giorno'] {
+  --color-ink: #0b1430;
+  --color-ink-2: #16244a;
+  --color-snow: #f3f7fc;
+  --color-paper: #ffffff;
+  --color-soft: #e8f0f9;
+  --color-mute: #55647e;
+  --color-line: #dce5ef;
+  --color-glow: #ff6b4a;
+  --color-glow-2: #ff9a6b;
+  --color-route: #1f74c9;
+  --color-live: #19a3e0;
+  --color-ok: #1e9e62;
+  --color-warn: #e59a1a;
+  --color-route-tint: #dcebfb;
+  --color-route-deep: #0b1430;
+  --color-glow-tint: #ffe3db;
+  --color-ok-tint: #ddf3e7;
+  --color-outline: #6b7a94;
+  --color-surface-2: #eef4fa;
+  --color-glow-strong: #cf4a2a;
+  --color-ok-strong: #147a4b;
+  --color-live-strong: #0b6e9e;
+  --color-warn-strong: #9a5b00;
+  --color-on-piste: #ffffff;
+  --color-danger: #c62f2b;
+  --brand-abisso: #0b1430;
+  --brand-ghiaccio: #6fd6ff;
+  --brand-cobalto: #2a8fe8;
+  --brand-neve: #ffffff;
+  --piste-blue: #2f6fdb;
+  --piste-red: #c8323a;
+  --piste-black: #151515;
+  --radius-pill: 999px;
+  --radius-card: 22px;
+  --radius-sheet: 28px;
+  --space-gutter: 18px;
+  --space-gap: 12px;
+  --font-display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --shadow-float: 0 10px 30px rgba(8, 18, 34, 0.18), 0 2px 6px rgba(8, 18, 34, 0.1);
+}
+
+[data-theme='notte'] {
+  --color-ink: #ffffff;
+  --color-ink-2: #dce6f2;
+  --color-snow: #0b1430;
+  --color-paper: #000000;
+  --color-soft: #16244a;
+  --color-mute: #9fb2cc;
+  --color-line: #24345e;
+  --color-route: #6fd6ff;
+  --color-live: #6fd6ff;
+  --color-ok: #4ade9a;
+  --color-warn: #f5b240;
+  --color-route-tint: #12305a;
+  --color-route-deep: #dcebfb;
+  --color-glow-tint: #3a1a12;
+  --color-ok-tint: #0f2a1e;
+  --color-surface-2: #111c3d;
+  --color-ok-strong: #4ade9a;
+  --color-live-strong: #6fd6ff;
+  --color-warn-strong: #f5b240;
+  --color-danger: #ff8a7a;
+}
+
+.ts-display-xl {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-variation-settings: 'opsz' 96, 'wdth' 100;
+}
+
+.ts-display-m {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 96, 'wdth' 100;
+}
+
+.ts-titolo {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+}
+
+.ts-titolo-m {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+}
+
+.ts-sottotitolo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+}
+
+.ts-lead {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0em;
+}
+
+.ts-lead-m {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0em;
+}
+
+.ts-testo {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0em;
+}
+
+.ts-testo-piccolo {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0em;
+}
+
+.ts-pulsante {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0em;
+}
+
+.ts-link {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0em;
+}
+
+.ts-ora {
+  font-family: var(--font-mono);
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.ts-ora-m {
+  font-family: var(--font-mono);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.ts-ora-piccola {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.ts-occhiello {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ts-credito {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0em;
+}

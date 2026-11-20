@@ -1,0 +1,42 @@
+{
+  "name": "skimap-site",
+  "private": true,
+  "type": "module",
+  "version": "2.0.0",
+  "description": "Sito di Ski Maps (skimaps.cc): Astro, cinque lingue, nessun cookie.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "tokens": "node scripts/figma-tokens.mjs",
+    "tokens:check": "node scripts/figma-tokens.mjs --check",
+    "manifest": "node scripts/sync-manifest.mjs",
+    "relief": "node scripts/relief-images.mjs",
+    "test": "node --test functions/",
+    "typecheck": "astro check",
+    "check": "node scripts/check/index.mjs",
+    "check:release": "node scripts/check/index.mjs --release",
+    "check:browser": "node scripts/check/browser.mjs",
+    "check:hours": "node scripts/check/hours.mjs",
+    "lighthouse": "node scripts/check/lighthouse.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource/hanken-grotesk": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "astro": "^7.4.12",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@axe-core/playwright": "^4.14.0",
+    "@lhci/cli": "^0.16.1",
+    "@types/qrcode": "^1.5.6",
+    "playwright-core": "^1.65.1",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

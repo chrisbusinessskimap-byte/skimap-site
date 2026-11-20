@@ -1,27 +1,21 @@
-# Domande aperte (prima erano segnaposto in pagina)
+# Cosa aspetta una conferma (P30)
 
-Fino al 15-10-2026 queste domande comparivano sul sito come `[DA CONFERMARE: …]`. Ora la pubblicazione si ferma se in pagina resta un segnaposto (`node tools/check.mjs --release` in `.github/workflows/pages.yml`), quindi le frasi non confermate sono state tolte e le domande stanno qui.
-Quando una risposta arriva, si scrive la frase vera nella pagina e si toglie la domanda da questo elenco.
+Dal sito Astro le frasi non confermate non sono più segnaposto in pagina: stanno in `src/content/claims.json` con uno **stato**. `npm run check:release` (e la CI sulle richieste di unione verso `main`) **fallisce** finché c'è una frase `falsa` o `da verificare`; in anteprima si vedono comunque. Quando Christian conferma una frase, si cambia lo stato (e la riga del contratto in `skimap-data`, §6).
 
-## Prima di Google Play (valgono già oggi)
+Elenco aggiornato al 20-11-2026 (il 20-11 Christian ha deciso: titolare, iscrizione semplice, tolto «meno chiamate», de/fr/es rilette; vedi in fondo) (la lista vera è `npm run check` senza `--release`):
 
-- **Titolare del trattamento**: nome o ragione sociale, indirizzo e recapiti. Va scritto nello stesso giorno nell'app (`privacy.controller`, 5 lingue in `skimap-mobile`) e sul sito (`privacy.html`, `en/privacy.html`).
-- **Base giuridica** di ogni trattamento: diagnostica (consenso), contributi automatici (segnalazioni, tempi di attesa e delle tappe: consenso o legittimo interesse?), email della lista d'attesa. Oggi non è scritta né nell'app né sul sito.
-- **Lista d'attesa**: per quanto tempo si conserva l'email? Web3Forms (o Formspree) ne conserva una copia, per quanto tempo, con quale ruolo (responsabile del trattamento?) e dove ha sede?
-- **Questo sito**: GitHub Pages conserva i log con l'indirizzo IP? Per quanto tempo?
+| id | stato | cosa serve |
+|---|---|---|
+| `pacchetto-comprensorio` | vera | «Scarichi le mappe del comprensorio una volta, a casa»: vale per la v2; dipende da quale interfaccia esce il 26-11 e dalla decisione del 20-11 sulle tessere. | Messa «vera» da Christian il 20-11: esce la v2.
+| `no-cookie-sito` | da verificare | La prova sul dominio vero dopo il cambio: `npm run check:browser -- --base=https://skimaps.cc`, esito nel DIARIO. |
+| `rilievo-crediti` | vera | 20-11 sera: dal parere, aggiunti la licenza CC BY 3.0 AT dei dati austriaci (con link; fonte Joerd attribution.md) e «dati modificati» sulla riga USGS. Riconfermato da Christian il 20-11. |
+| `avvisami-una-volta` | da verificare | 20-11: **iscrizione semplice scelta**. Resta la riga nell'informativa («Questo sito») e la campagna del lancio a mano, una sola, a quella lista. |
+| `territorio-benefici` | vera | 20-11: tolti «meno chiamate» e «giri» (non escono il 26-11); ora «ospiti che sanno a che ora rientrare e se fanno in tempo per l'ultimo impianto, dove l'orario è annunciato». Confermata da Christian il 20-11 (de/fr/es scritte da Claude il 20-11, da rileggere). |
+| `territorio-dati-risposta` | da verificare | 20-11: tolta la casella di consenso (decisione di Christian); sotto il modulo c’è il link all’informativa e «non scrivere dati di altre persone». La casella dei messaggi resta chris.business.skimap@gmail.com (scelta di Christian): il parere segnala l’assenza di un contratto da responsabile (art. 28). Da scrivere nell’informativa e nel registro, e portare al legale. |
+| `informativa-sito` | falsa | Le sezioni «Questo sito» dell'informativa (GitHub Pages, «nessuno strumento di analisi», lista d'attesa) diventano false il giorno del cambio di dominio: le riscrive una sessione a parte, con l'ok scritto di Christian, nello stesso commit. |
 
-## Account (versione 5 dell'informativa) — ONLINE dal 17-10-2026
-
-**Fatto il 17-10:** informativa v5 su `privacy.html` e `en/privacy.html` (sezioni «L'account», «Le preferenze che seguono l'account», Brevo e Google fra i fornitori, conservazione 24 mesi, diritti), generata dai testi dell'app (`skimap-mobile`, chiavi `privacy.*`); `elimina-account.html` e `en/delete-account.html` riscritte per l'account (dall'app, senza l'app, cosa si cancella e cosa no). **Restano aperti:** il titolare (sul sito c'è la formula provvisoria «la persona raggiungibile all'indirizzo …»: va sostituita con nome e indirizzo, lo stesso giorno dell'app in `src/config/legal.ts`) e la base giuridica dei contributi automatici (`LEGALE_F1.md` §9b nel repo dati). L'elenco qui sotto è la storia delle domande: le risposte sono nell'informativa v5.
-
-Le sezioni «L'account», «Accesso con Google» ed «Eliminare l'account» sono state tolte perché l'app di oggi (versione 4 dell'informativa) non ha un account. Il testo che c'era è nella cronologia: `git show fa7e04b:privacy.html` (e `en/privacy.html`, `elimina-account.html`, `en/delete-account.html`). Prima di rimetterlo servono queste risposte:
-
-- L'account è facoltativo nella v1? Che cosa vuol dire «facoltativo»: si può usare l'app senza account? L'email si può non fornire? Quali funzioni chiedono di accedere?
-- A che cosa serve l'account: quali funzioni abilita?
-- ID utente ed email sono collegati a diagnostica, segnalazioni, tempi di attesa e tempi delle tappe, o restano separati? (L'informativa oggi dice che non sono collegati a te: se con l'account cambia, va corretta.) L'utenza anonima resta separata o si unisce all'account quando accedi?
-- Accesso con Google: quali dati arrivano (solo email e ID, o anche nome e foto)? Chi gestisce l'accesso (Supabase?) e che ruolo ha Google (titolare autonomo?)? Ci sono altri fornitori, per esempio per le email dell'account?
-- Base giuridica dei dati dell'account.
-- Per quanto tempo si conservano ID ed email se l'account non viene usato? Entro quanti giorni si cancellano dopo la richiesta?
-- Accesso, correzione e portabilità dei dati dell'account: come e in quanto tempo.
-- Eliminazione: percorso esatto nell'app (per esempio Impostazioni → Account → Elimina account); conferma, password o nuovo accesso con Google; è immediata? Per email: come si verifica che l'account è tuo? Che cosa viene cancellato e che cosa resta (copie di sicurezza, obblighi di legge), per quanto tempo?
-- Quando c'è l'account, Google Play chiede la cancellazione sia nell'app sia da un link web: `elimina-account.html` va riscritta per l'account e indicata nella scheda «Sicurezza dei dati».
+Altre domande, fuori dal registro:
+- **Titolare del trattamento**: 20-11 Christian ha indicato *Christian Daniele, Via Alessandro Poerio 112, Roma* (persona fisica: non c'è la società che `LEGALE_F1.md` §10 prevede). La frase unica e la domanda sull'indirizzo di residenza pubblico sono nella Domanda 11 dell'appendice legale. **Non toccata l'informativa.**
+- **I due moduli** (usciti il 17-11): in Brevo servono una lista d'attesa (il suo numero va in `BREVO_WAITLIST_ID`) e un mittente verificato su skimaps.cc (`MAIL_FROM`); la chiave in `BREVO_API_KEY`. Per «Per il territorio»: registro dei trattamenti, domanda al legale con quelle del 20-11, conservazione dei messaggi (nella casella di Christian); **niente Turnstile (scelta del 20-11)**: il codice lo ammette solo se si mettono `PUBLIC_TURNSTILE_SITEKEY` e `TURNSTILE_SECRET`, che non si mettono. Per la lista d'attesa: **iscrizione semplice (scelta del 20-11)**; la lingua dell'iscritto oggi non si salva (una lista sola).
+- **Maestri**: modulo di consenso (nome, foto, frase, durata, ritiro) da far vedere al legale; nessun consiglio col nome senza l'approvazione scritta.
+- **Lingue**: 20-11 Christian ha rilette e confermate le pagine in tedesco, francese e spagnolo. Le due frasi riscritte il 20-11 (benefici del territorio, riga SRTM del credito) vanno rilette di nuovo.

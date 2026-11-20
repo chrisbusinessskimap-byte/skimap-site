@@ -1,0 +1,24 @@
+---
+/* La pagina di errore: in inglese con i collegamenti alle cinque pagine iniziali (non sappiamo la lingua dell'indirizzo sbagliato). */
+import Layout from '../layouts/Layout.astro';
+import { LANGS, NAMES } from '../i18n/langs';
+import { path } from '../i18n/routes';
+import { t } from '../content';
+
+const c = t('en');
+---
+<Layout lang="en" page="other" noindex canonical="/404/" title={c.notFound.title} description={c.notFound.text} navSolid>
+  <div class="wrap page-head">
+    <p class="eyebrow ts-occhiello">404</p>
+    <h1 class="ts-display-m">{c.notFound.h1}</h1>
+    <p class="ts-lead lede">{c.notFound.text}</p>
+    <ul class="langs ts-link">
+      {LANGS.map((l) => <li><a class="btn btn-ghost" href={path(l, 'home')} hreflang={l} lang={l}>{NAMES[l]}</a></li>)}
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  .langs { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .page-head { padding-bottom: 120px; }
+</style>

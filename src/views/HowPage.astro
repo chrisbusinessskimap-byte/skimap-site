@@ -1,0 +1,86 @@
+---
+/* «Come funziona», chiara (Figma 225:6480): apertura sul rilievo, cinque capitoli in ordine di giornata con l'indice fisso allo scorrimento.
+   Ogni schermata è un esempio dichiarato. Le ancore sono quelle dei capitoli (#il-quando #in-pista #livello #rientro #privacy). */
+import Layout from '../layouts/Layout.astro';
+import Phone from '../components/Phone.astro';
+import { t } from '../content';
+import { path } from '../i18n/routes';
+import type { Lang } from '../i18n/langs';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = t(lang);
+const h = c.how;
+---
+<Layout lang={lang} page="how" title={h.meta.title} description={h.meta.description}>
+  <section class="hero" aria-labelledby="h-how">
+    <picture class="bg" aria-hidden="true">
+      <source type="image/avif" srcset="/relief/mezzogiorno-640.avif 640w, /relief/mezzogiorno-960.avif 960w, /relief/mezzogiorno-1200.avif 1200w, /relief/mezzogiorno-1800.avif 1800w" sizes="100vw" />
+      <img src="/relief/mezzogiorno-1200.webp" alt="" width="1200" height="754" decoding="async" />
+    </picture>
+    <div class="veil" aria-hidden="true"></div>
+    <div class="wrap copy">
+      <p class="eyebrow ts-occhiello">{h.eyebrow}</p>
+      <h1 id="h-how" class="ts-display-m big">{h.h1.map((l) => <span>{l}</span>)}</h1>
+      <p class="ts-lead lede">{h.lede}</p>
+    </div>
+  </section>
+
+  <div class="wrap chapters">
+    <nav class="toc" aria-label={h.toc}>
+      <ol class="ts-link">
+        {h.chapters.map((ch, i) => <li><a href={`#${ch.id}`}><span class="n ts-ora-piccola">{String(i + 1).padStart(2, '0')}</span>{ch.title}</a></li>)}
+      </ol>
+    </nav>
+    <div class="list">
+      {h.chapters.map((ch, i) => (
+        <section class="chapter" id={ch.id} aria-labelledby={`h-${ch.id}`}>
+          <div class="text">
+            <p class="n ts-ora-m" aria-hidden="true">{String(i + 1).padStart(2, '0')}</p>
+            <h2 id={`h-${ch.id}`} class="ts-titolo">{ch.title}</h2>
+            <p class="ts-lead" set:html={ch.text} />
+            {ch.id === 'privacy' && (
+              <>
+                <ul class="plist ts-testo">{h.privacyList.map((s) => <li set:html={s} />)}</ul>
+                <p><a class="btn btn-ghost" href={path(lang, 'privacy')}>{h.privacyMore}</a></p>
+              </>
+            )}
+            {ch.screen && <p class="ts-credito tag">{ch.example ?? c.ui.example} · {h.exampleNote}</p>}
+          </div>
+          {ch.screen && <Phone screen={ch.screen} alt={ch.alt ?? ''} width={268} />}
+        </section>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .hero { position: relative; min-height: 560px; display: flex; align-items: flex-end; overflow: hidden; background: var(--color-snow); }
+  .bg, .bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(246 249 253 / 0) 60%, rgb(246 249 253) 100%), linear-gradient(90deg, rgb(246 249 253 / 0.97) 0%, rgb(246 249 253 / 0.75) 55%, rgb(246 249 253 / 0.1) 100%); }
+  .copy { position: relative; padding-block: 160px 64px; display: grid; gap: 18px; }
+  .big { max-width: 900px; font-size: 56px; line-height: 1.04; }
+  .big span { display: block; }
+  .lede { max-width: 640px; color: color-mix(in srgb, var(--color-ink) 80%, transparent); }
+  .chapters { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 64px; padding-block: 48px 120px; }
+  .toc { position: sticky; top: 110px; align-self: start; }
+  .toc ol { display: grid; gap: 4px; }
+  .toc a { display: flex; gap: 12px; align-items: baseline; padding: 8px 0; text-decoration: none; color: var(--color-mute); }
+  .toc a:hover { color: var(--color-ink); }
+  .n { color: var(--color-route); }
+  .chapter { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 56px; align-items: center; padding-block: 72px; border-top: 1px solid var(--color-line); }
+  .chapter:first-child { border-top: 0; }
+  .text { display: grid; gap: 16px; max-width: 560px; min-width: 0; }
+  .tag { color: var(--color-mute); }
+  .plist { display: grid; gap: 10px; margin-block: 8px; padding-left: 0; }
+  .plist li { padding-left: 22px; position: relative; }
+  .plist li::before { content: '—'; position: absolute; left: 0; color: var(--color-route); }
+  @media (max-width: 1023px) {
+    .big { font-size: 36px; }
+    .copy { padding-block: 120px 40px; }
+    .chapters { grid-template-columns: minmax(0, 1fr); gap: 0; padding-block: 24px 72px; }
+    .toc { display: none; }
+    .chapter { grid-template-columns: minmax(0, 1fr); padding-block: 48px; }
+    .chapter :global(.phone) { justify-self: start; }
+  }
+</style>

@@ -1,0 +1,22 @@
+{
+  "privacy.it": {
+    "eyebrow": "Privacy",
+    "h1": "Cosa resta sul telefono, cosa parte.",
+    "lede": "La stessa informativa che trovi nell’app, in Impostazioni → Informativa privacy. Aggiornata il 12 novembre 2026 · versione 11."
+  },
+  "delete.it": {
+    "eyebrow": "Account e dati",
+    "h1": "Eliminare l’account, cancellare i dati.",
+    "lede": "L’account è facoltativo e lo elimini quando vuoi: dall’app con due tocchi, oppure scrivendoci. Qui trovi anche come cancellare quello che resta sul telefono, come chiedere di cancellare quello che è arrivato al server e quando si cancella da solo."
+  },
+  "privacy.en": {
+    "eyebrow": "Privacy",
+    "h1": "What stays on your phone, what leaves it.",
+    "lede": "The same notice you find in the app, under Settings → Privacy notice. Updated 12 November 2026 · version 11."
+  },
+  "delete.en": {
+    "eyebrow": "Account and data",
+    "h1": "Delete your account, delete your data.",
+    "lede": "The account is optional, and you can delete it whenever you like: from the app in two taps, or by writing to us. Here you will also find how to delete what stays on your phone, how to ask for what reached the server to be deleted, and when it is deleted automatically."
+  }
+}

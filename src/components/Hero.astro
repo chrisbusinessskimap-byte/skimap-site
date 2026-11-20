@@ -1,0 +1,135 @@
+---
+/* L'apertura della home: «la montagna all'ora giusta». Il rilievo vero dal DEM con la luce di alba, mezzogiorno, tramonto e notte,
+   e il selettore dell'ora («Sito/Selettore ora», Figma 220:6389) che fa dissolvenza fra le quattro immagini.
+   Si carica una sola immagine (mezzogiorno) con priorità; le altre tre arrivano quando il browser è libero o al primo uso del selettore.
+   Il credito del rilievo sta nella pagina «Fonti e licenze» e nel piede (A13). Il video dell'apertura (solo computer) è sotto la linea di taglio (4-12). */
+import type { Lang } from '../i18n/langs';
+import { t } from '../content';
+import type { Hour } from '../content/types';
+
+interface Props { lang: Lang; alt: string }
+const { lang, alt } = Astro.props;
+const c = t(lang);
+const HOURS: Hour[] = ['alba', 'mezzogiorno', 'tramonto', 'notte'];
+const WIDTHS = [640, 960, 1200, 1800, 2400];
+const srcset = (h: Hour, ext: 'avif' | 'webp') => WIDTHS.map((w) => `/relief/${h}-${w}.${ext} ${w}w`).join(', ');
+/* l'immagine riempie l'apertura (alta 780-900 px) con object-fit: cover: su telefono se ne vede solo un terzo centrale, già ingrandito, sotto un velo scuro.
+   Dire al browser che pesa il 60% dello schermo gli fa scegliere i 640 px (29 KB) invece dei 960 (53 KB): a vedersi non cambia, a scaricare sì. */
+const SIZES = '(max-width: 700px) 60vw, 100vw';
+const first: Hour = 'mezzogiorno';
+const rest = HOURS.filter((h) => h !== first).map((h) => ({ hour: h, avif: srcset(h, 'avif'), webp: srcset(h, 'webp'), src: `/relief/${h}-1200.webp`, alt: c.ui.hours[h].alt, sizes: SIZES }));
+---
+<section class="hero" data-hero data-hour={first} aria-label={alt}>
+  <div class="layers" aria-hidden="false">
+    <picture class="layer on" data-layer={first}>
+      <source type="image/avif" srcset={srcset(first, 'avif')} sizes={SIZES} />
+      <source type="image/webp" srcset={srcset(first, 'webp')} sizes={SIZES} />
+      <img src={`/relief/${first}-1200.webp`} width="1200" height="754" alt={c.ui.hours[first].alt} fetchpriority="low" decoding="async" />
+    </picture>
+  </div>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="wash wash-alba" aria-hidden="true"></div>
+  <div class="wash wash-tramonto" aria-hidden="true"></div>
+  <div class="night" aria-hidden="true"></div>
+  <div class="wrap content"><slot /></div>
+  <div class="wrap picker-wrap">
+    <div class="picker" role="group" aria-label={c.ui.pickerLabel} hidden data-picker>
+      {HOURS.map((h) => (
+        <button type="button" class="pill" data-hour={h} aria-pressed={h === first ? 'true' : 'false'}>
+          <span class="ts-ora-piccola">{c.ui.hours[h].time}</span>
+          <span class="ts-link">{c.ui.hours[h].name}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+  <script type="application/json" data-rest set:html={JSON.stringify(rest)}></script>
+</section>
+
+<script>
+  /* il selettore dell'ora: JavaScript solo qui. Senza, resta l'immagine di mezzogiorno e il selettore non compare. */
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  if (hero) {
+    const picker = hero.querySelector<HTMLElement>('[data-picker]')!;
+    const layers = hero.querySelector<HTMLElement>('.layers')!;
+    const rest = JSON.parse(hero.querySelector('[data-rest]')!.textContent || '[]') as { hour: string; avif: string; webp: string; src: string; alt: string; sizes: string }[];
+    const loaded = new Set<string>(['mezzogiorno']);
+    const add = (r: (typeof rest)[number]) => {
+      if (loaded.has(r.hour)) return;
+      loaded.add(r.hour);
+      const pic = document.createElement('picture');
+      pic.className = 'layer';
+      pic.dataset.layer = r.hour;
+      pic.innerHTML = `<source type="image/avif" srcset="${r.avif}" sizes="${r.sizes}"><source type="image/webp" srcset="${r.webp}" sizes="${r.sizes}"><img src="${r.src}" width="1200" height="754" alt="${r.alt.replace(/"/g, '&quot;')}" decoding="async">`;
+      layers.appendChild(pic);
+    };
+    const show = (hour: string) => {
+      const r = rest.find((x) => x.hour === hour);
+      if (r) add(r);
+      const apply = () => {
+        hero.dataset.hour = hour;
+        hero.querySelectorAll('.layer').forEach((l) => l.classList.toggle('on', (l as HTMLElement).dataset.layer === hour));
+        picker.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.hour === hour)));
+      };
+      /* la dissolvenza parte quando l'immagine è arrivata: mai un lampo vuoto */
+      const img = hero.querySelector<HTMLImageElement>(`[data-layer="${hour}"] img`);
+      if (img && !img.complete) img.addEventListener('load', apply, { once: true }); else apply();
+    };
+    picker.hidden = false;
+    picker.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('button');
+      if (b && b.dataset.hour) show(b.dataset.hour);
+    });
+    /* le altre tre immagini non si scaricano all'apertura (A9): arrivano quando il dito o il cursore si avvicinano al selettore, o al primo clic */
+    const warm = () => rest.forEach(add);
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean } }).connection;
+    if (!conn?.saveData) (['pointerenter', 'focusin', 'touchstart'] as const).forEach((e) => picker.addEventListener(e, warm, { once: true, passive: true }));
+  }
+</script>
+
+<style>
+  .hero { position: relative; min-height: 900px; overflow: hidden; background: var(--brand-abisso); color: var(--color-ink); display: flex; flex-direction: column; }
+  .layers { position: absolute; inset: 0; }
+  /* :global perché le altre tre immagini le aggiunge lo script: senza l'attributo di Astro gli stili «a ambito» non le raggiungono e restavano in fila, con l'alba sempre sopra */
+  .layers :global(.layer) { position: absolute; inset: 0; opacity: 0; }
+  .layers :global(.layer.on) { opacity: 1; }
+  .layers :global(.layer img) { width: 100%; height: 100%; object-fit: cover; }
+  @media (prefers-reduced-motion: no-preference) { .layers :global(.layer) { transition: opacity .7s ease; } }
+  /* di notte, buio (Figma «Home · apertura · Notte», 248:9778): velo blu al 55% sopra l'immagine e il velo, sotto i testi. All'alba e al tramonto non si disegna il sole:
+     la luce si legge dalle ombre, che cadono verso ovest (luce da 105°) e verso est (255°) nelle immagini stesse (imhof.py). */
+  .night { position: absolute; inset: 0; pointer-events: none; opacity: 0; }
+  .night { background: #060b1e; }
+  .hero[data-hour='notte'] .night { opacity: 0.55; }
+  @media (prefers-reduced-motion: no-preference) { .night { transition: opacity .7s ease; } }
+  /* il velo è uniforme da sinistra a destra: se fosse più scuro a sinistra la luce sembrerebbe venire sempre da destra, anche al tramonto (18-11).
+     I testi si leggono con il velo e con un'ombra leggera (.copy in HomePage). */
+  .veil {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgb(11 20 48 / 0.3) 0%, rgb(11 20 48 / 0) 18%, rgb(11 20 48 / 0) 70%, var(--brand-abisso) 100%),
+      linear-gradient(90deg, rgb(11 20 48 / 0.5) 0%, rgb(11 20 48 / 0.5) 100%);
+  }
+  /* la luce calda che entra da est (destra) all'alba e da ovest (sinistra) al tramonto: una sfumatura, non un sole */
+  .wash { position: absolute; inset: 0; pointer-events: none; opacity: 0; }
+  .wash-alba { background: linear-gradient(270deg, rgb(255 205 170 / 0.3) 0%, rgb(255 205 170 / 0.12) 35%, rgb(255 205 170 / 0) 70%); }
+  .wash-tramonto { background: linear-gradient(90deg, rgb(255 150 100 / 0.34) 0%, rgb(255 150 100 / 0.14) 35%, rgb(255 150 100 / 0) 70%); }
+  .hero[data-hour='alba'] .wash-alba, .hero[data-hour='tramonto'] .wash-tramonto { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) { .wash { transition: opacity .7s ease; } }
+  .content { position: relative; flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; padding-top: 120px; padding-bottom: 140px; }
+  .picker-wrap { position: absolute; left: 0; right: 0; bottom: 40px; }
+  .picker { display: inline-flex; gap: 8px; padding: 8px; border-radius: var(--radius-pill); background: rgb(11 20 48 / 0.78); border: 1px solid rgb(255 255 255 / 0.16); }
+  .pill { display: grid; justify-items: center; gap: 2px; min-width: 104px; padding: 10px 18px; border: 0; border-radius: var(--radius-pill); background: transparent; color: #fff; }
+  .pill:hover { background: rgb(255 255 255 / 0.1); }
+  .pill[aria-pressed='true'] { background: var(--brand-ghiaccio); color: var(--brand-abisso); }
+  .pill :global(.ts-link) { font-size: 13px; }
+  @media (max-width: 1023px) {
+    .hero { min-height: 780px; }
+    .content { flex-direction: column; align-items: flex-start; justify-content: flex-start; padding-top: 104px; padding-bottom: 150px; gap: 28px; }
+    .picker-wrap { bottom: 24px; }
+  }
+  @media (max-width: 640px) {
+    .picker { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; border-radius: 22px; gap: 4px; padding: 6px; }
+    .pill { min-width: 0; padding: 8px 4px; border-radius: 16px; }
+    .pill :global(.ts-ora-piccola) { font-size: 15px; }
+    .pill :global(.ts-link) { font-size: 12px; }
+  }
+</style>

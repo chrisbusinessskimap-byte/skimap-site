@@ -1,0 +1,32 @@
+---
+/* L'indice dei comprensori, chiaro (Figma 227:6442). */
+import Layout from '../layouts/Layout.astro';
+import OperatorsBand from '../components/OperatorsBand.astro';
+import AreasBrowser from '../components/AreasBrowser.astro';
+import { t } from '../content';
+import type { Lang } from '../i18n/langs';
+import { MANIFEST_DATE } from '../data/areas';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = t(lang);
+const a = c.areas;
+---
+<Layout lang={lang} page="areas" title={a.meta.title} description={a.meta.description}>
+  <div class="wrap page-head">
+    <p class="eyebrow ts-occhiello">{a.eyebrow}</p>
+    <h1 class="ts-display-m">{a.h1}</h1>
+    <p class="ts-lead lede">{a.lede}</p>
+  </div>
+  <div class="wrap list">
+    <AreasBrowser lang={lang} filterLabel={a.filterLabel} all={c.home.areas.all} groups={c.home.areas.groups} mapAria={c.home.areas.mapAria} />
+    <p class="ts-credito note"><span set:html={a.note} /> · {MANIFEST_DATE}</p>
+    <div class="ops"><OperatorsBand lang={lang} /></div>
+  </div>
+</Layout>
+
+<style>
+  .list { padding-bottom: 120px; }
+  .ops { margin-top: 56px; }
+  .note { margin-top: 40px; color: var(--color-mute); max-width: 70ch; }
+</style>

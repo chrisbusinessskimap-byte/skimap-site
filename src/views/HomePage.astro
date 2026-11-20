@@ -1,0 +1,95 @@
+---
+/* La home, scura (Figma 221:6389 computer, 224:6389 telefono): apertura col rilievo e il selettore dell'ora, «una giornata, tre momenti»,
+   i comprensori con la mappa schematica, e l'invito a scaricare. */
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Phone from '../components/Phone.astro';
+import StoreCta from '../components/StoreCta.astro';
+import AreasOverview from '../components/AreasOverview.astro';
+import { t } from '../content';
+import { path } from '../i18n/routes';
+import type { Lang } from '../i18n/langs';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = t(lang);
+const h = c.home;
+---
+<Layout lang={lang} page="home" theme="notte" title={h.meta.title} description={h.meta.description} legacyHashes>
+  <Hero lang={lang} alt={h.heroAlt}>
+    <div class="copy">
+      <p class="eyebrow ts-occhiello">{h.eyebrow}</p>
+      <h1 class="ts-display-xl">{h.h1}</h1>
+      <p class="lede ts-lead" set:html={h.lede} />
+      <div class="cta"><StoreCta lang={lang} campaign="home" id="avvisami-hero" back={path(lang, 'home')} dark /></div>
+    </div>
+    <div class="herophone">
+      <Phone screen="guida" alt={h.phoneAlt} width={300} loading="eager" priority />
+      <p class="ts-credito example">{c.ui.example}</p>
+    </div>
+  </Hero>
+
+  <section class="moments cv" id="come-funziona" aria-labelledby="h-moments">
+    <div class="wrap">
+      <p class="eyebrow ts-occhiello">{h.moments.eyebrow}</p>
+      <h2 id="h-moments" class="ts-display-m">{h.moments.h}</h2>
+      <p class="ts-lead lede">{h.moments.lede}</p>
+      <ol class="list">
+        {h.moments.items.map((m) => (
+          <li class="moment">
+            <p class="time ts-ora-m">{m.time}</p>
+            <h3 class="ts-titolo-m">{m.title}</h3>
+            <p class="ts-testo" set:html={m.text} />
+            <Phone screen={m.screen} alt={m.alt} width={250} />
+          </li>
+        ))}
+      </ol>
+      <p class="more"><a class="btn btn-ghost" href={path(lang, 'how')}>{c.ui.nav.how}</a></p>
+    </div>
+  </section>
+
+  <section class="areas cv" id="comprensori" aria-labelledby="h-areas">
+    <div class="wrap">
+      <p class="eyebrow ts-occhiello">{h.areas.eyebrow}</p>
+      <h2 id="h-areas" class="ts-display-m">{h.areas.h}</h2>
+      <p class="ts-lead lede" set:html={h.areas.lede} />
+      <AreasOverview lang={lang} />
+    </div>
+  </section>
+
+  <section class="band cv" aria-labelledby="h-cta">
+    <div class="wrap">
+      <h2 id="h-cta" class="ts-titolo">{h.cta.h}</h2>
+      <p class="ts-lead" set:html={h.cta.p} />
+      <div class="cta"><StoreCta lang={lang} campaign="home-fondo" id="avvisami-fondo" back={path(lang, 'home')} dark /></div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .copy { max-width: 600px; display: grid; gap: 22px; text-shadow: 0 1px 16px rgb(6 11 30 / 0.55); }
+  .eyebrow { color: var(--brand-ghiaccio); }
+  /* sul telefono la riga sopra il titolo va a capo (Plex Mono è più largo del carattere di riserva): lo spazio di due righe è riservato prima, così non sposta il resto quando il carattere arriva */
+  @media (max-width: 560px) { .copy .eyebrow { min-height: calc(2 * 1.3em); } }
+  .lede { color: color-mix(in srgb, var(--color-ink) 88%, transparent); max-width: 52ch; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .herophone { display: grid; justify-items: center; gap: 10px; }
+  .example { color: rgb(255 255 255 / 0.8); }
+  .moments, .areas { padding-block: 120px 40px; }
+  .moments h2, .areas h2 { margin-block: 16px; max-width: 18ch; }
+  .moments .lede, .areas .lede { max-width: 60ch; margin-bottom: 56px; }
+  .list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; }
+  .moment { display: grid; gap: 14px; align-content: start; }
+  .time { color: var(--brand-ghiaccio); }
+  .moment :global(.phone) { margin-top: 18px; }
+  .more { margin-top: 56px; }
+  .band { margin-top: 120px; padding-block: 96px; background: var(--color-soft); }
+  .band .wrap { display: grid; gap: 20px; justify-items: start; }
+  .band h2 { max-width: 22ch; }
+  @media (max-width: 1023px) {
+    .moments, .areas { padding-block: 72px 24px; }
+    .list { grid-template-columns: 1fr; gap: 56px; }
+    .herophone { align-self: center; }
+    .band { margin-top: 72px; padding-block: 64px; }
+  }
+</style>

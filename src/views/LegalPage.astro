@@ -1,0 +1,46 @@
+---
+/* Le pagine legali: i testi di `main` (src/legal/*.html), byte per byte, dentro la nuova veste.
+   Unica trasformazione, tecnica e non di testo: nella pagina «Elimina account» il collegamento relativo `privacy.html` punta alla pagina nuova.
+   20-11-2026: le due sezioni del sito vecchio («lista d'attesa» con le varianti posta/Web3Forms/Formspree e «Questo sito» con GitHub Pages)
+   sono diventate una sola «Questo sito — Sito v2» (it, en), con l'ok scritto di Christian; le vecchie sono in src/legal/archivio/ (non
+   pubblicate). La regola CSS su [data-beta] qui sotto non trova più niente ed è innocua. */
+import Layout from '../layouts/Layout.astro';
+import { t } from '../content';
+import { path } from '../i18n/routes';
+import type { Lang } from '../i18n/langs';
+import heads from '../legal/heads.json';
+
+interface Props { lang: Lang; page: 'privacy' | 'delete' }
+const { lang, page } = Astro.props;
+const c = t(lang);
+const key = `${page}.${lang}` as keyof typeof heads;
+const head = heads[key];
+const raw = import.meta.glob('../legal/*.html', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+const body = raw[`../legal/${key}.html`].replace('href="privacy.html"', `href="${path(lang, 'privacy')}"`);
+const meta = c.legal[page];
+---
+<Layout lang={lang} page={page} title={meta.title} description={meta.description}>
+  <div class="wrap page-head">
+    <p class="eyebrow ts-occhiello">{head.eyebrow}</p>
+    <h1 class="ts-display-m">{head.h1}</h1>
+    {head.lede && <p class="ts-lead lede">{head.lede}</p>}
+  </div>
+  <div class="wrap">
+    <div class="legal-wrap" set:html={body} />
+  </div>
+</Layout>
+
+<style is:global>
+  .legal-wrap { padding-bottom: 120px; }
+  .legal { max-width: 760px; font-size: 17px; line-height: 1.65; }
+  .legal h2 { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.15; letter-spacing: -0.01em; margin: 56px 0 14px; font-variation-settings: 'opsz' 14, 'wdth' 100; }
+  .legal h3 { font-family: var(--font-display); font-weight: 800; font-size: 20px; margin: 32px 0 8px; font-variation-settings: 'opsz' 14, 'wdth' 100; }
+  .legal p, .legal ul, .legal ol { margin: 0 0 1em; }
+  .legal ul { list-style: disc; padding-left: 1.3em; }
+  .legal ol { list-style: decimal; padding-left: 1.3em; }
+  .legal li + li { margin-top: 6px; }
+  .legal a { color: var(--color-route); }
+  .legal table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  .legal th, .legal td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--color-line); vertical-align: top; }
+  .legal [data-beta]:not([data-beta='mail']) { display: none; }
+</style>

@@ -1,0 +1,90 @@
+---
+/* «Per il territorio · computer (chiaro)» (Figma 227:6617): testata, le tre cose che il territorio deve sapere e il modulo «Scrivici».
+   Il modulo parte con POST a /api/territorio (funzione di Pages: la posta la manda Brevo dal lato server; dal browser nessun altro dominio).
+   Cloudflare Turnstile compare solo se il progetto ha la chiave pubblica (PUBLIC_TURNSTILE_SITEKEY) ed è l'unica eccezione scritta alla regola
+   «nessuna richiesta ad altri domini», solo su questa pagina. Senza chiave: solo il campo trappola e i controlli del server. */
+import Layout from '../layouts/Layout.astro';
+import { t, fill } from '../content';
+import { path } from '../i18n/routes';
+import { MAIL, type Lang } from '../i18n/langs';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = t(lang);
+const p = c.territory;
+const f = p.form;
+const SITEKEY = import.meta.env.PUBLIC_TURNSTILE_SITEKEY as string | undefined;
+const back = path(lang, 'territory');
+const FORM = 'territorio';
+---
+<Layout lang={lang} page="territory" title={p.meta.title} description={p.meta.description}>
+  <div class="wrap page-head">
+    <p class="eyebrow ts-occhiello">{p.eyebrow}</p>
+    <h1 class="ts-display-m">{p.h1}</h1>
+    <p class="ts-lead lede">{p.lede}</p>
+  </div>
+  <div class="wrap body">
+    <div class="blocks">
+      {p.blocks.map((b) => (
+        <section>
+          <h2 class="ts-sottotitolo">{b.h}</h2>
+          <p class="ts-testo" set:html={b.p} />
+        </section>
+      ))}
+    </div>
+    <div class="card" id={FORM}>
+      <h2 class="ts-titolo-m">{f.title}</h2>
+      <form method="post" action="/api/territorio">
+        <input type="hidden" name="lang" value={lang} />
+        <input type="hidden" name="back" value={back} />
+        <input type="hidden" name="id" value={FORM} />
+        <p class="trap" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></p>
+        <div class="fld"><label class="ts-testo-piccolo" for="t-name">{f.name}</label><input class="ts-testo" id="t-name" name="name" type="text" autocomplete="name" required maxlength="120" placeholder={f.namePh} /></div>
+        <div class="fld"><label class="ts-testo-piccolo" for="t-org">{f.org}</label><input class="ts-testo" id="t-org" name="org" type="text" autocomplete="organization" required maxlength="160" placeholder={f.orgPh} /></div>
+        <div class="fld"><label class="ts-testo-piccolo" for="t-mail">{f.mail}</label><input class="ts-testo" id="t-mail" name="email" type="email" autocomplete="email" required maxlength="254" placeholder={f.mailPh} /></div>
+        <div class="fld"><label class="ts-testo-piccolo" for="t-area">{f.area}</label><input class="ts-testo" id="t-area" name="area" type="text" maxlength="160" placeholder={f.areaPh} /></div>
+        <div class="fld"><label class="ts-testo-piccolo" for="t-msg">{f.msg}</label><textarea class="ts-testo" id="t-msg" name="msg" rows="4" required maxlength="2000" placeholder={f.msgPh}></textarea></div>
+        {SITEKEY && <div class="cf-turnstile" data-sitekey={SITEKEY}></div>}
+        <button class="send" type="submit">{f.send}</button>
+      </form>
+      <p class="note ts-credito"><span set:html={fill(f.note, { privacy: path(lang, 'privacy') })} />{SITEKEY && <> {f.turnstile}</>}</p>
+      <p class="state ok ts-testo-piccolo" id={`${FORM}-ok`} role="status">{f.ok}</p>
+      <p class="state bad ts-testo-piccolo" id={`${FORM}-invalid`} role="alert">{f.invalid}</p>
+      <p class="state bad ts-testo-piccolo" id={`${FORM}-fail`} role="alert">{f.fail} <a href={`mailto:${MAIL}`}>{MAIL}</a></p>
+    </div>
+  </div>
+  {SITEKEY && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+</Layout>
+
+<style>
+  .page-head { padding-top: 80px; padding-bottom: 40px; display: grid; gap: 18px; justify-items: start; }
+  .eyebrow { color: var(--color-route); }
+  .page-head h1 { max-width: 900px; }
+  .lede { max-width: 720px; }
+  .body { display: grid; grid-template-columns: minmax(0, 480px) minmax(0, 560px); gap: 64px; padding-top: 24px; padding-bottom: 120px; align-items: start; }
+  .blocks { display: grid; gap: 24px; }
+  .blocks section { display: grid; gap: 8px; }
+  .card { background: var(--color-soft); border-radius: 32px; padding: 36px 40px; display: grid; gap: 18px; }
+  form { display: grid; gap: 18px; }
+  .fld { display: grid; gap: 8px; }
+  .fld label { color: color-mix(in srgb, var(--color-ink) 72%, transparent); }
+  .fld input, .fld textarea { width: 100%; box-sizing: border-box; border: 1px solid var(--color-line); border-radius: 14px; background: var(--color-paper); color: var(--color-ink); padding: 0 16px; height: 52px; }
+  .fld textarea { height: 120px; padding-top: 14px; resize: vertical; }
+  .fld input::placeholder, .fld textarea::placeholder { color: var(--color-mute); opacity: 1; }
+  .fld input:focus-visible, .fld textarea:focus-visible { outline: 3px solid var(--color-route); outline-offset: 2px; }
+  .send { justify-self: start; border: 0; border-radius: var(--radius-pill); background: var(--color-route); color: var(--brand-neve); padding: 16px 28px; font-family: var(--font-body); font-weight: 700; font-size: 17px; line-height: 1.2; cursor: pointer; }
+  .send:hover { background: color-mix(in srgb, var(--color-route) 88%, var(--brand-abisso)); }
+  .send:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 2px; }
+  .note { color: var(--color-mute); margin: 0; }
+  .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .state { display: none; margin: 0; padding: 14px 18px; border-radius: 14px; background: var(--color-ok-tint); color: var(--color-ink); }
+  .state.bad { background: var(--color-glow-tint); }
+  .state a { color: inherit; text-decoration: underline; }
+  .state:target { display: block; }
+  .card:has(.ok:target) form, .card:has(.ok:target) .note { display: none; }
+  @media (max-width: 1023px) {
+    .page-head { padding-top: 48px; }
+    .body { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-bottom: 80px; }
+    .card { padding: 28px 24px; }
+  }
+</style>

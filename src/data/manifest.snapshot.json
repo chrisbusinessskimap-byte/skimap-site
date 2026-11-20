@@ -1,0 +1,217 @@
+{
+  "source": "https://cdn.skimaps.cc/v1/resorts/manifest.json",
+  "generatedAt": "2026-11-16T22:08:10.141Z",
+  "resorts": {
+    "superski": {
+      "id": "superski",
+      "name": "Dolomiti Superski",
+      "pistesKm": 809.2,
+      "lifts": 350,
+      "summitM": 3130,
+      "zones": [
+        "Val Gardena",
+        "Alpe di Siusi",
+        "Alta Badia",
+        "Arabba/Marmolada",
+        "Val di Fassa/Carezza",
+        "Val di Fiemme/Obereggen",
+        "San Martino",
+        "Cortina",
+        "Kronplatz",
+        "Rio Pusteria",
+        "3 Cime",
+        "Civetta"
+      ],
+      "osmDate": "2026-06-14",
+      "graphVersion": "2026.11.11-11ee4ef",
+      "photo": {
+        "file": "/areas/superski",
+        "width": 1170,
+        "height": 2600,
+        "author": "Wolfgang Moroder",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Langkofel_group_from_Sellajoch_Fassa.jpg",
+        "modified": true
+      }
+    },
+    "altosangro": {
+      "id": "altosangro",
+      "name": "Alto Sangro",
+      "pistesKm": 66,
+      "lifts": 26,
+      "summitM": 2130,
+      "zones": [
+        "Aremogna",
+        "Monte Pratello",
+        "Pizzalto"
+      ],
+      "osmDate": "2026-10-19",
+      "graphVersion": "2026.11.11-665bd82",
+      "photo": {
+        "file": "/areas/altosangro",
+        "width": 1170,
+        "height": 2600,
+        "author": "Pattiolivieri",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roccaraso_innevato.jpg",
+        "modified": true
+      }
+    },
+    "campofelice": {
+      "id": "campofelice",
+      "name": "Campo Felice",
+      "pistesKm": 24.3,
+      "lifts": 14,
+      "summitM": 2050,
+      "zones": [],
+      "osmDate": "2026-10-06",
+      "graphVersion": "2026.11.11-aae3d78",
+      "photo": {
+        "file": "/areas/campofelice",
+        "width": 1170,
+        "height": 2600,
+        "author": "CAPTAIN RAJU",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rocca_di_Cambio_in_2022.17.jpg",
+        "modified": true
+      }
+    },
+    "livigno": {
+      "id": "livigno",
+      "name": "Livigno",
+      "pistesKm": 80.5,
+      "lifts": 32,
+      "summitM": 2790,
+      "zones": [
+        "Carosello 3000",
+        "Mottolino",
+        "Tagliede"
+      ],
+      "osmDate": "2026-10-10",
+      "graphVersion": "2026.11.11-20e3269",
+      "photo": {
+        "file": "/areas/livigno",
+        "width": 1170,
+        "height": 2600,
+        "author": "Dispe",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Livigno_Snow_Park_-_01.jpg",
+        "modified": true
+      }
+    },
+    "monterosa": {
+      "id": "monterosa",
+      "name": "Monterosa Ski",
+      "pistesKm": 130.1,
+      "lifts": 52,
+      "summitM": 3010,
+      "zones": [
+        "Alagna Valsesia",
+        "Alpe di Mera",
+        "Antagnod",
+        "Brusson",
+        "Champoluc-Frachey",
+        "Champorcher",
+        "Gressoney-La-Trinité",
+        "Gressoney-Saint-Jean"
+      ],
+      "osmDate": "2026-10-24",
+      "graphVersion": "2026.11.11-b497f84",
+      "photo": {
+        "file": "/areas/monterosa",
+        "width": 1170,
+        "height": 2600,
+        "author": "Roberta Doyle",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Above_The_Clouds_1_(Unsplash).jpg",
+        "modified": true
+      }
+    },
+    "ovindoli": {
+      "id": "ovindoli",
+      "name": "Ovindoli",
+      "pistesKm": 18.4,
+      "lifts": 10,
+      "summitM": 2060,
+      "zones": [],
+      "osmDate": "2026-10-05",
+      "graphVersion": "2026.11.11-c1b6a7e",
+      "photo": {
+        "file": "/areas/ovindoli",
+        "width": 1170,
+        "height": 2600,
+        "author": "Cles93",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pista_Panoramica.jpg",
+        "modified": true
+      }
+    },
+    "skirama": {
+      "id": "skirama",
+      "name": "Skirama Dolomiti Adamello Brenta",
+      "pistesKm": 298,
+      "lifts": 161,
+      "summitM": 3000,
+      "zones": [
+        "Folgarida-Marilleva",
+        "Madonna di Campiglio",
+        "Pejo",
+        "Pinzolo",
+        "Ponte di Legno",
+        "Presena",
+        "Tonale",
+        "Folgaria",
+        "Lavarone",
+        "Monte Bondone",
+        "Paganella"
+      ],
+      "osmDate": "2026-10-20",
+      "graphVersion": "2026.11.11-53eeaea",
+      "photo": {
+        "file": "/areas/skirama",
+        "width": 1170,
+        "height": 2600,
+        "author": "Manuel righi",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vista_su_Madonna_di_Campiglio.jpg",
+        "modified": true
+      }
+    },
+    "vialattea": {
+      "id": "vialattea",
+      "name": "Vialattea",
+      "pistesKm": 347.9,
+      "lifts": 101,
+      "summitM": 2790,
+      "zones": [
+        "Bardonecchia",
+        "Cesana",
+        "Claviere",
+        "Montgenèvre",
+        "Pragelato",
+        "Sansicario",
+        "Sauze d'Oulx",
+        "Sestriere"
+      ],
+      "osmDate": "2026-10-10",
+      "graphVersion": "2026.11.11-a0b5478",
+      "photo": {
+        "file": "/areas/vialattea",
+        "width": 1170,
+        "height": 2600,
+        "author": "ChiaVB",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sestriere_MonteMotta.jpg",
+        "modified": true
+      }
+    }
+  }
+}
