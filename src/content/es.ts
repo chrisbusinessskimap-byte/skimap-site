@@ -161,8 +161,7 @@ const es: Content = {
   download: {
     title: 'Descargar Ski Maps', h1: 'Descargar Ski Maps', lede: 'La app para esquiar pista tras pista.',
     play: 'Descargar en Google Play', soon: 'Próximamente en Google Play', ios: 'iPhone: próximamente',
-    openApp: 'Abrir en la app', openAppNote: 'Abre la app y empieza a descargar {name}: hasta {mb} MB, con tus datos.',
-    weight: 'Tamaño del paquete', weightNote: 'Hasta {mb} MB. <span data-claim="peso-pacchetto">Un máximo, no una medición.</span>',
+    openApp: 'Abrir en la app', openAppNote: 'Abre la app y empieza a descargar {name}. Usa tus datos: mejor con Wi-Fi.',
     needApp: 'Si no se abre, hace falta la app actualizada: instálala o actualízala desde Google Play e inténtalo de nuevo.', back: 'Volver al sitio', qr: 'Desde el ordenador: escanea el código con el teléfono.',
   },
   notFound: { title: 'Página no encontrada · Ski Maps', h1: 'Esta página no existe.', text: 'Puede que la dirección haya cambiado. Vuelve al inicio o elige una zona de esquí.', back: 'Inicio' },

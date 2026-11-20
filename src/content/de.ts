@@ -161,8 +161,7 @@ const de: Content = {
   download: {
     title: 'Ski Maps laden', h1: 'Ski Maps laden', lede: 'Die App zum Skifahren, Piste für Piste.',
     play: 'Bei Google Play laden', soon: 'Bald bei Google Play', ios: 'iPhone: bald',
-    openApp: 'In der App öffnen', openAppNote: 'Öffnet die App und startet den Download von {name}: bis zu {mb} MB, über dein Datenvolumen.',
-    weight: 'Größe des Pakets', weightNote: 'Bis zu {mb} MB. <span data-claim="peso-pacchetto">Ein Höchstwert, keine Messung.</span>',
+    openApp: 'In der App öffnen', openAppNote: 'Öffnet die App und startet den Download von {name}. Er nutzt dein Datenvolumen: besser im WLAN.',
     needApp: 'Öffnet sie sich nicht, brauchst du die aktualisierte App: Installiere oder aktualisiere sie bei Google Play und versuche es erneut.', back: 'Zurück zur Website', qr: 'Vom Computer: Scanne den Code mit dem Telefon.',
   },
   notFound: { title: 'Seite nicht gefunden · Ski Maps', h1: 'Diese Seite gibt es nicht.', text: 'Vielleicht hat sich die Adresse geändert. Geh zurück zur Startseite oder wähle ein Skigebiet.', back: 'Startseite' },

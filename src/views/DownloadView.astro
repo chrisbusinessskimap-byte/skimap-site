@@ -3,7 +3,7 @@
    aprono dal codice QR in pista, con poca rete. Dicono in tutte e cinque le lingue nello stesso HTML e uno script minuscolo sceglie quella del browser
    (senza JavaScript si vede l'inglese).
    `/download/<id>` è una PAGINA con un pulsante «Apri nell'app» che parte da un tocco: mai un reindirizzamento automatico verso `skimap://`.
-   Il pulsante apre l'app solo con la v2 e una build dell'11-11 o successiva; il testo dice che il download parte e quanto pesa, al massimo. */
+   Il pulsante apre l'app solo con la v2 e una build dell'11-11 o successiva; il testo dice che il download parte e che usa i dati (nessun peso: non è misurato, 20-11). */
 import QRCode from 'qrcode';
 import Layout from '../layouts/Layout.astro';
 import StoreCta from '../components/StoreCta.astro';
@@ -30,8 +30,7 @@ const title = t(FALLBACK).download.title + (area ? ` · ${area.name}` : '');
         {area && (
           <div class="open">
             <a class="btn btn-ghost" href={`skimap://download/${area.id}`} data-open>{d.openApp}</a>
-            <p class="ts-testo-piccolo">{fill(d.openAppNote, { name: area.name, mb: area.packMaxMB })}</p>
-            <p class="ts-testo-piccolo" set:html={fill(d.weightNote, { mb: area.packMaxMB })} />
+            <p class="ts-testo-piccolo">{fill(d.openAppNote, { name: area.name })}</p>
             <p class="ts-testo-piccolo">{d.needApp}</p>
           </div>
         )}

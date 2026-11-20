@@ -159,8 +159,7 @@ const en: Content = {
   download: {
     title: 'Get Ski Maps', h1: 'Get Ski Maps', lede: 'The app for skiing piste by piste.',
     play: 'Get it on Google Play', soon: 'Coming soon to Google Play', ios: 'iPhone: coming soon',
-    openApp: 'Open in the app', openAppNote: 'Opens the app and starts downloading {name}: up to {mb} MB, on your data.',
-    weight: 'Package size', weightNote: 'Up to {mb} MB. <span data-claim="peso-pacchetto">A maximum, not a measurement.</span>',
+    openApp: 'Open in the app', openAppNote: 'Opens the app and starts downloading {name}. It uses your data: better on Wi-Fi.',
     needApp: 'If it does not open, you need the updated app: install or update it from Google Play and try again.', back: 'Back to the site', qr: 'From a computer: scan the code with your phone.',
   },
   notFound: { title: 'Page not found · Ski Maps', h1: 'This page does not exist.', text: 'The address may have changed. Go back to the home page or pick a ski area.', back: 'Home page' },

@@ -15,24 +15,22 @@ export interface AreaDef {
   group: Group;
   /* 'region' = chiave della riga «dove» nel contenuto */
   where: 'trentino' | 'piedmont' | 'aosta-piedmont' | 'lombardy' | 'abruzzo' | 'veneto-trentino-southtyrol';
-  /* peso massimo del pacchetto pista in MB: l'obiettivo del piano (sez. 5), non una misura (da verificare, claim `peso-pacchetto`) */
-  packMaxMB: number;
   /* le zone di un comprensorio ufficiale (solo dove il sito le elenca) */
   zones?: string[];
 }
 
 export const AREAS: AreaDef[] = [
   {
-    id: 'superski', slug: 'dolomiti-superski', name: 'Dolomiti Superski', group: 'dolomiti', where: 'veneto-trentino-southtyrol', packMaxMB: 100,
+    id: 'superski', slug: 'dolomiti-superski', name: 'Dolomiti Superski', group: 'dolomiti', where: 'veneto-trentino-southtyrol',
     zones: ['Cortina d’Ampezzo', 'Plan de Corones', 'Alta Badia', 'Val Gardena · Alpe di Siusi', 'Val di Fassa · Carezza', 'Arabba · Marmolada', 'Tre Cime Dolomiti', 'Val di Fiemme · Obereggen', 'San Martino · Passo Rolle', 'Valle Isarco', 'Alpe Lusia · San Pellegrino', 'Civetta'],
   },
-  { id: 'vialattea', slug: 'vialattea', name: 'Vialattea', group: 'western-alps', where: 'piedmont', packMaxMB: 25 },
-  { id: 'skirama', slug: 'skirama-dolomiti', name: 'Skirama Dolomiti', group: 'dolomiti', where: 'trentino', packMaxMB: 75 },
-  { id: 'monterosa', slug: 'monterosa-ski', name: 'Monterosa Ski', group: 'western-alps', where: 'aosta-piedmont', packMaxMB: 40 },
-  { id: 'livigno', slug: 'livigno', name: 'Livigno', group: 'lombardy', where: 'lombardy', packMaxMB: 25 },
-  { id: 'altosangro', slug: 'alto-sangro', name: 'Alto Sangro', group: 'apennines', where: 'abruzzo', packMaxMB: 25 },
-  { id: 'campofelice', slug: 'campo-felice', name: 'Campo Felice', group: 'apennines', where: 'abruzzo', packMaxMB: 25 },
-  { id: 'ovindoli', slug: 'ovindoli', name: 'Ovindoli', group: 'apennines', where: 'abruzzo', packMaxMB: 25 },
+  { id: 'vialattea', slug: 'vialattea', name: 'Vialattea', group: 'western-alps', where: 'piedmont' },
+  { id: 'skirama', slug: 'skirama-dolomiti', name: 'Skirama Dolomiti', group: 'dolomiti', where: 'trentino' },
+  { id: 'monterosa', slug: 'monterosa-ski', name: 'Monterosa Ski', group: 'western-alps', where: 'aosta-piedmont' },
+  { id: 'livigno', slug: 'livigno', name: 'Livigno', group: 'lombardy', where: 'lombardy' },
+  { id: 'altosangro', slug: 'alto-sangro', name: 'Alto Sangro', group: 'apennines', where: 'abruzzo' },
+  { id: 'campofelice', slug: 'campo-felice', name: 'Campo Felice', group: 'apennines', where: 'abruzzo' },
+  { id: 'ovindoli', slug: 'ovindoli', name: 'Ovindoli', group: 'apennines', where: 'abruzzo' },
 ];
 
 export const GROUPS: Group[] = ['dolomiti', 'western-alps', 'lombardy', 'apennines'];

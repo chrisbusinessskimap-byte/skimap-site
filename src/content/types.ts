@@ -73,7 +73,7 @@ export interface Content {
   legal: { privacy: Meta; delete: Meta; other: string };
   download: {
     title: string; h1: string; lede: string; play: string; soon: string; ios: string; openApp: string; openAppNote: string;
-    weight: string; weightNote: string; needApp: string; back: string; qr: string;
+    needApp: string; back: string; qr: string;
   };
   notFound: { title: string; h1: string; text: string; back: string };
 }
