@@ -134,7 +134,7 @@ const en: Content = {
     eyebrow: 'Sources and licences', h1: 'Where the things you see here come from.',
     lede: 'This page lists the credits of the site. The full list of the data sources of the app is in the app (Settings → Sources and licences) and in the <a href="{privacy}">privacy notice</a>.',
     osmTitle: 'Maps and figures', osm: 'Pistes and lifts come from OpenStreetMap (© OpenStreetMap contributors, ODbL 1.0 licence). Kilometres, lifts and altitudes of the ski areas are calculated on the Ski Maps map and may differ from the official ones. The outline of Italy, its regions and the neighbouring countries on the map of the ski areas come from Natural Earth (public domain).',
-    reliefTitle: 'The relief', relief: '<span data-claim="rilievo-crediti">The “right hour” relief is drawn by Ski Maps on the digital terrain model of the Terrain Tiles (Mapzen and related sources), at zoom 12, Dolomites area. For Europe the Terrain Tiles list: “© offene Daten Österreichs – Digitales Geländemodell (DGM) Österreich” and “produced using Copernicus data and information funded by the European Union - EU-DEM layers”. The data have been modified; the European Union does not endorse the product.</span>',
+    reliefTitle: 'The relief', relief: '<span data-claim="rilievo-crediti">The “right hour” relief is drawn by Ski Maps on the digital terrain model of the Terrain Tiles (Mapzen and related sources), at zoom 12, Dolomites area. At the scale used here (zoom 12) the Terrain Tiles documentation gives SRTM as the source of land elevation: “global GMTED2010 and SRTM terrain data courtesy of the U.S. Geological Survey”. For Europe the Terrain Tiles list: “© offene Daten Österreichs – Digitales Geländemodell (DGM) Österreich” and “produced using Copernicus data and information funded by the European Union - EU-DEM layers”. The data have been modified; the European Union does not endorse the product.</span>',
     fontsTitle: 'Typefaces', fonts: 'Bricolage Grotesque, Hanken Grotesk and IBM Plex Mono, all under the SIL Open Font License 1.1. The files are Latin subsets served by this site; the licences are next to the files.',
     photosTitle: 'Ski area photos', photos: 'Photos come from Wikimedia Commons: author and licence are under each photo, with a link to the source. The photos are cropped.',
     appTitle: 'Other sources', app: 'The altitude data, boundaries and hours used by the app are listed in the app and in the privacy notice.',
@@ -145,7 +145,7 @@ const en: Content = {
     eyebrow: 'For ski areas', h1: 'Bring Ski Maps to your ski area.',
     lede: 'For lift operators, consortia, ski schools, huts and rental shops. This season we are opening a pilot with a few areas.',
     blocks: [
-      { h: 'What the area gets', p: '<span data-claim="territorio-benefici">Guests who know when to head back, fewer calls from people stuck after closing time, tours that make every zone known.</span>' },
+      { h: 'What the area gets', p: '<span data-claim="territorio-benefici">Guests who know when to head back and whether they will make the last lift, where its hours are announced.</span>' },
       { h: 'What we ask', p: 'Up-to-date lift hours and one contact person. No heavy integrations to get started.' },
       { h: 'How the pilot works', p: 'One meeting, one trial season, a report at the end. The terms are in the pilot offer.' },
     ],

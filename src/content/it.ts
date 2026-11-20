@@ -136,7 +136,7 @@ const it: Content = {
     eyebrow: 'Fonti e licenze', h1: 'Da dove vengono le cose che vedi qui.',
     lede: 'Questa pagina elenca i crediti del sito. L’elenco completo delle fonti dei dati dell’app è nell’app (Impostazioni → Fonti e licenze) e nell’<a href="{privacy}">informativa</a>.',
     osmTitle: 'Mappe e numeri', osm: 'Piste e impianti vengono da OpenStreetMap (© OpenStreetMap contributors, licenza ODbL 1.0). Chilometri, impianti e quote dei comprensori sono calcolati sulla mappa di Ski Maps e possono differire da quelli ufficiali. Il contorno dell’Italia, le regioni e i paesi confinanti nella mappa dei comprensori vengono da Natural Earth (dominio pubblico).',
-    reliefTitle: 'Il rilievo', relief: '<span data-claim="rilievo-crediti">Il rilievo «all’ora giusta» è disegnato da Ski Maps sul modello digitale del terreno delle Terrain Tiles (Mapzen e fonti collegate), a zoom 12, area delle Dolomiti. Per l’Europa le Terrain Tiles riportano: «© offene Daten Österreichs – Digitales Geländemodell (DGM) Österreich» e «produced using Copernicus data and information funded by the European Union - EU-DEM layers». I dati sono stati modificati; l’Unione europea non avalla il prodotto.</span>',
+    reliefTitle: 'Il rilievo', relief: '<span data-claim="rilievo-crediti">Il rilievo «all’ora giusta» è disegnato da Ski Maps sul modello digitale del terreno delle Terrain Tiles (Mapzen e fonti collegate), a zoom 12, area delle Dolomiti. Alla scala usata qui (zoom 12) la documentazione delle Terrain Tiles indica per le quote sulla terraferma i dati SRTM: «global GMTED2010 and SRTM terrain data courtesy of the U.S. Geological Survey». Per l’Europa le Terrain Tiles riportano: «© offene Daten Österreichs – Digitales Geländemodell (DGM) Österreich» e «produced using Copernicus data and information funded by the European Union - EU-DEM layers». I dati sono stati modificati; l’Unione europea non avalla il prodotto.</span>',
     fontsTitle: 'Caratteri', fonts: 'Bricolage Grotesque, Hanken Grotesk e IBM Plex Mono, tutti con licenza SIL Open Font License 1.1. I file sono sottoinsiemi latini serviti da questo sito; le licenze sono accanto ai file.',
     photosTitle: 'Foto dei comprensori', photos: 'Le foto sono di Wikimedia Commons: autore e licenza stanno sotto ogni foto, con il collegamento alla fonte. Le foto sono ritagliate.',
     appTitle: 'Altre fonti', app: 'I dati di quota, i confini e gli orari usati dall’app sono elencati nell’app e nell’informativa.',
@@ -147,7 +147,7 @@ const it: Content = {
     eyebrow: 'Per il territorio', h1: 'Porta Ski Maps nel tuo comprensorio.',
     lede: 'Per impianti, consorzi, scuole sci, rifugi e noleggi. Questa stagione apriamo un pilota con pochi territori.',
     blocks: [
-      { h: 'Cosa ottiene il territorio', p: '<span data-claim="territorio-benefici">Ospiti che sanno quando rientrare, meno chiamate per chi resta bloccato oltre la chiusura, giri che fanno conoscere tutte le zone.</span>' },
+      { h: 'Cosa ottiene il territorio', p: '<span data-claim="territorio-benefici">Ospiti che sanno a che ora rientrare e se fanno in tempo per l’ultimo impianto, dove l’orario è annunciato.</span>' },
       { h: 'Cosa chiediamo', p: 'Orari degli impianti aggiornati e un referente. Niente integrazioni pesanti per partire.' },
       { h: 'Come funziona il pilota', p: 'Un incontro, una stagione di prova, un resoconto alla fine. Le condizioni sono nell’offerta pilota.' },
     ],
