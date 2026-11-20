@@ -8,9 +8,9 @@ Elenco aggiornato al 20-11-2026 (il 20-11 Christian ha deciso: titolare, iscrizi
 |---|---|---|
 | `pacchetto-comprensorio` | da verificare | «Scarichi le mappe del comprensorio una volta, a casa»: vale per la v2; dipende da quale interfaccia esce il 26-11 e dalla decisione del 20-11 sulle tessere. |
 | `no-cookie-sito` | da verificare | La prova sul dominio vero dopo il cambio: `npm run check:browser -- --base=https://skimaps.cc`, esito nel DIARIO. |
-| `rilievo-crediti` | da verificare | 20-11: aggiunta la riga SRTM/USGS (alla scala usata, zoom 12, le quote sulla terraferma sono SRTM; Austria DGM per il tratto austriaco), da documentazione delle Terrain Tiles; non verificato pixel per pixel. **Christian conferma il nuovo testo.** |
+| `rilievo-crediti` | vera | 20-11: aggiunta la riga SRTM/USGS (alla scala usata, zoom 12, le quote sulla terraferma sono SRTM; Austria DGM per il tratto austriaco), da documentazione delle Terrain Tiles; non verificato pixel per pixel. Confermato da Christian il 20-11. |
 | `avvisami-una-volta` | da verificare | 20-11: **iscrizione semplice scelta**. Resta la riga nell'informativa («Questo sito») e la campagna del lancio a mano, una sola, a quella lista. |
-| `territorio-benefici` | da verificare | 20-11: tolti «meno chiamate» e «giri» (non escono il 26-11); ora «ospiti che sanno a che ora rientrare e se fanno in tempo per l'ultimo impianto, dove l'orario è annunciato». **Christian conferma la nuova frase** (de/fr/es scritte da Claude il 20-11, da rileggere). |
+| `territorio-benefici` | vera | 20-11: tolti «meno chiamate» e «giri» (non escono il 26-11); ora «ospiti che sanno a che ora rientrare e se fanno in tempo per l'ultimo impianto, dove l'orario è annunciato». Confermata da Christian il 20-11 (de/fr/es scritte da Claude il 20-11, da rileggere). |
 | `territorio-dati-risposta` | da verificare | Informativa, registro dei trattamenti e Domanda 13 dell'appendice legale (`skimap-data/docs/LEGALE_P30_SITO.md`, 20-11). |
 | `informativa-sito` | falsa | Le sezioni «Questo sito» dell'informativa (GitHub Pages, «nessuno strumento di analisi», lista d'attesa) diventano false il giorno del cambio di dominio: le riscrive una sessione a parte, con l'ok scritto di Christian, nello stesso commit. |
 
