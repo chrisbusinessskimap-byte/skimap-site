@@ -6,7 +6,7 @@ Elenco aggiornato al 20-11-2026 (il 20-11 Christian ha deciso: titolare, iscrizi
 
 | id | stato | cosa serve |
 |---|---|---|
-| `pacchetto-comprensorio` | da verificare | «Scarichi le mappe del comprensorio una volta, a casa»: vale per la v2; dipende da quale interfaccia esce il 26-11 e dalla decisione del 20-11 sulle tessere. |
+| `pacchetto-comprensorio` | vera | «Scarichi le mappe del comprensorio una volta, a casa»: vale per la v2; dipende da quale interfaccia esce il 26-11 e dalla decisione del 20-11 sulle tessere. | Messa «vera» da Christian il 20-11: esce la v2.
 | `no-cookie-sito` | da verificare | La prova sul dominio vero dopo il cambio: `npm run check:browser -- --base=https://skimaps.cc`, esito nel DIARIO. |
 | `rilievo-crediti` | vera | 20-11: aggiunta la riga SRTM/USGS (alla scala usata, zoom 12, le quote sulla terraferma sono SRTM; Austria DGM per il tratto austriaco), da documentazione delle Terrain Tiles; non verificato pixel per pixel. Confermato da Christian il 20-11. |
 | `avvisami-una-volta` | da verificare | 20-11: **iscrizione semplice scelta**. Resta la riga nell'informativa («Questo sito») e la campagna del lancio a mano, una sola, a quella lista. |
