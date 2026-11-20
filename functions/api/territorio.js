@@ -17,7 +17,7 @@ export async function handle({ request, env }, fetchImpl = fetch) {
   const email = clean(form.get('email'), 254);
   const area = clean(form.get('area'), 160);
   const msg = clean(form.get('msg'), 2000);
-  if (!name || !org || !isEmail(email) || !msg || form.get('consent') !== 'on') return done('invalid');
+  if (!name || !org || !isEmail(email) || !msg) return done('invalid');
   const human = await turnstileOk(env, form.get('cf-turnstile-response'), request.headers.get('CF-Connecting-IP'), fetchImpl).catch(() => false);
   if (!human) return done('invalid');
   if (!env.BREVO_API_KEY || !env.MAIL_FROM) return done('fail', 'no-secrets');

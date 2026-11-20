@@ -67,7 +67,7 @@ export interface Content {
     blocks: { h: string; p: string }[];
     form: {
       title: string; name: string; namePh: string; org: string; orgPh: string; mail: string; mailPh: string; area: string; areaPh: string; msg: string; msgPh: string;
-      consent: string; send: string; note: string; turnstile: string; ok: string; invalid: string; fail: string;
+      send: string; note: string; turnstile: string; ok: string; invalid: string; fail: string;
     };
   };
   legal: { privacy: Meta; delete: Meta; other: string };

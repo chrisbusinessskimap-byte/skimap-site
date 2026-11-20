@@ -44,11 +44,10 @@ const FORM = 'territorio';
         <div class="fld"><label class="ts-testo-piccolo" for="t-mail">{f.mail}</label><input class="ts-testo" id="t-mail" name="email" type="email" autocomplete="email" required maxlength="254" placeholder={f.mailPh} /></div>
         <div class="fld"><label class="ts-testo-piccolo" for="t-area">{f.area}</label><input class="ts-testo" id="t-area" name="area" type="text" maxlength="160" placeholder={f.areaPh} /></div>
         <div class="fld"><label class="ts-testo-piccolo" for="t-msg">{f.msg}</label><textarea class="ts-testo" id="t-msg" name="msg" rows="4" required maxlength="2000" placeholder={f.msgPh}></textarea></div>
-        <label class="consent ts-testo-piccolo"><input type="checkbox" name="consent" required /> <span set:html={fill(f.consent, { privacy: path(lang, 'privacy') })} /></label>
         {SITEKEY && <div class="cf-turnstile" data-sitekey={SITEKEY}></div>}
         <button class="send" type="submit">{f.send}</button>
       </form>
-      <p class="note ts-credito"><span set:html={f.note} />{SITEKEY && <> {f.turnstile}</>}</p>
+      <p class="note ts-credito"><span set:html={fill(f.note, { privacy: path(lang, 'privacy') })} />{SITEKEY && <> {f.turnstile}</>}</p>
       <p class="state ok ts-testo-piccolo" id={`${FORM}-ok`} role="status">{f.ok}</p>
       <p class="state bad ts-testo-piccolo" id={`${FORM}-invalid`} role="alert">{f.invalid}</p>
       <p class="state bad ts-testo-piccolo" id={`${FORM}-fail`} role="alert">{f.fail} <a href={`mailto:${MAIL}`}>{MAIL}</a></p>
@@ -73,9 +72,6 @@ const FORM = 'territorio';
   .fld textarea { height: 120px; padding-top: 14px; resize: vertical; }
   .fld input::placeholder, .fld textarea::placeholder { color: var(--color-mute); opacity: 1; }
   .fld input:focus-visible, .fld textarea:focus-visible { outline: 3px solid var(--color-route); outline-offset: 2px; }
-  .consent { display: flex; gap: 10px; align-items: center; color: color-mix(in srgb, var(--color-ink) 72%, transparent); }
-  .consent input { width: 24px; height: 24px; accent-color: var(--color-route); flex: none; }
-  .consent :global(a) { color: inherit; text-decoration: underline; }
   .send { justify-self: start; border: 0; border-radius: var(--radius-pill); background: var(--color-route); color: var(--brand-neve); padding: 16px 28px; font-family: var(--font-body); font-weight: 700; font-size: 17px; line-height: 1.2; cursor: pointer; }
   .send:hover { background: color-mix(in srgb, var(--color-route) 88%, var(--brand-abisso)); }
   .send:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 2px; }

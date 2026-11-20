@@ -55,7 +55,7 @@ test('il ritorno è solo un percorso del sito', async () => {
   assert.equal(r.headers.get('Location'), '/en/#modulo-ok');
 });
 
-const GOOD = { name: 'Anna Rossi', org: 'Consorzio Alta Badia', email: 'anna@ente.it', area: 'Alta Badia', msg: 'Vorremmo parlarne.', consent: 'on', lang: 'it', back: '/it/territorio/', id: 'territorio' };
+const GOOD = { name: 'Anna Rossi', org: 'Consorzio Alta Badia', email: 'anna@ente.it', area: 'Alta Badia', msg: 'Vorremmo parlarne.', lang: 'it', back: '/it/territorio/', id: 'territorio' };
 
 test('territorio: manda la posta a Christian con la risposta a chi ha scritto', async () => {
   const calls = [];
@@ -70,14 +70,13 @@ test('territorio: manda la posta a Christian con la risposta a chi ha scritto', 
   assert.match(body.subject, /Consorzio Alta Badia/);
 });
 
-test('territorio: servono nome, ente, email valida, messaggio e consenso', async () => {
+test('territorio: servono nome, ente, email valida e messaggio', async () => {
   const none = async () => { throw new Error('non si deve chiamare'); };
-  for (const drop of ['name', 'org', 'msg', 'consent']) {
+  for (const drop of ['name', 'org', 'msg']) {
     const f = { ...GOOD }; delete f[drop];
     assert.equal((await territorio({ request: req(f), env: ENV }, none)).headers.get('Location'), '/it/territorio/#territorio-invalid', drop);
   }
   assert.equal((await territorio({ request: req({ ...GOOD, email: 'x' }), env: ENV }, none)).headers.get('Location'), '/it/territorio/#territorio-invalid');
-  assert.equal((await territorio({ request: req({ ...GOOD, consent: 'no' }), env: ENV }, none)).headers.get('Location'), '/it/territorio/#territorio-invalid');
 });
 
 test('territorio: con il segreto di Turnstile serve la prova, senza no', async () => {
@@ -101,7 +100,7 @@ test('il rifiuto dice perché, senza email né chiave (solo JSON)', async () => 
   assert.deepEqual(await run(ENV, brevoStub(401, { code: 'unauthorized', message: 'Key not found' })), { ok: false, code: 'fail', reason: 'brevo-401-unauthorized' });
   assert.deepEqual(await run(ENV, brevoStub(400, { code: 'invalid_parameter' })), { ok: false, code: 'fail', reason: 'brevo-400-invalid_parameter' });
   assert.deepEqual(await run(ENV, async () => { throw new Error('rete'); }), { ok: false, code: 'fail', reason: 'network' });
-  const t = await territorio({ request: req({ name: 'A', org: 'B', email: 'a@b.it', msg: 'm', consent: 'on' }, json), env: ENV }, brevoStub(403, { code: 'permission_denied' }));
+  const t = await territorio({ request: req({ name: 'A', org: 'B', email: 'a@b.it', msg: 'm' }, json), env: ENV }, brevoStub(403, { code: 'permission_denied' }));
   assert.deepEqual(await t.json(), { ok: false, code: 'fail', reason: 'brevo-403-permission_denied' });
   assert.ok(!JSON.stringify(await (await avvisami({ request: req({ email: 'segreta@example.it' }, json), env: ENV }, brevoStub(500, { message: 'segreta@example.it k' })) ).json()).includes('segreta'));
 });
