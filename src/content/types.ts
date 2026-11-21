@@ -60,7 +60,7 @@ export interface Content {
   sources: {
     meta: Meta; eyebrow: string; h1: string; lede: string;
     osmTitle: string; osm: string; reliefTitle: string; relief: string;
-    fontsTitle: string; fonts: string; photosTitle: string; photos: string; appTitle: string; app: string; todo: string;
+    fontsTitle: string; fonts: string; photosTitle: string; photos: string; mapTitle: string; map: string; appTitle: string; app: string; todo: string;
   };
   territory: {
     meta: Meta; eyebrow: string; h1: string; lede: string;
