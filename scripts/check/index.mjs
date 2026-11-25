@@ -186,7 +186,7 @@ else {
   const app = resolve(ROOT, '../skimap-mobile/src/utils/consentRecord.ts');
   if (existsSync(app)) {
     const m = /CONSENT_VERSION\s*=\s*(\d+)/.exec(read(app));
-    if (m && +m[1] !== ver[1]) err(`la versione dell'informativa del sito (${ver[1]}) non è quella dell'app (CONSENT_VERSION ${m[1]})`);
+    if (m && +m[1] !== +ver[1]) err(`la versione dell'informativa del sito (${ver[1]}) non è quella dell'app (CONSENT_VERSION ${m[1]})`);
   } else warn('app non trovata accanto al sito: la versione dell\'informativa non è confrontata con CONSENT_VERSION');
 }
 
