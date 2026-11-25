@@ -15,4 +15,4 @@ export const isLang = (x: string): x is Lang => (LANGS as readonly string[]).inc
 
 /* L'informativa del sito è quella dell'app (stessa versione e stessa data): un controllo la confronta con
    `CONSENT_VERSION`/`legal.ts` dell'app. Si aggiorna quando `main` riceve una versione nuova. */
-export const LEGAL_VERSION = { version: 11, date: '2026-11-12' } as const;
+export const LEGAL_VERSION = { version: 12, date: '2026-11-30' } as const;
