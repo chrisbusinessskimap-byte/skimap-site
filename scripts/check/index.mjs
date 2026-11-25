@@ -183,10 +183,10 @@ const heads = JSON.parse(read(join(ROOT, 'src/legal/heads.json')));
 if (!ver) err('src/i18n/langs.ts: manca LEGAL_VERSION');
 else {
   for (const k of ['privacy.it', 'privacy.en']) if (!heads[k].lede.includes(String(ver[1]))) err(`${k}: la versione dell'informativa non è la ${ver[1]} di LEGAL_VERSION`);
-  const app = resolve(ROOT, '../skimap-mobile/src/services/privacyConsent.ts');
+  const app = resolve(ROOT, '../skimap-mobile/src/utils/consentRecord.ts');
   if (existsSync(app)) {
     const m = /CONSENT_VERSION\s*=\s*(\d+)/.exec(read(app));
-    if (m && +m[1] !== ver[1]) err(`la versione dell'informativa del sito (${ver[1]}) non è quella dell'app (CONSENT_VERSION ${m[1]})`);
+    if (m && +m[1] !== +ver[1]) err(`la versione dell'informativa del sito (${ver[1]}) non è quella dell'app (CONSENT_VERSION ${m[1]})`);
   } else warn('app non trovata accanto al sito: la versione dell\'informativa non è confrontata con CONSENT_VERSION');
 }
 
